@@ -267,25 +267,22 @@ export default function HomePage() {
             No templates. No themes. Each one designed for the practitioner's specific work, brand, and audience.
           </p>
 
-          {/* All clients — same premium card style */}
+          {/* Portfolio — anonymous, show the work not the relationship */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {caseStudies.map((study) => (
               <div
                 key={study.slug}
                 className={`bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group bg-gradient-to-br ${study.gradient}`}
               >
-                <a href={`/work/${study.slug}`} className="block p-6 pb-3">
-                  <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.client}</h3>
-                  <p className="text-meta text-content-muted mt-1">{study.type}</p>
+                <a href={study.url || `/work/${study.slug}`} target={study.url ? '_blank' : undefined} rel={study.url ? 'noopener noreferrer' : undefined} className="block p-6 pb-3">
+                  <p className="text-meta text-accent mb-2">{study.category}</p>
+                  <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.type}</h3>
                   <p className="text-body-sm text-content-secondary mt-3 leading-relaxed line-clamp-2">{study.challenge}</p>
                 </a>
-                <div className="px-6 pb-5 flex items-center gap-4">
-                  <a href={`/work/${study.slug}`} className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-1">
-                    Case study <span aria-hidden="true">&rarr;</span>
-                  </a>
+                <div className="px-6 pb-5">
                   {study.url && (
                     <a href={study.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-content-muted hover:text-accent transition-colors inline-flex items-center gap-1">
-                      Visit site <span aria-hidden="true">&rarr;</span>
+                      {new URL(study.url).hostname} <span aria-hidden="true">&rarr;</span>
                     </a>
                   )}
                 </div>
@@ -295,7 +292,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <a href="/work" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-              All {caseStudies.length} case studies <span aria-hidden="true">&rarr;</span>
+              Full portfolio <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>
