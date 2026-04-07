@@ -182,11 +182,11 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { label: 'Practitioners', href: '/practitioners', desc: 'Healers, yoga teachers, energy workers' },
-              { label: 'Schools', href: '/schools', desc: 'Teacher trainings, certification programs' },
-              { label: 'Retreats', href: '/retreats', desc: 'Booking, intake, and multi-stream revenue' },
-              { label: 'Musicians', href: '/practitioners', desc: 'Albums, tours, merch, community' },
-              { label: 'Communities', href: '/communities', desc: 'Directories, events, local platforms' },
+              { label: 'Practitioners', href: '/practitioners', desc: 'Healers, coaches, therapists, facilitators' },
+              { label: 'Teachers & Schools', href: '/schools', desc: 'Yoga teachers, trainings, certifications' },
+              { label: 'Retreats & Centers', href: '/retreats', desc: 'Booking, intake, multi-stream revenue' },
+              { label: 'Musicians & Artists', href: '/practitioners', desc: 'Albums, tours, merch, creative projects' },
+              { label: 'Communities', href: '/communities', desc: 'Directories, collectives, networks' },
             ].map((door) => (
               <a
                 key={door.label}
