@@ -245,12 +245,24 @@ export default function HowItWorksPage() {
           <p className="text-body text-content-secondary max-w-prose mx-auto mb-10">
             No pitch. No pressure. Tell me about your work and let's figure out if this is the right fit.
           </p>
-          <a
-            href="/#contact"
-            className="inline-block px-10 py-4 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
-          >
-            Start a Conversation
-          </a>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              href="https://cal.astralintegration.studio/astral/discovery-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-4 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
+            >
+              Book a Call
+            </a>
+            <a
+              href="https://wa.me/34611144170"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-4 bg-transparent text-content-secondary border border-border rounded-full text-body-sm font-medium hover:border-border-hover hover:text-content-primary transition-all"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 
