@@ -185,7 +185,7 @@ export default function HomePage() {
               { label: 'practitioners', href: '/practitioners', desc: 'healers, coaches, therapists, facilitators' },
               { label: 'teachers & schools', href: '/schools', desc: 'yoga teachers, trainings, certifications' },
               { label: 'retreats & centers', href: '/retreats', desc: 'booking, intake, multi-stream revenue' },
-              { label: 'artists & makers', href: '/practitioners', desc: 'musicians, craftmakers, jewelry, textiles, natural building' },
+              { label: 'makers & artists', href: '/practitioners', desc: 'musicians, craftmakers, jewelry, textiles, natural building' },
               { label: 'communities', href: '/communities', desc: 'directories, collectives, networks' },
             ].map((door) => (
               <a
