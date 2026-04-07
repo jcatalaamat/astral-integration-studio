@@ -6,8 +6,7 @@ import Footer from '../Footer';
 import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 import { caseStudies } from '../../data/caseStudies';
 
-// Show 4 featured case studies on homepage
-const featured = caseStudies.slice(0, 4);
+// All case studies available for the work section
 
 export default function HomePage() {
   useDocumentMeta({
@@ -259,20 +258,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════ FEATURED WORK ═══════ */}
+      {/* ═══════ THE WORK (unified) ═══════ */}
       <section id="work" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
             The Work
           </p>
-          <h2 className="font-serif text-display-sm font-light mb-4">Selected builds.</h2>
+          <h2 className="font-serif text-display-sm font-light mb-4">Every site is a <em className="italic gradient-text">custom build.</em></h2>
           <p className="text-body text-content-secondary max-w-prose mb-16">
-            Different problems, different architectures. Same principle: original work, custom infrastructure, long-term partnership.
+            No templates. No themes. Each one designed for the practitioner's specific work, brand, and audience.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {featured.map((study) => (
+          {/* Featured case studies — detailed cards */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {caseStudies.slice(0, 4).map((study) => (
               <div
                 key={study.slug}
                 className="bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group"
@@ -290,95 +290,61 @@ export default function HomePage() {
                   <a href={`/work/${study.slug}`} className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-1">
                     Case study <span aria-hidden="true">&rarr;</span>
                   </a>
-                  {study.url ? (
-                    <a
-                      href={study.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-body-sm text-content-muted hover:text-accent transition-colors inline-flex items-center gap-1"
-                    >
+                  {study.url && (
+                    <a href={study.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-content-muted hover:text-accent transition-colors inline-flex items-center gap-1">
                       Visit site <span aria-hidden="true">&rarr;</span>
                     </a>
-                  ) : study.status === 'In progress' ? (
-                    <span className="text-meta uppercase text-content-muted">Private portal</span>
-                  ) : null}
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 text-center">
-            <a
-              href="/work"
-              className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2"
-            >
+          {/* More clients — compact grid, no duplicates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            {[
+              { name: 'Sadhana Works & Mariana Harpreet', desc: 'Yoga studio + personal brand + women\'s movement. Four sites across four domains.', tag: '39K', url: 'https://marianaharpreet.xyz', slug: 'sadhana-works', gradient: 'from-pink-900/20 to-transparent' },
+              { name: 'Sacred Counsel', desc: 'Retreat center. Five revenue streams, one platform.', tag: 'Valle de Bravo', url: 'https://sacredcounsel.space', slug: 'sacred-counsel', gradient: 'from-amber-900/15 to-transparent' },
+              { name: 'Uria Tsur', desc: 'Touring vocal facilitator. 8 ticketing platforms replaced with one.', tag: '18+ cities', url: 'https://uriatsur.live', slug: 'uria-tsur', gradient: 'from-violet-900/15 to-transparent' },
+              { name: 'ShivEnergetics', desc: 'Reiki academy. 9 certification levels, 300+ students.', tag: 'Granada', url: 'https://shivenergetics.xyz', slug: 'shivenergetics', gradient: 'from-emerald-900/15 to-transparent' },
+              { name: 'Mazunte Today', desc: 'Community platform. Bilingual directory + daily events.', tag: 'Oaxaca', url: 'https://mazunte.today', slug: 'mazunte-today', gradient: 'from-rose-900/15 to-transparent' },
+              { name: 'Amakura', desc: 'Regenerative center. School + restaurant + events under one roof.', tag: 'Oaxaca', url: 'https://amakura.xyz', slug: 'amakura', gradient: 'from-lime-900/15 to-transparent' },
+              { name: 'El Arte de Renacer', desc: 'Rebirthing + breathwork school. Rebranding across Latin America.', tag: '39K', url: 'https://artederenacer.com', gradient: 'from-teal-900/15 to-transparent' },
+              { name: 'Mujer Despierta', desc: 'Women\'s empowerment movement. Circles, retreats, online programs.', tag: 'Spanish', url: 'https://mujerdespierta.xyz', gradient: 'from-fuchsia-900/15 to-transparent' },
+              { name: 'Sadhana Works', desc: 'Kundalini yoga studio. Classes, workshops, teacher training.', tag: 'Palma', url: 'https://sadhanaworks.xyz', gradient: 'from-sky-900/15 to-transparent' },
+            ].map((client, i) => (
+              <a
+                key={i}
+                href={client.slug ? `/work/${client.slug}` : client.url}
+                target={client.slug ? undefined : '_blank'}
+                rel={client.slug ? undefined : 'noopener noreferrer'}
+                className={`group bg-dark-card border border-border rounded-2xl p-6 hover:border-accent/40 transition-all bg-gradient-to-br ${client.gradient}`}
+              >
+                <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{client.name}</h3>
+                <p className="text-body-sm text-content-secondary mt-2 leading-relaxed">{client.desc}</p>
+                <div className="flex items-center gap-3 mt-3">
+                  <span className="text-meta text-content-muted">{client.tag}</span>
+                  <span className="text-body-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1">
+                    {client.slug ? 'Case study' : 'Visit site'} <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <a href="/work" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
               All {caseStudies.length} case studies <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* ═══════ QUOTE 4 ═══════ */}
+      {/* ═══════ QUOTE ═══════ */}
       <section className="py-20 px-6 md:px-12">
         <div className="max-w-content mx-auto text-center reveal" ref={addRevealRef}>
           <p className="font-serif text-display-sm font-light italic text-content-primary max-w-[800px] mx-auto">
             &ldquo;not a freelancer who disappears. not an agency that bills by the hour. a partner who stays.&rdquo;
-          </p>
-        </div>
-      </section>
-
-      {/* ═══════ CLIENT SHOWCASE ═══════ */}
-      <section className="py-section px-6 md:px-12">
-        <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
-          <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
-            <span className="w-8 h-px bg-accent" />
-            Built & Live
-          </p>
-          <h2 className="font-serif text-display-sm font-light mb-4">
-            Every site is a <em className="italic gradient-text">custom build.</em>
-          </h2>
-          <p className="text-body text-content-secondary max-w-prose mb-12">
-            no templates. no themes. each one designed for the practitioner's specific work, brand, and audience.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { name: 'Jugat Guru', role: 'CEO of KRI. global kundalini yoga leadership. practice portal + landing page.', tag: '49K, kundalini yoga', url: 'https://jugatguru.xyz', gradient: 'from-amber-900/20 to-transparent' },
-              { name: 'Gurmukh', role: 'legendary kundalini teacher. golden bridge yoga. international retreats + trainings.', tag: '66K, yoga legend', url: 'https://gurmukh.xyz', gradient: 'from-rose-900/20 to-transparent' },
-              { name: 'Deva Premal + Miten', role: 'sacred music icons. world tours, mantra albums, online concerts + community.', tag: '227K, sacred music', url: 'https://devapremalmiten.xyz', gradient: 'from-orange-900/20 to-transparent' },
-              { name: 'Skylar Acamesis', role: 'medical intuitive + energy healer. private sessions + masterminds.', tag: '7.8K, energy healing', url: 'https://skylaracamesis.xyz', gradient: 'from-violet-900/20 to-transparent' },
-              { name: 'El Arte de Renacer', role: 'rebirthing + breathwork school. teacher trainings across latin america.', tag: '39K, rebirthing', url: 'https://elartederenacer.xyz', gradient: 'from-teal-900/20 to-transparent' },
-              { name: 'Amakura', role: 'biodisciplinary collective. regenerative living + creative projects in zapotal, oaxaca.', tag: 'collective, oaxaca', url: 'https://amakura.xyz', gradient: 'from-lime-900/20 to-transparent' },
-              { name: 'ShivEnergetics', role: 'reiki master teacher. levels 1-9. retreats in granada, spain.', tag: 'energy healing, granada', url: 'https://shivenergetics.xyz', gradient: 'from-emerald-900/20 to-transparent' },
-              { name: 'Sadhana Works', role: 'kundalini yoga studio. classes, workshops, teacher training in palma.', tag: 'yoga studio, palma', url: 'https://sadhanaworks.xyz', gradient: 'from-sky-900/20 to-transparent' },
-              { name: 'Mujer Despierta', role: "women's empowerment platform. circles, retreats + online programs.", tag: "women's circles, 39K", url: 'https://mujerdespierta.xyz', gradient: 'from-fuchsia-900/20 to-transparent' },
-            ].map((client, i) => (
-              <a
-                key={i}
-                href={client.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all bg-gradient-to-br ${client.gradient}`}
-              >
-                <div className="p-6">
-                  <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{client.name}</h3>
-                  <p className="text-body-sm text-content-secondary mt-2 leading-relaxed">{client.role}</p>
-                  <p className="text-meta text-content-muted mt-2">{client.tag}</p>
-                  <span className="text-body-sm text-accent mt-4 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Visit site <span aria-hidden="true">&rarr;</span>
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════ QUOTE 5 ═══════ */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-content mx-auto text-center reveal" ref={addRevealRef}>
-          <p className="font-serif text-display-sm font-light italic text-content-primary max-w-[800px] mx-auto">
-            &ldquo;send me the mess. i'll build the business.&rdquo;
           </p>
         </div>
       </section>
