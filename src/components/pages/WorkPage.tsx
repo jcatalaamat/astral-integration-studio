@@ -91,73 +91,35 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* Builds Grid */}
       <section className="pb-section px-6 md:px-12">
-        <div className="max-w-content mx-auto space-y-12">
+        <div className="max-w-content mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((study) => (
-            <article
+            <div
               key={study.slug}
-              id={study.slug}
-              className="bg-dark-card border border-border rounded-2xl overflow-hidden reveal"
+              className={`bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group bg-gradient-to-br ${study.gradient} reveal`}
               ref={addRevealRef}
             >
-              {/* Header */}
-              <div className={`relative w-full border-b border-border bg-gradient-to-br ${study.gradient} p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4`}>
-                <div>
-                  <h2 className="font-serif text-h1 font-light">{study.type}</h2>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-meta uppercase text-content-muted bg-dark-bg/40 border border-border rounded-full px-3 py-1">
-                    {study.category}
-                  </span>
-                  {study.url && (
-                    <a
-                      href={study.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-meta uppercase text-accent hover:text-content-primary transition-colors"
-                    >
-                      View Live
-                    </a>
-                  )}
-                  {study.status && (
-                    <span className="text-meta uppercase text-content-muted bg-dark-bg/60 backdrop-blur-sm border border-border rounded-full px-3 py-1">
-                      {study.status}
-                    </span>
-                  )}
-                </div>
+              <a href={study.url || undefined} target={study.url ? '_blank' : undefined} rel={study.url ? 'noopener noreferrer' : undefined} className="block p-6 pb-3">
+                <p className="text-meta text-accent mb-2">{study.category}</p>
+                <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.type}</h3>
+                <p className="text-body-sm text-content-secondary mt-3 leading-relaxed line-clamp-3">{study.challenge}</p>
+              </a>
+              <div className="px-6 pb-5">
+                {study.url && (
+                  <a href={study.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-content-muted hover:text-accent transition-colors inline-flex items-center gap-1">
+                    {new URL(study.url).hostname} <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
               </div>
-
-              {/* Body */}
-              <div className="p-6 md:p-10 space-y-8">
-                <div>
-                  <p className="text-meta uppercase text-accent mb-3">The Challenge</p>
-                  <p className="text-body-sm text-content-secondary leading-relaxed">{study.challenge}</p>
-                </div>
-
-                <div>
-                  <p className="text-meta uppercase text-accent mb-3">Key Decisions</p>
-                  <p className="text-body-sm text-content-secondary leading-relaxed">{study.decisions}</p>
-                </div>
-
-                <div className="pt-6 border-t border-border">
-                  <p className="text-meta uppercase text-content-muted mb-3">What Was Built</p>
-                  <p className="text-body-sm text-content-primary leading-relaxed">{study.built}</p>
-                </div>
-
-                <a
-                  href={`/work/${study.slug}`}
-                  className="inline-flex items-center gap-2 text-body-sm text-accent hover:text-content-primary transition-colors mt-2"
-                >
-                  Full case study <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
-            </article>
+            </div>
           ))}
 
+          </div>
           {filtered.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-body text-content-muted">No case studies in this category yet.</p>
+              <p className="text-body text-content-muted">No builds in this category yet.</p>
             </div>
           )}
         </div>
@@ -172,12 +134,24 @@ export default function WorkPage() {
           <p className="text-body text-content-secondary max-w-prose mx-auto mb-10">
             If you've created something original and need a technical partner who thinks in systems — not features — I'd like to hear about it.
           </p>
-          <a
-            href="/contact"
-            className="inline-block px-10 py-4 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
-          >
-            Start a Conversation
-          </a>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              href="https://cal.astralintegration.studio/astral/discovery-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-4 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
+            >
+              Book a Call
+            </a>
+            <a
+              href="https://wa.me/34611144170"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-4 bg-transparent text-content-secondary border border-border rounded-full text-body-sm font-medium hover:border-border-hover hover:text-content-primary transition-all"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 
