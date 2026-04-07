@@ -96,7 +96,11 @@ export default function HomePage() {
           a voice memo at 2am. a messy google doc. a notion page. a whatsapp forward. a screenshot of your instagram bio. that's all i need. i'll research your work, build your platform, wire your payments, set up your community &mdash; and hand you the keys.
         </p>
 
-        <p className="text-body-sm text-content-muted mt-6 relative z-10 animate-fadeUp animate-delay-700">
+        <div className="mt-8 mb-2 relative z-10 animate-fadeUp animate-delay-700">
+          <img src="/jordi-profile.jpg" alt="Jordi Amat" className="w-20 h-20 rounded-full object-cover mx-auto border-2 border-border" />
+        </div>
+
+        <p className="text-body-sm text-content-muted mt-4 relative z-10 animate-fadeUp animate-delay-700">
           fractional CTO for spiritual leaders. the last technical hire you'll ever need.
         </p>
 
@@ -462,23 +466,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════ ABOUT (short) ═══════ */}
+      {/* ═══════ ABOUT ═══════ */}
       <section id="about" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
-          <div className="grid md:grid-cols-[200px_1fr] gap-10 items-start">
-            <div className="w-[200px] h-[240px] rounded-2xl border border-border relative overflow-hidden mx-auto md:mx-0">
-              <img src="/founder.jpeg" alt="Jordi Amat" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/60 to-transparent" />
+          <div className="grid md:grid-cols-[320px_1fr] gap-12 items-start">
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-border relative overflow-hidden">
+                <img src="/founder.jpeg" alt="Jordi Amat" className="w-full aspect-[3/4] object-cover" loading="lazy" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img src="/family-01.jpg" alt="Life in Mazunte" className="w-full aspect-square object-cover" loading="lazy" />
+                </div>
+                <div className="rounded-xl overflow-hidden border border-border">
+                  <img src="/family-02.jpg" alt="Life in Mazunte" className="w-full aspect-square object-cover" loading="lazy" />
+                </div>
+              </div>
             </div>
 
             <div>
-              <h2 className="font-serif text-h2 font-light mb-4">Jordi Amat.</h2>
-              <p className="text-body text-content-secondary leading-relaxed mb-4">
-                I'm Jordi. Senior full-stack engineer. Former CTO. Access Bars practitioner. I spent a decade building production systems and leading engineering teams. Then I moved to Mazunte, Oaxaca &mdash; a small village on the Pacific coast of Mexico &mdash; and started building for the people doing the most original work in education, healing, and community. 170+ sites shipped. I work with AI tools that let me move at a speed that used to require a team.
+              <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
+                <span className="w-8 h-px bg-accent" />
+                About
               </p>
+              <h2 className="font-serif text-display-sm font-light mb-6">Jordi Amat.</h2>
+              <div className="space-y-4">
+                <p className="text-body text-content-secondary leading-relaxed">
+                  Senior full-stack engineer. Former CTO. Access Bars practitioner. I spent a decade building production systems and leading engineering teams. Then I moved to Mazunte, Oaxaca &mdash; a small village on the Pacific coast of Mexico &mdash; and started building for the people doing the most original work in education, healing, and community.
+                </p>
+                <p className="text-body text-content-secondary leading-relaxed">
+                  170+ sites shipped. I work with AI tools that let me move at a speed that used to require a team. And I charge a fraction of what an agency would because my overhead is a hammock and a satellite dish.
+                </p>
+                <p className="text-body text-content-muted leading-relaxed italic">
+                  I don't do sales calls. I don't send proposals. I find people whose work I respect, I build them something real, and I send them the link. If they like it, we work together. If not, they keep the build anyway.
+                </p>
+              </div>
               <a
                 href="/about"
-                className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2"
+                className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2 mt-6"
               >
                 Full story <span aria-hidden="true">&rarr;</span>
               </a>
