@@ -25,6 +25,8 @@ const ROUTES = [
   '/work/proyecto-salvaje',
   '/work/el-arte-de-renacer',
   '/work/mujer-despierta',
+  '/work/mend-a-mano',
+  '/work/kura-terra',
   '/about',
   '/contact',
   '/insights',

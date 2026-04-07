@@ -1,4 +1,4 @@
-export type CaseStudyCategory = 'Retreats' | 'Practitioners' | 'Schools' | 'Communities' | 'Organizations' | 'Musicians';
+export type CaseStudyCategory = 'Retreats' | 'Practitioners' | 'Schools' | 'Communities' | 'Organizations' | 'Musicians' | 'Makers';
 
 export interface CaseStudy {
   slug: string;
@@ -193,5 +193,29 @@ export const caseStudies: CaseStudy[] = [
     decisions: 'We chose to build Mujer Despierta as a standalone Spanish-language site rather than a redirect — the movement has its own identity and community that deserves preservation. The design needed to feel warm, feminine, and grounded in Latin American aesthetics. The site serves as the legacy home for the movement while artederenacer.com carries the work forward. Both sites share the same design language but have distinct visual identities.',
     built: 'A Spanish-language movement page — event listings, retreat information, community resources, and program enrollment. Designed as a living archive that honors the work while the rebrand evolves. Wix replaced entirely.',
     gradient: 'from-fuchsia-900/25 via-fuchsia-900/5 to-transparent',
+  },
+  {
+    slug: 'mend-a-mano',
+    client: 'Mend a Mano',
+    type: 'Bespoke Robes & Textile Goods — Oaxaca, Mexico',
+    category: 'Makers',
+    url: 'https://mendamano.astralintegration.studio',
+    status: null,
+    challenge: 'A textile artisan crafting bespoke robes and goods from linen and wool — one-to-one, made by hand. No digital presence beyond word of mouth. Needed an online home that felt as intentional and tactile as the garments themselves. The brand is rooted in slow craft, natural materials, and the maker\'s hands — the site needed to communicate that without feeling like a generic e-commerce template.',
+    decisions: 'The design took cues from the materials: linen texture overlay, earthy palette (terra, sage, turmeric), Cormorant Garamond for the craft tradition, Karla for clean modern readability. Sharp 3px border-radius — not rounded, not soft, like cut fabric. Product presentation prioritizes the craft story over the shopping cart. Custom ordering through direct conversation, not add-to-cart.',
+    built: 'A linen-textured artisan site with product showcase, custom ordering flow, maker story, and brand identity that feels like touching the fabric. No e-commerce template — every element designed for slow craft.',
+    gradient: 'from-amber-900/25 via-amber-900/5 to-transparent',
+  },
+  {
+    slug: 'kura-terra',
+    client: 'Kura Terra',
+    type: 'Wearable Art & Plant-Dyed Slow Fashion — Oaxaca, Mexico',
+    category: 'Makers',
+    url: 'https://kuraterra.astralintegration.studio',
+    status: null,
+    challenge: 'A plant-dyed slow fashion brand creating wearable art from natural pigments and sustainable textiles in Oaxaca. Each piece is unique — dyed with local plants, shaped by the land. The brand needed a digital home that honored the slowness and intentionality of the process without looking like another Etsy shop or Shopify theme.',
+    decisions: 'The site needed to feel like the work itself — organic, grounded, alive. We leaned into earth tones, natural textures, and generous whitespace to let the garments breathe. The collection is presented as art, not inventory. Each piece gets its own space. The story of the dye, the plant, the land comes before the price.',
+    built: 'A plant-dyed fashion showcase with collection presentation, artisan story, process documentation, and direct ordering. The digital equivalent of walking into the workshop — you see the work before you see the price tag.',
+    gradient: 'from-emerald-900/25 via-emerald-900/5 to-transparent',
   },
 ];
