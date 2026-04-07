@@ -11,12 +11,14 @@ const filters: Array<{ label: string; value: CaseStudyCategory | 'All' }> = [
   { label: 'Retreats', value: 'Retreats' },
   { label: 'Communities', value: 'Communities' },
   { label: 'Organizations', value: 'Organizations' },
+  { label: 'Musicians', value: 'Musicians' },
+  { label: 'Makers', value: 'Makers' },
 ];
 
 export default function WorkPage() {
   useDocumentMeta({
-    title: 'Case Studies — Astral Integration',
-    description: 'Detailed case studies: the challenges, architectural decisions, and infrastructure behind each platform. From certification academies to community platforms.',
+    title: 'The Work — Astral Integration',
+    description: 'Custom builds for practitioners, schools, retreats, communities, musicians, and makers. The challenge, the architecture, and what was built.',
     ogUrl: 'https://astralintegration.studio/work',
   });
 
@@ -61,13 +63,13 @@ export default function WorkPage() {
         <div className="max-w-content mx-auto">
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
-            Case Studies
+            The Work
           </p>
           <h1 className="font-serif text-display font-light mb-8 max-w-[800px]">
-            The decisions behind the builds.
+            Every site is a custom build.
           </h1>
           <p className="text-body text-content-secondary max-w-prose mb-12">
-            Each project below includes the challenge, the key architectural decisions, and what was built. This is how I think about infrastructure — not as a list of features, but as a set of structural choices shaped by the work itself.
+            No templates. No themes. Each one designed for the practitioner's specific work, brand, and audience. The challenge, the architecture, and what was built.
           </p>
 
           {/* Filter Pills */}
@@ -102,8 +104,7 @@ export default function WorkPage() {
               {/* Header */}
               <div className={`relative w-full border-b border-border bg-gradient-to-br ${study.gradient} p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4`}>
                 <div>
-                  <h2 className="font-serif text-h1 font-light">{study.client}</h2>
-                  <p className="text-meta uppercase text-gold mt-1">{study.type}</p>
+                  <h2 className="font-serif text-h1 font-light">{study.type}</h2>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-meta uppercase text-content-muted bg-dark-bg/40 border border-border rounded-full px-3 py-1">
