@@ -263,21 +263,17 @@ export default function HomePage() {
             No templates. No themes. Each one designed for the practitioner's specific work, brand, and audience.
           </p>
 
-          {/* Featured case studies — detailed cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {caseStudies.slice(0, 4).map((study) => (
+          {/* All clients — same premium card style */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {caseStudies.map((study) => (
               <div
                 key={study.slug}
-                className="bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group"
+                className={`bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group bg-gradient-to-br ${study.gradient}`}
               >
-                <a href={`/work/${study.slug}`} className="block">
-                  <div className={`w-full border-b border-border bg-gradient-to-br ${study.gradient} p-6`}>
-                    <h3 className="font-serif text-h3 font-light group-hover:text-accent transition-colors">{study.client}</h3>
-                    <p className="text-meta uppercase text-gold mt-1">{study.type}</p>
-                  </div>
-                  <div className="p-6 pb-3">
-                    <p className="text-body-sm text-content-secondary leading-relaxed line-clamp-3">{study.challenge}</p>
-                  </div>
+                <a href={`/work/${study.slug}`} className="block p-6 pb-3">
+                  <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.client}</h3>
+                  <p className="text-meta text-content-muted mt-1">{study.type}</p>
+                  <p className="text-body-sm text-content-secondary mt-3 leading-relaxed line-clamp-2">{study.challenge}</p>
                 </a>
                 <div className="px-6 pb-5 flex items-center gap-4">
                   <a href={`/work/${study.slug}`} className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-1">
@@ -290,28 +286,6 @@ export default function HomePage() {
                   )}
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* More clients — compact grid, all with case studies */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {caseStudies.slice(4).map((study) => (
-              <a
-                key={study.slug}
-                href={`/work/${study.slug}`}
-                className={`group bg-dark-card border border-border rounded-2xl p-6 hover:border-accent/40 transition-all bg-gradient-to-br ${study.gradient.replace('/25', '/15')}`}
-              >
-                <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.client}</h3>
-                <p className="text-body-sm text-content-secondary mt-2 leading-relaxed line-clamp-2">{study.type}</p>
-                <div className="flex items-center gap-3 mt-3">
-                  {study.url && (
-                    <span className="text-meta text-content-muted">{new URL(study.url).hostname}</span>
-                  )}
-                  <span className="text-body-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1">
-                    Case study <span aria-hidden="true">&rarr;</span>
-                  </span>
-                </div>
-              </a>
             ))}
           </div>
 
