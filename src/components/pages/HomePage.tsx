@@ -97,7 +97,7 @@ export default function HomePage() {
         </p>
 
         <div className="mt-8 mb-2 relative z-10 animate-fadeUp animate-delay-700">
-          <img src="/jordi-profile.jpg" alt="Jordi Amat" className="w-20 h-20 rounded-full object-cover mx-auto border-2 border-border" />
+          <img src="/founder.jpeg" alt="Jordi Amat" className="w-20 h-20 rounded-full object-cover mx-auto border-2 border-border" />
         </div>
 
         <p className="text-body-sm text-content-muted mt-4 relative z-10 animate-fadeUp animate-delay-700">
