@@ -201,13 +201,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-3 mt-12 justify-center reveal" ref={addRevealRef}>
-            {['practitioners', 'yoga teachers', 'healers', 'retreat centers', 'training schools', 'communities', 'musicians', 'artists', 'craftmakers', 'coaches', 'therapists'].map(tag => (
-              <span key={tag} className="px-4 py-2 rounded-full border border-border text-body-sm text-content-muted hover:border-accent/40 hover:text-accent transition-all">
-                {tag}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
