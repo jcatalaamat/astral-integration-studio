@@ -300,32 +300,22 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* More clients — compact grid, no duplicates */}
+          {/* More clients — compact grid, all with case studies */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {[
-              { name: 'Sadhana Works & Mariana Harpreet', desc: 'Yoga studio + personal brand + women\'s movement. Four sites across four domains.', tag: '39K', url: 'https://marianaharpreet.xyz', slug: 'sadhana-works', gradient: 'from-pink-900/20 to-transparent' },
-              { name: 'Sacred Counsel', desc: 'Retreat center. Five revenue streams, one platform.', tag: 'Valle de Bravo', url: 'https://sacredcounsel.space', slug: 'sacred-counsel', gradient: 'from-amber-900/15 to-transparent' },
-              { name: 'Uria Tsur', desc: 'Touring vocal facilitator. 8 ticketing platforms replaced with one.', tag: '18+ cities', url: 'https://uriatsur.live', slug: 'uria-tsur', gradient: 'from-violet-900/15 to-transparent' },
-              { name: 'ShivEnergetics', desc: 'Reiki academy. 9 certification levels, 300+ students.', tag: 'Granada', url: 'https://shivenergetics.xyz', slug: 'shivenergetics', gradient: 'from-emerald-900/15 to-transparent' },
-              { name: 'Mazunte Today', desc: 'Community platform. Bilingual directory + daily events.', tag: 'Oaxaca', url: 'https://mazunte.today', slug: 'mazunte-today', gradient: 'from-rose-900/15 to-transparent' },
-              { name: 'Amakura', desc: 'Regenerative center. School + restaurant + events under one roof.', tag: 'Oaxaca', url: 'https://amakura.xyz', slug: 'amakura', gradient: 'from-lime-900/15 to-transparent' },
-              { name: 'El Arte de Renacer', desc: 'Rebirthing + breathwork school. Rebranding across Latin America.', tag: '39K', url: 'https://artederenacer.com', gradient: 'from-teal-900/15 to-transparent' },
-              { name: 'Mujer Despierta', desc: 'Women\'s empowerment movement. Circles, retreats, online programs.', tag: 'Spanish', url: 'https://mujerdespierta.xyz', gradient: 'from-fuchsia-900/15 to-transparent' },
-              { name: 'Sadhana Works', desc: 'Kundalini yoga studio. Classes, workshops, teacher training.', tag: 'Palma', url: 'https://sadhanaworks.xyz', gradient: 'from-sky-900/15 to-transparent' },
-            ].map((client, i) => (
+            {caseStudies.slice(4).map((study) => (
               <a
-                key={i}
-                href={client.slug ? `/work/${client.slug}` : client.url}
-                target={client.slug ? undefined : '_blank'}
-                rel={client.slug ? undefined : 'noopener noreferrer'}
-                className={`group bg-dark-card border border-border rounded-2xl p-6 hover:border-accent/40 transition-all bg-gradient-to-br ${client.gradient}`}
+                key={study.slug}
+                href={`/work/${study.slug}`}
+                className={`group bg-dark-card border border-border rounded-2xl p-6 hover:border-accent/40 transition-all bg-gradient-to-br ${study.gradient.replace('/25', '/15')}`}
               >
-                <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{client.name}</h3>
-                <p className="text-body-sm text-content-secondary mt-2 leading-relaxed">{client.desc}</p>
+                <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.client}</h3>
+                <p className="text-body-sm text-content-secondary mt-2 leading-relaxed line-clamp-2">{study.type}</p>
                 <div className="flex items-center gap-3 mt-3">
-                  <span className="text-meta text-content-muted">{client.tag}</span>
+                  {study.url && (
+                    <span className="text-meta text-content-muted">{new URL(study.url).hostname}</span>
+                  )}
                   <span className="text-body-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1">
-                    {client.slug ? 'Case study' : 'Visit site'} <span aria-hidden="true">&rarr;</span>
+                    Case study <span aria-hidden="true">&rarr;</span>
                   </span>
                 </div>
               </a>
