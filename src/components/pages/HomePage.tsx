@@ -96,9 +96,9 @@ export default function HomePage() {
           a voice memo at 2am. a messy google doc. a notion page. a whatsapp forward. a screenshot of your instagram bio. that's all i need. i'll research your work, build your platform, wire your payments, set up your community &mdash; and hand you the keys.
         </p>
 
-        <div className="mt-8 mb-2 relative z-10 animate-fadeUp animate-delay-700">
-          <img src="/founder.jpeg" alt="Jordi Amat" className="w-20 h-20 rounded-full object-cover mx-auto border-2 border-border" />
-        </div>
+        <a href="/about" className="mt-8 mb-2 relative z-10 animate-fadeUp animate-delay-700 block">
+          <img src="/founder.jpeg" alt="Jordi Amat" className="w-20 h-20 rounded-full object-cover mx-auto border-2 border-border hover:border-accent transition-colors" />
+        </a>
 
         <p className="text-body-sm text-content-muted mt-4 relative z-10 animate-fadeUp animate-delay-700">
           fractional CTO for spiritual leaders. the last technical hire you'll ever need.
