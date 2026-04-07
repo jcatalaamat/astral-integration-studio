@@ -139,7 +139,7 @@ export default function HomePage() {
           </h2>
           <div className="max-w-prose space-y-5">
             <p className="text-body text-content-secondary leading-relaxed">
-              and then spent the weekend fighting Kajabi.
+              And then spent the weekend fighting Kajabi.
             </p>
             <p className="text-body text-content-muted leading-relaxed">
               WordPress for the site. Kajabi for courses. Acuity for bookings.<br />
@@ -148,10 +148,10 @@ export default function HomePage() {
               $500–800/mo in tools that don't talk to each other.
             </p>
             <p className="text-body text-content-muted leading-relaxed">
-              Gaia takes 50% of your course revenue. Udemy takes 63%. Alo Moves pays a flat licensing fee while they keep the subscribers. Eventbrite takes 3.7% + $1.79 per ticket. you're building their platforms with your content.
+              Gaia takes 50% of your course revenue. Udemy takes 63%. Alo Moves pays a flat licensing fee while they keep the subscribers. Eventbrite takes 3.7% + $1.79 per ticket. You're building their platforms with your content.
             </p>
             <p className="text-body text-content-primary leading-relaxed font-medium">
-              your digital presence doesn't match your teaching. one person replaces 7 tools.
+              Your digital presence doesn't match your teaching. One person replaces 7 tools.
             </p>
           </div>
         </div>
@@ -182,11 +182,11 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { label: 'Practitioners', href: '/practitioners', desc: 'Healers, coaches, therapists, facilitators' },
-              { label: 'Teachers & Schools', href: '/schools', desc: 'Yoga teachers, trainings, certifications' },
-              { label: 'Retreats & Centers', href: '/retreats', desc: 'Booking, intake, multi-stream revenue' },
-              { label: 'Musicians & Artists', href: '/practitioners', desc: 'Albums, tours, merch, creative projects' },
-              { label: 'Communities', href: '/communities', desc: 'Directories, collectives, networks' },
+              { label: 'practitioners', href: '/practitioners', desc: 'healers, coaches, therapists, facilitators' },
+              { label: 'teachers & schools', href: '/schools', desc: 'yoga teachers, trainings, certifications' },
+              { label: 'retreats & centers', href: '/retreats', desc: 'booking, intake, multi-stream revenue' },
+              { label: 'artists & makers', href: '/practitioners', desc: 'musicians, craftmakers, jewelry, textiles, natural building' },
+              { label: 'communities', href: '/communities', desc: 'directories, collectives, networks' },
             ].map((door) => (
               <a
                 key={door.label}
@@ -203,7 +203,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-wrap gap-3 mt-12 justify-center reveal" ref={addRevealRef}>
-            {['practitioners', 'yoga teachers', 'healers', 'retreat centers', 'training schools', 'communities', 'musicians', 'artists', 'coaches', 'therapists'].map(tag => (
+            {['practitioners', 'yoga teachers', 'healers', 'retreat centers', 'training schools', 'communities', 'musicians', 'artists', 'craftmakers', 'coaches', 'therapists'].map(tag => (
               <span key={tag} className="px-4 py-2 rounded-full border border-border text-body-sm text-content-muted hover:border-accent/40 hover:text-accent transition-all">
                 {tag}
               </span>
@@ -229,17 +229,17 @@ export default function HomePage() {
             The Solution
           </p>
           <h2 className="font-serif text-display-sm font-light mb-4">
-            one home. everything connected. <em className="italic gradient-text">nothing rented.</em>
+            One home. Everything connected. <em className="italic gradient-text">Nothing rented.</em>
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-12">
-            stop duct-taping seven platforms together. get one that was built for you.
+            Stop duct-taping seven platforms together. Get one that was built for you.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: 'your site', desc: 'custom-designed, fast, SEO-ready. no templates. no page builders. no monthly Squarespace fee. a site that looks like you and loads in under a second.' },
-              { title: 'bookings + events', desc: 'classes, workshops, retreats, trainings. calendar sync, waitlists, payments. Zoom links auto-sent. no Acuity. no Calendly. no Eventbrite.' },
-              { title: 'community + membership', desc: "courses, content libraries, member areas, subscriptions. your own space — not someone else's algorithm. no Kajabi. no Teachable. no Patreon." },
-              { title: 'operations', desc: 'email automations, CRM, analytics, payments, invoicing. everything wired together so you can teach instead of troubleshoot.' },
+              { title: 'Your site', desc: 'Custom-designed, fast, SEO-ready. No templates. No page builders. No monthly Squarespace fee. A site that looks like you and loads in under a second.' },
+              { title: 'Bookings + events', desc: 'Classes, workshops, retreats, trainings. Calendar sync, waitlists, payments. Zoom links auto-sent. No Acuity. No Calendly. No Eventbrite.' },
+              { title: 'Community + membership', desc: "Courses, content libraries, member areas, subscriptions. Your own space — not someone else's algorithm. No Kajabi. No Teachable. No Patreon." },
+              { title: 'Operations', desc: 'Email automations, CRM, analytics, payments, invoicing. Everything wired together so you can teach instead of troubleshoot.' },
             ].map((card, i) => (
               <div key={i} className="bg-dark-card border border-border rounded-2xl p-8 hover:border-accent/40 transition-all">
                 <h3 className="font-serif text-h4 mb-3">{card.title}</h3>
@@ -335,7 +335,7 @@ export default function HomePage() {
             Built & Live
           </p>
           <h2 className="font-serif text-display-sm font-light mb-4">
-            every site is a <em className="italic gradient-text">custom build.</em>
+            Every site is a <em className="italic gradient-text">custom build.</em>
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-12">
             no templates. no themes. each one designed for the practitioner's specific work, brand, and audience.
@@ -394,14 +394,14 @@ export default function HomePage() {
             Long-term partnership. Aligned from day one.
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-12">
-            i don't pitch. i build it first and send you the link. not a freelancer who disappears. not an agency that bills by the hour. a partner who stays.
+            I don't pitch. I build it first and send you the link. Not a freelancer who disappears. Not an agency that bills by the hour. A partner who stays.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { step: '01', title: 'you send me the mess', desc: "a voice memo. a google doc. a screenshot of your instagram. your Linktree. whatever you have. i'll take it from there — i'll research your work, study your audience, and map out what you actually need." },
-              { step: '02', title: 'i build it before we talk', desc: "no proposals. no wireframes. no 'discovery phase.' i build a working version of your platform and send you the link. you see it live. you feel it. then we talk." },
-              { step: '03', title: 'you get the keys', desc: "your site, your domain, your data, your code. everything is yours from day one. i stay as your technical partner for as long as you want — but you're never locked in." },
+              { step: '01', title: 'You send me the mess.', desc: "A voice memo. A google doc. A screenshot of your instagram. Your Linktree. Whatever you have. I'll take it from there — I'll research your work, study your audience, and map out what you actually need." },
+              { step: '02', title: 'I build it before we talk.', desc: "No proposals. No wireframes. No 'discovery phase.' I build a working version of your platform and send you the link. You see it live. You feel it. Then we talk." },
+              { step: '03', title: 'You get the keys.', desc: "Your site, your domain, your data, your code. Everything is yours from day one. I stay as your technical partner for as long as you want — but you're never locked in." },
             ].map((item, i) => (
               <div key={i}>
                 <div className="flex items-center gap-3 mb-4">
@@ -469,17 +469,17 @@ export default function HomePage() {
       <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <h2 className="font-serif text-display-sm font-light mb-4">
-            i'm the last technical hire <em className="italic gradient-text">you'll ever need.</em>
+            I'm the last technical hire <em className="italic gradient-text">you'll ever need.</em>
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-12">
             not a freelancer who disappears. not an agency that bills by the hour. a partner who stays.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: 'one person replaces 7 tools', desc: 'site, bookings, events, courses, community, email, payments. one person builds it, connects it, and maintains it.' },
-              { title: 'AI-native', desc: 'i build with AI, not around it. your platform gets smarter automations, better content tools, and workflows that would take an agency weeks — done in hours.' },
-              { title: 'you own everything', desc: 'your code, your data, your domain. from day one. if you ever want to leave, you take it all with you. no lock-in. ever.' },
-              { title: 'decades, not projects', desc: "i don't do handoffs. i stay as your technical partner for as long as you want. your platform evolves with your teaching." },
+              { title: 'One person replaces 7 tools', desc: 'Site, bookings, events, courses, community, email, payments. One person builds it, connects it, and maintains it.' },
+              { title: 'AI-native', desc: 'I build with AI, not around it. Your platform gets smarter automations, better content tools, and workflows that would take an agency weeks — done in hours.' },
+              { title: 'You own everything', desc: 'Your code, your data, your domain. From day one. If you ever want to leave, you take it all with you. No lock-in. Ever.' },
+              { title: 'Decades, not projects', desc: "I don't do handoffs. I stay as your technical partner for as long as you want. Your platform evolves with your teaching." },
             ].map((card, i) => (
               <div key={i} className="bg-dark-card border border-border rounded-2xl p-8 hover:border-accent/40 transition-all">
                 <h3 className="font-serif text-h4 mb-3 text-accent">{card.title}</h3>
@@ -530,8 +530,8 @@ export default function HomePage() {
       {/* ═══════ CTA ═══════ */}
       <section className="py-section px-6 md:px-12 bg-gradient-to-b from-[#F5F4F2] to-dark-bg">
         <div className="max-w-content mx-auto text-center reveal" ref={addRevealRef}>
-          <h2 className="font-serif text-display-sm font-light mb-4">ready to stop duct-taping?</h2>
-          <p className="text-body text-content-secondary mb-10">send me the mess. i'll hand you back a business.</p>
+          <h2 className="font-serif text-display-sm font-light mb-4">Ready to stop duct-taping?</h2>
+          <p className="text-body text-content-secondary mb-10">Send me the mess. I'll hand you back a business.</p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <a href="https://cal.astralintegration.studio/astral/discovery-call" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-accent text-white rounded-full text-body-sm font-medium btn-glow">book a discovery call</a>
             <a href="https://wa.me/34611144170" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-transparent text-content-secondary border border-border rounded-full text-body-sm font-medium hover:border-border-hover hover:text-content-primary transition-all">WhatsApp</a>
@@ -551,7 +551,7 @@ export default function HomePage() {
             <div>
               <h2 className="font-serif text-h2 font-light mb-4">Jordi Amat.</h2>
               <p className="text-body text-content-secondary leading-relaxed mb-4">
-                i'm Jordi. i'm a senior full-stack engineer who's spent the last decade building platforms for practitioners, healers, yoga teachers, and spiritual leaders. i live in Mazunte, Oaxaca &mdash; a small village on the Pacific coast of Mexico. i've shipped 170+ sites. i work with AI tools that let me move at a speed that used to require a team. and i charge a fraction of what an agency would because my overhead is a hammock and a satellite dish.
+                I'm Jordi. Senior full-stack engineer. Former CTO. Access Bars practitioner. I spent a decade building production systems and leading engineering teams. Then I moved to Mazunte, Oaxaca &mdash; a small village on the Pacific coast of Mexico &mdash; and started building for the people doing the most original work in education, healing, and community. 170+ sites shipped. I work with AI tools that let me move at a speed that used to require a team.
               </p>
               <a
                 href="/about"
