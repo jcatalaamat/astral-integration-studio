@@ -92,7 +92,7 @@ export default function BlogPostPage() {
       </section>
 
       {/* Author + Next */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#0d0d14]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <div className="max-w-prose">
             {/* Author */}

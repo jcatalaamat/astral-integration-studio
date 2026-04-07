@@ -5,11 +5,11 @@ import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 
 const tiers = [
   {
-    name: 'Launch',
-    who: 'For solo practitioners.',
-    desc: 'You\'re running your practice on WhatsApp, Calendly, and a website that doesn\'t do what you need. You need a clean, professional digital home that actually works — and a technical partner who grows with you.',
-    build: '$1,500 – $3,000',
-    monthly: '$250 – $500/mo',
+    name: 'Growing',
+    who: '5–30K followers.',
+    desc: 'You\'re a practitioner with a real following but your digital presence doesn\'t match your teaching. You need a professional home that actually works — and costs less than the 7 tools you\'re currently duct-taping together.',
+    build: '$1,000 – $2,000',
+    monthly: '$50 – $300/mo',
     timeline: '1–2 weeks',
     includes: [
       'Custom website designed for your brand',
@@ -20,19 +20,19 @@ const tiers = [
       'Bug fixes and maintenance',
       'Email and chat support',
     ],
-    audience: 'Yoga teachers, massage therapists, coaches, healers, facilitators — anyone building their practice who needs a solid digital foundation.',
+    audience: 'Yoga teachers, massage therapists, coaches, healers, facilitators, artists — anyone building their practice who needs a solid digital foundation. $50/mo is easy yes money for someone making $5K+/mo from sessions.',
     highlight: false,
   },
   {
-    name: 'Systems',
-    who: 'For schools & structured programs.',
+    name: 'Established',
+    who: '30–80K followers.',
     desc: 'You have students, clients, or guests — certifications, multiple revenue streams, a real following. You don\'t just need a website. You need a platform and a technical partner who owns it.',
-    build: '$5,000 – $10,000',
-    monthly: '$1,000 – $2,000/mo',
-    timeline: '3–6 weeks',
+    build: '$3,000 – $5,000',
+    monthly: '$300 – $500/mo',
+    timeline: '2–4 weeks',
     includes: [
-      'Everything in Launch',
-      'Multi-offering platform (retreats + courses + membership, etc.)',
+      'Everything in Growing',
+      'Multi-offering platform (retreats + courses + membership)',
       'Custom booking flows with intake questionnaires',
       'Course or content delivery system',
       'Membership portal with gated content',
@@ -50,23 +50,23 @@ const tiers = [
     highlight: true,
   },
   {
-    name: 'Ecosystem',
-    who: 'For centers, multi-program, and network operations.',
-    desc: 'Your methodology is taught by hundreds of facilitators across countries and languages. The infrastructure needs to match.',
-    build: '$10,000+',
-    monthly: 'Custom monthly / rev share',
-    timeline: '6–12 weeks',
+    name: 'Legacy',
+    who: '80K+ followers.',
+    desc: 'Your work has global reach. Your infrastructure should too. At this level, we align incentives — my success is literally tied to yours.',
+    build: '$3,000 – $5,000 or free',
+    monthly: '$500 – $1,000/mo or 5% rev share',
+    timeline: '4–8 weeks',
     includes: [
-      'Everything in Systems',
+      'Everything in Established',
+      'Revenue share alignment — my success tied to yours',
       'Multi-region facilitator management',
       'Cross-timezone scheduling and coordination',
-      'Credential verification systems',
-      'Regional admin dashboards',
-      'Multi-language content management',
-      'Dedicated technical leadership',
       'Custom integrations and API development',
+      'Dedicated technical leadership',
+      'Multi-language content management',
+      'Setup can be free with rev share model',
     ],
-    audience: 'Organizations with facilitators in multiple countries, franchise-like certification systems, large networks.',
+    audience: 'Legacy teachers, touring musicians, global organizations. If your work reaches thousands, the infrastructure should match — and the pricing should align our incentives.',
     highlight: false,
   },
 ];
@@ -190,7 +190,7 @@ export default function PricingPage() {
       </section>
 
       {/* Tiers */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#0d0d14]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {tiers.map((tier, i) => (
@@ -279,7 +279,7 @@ export default function PricingPage() {
       </section>
 
       {/* Revenue-Aligned Pricing */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#0d0d14]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <div className="bg-dark-card border border-accent/20 rounded-2xl p-8 md:p-10 max-w-prose">
             <p className="text-meta uppercase text-accent mb-4 flex items-center gap-4">

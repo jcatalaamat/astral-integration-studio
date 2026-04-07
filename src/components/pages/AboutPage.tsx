@@ -119,7 +119,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Journey */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#0d0d14]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
@@ -201,7 +201,7 @@ export default function AboutPage() {
       </section>
 
       {/* Technical Credentials */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#0d0d14]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
