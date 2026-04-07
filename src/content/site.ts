@@ -2,8 +2,8 @@
 export const site = {
   name: 'Astral Integration',
   tagline: 'Growth Systems for Soul-Led Businesses',
-  email: 'hello@astralintegration.co',
-  calendly: 'https://calendly.com/astral-integration/free-strategy-call',
+  email: 'hello@astralintegration.studio',
+  calendly: 'https://cal.astralintegration.studio/astral/discovery-call',
   copyright: '© 2026 Astral Integration. The tech behind transformation.'
 };
 

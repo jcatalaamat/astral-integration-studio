@@ -7,25 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ASTRAL INTEGRATION DARK THEME
-        // Deep dark backgrounds
+        // ASTRAL INTEGRATION LIGHT THEME
+        // Warm light backgrounds
         dark: {
-          bg: '#0a0a0f',
-          card: '#111118',
-          cardHover: '#16161f',
+          bg: '#FAF9F7',
+          card: '#FFFFFF',
+          cardHover: '#F5F3F0',
         },
-        // Accent colors — copper/gold
+        // Accent colors — warm copper (darker for light bg contrast)
         accent: {
-          DEFAULT: '#c4956a',
-          hover: '#d4a57a',
-          glow: 'rgba(196, 149, 106, 0.15)',
-          glowStrong: 'rgba(196, 149, 106, 0.3)',
-          subtle: 'rgba(196, 149, 106, 0.08)',
-          border: 'rgba(196, 149, 106, 0.25)',
+          DEFAULT: '#8B6914',
+          hover: '#6B4F0E',
+          glow: 'rgba(139, 105, 20, 0.1)',
+          glowStrong: 'rgba(139, 105, 20, 0.2)',
+          subtle: 'rgba(139, 105, 20, 0.05)',
+          border: 'rgba(139, 105, 20, 0.15)',
         },
         gold: {
-          DEFAULT: '#C9A96E',
-          soft: 'rgba(201, 169, 110, 0.15)',
+          DEFAULT: '#8B6914',
+          soft: 'rgba(139, 105, 20, 0.08)',
         },
         // Semantic state colors
         success: {
@@ -40,16 +40,16 @@ export default {
           DEFAULT: '#d4a24e',
           bg: 'rgba(212, 162, 78, 0.08)',
         },
-        // Text colors
+        // Text colors (dark text on light bg)
         content: {
-          primary: '#E8E6F0',
-          secondary: '#9895A8',
-          muted: '#6B6880',
+          primary: '#1F1F1F',
+          secondary: '#555555',
+          muted: '#888888',
         },
         // Border colors
         border: {
-          DEFAULT: 'rgba(196, 149, 106, 0.12)',
-          hover: 'rgba(196, 149, 106, 0.3)',
+          DEFAULT: 'rgba(0, 0, 0, 0.08)',
+          hover: 'rgba(0, 0, 0, 0.15)',
         },
         // Tool-specific theme colors (via CSS variables)
         tool: {

@@ -25,7 +25,7 @@ export default function SchoolsPage() {
   useDocumentMeta({
     title: 'For Schools & Academies — Astral Integration',
     description: 'Your certification program deserves more than a spreadsheet. Multi-level progression, student tracking, practitioner directories, and AI assistants — built for how schools actually work.',
-    ogUrl: 'https://astralintegration.co/schools',
+    ogUrl: 'https://astralintegration.studio/schools',
   });
 
   const [formData, setFormData] = useState({ name: '', email: '', site: '', message: '' });
@@ -399,7 +399,7 @@ export default function SchoolsPage() {
                 <CheckCircle className="w-12 h-12 text-accent mx-auto mb-6" />
                 <h3 className="font-serif text-h2 mb-4">Message received.</h3>
                 <p className="text-body text-content-secondary mb-3">I'll review your school's setup and get back to you within 24-48 hours.</p>
-                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.co</p>
+                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.studio</p>
                 <button onClick={() => setFormStatus('idle')} className="text-body-sm text-accent hover:underline">Send another message</button>
               </div>
             )}

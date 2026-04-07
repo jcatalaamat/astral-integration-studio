@@ -463,7 +463,7 @@ ${formData.whyNow || '(not answered)'}
                   I'll respond within 48 hours to confirm and share payment details.
                 </p>
                 <p className="text-body-sm text-content-tertiary">
-                  Check your inbox (and spam folder) for a reply from hello@astralintegration.co
+                  Check your inbox (and spam folder) for a reply from hello@astralintegration.studio
                 </p>
               </div>
             )}

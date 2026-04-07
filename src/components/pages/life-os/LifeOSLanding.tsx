@@ -12,7 +12,7 @@ export default function LifeOSLanding() {
   useDocumentMeta({
     title: 'Life OS — Organize Your Life with Clarity',
     description: 'A simple, beautiful task manager for soul-led humans. Organize your life across 6 key areas. Free, offline, your data stays local.',
-    ogUrl: 'https://astralintegration.co/tools/life-os',
+    ogUrl: 'https://astralintegration.studio/tools/life-os',
   });
   return (
     <div className="min-h-screen bg-dark-bg" data-tool="life-os">

@@ -12,7 +12,7 @@ export default function ContentStudioLanding() {
   useDocumentMeta({
     title: 'Content Studio — AI-Powered Content Creation',
     description: 'Generate authentic social media content aligned with your voice. AI-powered, intuitive, and free to start.',
-    ogUrl: 'https://astralintegration.co/tools/content-studio',
+    ogUrl: 'https://astralintegration.studio/tools/content-studio',
   });
   return (
     <div className="min-h-screen bg-dark-bg" data-tool="content-studio">

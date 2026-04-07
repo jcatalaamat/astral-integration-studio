@@ -9,7 +9,7 @@ export default function ContactPage() {
   useDocumentMeta({
     title: 'Contact — Astral Integration',
     description: 'Tell me about your work. I take on a small number of partnerships at a time — healers, schools, retreat centers, and original work that needs custom digital infrastructure.',
-    ogUrl: 'https://astralintegration.co/contact',
+    ogUrl: 'https://astralintegration.studio/contact',
   });
 
   const [formData, setFormData] = useState({
@@ -194,7 +194,7 @@ export default function ContactPage() {
                     I'll get back to you within 24–48 hours.
                   </p>
                   <p className="text-body-sm text-content-muted mb-8">
-                    Check your inbox for a reply from hello@astralintegration.co
+                    Check your inbox for a reply from hello@astralintegration.studio
                   </p>
                   <button
                     onClick={() => setFormStatus('idle')}
@@ -215,7 +215,7 @@ export default function ContactPage() {
                   Book a free 30-minute strategy call. No pitch — just a conversation about your work and what the right infrastructure might look like.
                 </p>
                 <a
-                  href="https://calendly.com/astralamat/let-s-talk-about-your-work"
+                  href="https://cal.astralintegration.studio/astral/discovery-call"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-8 py-3 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
@@ -228,10 +228,10 @@ export default function ContactPage() {
               <div className="bg-dark-card border border-border rounded-2xl p-8">
                 <h3 className="font-serif text-h3 mb-3">Email directly</h3>
                 <a
-                  href="mailto:hello@astralintegration.co"
+                  href="mailto:hello@astralintegration.studio"
                   className="text-body-sm text-accent hover:text-content-primary transition-colors"
                 >
-                  hello@astralintegration.co
+                  hello@astralintegration.studio
                 </a>
               </div>
 

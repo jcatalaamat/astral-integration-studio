@@ -17,7 +17,7 @@ export default function RetreatsPage() {
   useDocumentMeta({
     title: 'For Retreats & Centers — Astral Integration',
     description: 'A retreat booking isn\'t a hotel reservation. Custom intake flows, multi-stream revenue, capacity management, and preparation sequences — built for how retreat centers actually work.',
-    ogUrl: 'https://astralintegration.co/retreats',
+    ogUrl: 'https://astralintegration.studio/retreats',
   });
 
   const [formData, setFormData] = useState({ name: '', email: '', site: '', message: '' });
@@ -411,7 +411,7 @@ export default function RetreatsPage() {
                 <CheckCircle className="w-12 h-12 text-accent mx-auto mb-6" />
                 <h3 className="font-serif text-h2 mb-4">Message received.</h3>
                 <p className="text-body text-content-secondary mb-3">I'll review your center's setup and get back to you within 24-48 hours.</p>
-                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.co</p>
+                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.studio</p>
                 <button onClick={() => setFormStatus('idle')} className="text-body-sm text-accent hover:underline">Send another message</button>
               </div>
             )}

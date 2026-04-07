@@ -1,4 +1,4 @@
-export type CaseStudyCategory = 'Retreats' | 'Practitioners' | 'Schools' | 'Communities' | 'Organizations';
+export type CaseStudyCategory = 'Retreats' | 'Practitioners' | 'Schools' | 'Communities' | 'Organizations' | 'Musicians';
 
 export interface CaseStudy {
   slug: string;
@@ -14,6 +14,66 @@ export interface CaseStudy {
 }
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'jugat-guru',
+    client: 'Jugat Guru',
+    type: 'CEO of KRI — Global Kundalini Yoga Leadership',
+    category: 'Practitioners',
+    url: 'https://jugatguru.xyz',
+    status: null,
+    challenge: 'The CEO of the Kundalini Research Institute — the governing body for Kundalini Yoga worldwide — was running his personal practice across 4+ booking platforms, 3 dead domains, and no membership portal. Private mentorship at $500–2400/session, global events, the Wisdom of YOU club with 80+ members, and content scattered across partner sites. His digital presence didn\'t match his institutional authority.',
+    decisions: 'The architecture needed to serve two identities simultaneously: Jugat Guru the institutional leader (CEO of KRI, custodian of the lineage) and Jugat Guru the personal mentor (private sessions, retreats, sacred sound). We built a practice portal with member authentication, 40-day sadhana tracking, content library, event calendar, and community features — plus a separate CEO dashboard for managing the business side. The mentorship tiers needed their own booking logic with screening.',
+    built: 'A full practice portal with member login, 40-day sadhana tracker, content library, event system, community space, and mentorship booking — plus a separate admin dashboard. Four booking platforms replaced with one. Three dead domains consolidated into a single home.',
+    gradient: 'from-amber-900/25 via-amber-900/5 to-transparent',
+  },
+  {
+    slug: 'gurmukh',
+    client: 'Gurmukh',
+    type: 'Legacy Teacher of Kundalini Yoga — 50+ Years, 5 Continents',
+    category: 'Schools',
+    url: 'https://gurmukh.xyz',
+    status: null,
+    challenge: 'A legendary teacher with 50+ years of Kundalini Yoga — co-founder of Golden Bridge Yoga, creator of Khalsa Way prenatal yoga, author of two books, celebrity teacher turned servant of the teaching. At 83, still teaching across 5 continents. Her digital infrastructure was a 2014 WordPress site, classes scattered across Alo Moves, Gaia, and Udemy (giving away revenue), 7 different booking sites for 9 events, no community platform, no membership.',
+    decisions: 'The challenge was representing 50 years of legacy in a digital format that feels as warm and inviting as her teaching. We chose a photo-driven editorial approach — large breathing images, soft typography, generous whitespace. The schedule needed to be the centerpiece since she\'s constantly touring. Khalsa Way needed its own section as a standalone brand within the larger identity. Every event links to a single inquiry flow instead of 7 scattered booking platforms.',
+    built: 'A warm editorial landing page with timeline-based schedule, photo-driven storytelling, Khalsa Way section, book showcase, and unified inquiry flow replacing 7 booking platforms. All events, trainings, and retreats discoverable from one home.',
+    gradient: 'from-rose-900/25 via-rose-900/5 to-transparent',
+  },
+  {
+    slug: 'deva-premal-miten',
+    client: 'Deva Premal & Miten',
+    type: 'Sacred Mantra Music — 227K Followers, 25+ Albums, Global Tours',
+    category: 'Musicians',
+    url: 'https://devapremalmiten.xyz',
+    status: null,
+    challenge: 'Grammy-nominated sacred music artists with 227K Instagram followers, 25+ albums, global tours, the Gayatri Sangha online community, and merchandise — all running on disconnected infrastructure. WordPress site plus a separate store domain. Tour tickets sold through third-party platforms taking fees. 227K followers on rented land. The Sangha community had no proper home. 25+ albums earning streaming pennies on Spotify.',
+    decisions: 'The architecture needed to serve a dual identity: Deva Premal & Miten as touring musicians (concert listings, album discography, merchandise) and as spiritual teachers (the Gayatri Sangha community, mantra teachings, retreat experiences). We chose a dark, immersive concert-energy design to match the performance experience. The discography needed to be a first-class feature, not an afterthought. Tour dates needed to feel like event listings at a premium venue, not a WordPress plugin.',
+    built: 'A dark immersive landing page with horizontal-scrolling discography, concert-style tour listings, Sangha community section, and unified brand experience. Proposal page mapping 8 pain points to 8 platform solutions. Two disconnected sites consolidated into one home.',
+    gradient: 'from-orange-900/25 via-orange-900/5 to-transparent',
+  },
+  {
+    slug: 'skylar-acamesis',
+    client: 'Skylar Acamesis',
+    type: 'Medical Intuitive & Master Energy Healer — UK',
+    category: 'Practitioners',
+    url: 'https://skylaracamesis.xyz',
+    status: null,
+    challenge: 'A Medical Intuitive charging GBP 333/session and GBP 3,333–7,525 for masterminds was running her business across 7 duct-taped platforms: WordPress + Elementor for the site, Kajabi for courses, Podia for digital products, ThriveCart for checkout, Acuity for bookings, Mailchimp for email. Real revenue — but the infrastructure was held together with scotch tape. The Association of Medical Intuitives (her membership community) had no proper home.',
+    decisions: 'At her price points, the platform needed to justify premium pricing through design and experience. We chose a deep violet mystical aesthetic — ethereal, powerful, premium. The offering structure needed clear hierarchy: private sessions at the top, masterminds in the middle, membership as the community layer, and the published book as credibility anchor. Every platform she was paying for monthly needed to be replaced by native functionality.',
+    built: 'A premium dark landing page with ethereal violet design, 14-photo gallery, detailed offering cards with pricing, mastermind section, book showcase, testimonials, and Association of Medical Intuitives community section. Proposal mapping 7 platforms to one unified solution.',
+    gradient: 'from-violet-900/25 via-violet-900/5 to-transparent',
+  },
+  {
+    slug: 'sadhana-works',
+    client: 'Sadhana Works & Mariana Harpreet',
+    type: 'Yoga Studio + Personal Brand + Movement — Rebranding',
+    category: 'Schools',
+    url: 'https://marianaharpreet.xyz',
+    status: null,
+    challenge: 'A practitioner with 39K followers across two Instagram accounts, running a yoga studio (Sadhana Works), a personal brand (Mariana Harpreet), and a women\'s movement (Mujer Despierta) — all on separate Wix and ClickFunnels sites. Now rebranding from Mujer Despierta to El Arte de Renacer. Four distinct brands that needed to coexist without fragmenting the audience. NDA signed, active client.',
+    decisions: 'The architecture needed to serve four related but distinct identities: the personal brand (marianaharpreet.xyz), the yoga studio (sadhanaworks.xyz), the legacy movement (mujerdespierta.xyz), and the new rebrand (artederenacer.com). Each needed its own domain and visual identity while sharing a common design language. The rebrand needed to honor the existing community while signaling evolution. We built all four sites simultaneously, each with its own character.',
+    built: 'Four interconnected sites across four custom domains — personal brand landing, yoga studio page, legacy movement page (Spanish), and rebrand landing. Wix and ClickFunnels replaced entirely. Unified design language with distinct visual identities per brand.',
+    gradient: 'from-pink-900/25 via-pink-900/5 to-transparent',
+  },
   {
     slug: 'sacred-counsel',
     client: 'Sacred Counsel',
@@ -43,8 +103,8 @@ export const caseStudies: CaseStudy[] = [
     client: 'ShivEnergetics',
     type: 'Reiki Academy — Granada, Spain',
     category: 'Schools',
-    url: null,
-    status: 'In progress',
+    url: 'https://shivenergetics.xyz',
+    status: null,
     challenge: 'A Reiki Master Teacher with 300+ students across 9 certification levels was running her school across five disconnected platforms — Teachable for courses, Calendly for bookings, Stripe for payments, WhatsApp for communication, and Google Sheets for student records. There was no single place a student could see their path from first course to practitioner certification. Booking confirmations were manual. Student progression was tracked in spreadsheets.',
     decisions: 'The challenge wasn\'t just consolidating five platforms — it was designing a student journey architecture that could handle 9 certification levels with prerequisite dependencies, where a student\'s progression through Level 3 unlocks Level 4, practice hours accumulate toward certification, and completed certifications automatically populate a public practitioner directory. The system needed to work for a student on day one and a practitioner three years in. We also built an AI assistant trained on the Reiki methodology — not a generic chatbot, but one that understands energy work terminology, can guide students through practice questions, and triages complex inquiries to the teacher.',
     built: 'A unified academy platform — course delivery with prerequisite-gated progression, student tracking across 9 certification levels, practice hour logging, automatic practitioner directory population upon certification, retreat bookings, and an AI assistant trained on the methodology. Five platforms replaced with one.',
@@ -67,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Amakura',
     type: 'Centro de Vida Regenerativa — Mazunte, Oaxaca',
     category: 'Organizations',
-    url: 'https://amakura.store',
+    url: 'https://amakura.xyz',
     status: 'In progress',
     challenge: 'A regenerative living center running a bioconstruction school, restaurant, natural pool, workshops, and community events — all under one roof but with no unified digital layer. Each offering was promoted separately through social media and word of mouth. There was no way for someone discovering the restaurant to learn about the bioconstruction school, or for a workshop participant to see what else was available.',
     decisions: 'The challenge was creating a single digital home for fundamentally different offering types — educational programs (the school), hospitality (the restaurant and pool), events (workshops and community gatherings), and retail — without forcing them into a generic template. Each needed its own presentation logic while sharing a unified identity and cross-promoting the others. The brand needed to feel like the place itself: warm, grounded, and alive.',

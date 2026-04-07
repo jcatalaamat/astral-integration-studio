@@ -340,10 +340,10 @@ export default function CareersPage() {
             </p>
 
             <a
-              href="mailto:hello@astralintegration.co"
+              href="mailto:hello@astralintegration.studio"
               className="inline-block px-10 py-4 bg-content-primary text-studio-bg hover:bg-content-primary/90 active:bg-content-primary/80 transition-colors text-body font-medium"
             >
-              hello@astralintegration.co
+              hello@astralintegration.studio
             </a>
           </div>
         </div>

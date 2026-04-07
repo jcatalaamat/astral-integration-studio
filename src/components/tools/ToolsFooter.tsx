@@ -46,7 +46,7 @@ export default function ToolsFooter() {
               Custom Development
             </Link>
             <a
-              href="https://calendly.com/astral-integration/free-strategy-call"
+              href="https://cal.astralintegration.studio/astral/discovery-call"
               target="_blank"
               rel="noopener noreferrer"
               className="text-body-sm text-accent hover:text-accent-soft transition-colors"

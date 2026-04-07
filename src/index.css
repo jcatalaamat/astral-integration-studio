@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dark theme base */
+/* Light theme base */
 html, body {
-  background-color: #0a0a0f;
-  color: #E8E6F0;
-  color-scheme: dark;
+  background-color: #FAF9F7;
+  color: #1F1F1F;
+  color-scheme: light;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -24,28 +24,32 @@ body::after {
 
 /* Selection color */
 ::selection {
-  background-color: #c4956a;
-  color: white;
+  background-color: rgba(139, 105, 20, 0.15);
+  color: #1F1F1F;
 }
 
 /* Focus visible — global accessibility */
 :focus-visible {
-  outline: 2px solid rgba(196, 149, 106, 0.50);
+  outline: 2px solid rgba(139, 105, 20, 0.40);
   outline-offset: 2px;
 }
 
-/* Custom scrollbar - dark theme */
+/* Custom scrollbar - light theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111118;
+  background: #F5F4F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c4956a;
+  background: #D4CFC8;
   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B6914;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -111,7 +115,7 @@ body::after {
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, #d4a57a, #c4956a, #a67b52);
+  background: linear-gradient(135deg, #6B4F0E, #8B6914, #A07820);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -120,18 +124,18 @@ body::after {
 /* Glass effect */
 .glass {
   backdrop-filter: blur(20px);
-  background: rgba(10, 10, 15, 0.7);
+  background: rgba(250, 249, 247, 0.85);
 }
 
 /* Glow button effect */
 .btn-glow {
-  box-shadow: 0 0 40px rgba(196, 149, 106, 0.15);
+  box-shadow: 0 0 30px rgba(139, 105, 20, 0.1);
   transition: all 0.3s ease;
 }
 
 .btn-glow:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 60px rgba(196, 149, 106, 0.3), 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 40px rgba(139, 105, 20, 0.15), 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Tool theme CSS variables */

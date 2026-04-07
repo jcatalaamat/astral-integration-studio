@@ -37,7 +37,7 @@ export default function OrganizationsPage() {
   useDocumentMeta({
     title: 'For Organizations — Astral Integration',
     description: 'Your methodology scaled. Your infrastructure didn\'t. Facilitator directories, class discovery, student journeys, regional dashboards, and multi-language support — built for organizations operating at global scale.',
-    ogUrl: 'https://astralintegration.co/organizations',
+    ogUrl: 'https://astralintegration.studio/organizations',
   });
 
   const [formData, setFormData] = useState({ name: '', email: '', org: '', message: '' });
@@ -364,7 +364,7 @@ export default function OrganizationsPage() {
                 <CheckCircle className="w-12 h-12 text-accent mx-auto mb-6" />
                 <h3 className="font-serif text-h2 mb-4">Message received.</h3>
                 <p className="text-body text-content-secondary mb-3">I'll review your organization's needs and get back to you within 24-48 hours with initial thoughts on architecture.</p>
-                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.co</p>
+                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.studio</p>
                 <button onClick={() => setFormStatus('idle')} className="text-body-sm text-accent hover:underline">Send another message</button>
               </div>
             )}

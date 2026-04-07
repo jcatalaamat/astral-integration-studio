@@ -17,7 +17,7 @@ export default function WorkPage() {
   useDocumentMeta({
     title: 'Case Studies — Astral Integration',
     description: 'Detailed case studies: the challenges, architectural decisions, and infrastructure behind each platform. From certification academies to community platforms.',
-    ogUrl: 'https://astralintegration.co/work',
+    ogUrl: 'https://astralintegration.studio/work',
   });
 
   const [activeFilter, setActiveFilter] = useState<CaseStudyCategory | 'All'>('All');

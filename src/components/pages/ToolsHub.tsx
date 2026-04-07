@@ -9,7 +9,7 @@ export default function ToolsHub() {
   useDocumentMeta({
     title: 'Free Tools — Astral Integration',
     description: 'Simple, beautiful tools to help you run your soul-led business with clarity. Life OS, Content Studio, and more.',
-    ogUrl: 'https://astralintegration.co/tools',
+    ogUrl: 'https://astralintegration.studio/tools',
   });
   const toolsList = Object.values(TOOLS);
 
@@ -123,7 +123,7 @@ export default function ToolsHub() {
             AI integrations, or full digital systems—let's talk.
           </p>
           <a
-            href="https://calendly.com/astral-integration/free-strategy-call"
+            href="https://cal.astralintegration.studio/astral/discovery-call"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-accent text-white font-medium btn-glow hover:scale-105 transition-all"

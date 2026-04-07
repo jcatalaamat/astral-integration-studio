@@ -42,7 +42,7 @@ export const contactContent = {
     success: {
       title: 'Message received',
       description: "We'll respond within 24-48 hours.",
-      note: 'Check your inbox for a reply from hello@astralintegration.co'
+      note: 'Check your inbox for a reply from hello@astralintegration.studio'
     }
   }
 };

@@ -12,7 +12,7 @@ export default function CaseStudyPage() {
   useDocumentMeta({
     title: study ? `${study.client} — Astral Integration` : 'Case Study — Astral Integration',
     description: study ? study.challenge.slice(0, 160) : '',
-    ogUrl: `https://astralintegration.co/work/${slug}`,
+    ogUrl: `https://astralintegration.studio/work/${slug}`,
   });
 
   if (!study) {

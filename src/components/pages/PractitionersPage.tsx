@@ -27,7 +27,7 @@ export default function PractitionersPage() {
   useDocumentMeta({
     title: 'For Practitioners — Astral Integration',
     description: 'You have the audience. You deserve the infrastructure. I replace your 6 disconnected tools with one platform — your brand, your domain, everything connected.',
-    ogUrl: 'https://astralintegration.co/practitioners',
+    ogUrl: 'https://astralintegration.studio/practitioners',
   });
 
   const [formData, setFormData] = useState({ name: '', email: '', site: '', message: '' });
@@ -421,7 +421,7 @@ export default function PractitionersPage() {
                 <CheckCircle className="w-12 h-12 text-accent mx-auto mb-6" />
                 <h3 className="font-serif text-h2 mb-4">Message received.</h3>
                 <p className="text-body text-content-secondary mb-3">I'll look at your setup and get back to you within 24–48 hours.</p>
-                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.co</p>
+                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.studio</p>
                 <button onClick={() => setFormStatus('idle')} className="text-body-sm text-accent hover:underline">Send another message</button>
               </div>
             )}

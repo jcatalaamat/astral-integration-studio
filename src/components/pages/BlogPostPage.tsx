@@ -12,7 +12,7 @@ export default function BlogPostPage() {
   useDocumentMeta({
     title: post ? `${post.title} — Astral Integration` : 'Insights — Astral Integration',
     description: post?.excerpt || '',
-    ogUrl: `https://astralintegration.co/insights/${slug}`,
+    ogUrl: `https://astralintegration.studio/insights/${slug}`,
   });
 
   const revealRefs = useRef<(HTMLElement | null)[]>([]);

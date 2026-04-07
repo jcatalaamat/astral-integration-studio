@@ -16,7 +16,7 @@ export default function CommunitiesPage() {
   useDocumentMeta({
     title: 'For Communities — Astral Integration',
     description: 'Your community deserves a home that isn\'t Facebook. Event listings, directories, classifieds, bilingual support, and weekly digests — community infrastructure built for real places.',
-    ogUrl: 'https://astralintegration.co/communities',
+    ogUrl: 'https://astralintegration.studio/communities',
   });
 
   const [formData, setFormData] = useState({ name: '', email: '', site: '', message: '' });
@@ -348,7 +348,7 @@ export default function CommunitiesPage() {
                 <CheckCircle className="w-12 h-12 text-accent mx-auto mb-6" />
                 <h3 className="font-serif text-h2 mb-4">Message received.</h3>
                 <p className="text-body text-content-secondary mb-3">I'll look into your community and get back to you within 24-48 hours.</p>
-                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.co</p>
+                <p className="text-body-sm text-content-muted mb-8">Check your inbox for a reply from hello@astralintegration.studio</p>
                 <button onClick={() => setFormStatus('idle')} className="text-body-sm text-accent hover:underline">Send another message</button>
               </div>
             )}

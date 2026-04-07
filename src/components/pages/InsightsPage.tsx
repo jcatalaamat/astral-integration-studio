@@ -8,7 +8,7 @@ export default function InsightsPage() {
   useDocumentMeta({
     title: 'Insights — Astral Integration',
     description: 'Thinking on infrastructure, practitioner platforms, and what it takes to build digital homes for original work. By Jordi Amat.',
-    ogUrl: 'https://astralintegration.co/insights',
+    ogUrl: 'https://astralintegration.studio/insights',
   });
 
   const revealRefs = useRef<(HTMLElement | null)[]>([]);

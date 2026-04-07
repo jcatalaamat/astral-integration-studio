@@ -887,7 +887,7 @@ function AccessPrototype() {
     {tab==="resources"&&<div style={{padding:"28px 0 0"}}><ResourcesTab /></div>}
 
     {/* Footer */}
-    <div style={{maxWidth:800,margin:"0 auto",padding:"0 24px 40px"}}><div style={{padding:"32px 0",borderTop:"1px solid #e8ebe9",textAlign:"center"}}><div style={{fontSize:11,color:"#aababa",fontFamily:mn,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Prototype built by</div><div style={{fontSize:16,color:"#1a3a4a",fontWeight:700,fontFamily:sf,marginBottom:4}}>Astral Integration</div><div style={{fontSize:13,color:"#8a9a9a"}}>Custom infrastructure for organizations changing the world</div><div style={{fontSize:12,color:"#aababa",fontFamily:mn,marginTop:2}}>astralintegration.co</div></div></div>
+    <div style={{maxWidth:800,margin:"0 auto",padding:"0 24px 40px"}}><div style={{padding:"32px 0",borderTop:"1px solid #e8ebe9",textAlign:"center"}}><div style={{fontSize:11,color:"#aababa",fontFamily:mn,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Prototype built by</div><div style={{fontSize:16,color:"#1a3a4a",fontWeight:700,fontFamily:sf,marginBottom:4}}>Astral Integration</div><div style={{fontSize:13,color:"#8a9a9a"}}>Custom infrastructure for organizations changing the world</div><div style={{fontSize:12,color:"#aababa",fontFamily:mn,marginTop:2}}>astralintegration.studio</div></div></div>
 
     {pM&&<ProfileModal f={pM} onClose={()=>setPM(null)} loc={loc} />}
     {bM&&<BookModal f={bM} onClose={()=>setBM(null)} />}
@@ -899,7 +899,7 @@ export default function AccessPage() {
   useDocumentMeta({
     title: 'Access Consciousness — Platform Prototype — Astral Integration',
     description: 'What else is possible when 13,000 facilitators share one platform? An unsolicited prototype for Access Consciousness — facilitator directory, class discovery, student journey, and facilitator dashboard. Built by Jordi Amat.',
-    ogUrl: 'https://astralintegration.co/access',
+    ogUrl: 'https://astralintegration.studio/access',
   });
 
   useEffect(() => {

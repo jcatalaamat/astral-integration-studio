@@ -81,7 +81,7 @@ export default function HowItWorksPage() {
   useDocumentMeta({
     title: 'How It Works — Astral Integration',
     description: 'The partnership model: how I build, what it costs, and how the long-term relationship works. Pricing, process, and frequently asked questions.',
-    ogUrl: 'https://astralintegration.co/how-it-works',
+    ogUrl: 'https://astralintegration.studio/how-it-works',
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
