@@ -20,6 +20,36 @@ const systemCapabilities = [
   { title: 'Cohort management', desc: 'Run multiple cohorts at different levels simultaneously. Track enrollment, progress, completion per group.' },
   { title: 'AI assistant on your methodology', desc: 'An assistant that speaks your terminology, guides students between sessions, and escalates complex questions to you.' },
 ];
+const schoolPortfolio = [
+  {
+    name: 'Global Yoga Leadership',
+    type: 'Practice Portal & Membership',
+    desc: 'CEO practice portal with 200+ kundalini kriyas, membership tiers, and facilitator management across 7 countries.',
+    url: 'https://jugatguru.xyz',
+    stats: '7 countries \u00b7 200+ kriyas \u00b7 membership portal',
+  },
+  {
+    name: 'Master Teacher Platform',
+    type: 'Editorial Landing & Unified Booking',
+    desc: 'Legacy yoga teacher with 40+ years of teaching. One platform replacing 7 booking tools, class schedules, and retreat registration.',
+    url: 'https://gurmukh.xyz',
+    stats: '40+ years \u00b7 7 platforms \u2192 1 \u00b7 global audience',
+  },
+  {
+    name: 'Yoga Studio & Movement',
+    type: 'Multi-Brand Platform',
+    desc: "Yoga studio with personal brand, teacher training, and women's movement \u2014 three brands unified under one technical roof.",
+    url: 'https://marianaharpreet.xyz',
+    stats: "3 brands \u00b7 teacher training \u00b7 women's movement",
+  },
+  {
+    name: 'Breathwork School',
+    type: 'Rebrand & Teacher Training',
+    desc: 'Breathwork academy rebrand with certification program, teacher training pipeline, and bilingual content delivery.',
+    url: 'https://artederenacer.com',
+    stats: 'Bilingual \u00b7 teacher training \u00b7 certification',
+  },
+];
 
 export default function SchoolsPage() {
   useDocumentMeta({
@@ -297,8 +327,31 @@ export default function SchoolsPage() {
 
           <div className="mt-8">
             <a href="/work" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-              All 8 case studies <span aria-hidden="true">&rarr;</span>
+              Full portfolio <span aria-hidden="true">&rarr;</span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* More Schools Portfolio */}
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
+        <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
+          <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
+            <span className="w-8 h-px bg-accent" />
+            More Schools We've Built
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {schoolPortfolio.map((item, i) => (
+              <div key={i} className="bg-dark-card border border-border rounded-xl p-6">
+                <h3 className="font-serif text-h4 text-content-primary mb-1">{item.name}</h3>
+                <p className="text-meta text-accent mb-3">{item.type}</p>
+                <p className="text-body-sm text-content-secondary mb-4">{item.desc}</p>
+                <p className="text-meta text-content-muted mb-4">{item.stats}</p>
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                  View <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -311,40 +364,82 @@ export default function SchoolsPage() {
             The Model
           </p>
           <h2 className="font-serif text-display-sm font-light mb-4">
-            Built for schools that are growing.
+            Three ways to make it yours.
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-16">
-            Every school is different — a practitioner launching her first certification needs different architecture than an academy with 300 students across 9 levels. I scope and price based on what the work actually requires.
+            You own everything either way. Code, data, student records, domain. No lock-in. Ever.
           </p>
 
-          <div className="bg-dark-card border border-accent/30 ring-1 ring-accent/20 rounded-2xl p-8 md:p-10 max-w-prose">
-            <div className="grid grid-cols-3 gap-6 mb-8">
-              {[
-                { label: 'Platform build', value: '$5,000 – $10,000', detail: 'Scoped to your needs' },
-                { label: 'Ongoing partnership', value: '$1,000 – $2,000/mo', detail: 'Maintenance & evolution' },
-                { label: 'Timeline', value: '2 – 6 weeks', detail: 'To launch' },
-              ].map((item, i) => (
-                <div key={i}>
-                  <p className="text-meta uppercase text-content-muted mb-1">{item.label}</p>
-                  <p className="font-serif text-h3 font-light text-accent">{item.value}</p>
-                  <p className="text-meta text-content-muted mt-1">{item.detail}</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1: Pay as you grow */}
+            <div className="bg-dark-card border border-accent/40 ring-1 ring-accent/20 rounded-xl p-6 flex flex-col">
+              <span className="text-meta uppercase text-accent mb-4">Most popular</span>
+              <h3 className="font-serif text-h3 font-light text-content-primary mb-2">Pay as you grow</h3>
+              <p className="text-body-sm text-content-secondary mb-6">No upfront cost. Monthly partnership. Cancel anytime after 12 months.</p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-body-sm text-content-secondary">Studio / School</span>
+                  <span className="font-serif text-h4 text-accent">$297/mo</span>
                 </div>
-              ))}
+                <div className="flex items-center justify-between">
+                  <span className="text-body-sm text-content-secondary">Center / Organization</span>
+                  <span className="font-serif text-h4 text-accent">$597/mo</span>
+                </div>
+              </div>
+              <p className="text-meta text-content-muted mb-6">12-month minimum. Then month-to-month forever.</p>
+              <div className="mt-auto">
+                <a href="https://cal.astralintegration.studio/astral/discovery-call" target="_blank" rel="noopener noreferrer" className="block text-center px-6 py-3 bg-accent text-white rounded-full text-body-sm font-medium hover:opacity-90 transition-opacity">
+                  Book a call
+                </a>
+              </div>
             </div>
 
-            <div className="pt-6 border-t border-border space-y-2">
-              <p className="text-body-sm text-content-muted">
-                <strong className="text-content-secondary">You own everything.</strong> Code, data, domain, student records. From day one.
-              </p>
-              <p className="text-body-sm text-content-muted">
-                <strong className="text-content-secondary">Long-term partner.</strong> My pricing is structured so my success is tied to yours — I stay invested in your school's growth.
-              </p>
+            {/* Card 2: Pay once */}
+            <div className="bg-dark-card border border-border rounded-xl p-6 flex flex-col">
+              <h3 className="font-serif text-h3 font-light text-content-primary mb-2 mt-8">Pay once</h3>
+              <p className="text-body-sm text-content-secondary mb-6">One payment. Own it outright. Optional hosting after.</p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-body-sm text-content-secondary">Studio / School</span>
+                  <span className="font-serif text-h4 text-accent">$5,500</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-body-sm text-content-secondary">Center / Organization</span>
+                  <span className="font-serif text-h4 text-accent">$12,000</span>
+                </div>
+              </div>
+              <p className="text-meta text-content-muted mb-6">Optional hosting: $100&ndash;150/mo. Or host it yourself.</p>
+              <div className="mt-auto">
+                <a href="https://cal.astralintegration.studio/astral/discovery-call" target="_blank" rel="noopener noreferrer" className="block text-center px-6 py-3 border border-accent text-accent rounded-full text-body-sm font-medium hover:bg-accent hover:text-white transition-colors">
+                  Book a call
+                </a>
+              </div>
+            </div>
+
+            {/* Card 3: Partner up */}
+            <div className="bg-dark-card border border-border rounded-xl p-6 flex flex-col">
+              <h3 className="font-serif text-h3 font-light text-content-primary mb-2 mt-8">Partner up</h3>
+              <p className="text-body-sm text-content-secondary mb-6">Revenue share. I become your fractional CTO.</p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-body-sm text-content-secondary">5&ndash;8% of revenue, ongoing</span>
+                </div>
+              </div>
+              <p className="text-meta text-content-muted mb-6">For established schools with real revenue. Long-term alignment.</p>
+              <div className="mt-auto">
+                <a href="https://cal.astralintegration.studio/astral/discovery-call" target="_blank" rel="noopener noreferrer" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                  Talk to me <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-10 space-y-2">
+            <p className="text-body-sm text-content-muted">
+              <strong className="text-content-secondary">You own everything.</strong> Code, data, domain, student records. From day one.
+            </p>
             <a href="/pricing" className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-              Full pricing & FAQ <span aria-hidden="true">&rarr;</span>
+              Full pricing details <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </div>
