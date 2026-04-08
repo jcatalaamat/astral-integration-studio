@@ -3,77 +3,46 @@ import Navigation from '../Navigation';
 import Footer from '../Footer';
 import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 
-const tiers = [
+const doors = [
   {
-    name: 'Growing',
-    who: '5–30K followers.',
-    desc: 'You\'re a practitioner with a real following but your digital presence doesn\'t match your teaching. You need a professional home that actually works — and costs less than the 7 tools you\'re currently duct-taping together.',
-    build: '$1,000 – $2,000',
-    monthly: '$50 – $300/mo',
-    timeline: '1–2 weeks',
-    includes: [
-      'Custom website designed for your brand',
-      'Booking / scheduling system',
-      'Payment processing (Stripe)',
-      'Contact forms and basic email automation',
-      'Hosting, domain, SSL — all managed',
-      'Bug fixes and maintenance',
-      'Email and chat support',
+    name: 'Pay as you grow',
+    tag: 'Door 1',
+    desc: "No upfront cost. I build it, deploy it, and stay on as your technical partner. Cancel anytime after 12 months.",
+    rows: [
+      { tier: 'Practitioner', price: '$147/mo' },
+      { tier: 'Studio / School', price: '$297/mo' },
+      { tier: 'Center / Organization', price: '$597/mo' },
     ],
-    audience: 'Yoga teachers, massage therapists, coaches, healers, facilitators, artists — anyone building their practice who needs a solid digital foundation. $50/mo is easy yes money for someone making $5K+/mo from sessions.',
-    highlight: false,
-  },
-  {
-    name: 'Established',
-    who: '30–80K followers.',
-    desc: 'You have students, clients, or guests — certifications, multiple revenue streams, a real following. You don\'t just need a website. You need a platform and a technical partner who owns it.',
-    build: '$3,000 – $5,000',
-    monthly: '$300 – $500/mo',
-    timeline: '2–4 weeks',
-    includes: [
-      'Everything in Growing',
-      'Multi-offering platform (retreats + courses + membership)',
-      'Custom booking flows with intake questionnaires',
-      'Course or content delivery system',
-      'Membership portal with gated content',
-      'Client/student dashboard',
-      'Certification and progression systems',
-      'Practitioner or facilitator directory',
-      'AI assistant trained on your methodology',
-      'Email automation (onboarding sequences, reminders)',
-      'Bilingual / multilingual support',
-      'Weekly strategy calls',
-      'Architecture decisions and vendor management',
-      'CTO-level technical leadership',
-    ],
-    audience: 'Schools with certification programs, retreat centers with multiple revenue streams, touring facilitators, established teachers with 500+ students, coaches with membership programs.',
+    footer: '12-month minimum. After that, month-to-month forever.',
     highlight: true,
   },
   {
-    name: 'Legacy',
-    who: '80K+ followers.',
-    desc: 'Your work has global reach. Your infrastructure should too. At this level, we align incentives — my success is literally tied to yours.',
-    build: '$3,000 – $5,000 or free',
-    monthly: '$500 – $1,000/mo or 5% rev share',
-    timeline: '4–8 weeks',
-    includes: [
-      'Everything in Established',
-      'Revenue share alignment — my success tied to yours',
-      'Multi-region facilitator management',
-      'Cross-timezone scheduling and coordination',
-      'Custom integrations and API development',
-      'Dedicated technical leadership',
-      'Multi-language content management',
-      'Setup can be free with rev share model',
+    name: 'Pay once',
+    tag: 'Door 2',
+    desc: "One payment. Own it outright. Optional hosting after, or self-host \u2014 your code, your call.",
+    rows: [
+      { tier: 'Practitioner', price: '$2,500' },
+      { tier: 'Studio / School', price: '$5,500' },
+      { tier: 'Center / Organization', price: '$12,000' },
     ],
-    audience: 'Legacy teachers, touring musicians, global organizations. If your work reaches thousands, the infrastructure should match — and the pricing should align our incentives.',
+    footer: 'Optional hosting: $50\u2013150/mo. Or host it yourself.',
+    highlight: false,
+  },
+  {
+    name: 'Partner up',
+    tag: 'Door 3',
+    desc: "Revenue share. I become your fractional CTO. For retreat centers, schools, and organizations with real revenue.",
+    rows: [
+      { tier: 'Revenue share', price: '5\u20138%' },
+    ],
+    footer: 'Long-term partnership. Aligned incentives. I grow when you grow.',
     highlight: false,
   },
 ];
 
 const universals = [
   { bold: 'You own everything.', rest: 'Code, data, domain, content. From day one. Always.' },
-  { bold: 'Real code.', rest: 'Custom-built platform, not templates or no-code tools you\'ll outgrow.' },
+  { bold: 'Real code.', rest: "Custom-built platform, not templates or no-code tools you'll outgrow." },
   { bold: 'Managed hosting.', rest: 'I handle servers, uptime, security, SSL, backups.' },
   { bold: 'Ongoing maintenance.', rest: 'Bug fixes, updates, and platform health.' },
   { bold: 'Direct access to me.', rest: 'Not a support ticket system. Not a junior dev.' },
@@ -82,32 +51,32 @@ const universals = [
 
 const faqs = [
   {
-    q: 'What if I\'m just starting out and don\'t have much revenue yet?',
-    a: 'The Launch tier is designed exactly for this. A solid foundation doesn\'t require a complex platform. We build what you need now and expand as you grow.',
+    q: "What if I'm just starting out and don't have much revenue yet?",
+    a: 'Door 1 (Pay as you grow) is designed exactly for this. No upfront cost \u2014 $147/mo for a practitioner. I build it, deploy it, and stay on. You cancel anytime after 12 months.',
   },
   {
-    q: 'Can I upgrade tiers later?',
-    a: 'Yes. Most partnerships start at one level and grow. A practitioner who launches a retreat series might move from Launch to Systems. A school that expands internationally might move from Systems to Ecosystem. The platform evolves with you.',
+    q: 'Can I switch doors later?',
+    a: "Yes. Start with monthly, then buy it out when you're ready. Or start with a one-time payment and add ongoing support later. The platform is yours either way.",
   },
   {
-    q: 'What\'s the difference between a monthly retainer and hiring a developer?',
-    a: 'A developer builds what you tell them to build. A monthly retainer with me means I take ownership of your entire technical ecosystem — I make the decisions, anticipate problems, plan the roadmap, and build proactively. It\'s the difference between an employee and a CTO.',
+    q: "What's the difference between Door 1 and Door 2?",
+    a: 'Door 1 spreads the cost over time with no upfront payment. Door 2 is a single payment \u2014 you own it outright immediately. Both get the same build quality and the same platform.',
   },
   {
-    q: 'Why is there a monthly partnership fee? Can\'t I just pay for the build?',
-    a: 'You can. But a platform without ongoing maintenance and evolution is like a car without oil changes. It works for six months, then things break, security becomes stale, and you\'re stuck with no one to call. The monthly partnership ensures your platform stays healthy, secure, and growing with you.',
+    q: 'What does the rev share model (Door 3) look like?',
+    a: "I become your fractional CTO. 5\u20138% of revenue processed through the platform. It's for organizations with real revenue \u2014 retreat centers, schools, training programs. Aligned incentives: I grow when you grow.",
   },
   {
     q: 'What if I want to hire my own developer later?',
-    a: 'Great. I\'ll help you hire the right person, hand off the codebase with full documentation, and make sure the transition is clean. No lock-in, ever.',
+    a: "Great. I'll help you hire the right person, hand off the codebase with full documentation, and make sure the transition is clean. No lock-in, ever.",
   },
   {
     q: 'Do you work with people outside the healing/education space?',
-    a: 'Occasionally, if the work resonates. But my deepest expertise is in schools, practices, retreats, and communities. That\'s where I build fastest, understand the most, and add the most value.',
+    a: "Occasionally, if the work resonates. But my deepest expertise is in schools, practices, retreats, and communities. That's where I build fastest, understand the most, and add the most value.",
   },
   {
     q: 'How do you work with my existing tools?',
-    a: 'I assess everything you\'re currently using and recommend what to keep, what to replace, and what to integrate. I\'m not dogmatic about tools — if your Stripe setup works, we keep it. If Teachable is holding you back, we replace it.',
+    a: "I assess everything you're currently using and recommend what to keep, what to replace, and what to integrate. I'm not dogmatic about tools \u2014 if your Stripe setup works, we keep it. If Teachable is holding you back, we replace it.",
   },
   {
     q: 'What does "you own everything" actually mean?',
@@ -118,7 +87,7 @@ const faqs = [
 export default function PricingPage() {
   useDocumentMeta({
     title: 'Pricing — Astral Integration',
-    description: 'Clear pricing for custom digital platforms. Three tiers: Launch, Systems, and Ecosystem. Foundation build + monthly partnership. You own everything from day one.',
+    description: 'Three ways to work together. Pay as you grow, pay once, or partner up. You own everything from day one.',
     ogUrl: 'https://astralintegration.studio/pricing',
   });
 
@@ -160,101 +129,59 @@ export default function PricingPage() {
             Pricing
           </p>
           <h1 className="font-serif text-display font-light mb-8 max-w-[800px]">
-            Clear pricing. <em className="italic gradient-text">No surprises.</em>
+            Three ways to work together. <em className="italic gradient-text">You pick.</em>
           </h1>
           <p className="text-body text-content-secondary max-w-prose">
-            Every partnership is scoped to the work. Here's how pricing works so you know what to expect before we talk.
+            You own everything either way. Code, data, domain. From day one. No lock-in. Ever.
           </p>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="pb-section px-6 md:px-12">
-        <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
-          <div className="max-w-prose">
-            <p className="text-body text-content-secondary leading-relaxed mb-5">
-              Every engagement has two parts:
-            </p>
-            <div className="space-y-4 mb-8">
-              <div className="bg-dark-card border border-border rounded-xl p-6">
-                <p className="text-body text-content-primary font-medium mb-1">1. Foundation Build</p>
-                <p className="text-body-sm text-content-secondary">The initial platform that replaces your scattered tools with one cohesive system. This is a one-time investment based on scope.</p>
-              </div>
-              <div className="bg-dark-card border border-border rounded-xl p-6">
-                <p className="text-body text-content-primary font-medium mb-1">2. Monthly Partnership</p>
-                <p className="text-body-sm text-content-secondary">Ongoing technical leadership, maintenance, new features, and platform evolution. This is what makes it a partnership, not a project.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tiers */}
+      {/* Doors */}
       <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {tiers.map((tier, i) => (
+            {doors.map((door, i) => (
               <div
                 key={i}
                 className={`bg-dark-card border rounded-2xl p-8 flex flex-col ${
-                  tier.highlight ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border'
+                  door.highlight ? 'border-accent/40 ring-1 ring-accent/20' : 'border-border'
                 }`}
               >
-                <h3 className="font-serif text-h2 font-light mb-2">{tier.name}</h3>
-                <p className="text-body-sm text-accent font-medium mb-3">{tier.who}</p>
-                <p className="text-body-sm text-content-muted mb-8">{tier.desc}</p>
+                <p className="text-meta uppercase text-accent mb-2">{door.tag}</p>
+                <h3 className="font-serif text-h2 font-light mb-3">{door.name}</h3>
+                <p className="text-body-sm text-content-muted mb-8">{door.desc}</p>
 
-                <div className="space-y-4 mb-8">
-                  <div>
-                    <p className="text-meta uppercase text-content-muted mb-1">Foundation build</p>
-                    <p className="font-serif text-h3 font-light text-accent">{tier.build}</p>
-                  </div>
-                  <div>
-                    <p className="text-meta uppercase text-content-muted mb-1">Monthly partnership</p>
-                    <p className="font-serif text-h3 font-light text-accent">{tier.monthly}</p>
-                  </div>
-                  <div>
-                    <p className="text-meta uppercase text-content-muted mb-1">Timeline</p>
-                    <p className="text-body-sm text-content-secondary">{tier.timeline}</p>
-                  </div>
+                <div className="space-y-3 mb-8">
+                  {door.rows.map((row, j) => (
+                    <div key={j} className="flex items-center justify-between">
+                      <p className="text-body-sm text-content-secondary">{row.tier}</p>
+                      <p className="font-serif text-h4 font-light text-accent">{row.price}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="pt-6 border-t border-border flex-1">
-                  <p className="text-meta uppercase text-content-muted mb-4">Includes</p>
-                  <ul className="space-y-2">
-                    {tier.includes.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-body-sm text-content-secondary">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-body-sm text-content-muted">{door.footer}</p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-border">
-                  <p className="text-meta text-content-muted">{tier.audience}</p>
+                <div className="pt-6 mt-6">
+                  <a
+                    href="https://cal.astralintegration.studio/astral/discovery-call"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block w-full text-center px-8 py-3 bg-accent text-white rounded-full text-body-sm font-medium btn-glow"
+                  >
+                    Book a Call
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Beyond Enterprise */}
-          <div className="bg-dark-card border border-border rounded-2xl p-8 md:p-10 max-w-prose">
-            <h3 className="font-serif text-h3 mb-3">Something bigger in mind?</h3>
-            <p className="text-body-sm text-content-secondary mb-6">
-              If your project doesn't fit neatly into a tier — multiple platforms, complex migrations, unusual technical challenges, or you're not sure what you need yet — let's just talk. I'll assess the full picture and send a clear proposal.
-            </p>
-            <a
-              href="/contact"
-              className="text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2"
-            >
-              Start a conversation <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
         </div>
       </section>
 
-      {/* What Every Tier Includes */}
+      {/* What Every Partnership Includes */}
       <section className="py-section px-6 md:px-12">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
@@ -274,40 +201,6 @@ export default function PricingPage() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Revenue-Aligned Pricing */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
-        <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
-          <div className="bg-dark-card border border-accent/20 rounded-2xl p-8 md:p-10 max-w-prose">
-            <p className="text-meta uppercase text-accent mb-4 flex items-center gap-4">
-              <span className="w-8 h-px bg-accent" />
-              Revenue-Aligned Option
-            </p>
-            <h3 className="font-serif text-h3 mb-4">For Systems and Ecosystem partnerships.</h3>
-            <p className="text-body-sm text-content-secondary leading-relaxed mb-6">
-              I also offer an option where part of my compensation is tied to the revenue processed through your platform.
-            </p>
-
-            <div className="space-y-3 mb-6">
-              {[
-                'A percentage (typically 5\u201312%) of transactions processed through the platform I built',
-                'This can reduce your upfront and monthly costs',
-                'It means I\'m financially invested in your platform\'s success \u2014 not just its launch',
-                'Buyout option available at any time',
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                  <p className="text-body-sm text-content-secondary">{item}</p>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-body-sm text-content-muted">
-              This isn't for every partnership. It makes sense when significant revenue flows through your platform (retreats, courses, memberships, events). For simpler sites, the standard model is a better fit. I'll recommend the right structure during our conversation.
-            </p>
           </div>
         </div>
       </section>
@@ -351,7 +244,7 @@ export default function PricingPage() {
             Ready to talk?
           </h2>
           <p className="text-body text-content-secondary max-w-prose mx-auto mb-10">
-            I take on 3–5 partnerships at a time. If your work is ready for real infrastructure, let's have a conversation.
+            I take on 3{'\u2013'}5 partnerships at a time. If your work is ready for real infrastructure, let's have a conversation.
           </p>
           <a
             href="https://cal.astralintegration.studio/astral/discovery-call"

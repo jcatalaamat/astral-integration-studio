@@ -318,14 +318,14 @@ export default function HomePage() {
             Long-term partnership. Aligned from day one.
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-12">
-            I don't pitch. I build it first and send you the link. Not a freelancer who disappears. Not an agency that bills by the hour. A partner who stays.
+            Three ways to work together. You pick. You own everything either way. No lock-in, ever.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { step: '01', title: 'You send me the mess.', desc: "A voice memo. A google doc. A screenshot of your instagram. Your Linktree. Whatever you have. I'll take it from there — I'll research your work, study your audience, and map out what you actually need." },
-              { step: '02', title: 'I build it before we talk.', desc: "No proposals. No wireframes. No 'discovery phase.' I build a working version of your platform and send you the link. You see it live. You feel it. Then we talk." },
-              { step: '03', title: 'You get the keys.', desc: "Your site, your domain, your data, your code. Everything is yours from day one. I stay as your technical partner for as long as you want — but you're never locked in." },
+              { step: '01', title: 'You send me the mess.', desc: "A voice memo. A google doc. A linktree. Your instagram bio. Whatever you have. I take it from there — I research your work, study your audience, and sketch what your digital home should be." },
+              { step: '02', title: 'I build it before we talk. For real.', desc: "No proposals. No discovery calls. No wireframes. 48 hours later you get a link to your actual platform — your photos, your copy, your bookings, your brand. Live. Working. Yours to click around." },
+              { step: '03', title: 'If you love it, pick your door.', desc: "Pay as you grow, pay once, or partner up. Three paths, same result — you own everything and I stay as your technical partner for as long as you want." },
             ].map((item, i) => (
               <div key={i}>
                 <div className="flex items-center gap-3 mb-4">
@@ -345,13 +345,14 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              { label: 'Growing (5-30K)', value: '$50–300/mo' },
-              { label: 'Established (30-80K)', value: '$300–500/mo' },
-              { label: 'Legacy (80K+)', value: 'Rev share' },
+              { label: 'Pay as you grow', value: 'from $147/mo', note: 'No upfront cost' },
+              { label: 'Pay once', value: 'from $2,500', note: 'Own it outright' },
+              { label: 'Partner up', value: '5–8% rev share', note: 'For the right fit' },
             ].map((item, i) => (
               <div key={i} className="text-center md:text-left">
                 <p className="text-meta uppercase text-content-muted mb-1">{item.label}</p>
                 <p className="font-serif text-h2 font-light text-accent">{item.value}</p>
+                <p className="text-body-sm text-content-muted mt-1">{item.note}</p>
               </div>
             ))}
           </div>

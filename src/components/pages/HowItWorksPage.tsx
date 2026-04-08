@@ -6,74 +6,74 @@ import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 const process = [
   {
     step: '01',
-    title: 'We talk.',
-    desc: 'You tell me what you\'re building — or what you\'ve already built — and where it needs to go. I learn the work, the methodology, the people you serve. I assess whether this is a partnership I want to invest in.',
+    title: 'You send me the mess.',
+    desc: 'A voice memo. A google doc. A linktree. Your instagram bio. Whatever you have. I take it from there — I research your work, study your audience, and sketch what your digital home should be.',
     details: [
-      'A 30–60 minute conversation about your work, your people, and your current setup',
-      'I research your space — what exists, what\'s missing, what the architecture needs to look like',
-      'If it\'s a fit, I send you a partnership proposal within a few days: scope, timeline, pricing',
-      'Not every project is the right fit. But stage isn\'t the filter — the work is',
+      'Send me whatever you have — a voice memo, a google doc, a screenshot of your instagram',
+      'I research your work, your audience, and your space',
+      'I sketch what your digital home should look like',
+      'No forms. No intake calls. Just send me the mess.',
     ],
   },
   {
     step: '02',
-    title: 'I build.',
-    desc: 'Custom platform, real code, your brand. You see it come together week by week. Most projects launch in 2–6 weeks depending on scope.',
+    title: 'I build it before we talk. For real.',
+    desc: 'No proposals. No discovery calls. No wireframes. 48 hours later you get a link to your actual platform — your photos, your copy, your bookings, your brand. Live. Working. Yours to click around. If you don\'t love it, you keep the link as a gift.',
     details: [
-      'Weekly progress updates — you see the platform taking shape in real time',
-      'Your content, your logic, your brand. I handle the engineering',
-      'Iterative — we adjust as we go based on what we learn',
-      'You\'re involved in key decisions but never managing a developer',
+      'No proposals. No wireframes. No discovery phase.',
+      '48 hours later you get a link to your actual platform',
+      'Your photos, your copy, your bookings, your brand — live and working',
+      'If you don\'t love it, you keep the link as a gift',
     ],
   },
   {
     step: '03',
-    title: 'I stay.',
-    desc: 'This isn\'t a handoff. I remain your technical partner — maintaining, evolving, and scaling your platform as the work grows.',
+    title: 'If you love it, pick your door.',
+    desc: '$147/mo ongoing. $2,500 once. Or rev share as partners. You pick. We go live in 48 hours.',
     details: [
-      'Ongoing maintenance, updates, and feature development',
-      'New offerings, new revenue streams, new stages of growth — the infrastructure adapts',
-      'My pricing is structured so my success is tied to yours',
-      'You always have a senior engineer who knows your system inside and out',
+      'Door 1: Pay as you grow — from $147/mo, no upfront cost',
+      'Door 2: Pay once — from $2,500, own it outright',
+      'Door 3: Partner up — 5–8% rev share for the right fit',
+      'You own everything either way. Code, data, domain. From day one.',
     ],
   },
 ];
 
 const investment = [
-  { label: 'Platform build', value: '$1,500 – $10,000+', note: 'Scoped to your needs' },
-  { label: 'Ongoing partnership', value: 'From $250/month', note: 'Maintenance, updates, evolution' },
-  { label: 'Timeline', value: '2–6 weeks', note: 'To launch' },
+  { label: 'Pay as you grow', value: '$147–597/mo', note: 'No upfront cost. 12-month minimum.' },
+  { label: 'Pay once', value: '$2,500–12,000', note: 'One payment. Own it outright.' },
+  { label: 'Partner up', value: '5–8% rev share', note: 'For centers and orgs with real revenue.' },
   { label: 'Ownership', value: 'Yours. All of it.', note: 'Code, data, domain. From day one.' },
 ];
 
 const faqs = [
   {
     q: 'How is pricing determined?',
-    a: 'Every project is different — a practitioner launching her first platform needs different architecture than a school with 300 students across 9 certification levels. I scope and price based on what the work actually requires, not a menu. After our first conversation, I send a clear proposal with no surprises.',
+    a: 'Three doors. Door 1: pay monthly, no upfront cost ($147–597/mo depending on scope). Door 2: pay once and own it outright ($2,500–12,000). Door 3: revenue share for organizations with real revenue (5–8%). I\'ll recommend the right fit after I see your work.',
   },
   {
-    q: 'What does the ongoing partnership include?',
-    a: 'Maintenance, updates, feature development, and scaling. When your work grows — new offerings, new markets, new needs — the infrastructure grows with it. You always have a senior engineer who knows your system inside and out.',
+    q: 'What\'s the difference between Door 1 and Door 2?',
+    a: 'Same build quality, same platform. Door 1 spreads the cost over time with no upfront payment — 12-month minimum, then month-to-month. Door 2 is a single payment and you own it outright. Optional hosting after if you want it.',
   },
   {
     q: 'Do I own the code and data?',
-    a: 'Yes. From day one. Your code, your data, your domain, your content. Everything is yours. I maintain and develop it as your technical partner, but you own it all.',
+    a: 'Yes. From day one. Every door. Your code, your data, your domain, your content. Everything is yours. If our partnership ends tomorrow, you walk away with everything.',
   },
   {
     q: 'What platform or tech stack do you use?',
     a: 'Every project is custom-built with modern web technologies — typically React, TypeScript, and Node.js with the specific architecture shaped by what the work needs. No WordPress. No Squarespace. No templates. Real code, built for your specific requirements.',
   },
   {
-    q: 'How long does a project take?',
-    a: 'Most platforms launch in 2–6 weeks depending on scope. You see progress weekly throughout — your platform taking shape in real time.',
+    q: 'How long does it take?',
+    a: 'You get a working link in 48 hours. Full platform launch in 1–4 weeks depending on scope.',
   },
   {
     q: 'What happens after launch?',
-    a: 'I stay. My pricing is structured so my success is tied to yours. I handle maintenance, feature development, and scaling as a long-term partner — not a contractor who delivers and disappears.',
+    a: 'On Door 1, I stay as your technical partner — maintenance, updates, new features. On Door 2, hosting is optional ($50–150/mo) or you self-host. On Door 3, I\'m your fractional CTO for the long haul.',
   },
   {
     q: 'How is this different from hiring a web developer?',
-    a: 'A developer builds what you spec and leaves. I learn your work, make architectural decisions based on deep understanding, and stay as a long-term partner. I\'m not filling tickets — I\'m building the infrastructure that allows your work to scale without fragmentation.',
+    a: 'A developer builds what you spec and leaves. I learn your work, build before we even talk, and stay as a long-term partner. I\'m not filling tickets — I\'m building the infrastructure that allows your work to scale without fragmentation.',
   },
 ];
 
