@@ -6,74 +6,74 @@ import { useDocumentMeta } from '../../hooks/useDocumentMeta';
 const process = [
   {
     step: '01',
-    title: 'You send me the mess.',
-    desc: 'A voice memo. A google doc. A linktree. Your instagram bio. Whatever you have. I take it from there — I research your work, study your audience, and sketch what your digital home should be.',
+    title: 'We talk.',
+    desc: 'You tell me what you\'re building. I learn the work, the methodology, the people you serve. If it\'s a fit, I send you a clear proposal.',
     details: [
-      'Send me whatever you have — a voice memo, a google doc, a screenshot of your instagram',
-      'I research your work, your audience, and your space',
-      'I sketch what your digital home should look like',
-      'No forms. No intake calls. Just send me the mess.',
+      'Tell me about your work, your audience, and what\'s broken',
+      'I research your space and understand what you actually need',
+      'If it\'s a fit, you get a clear proposal with scope and pricing',
+      'No generic decks. No templated quotes.',
     ],
   },
   {
     step: '02',
-    title: 'I build it before we talk. For real.',
-    desc: 'No proposals. No discovery calls. No wireframes. 48 hours later you get a link to your actual platform — your photos, your copy, your bookings, your brand. Live. Working. Yours to click around. If you don\'t love it, you keep the link as a gift.',
+    title: 'I build.',
+    desc: 'Custom platform, real code, your brand. You see it come together week by week. Most projects launch in 2\u20136 weeks depending on scope.',
     details: [
-      'No proposals. No wireframes. No discovery phase.',
-      '48 hours later you get a link to your actual platform',
-      'Your photos, your copy, your bookings, your brand — live and working',
-      'If you don\'t love it, you keep the link as a gift',
+      'Custom-built platform \u2014 not a template, not a theme',
+      'Your brand, your domain, your booking and payment systems',
+      'You see progress week by week, not a big reveal at the end',
+      'Most projects launch in 2\u20136 weeks',
     ],
   },
   {
     step: '03',
-    title: 'If you love it, pick your door.',
-    desc: '$147/mo ongoing. $2,500 once. Or rev share as partners. You pick. We go live in 48 hours.',
+    title: 'I stay.',
+    desc: 'This isn\'t a handoff. I remain your technical partner \u2014 maintaining, evolving, and scaling your platform as the work grows.',
     details: [
-      'Door 1: Pay as you grow — from $147/mo, no upfront cost',
-      'Door 2: Pay once — from $2,500, own it outright',
-      'Door 3: Partner up — 5–8% rev share for the right fit',
-      'You own everything either way. Code, data, domain. From day one.',
+      'Ongoing maintenance, hosting, and bug fixes',
+      'New features and platform evolution as your work grows',
+      'Direct access to me \u2014 not a support ticket system',
+      'You own everything. Code, data, domain. From day one.',
     ],
   },
 ];
 
 const investment = [
-  { label: 'Pay as you grow', value: '$147–597/mo', note: 'No upfront cost. 12-month minimum.' },
-  { label: 'Pay once', value: '$2,500–12,000', note: 'One payment. Own it outright.' },
-  { label: 'Partner up', value: '5–8% rev share', note: 'For centers and orgs with real revenue.' },
+  { label: 'Practitioners & Makers', value: '$1,500\u20133,000 build', note: '$250\u2013500/mo ongoing' },
+  { label: 'Schools \u00b7 Retreats \u00b7 Communities', value: '$5,000\u201310,000 build', note: '$500\u20131,500/mo ongoing' },
+  { label: 'Organizations & Centers', value: '$15,000\u201330,000 build', note: '$1,500\u20133,000/mo ongoing' },
   { label: 'Ownership', value: 'Yours. All of it.', note: 'Code, data, domain. From day one.' },
 ];
 
 const faqs = [
   {
     q: 'How is pricing determined?',
-    a: 'Three doors. Door 1: pay monthly, no upfront cost ($147–597/mo depending on scope). Door 2: pay once and own it outright ($2,500–12,000). Door 3: revenue share for organizations with real revenue (5–8%). I\'ll recommend the right fit after I see your work.',
+    a: 'Every engagement has a foundation build and an ongoing monthly partnership. Practitioners & Makers: $1,500\u20133,000 build + $250\u2013500/mo. Schools, Retreats & Communities: $5,000\u201310,000 build + $500\u20131,500/mo. Organizations & Centers: $15,000\u201330,000 build + $1,500\u20133,000/mo. I\'ll recommend the right fit after I see your work.',
   },
   {
-    q: 'What\'s the difference between Door 1 and Door 2?',
-    a: 'Same build quality, same platform. Door 1 spreads the cost over time with no upfront payment — 12-month minimum, then month-to-month. Door 2 is a single payment and you own it outright. Optional hosting after if you want it.',
+    q: 'What does the build fee cover vs. the monthly?',
+    a: 'The build is your custom platform \u2014 designed, developed, and deployed. The monthly covers ongoing hosting, maintenance, bug fixes, updates, and my availability as your technical partner. You own everything from day one.',
   },
   {
     q: 'Do I own the code and data?',
-    a: 'Yes. From day one. Every door. Your code, your data, your domain, your content. Everything is yours. If our partnership ends tomorrow, you walk away with everything.',
+    a: 'Yes. From day one. Every tier. Your code, your data, your domain, your content. Everything is yours. If our partnership ends tomorrow, you walk away with everything.',
   },
   {
     q: 'What platform or tech stack do you use?',
-    a: 'Every project is custom-built with modern web technologies — typically React, TypeScript, and Node.js with the specific architecture shaped by what the work needs. No WordPress. No Squarespace. No templates. Real code, built for your specific requirements.',
+    a: 'Every project is custom-built with modern web technologies \u2014 typically React, TypeScript, and Node.js with the specific architecture shaped by what the work needs. No WordPress. No Squarespace. No templates. Real code, built for your specific requirements.',
   },
   {
     q: 'How long does it take?',
-    a: 'You get a working link in 48 hours. Full platform launch in 1–4 weeks depending on scope.',
+    a: 'Practitioners typically launch in 1\u20132 weeks. Schools and communities in 2\u20134 weeks. Organizations in 4\u20138 weeks with phased delivery.',
   },
   {
     q: 'What happens after launch?',
-    a: 'On Door 1, I stay as your technical partner — maintenance, updates, new features. On Door 2, hosting is optional ($50–150/mo) or you self-host. On Door 3, I\'m your fractional CTO for the long haul.',
+    a: 'I stay as your technical partner \u2014 maintenance, updates, new features. The monthly partnership covers ongoing hosting, bug fixes, and platform evolution. Direct access to me, not a support ticket system.',
   },
   {
     q: 'How is this different from hiring a web developer?',
-    a: 'A developer builds what you spec and leaves. I learn your work, build before we even talk, and stay as a long-term partner. I\'m not filling tickets — I\'m building the infrastructure that allows your work to scale without fragmentation.',
+    a: 'A developer builds what you spec and leaves. I learn your work, build the right architecture, and stay as a long-term partner. I\'m not filling tickets \u2014 I\'m building the infrastructure that allows your work to scale without fragmentation.',
   },
 ];
 

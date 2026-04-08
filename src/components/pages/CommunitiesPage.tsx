@@ -270,7 +270,7 @@ export default function CommunitiesPage() {
             <div className="grid grid-cols-3 gap-6 mb-8">
               {[
                 { label: 'Platform build', value: '$5,000 – $10,000', detail: 'Scoped to your needs' },
-                { label: 'Ongoing partnership', value: '$1,000 – $2,000/mo', detail: 'Maintenance & evolution' },
+                { label: 'Ongoing partnership', value: '$500 – $1,500/mo', detail: 'Maintenance & evolution' },
                 { label: 'Timeline', value: '2 – 6 weeks', detail: 'To launch' },
               ].map((item, i) => (
                 <div key={i}>

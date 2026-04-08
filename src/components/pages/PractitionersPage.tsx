@@ -25,7 +25,7 @@ const beforeAfter = [
 
 export default function PractitionersPage() {
   useDocumentMeta({
-    title: 'For Practitioners — Astral Integration',
+    title: 'For Practitioners & Makers — Astral Integration',
     description: 'You have the audience. You deserve the infrastructure. I replace your 6 disconnected tools with one platform — your brand, your domain, everything connected.',
     ogUrl: 'https://astralintegration.studio/practitioners',
   });
@@ -117,7 +117,7 @@ export default function PractitionersPage() {
         <div className="max-w-content mx-auto">
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
-            For Practitioners
+            For Practitioners & Makers
           </p>
           <h1 className="font-serif text-display font-light mb-8 max-w-[800px]">
             You have the audience.<br />You deserve the <em className="italic gradient-text">infrastructure.</em>
@@ -333,7 +333,7 @@ export default function PractitionersPage() {
             The Model
           </p>
           <h2 className="font-serif text-display-sm font-light mb-4">
-            Built for practitioners who are ready.
+            Built for practitioners & makers who are ready.
           </h2>
           <p className="text-body text-content-secondary max-w-prose mb-16">
             Every project is scoped to what the work actually requires. My pricing is structured so my success is tied to yours — I don't build and disappear.

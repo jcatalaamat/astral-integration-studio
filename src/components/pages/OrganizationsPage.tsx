@@ -282,9 +282,9 @@ export default function OrganizationsPage() {
           <div className="bg-dark-card border border-border rounded-2xl p-8 md:p-10 max-w-prose">
             <div className="grid grid-cols-3 gap-6 mb-8">
               {[
-                { label: 'Platform build', value: 'Scoped', detail: 'Per engagement' },
-                { label: 'Ongoing partnership', value: 'Custom', detail: 'Monthly or rev share' },
-                { label: 'Timeline', value: '4 – 8 weeks', detail: 'Phased delivery' },
+                { label: 'Platform build', value: '$15,000 \u2013 $30,000', detail: 'Scoped to your needs' },
+                { label: 'Ongoing partnership', value: '$1,500 \u2013 $3,000/mo', detail: 'Maintenance & evolution' },
+                { label: 'Timeline', value: '4 \u2013 8 weeks', detail: 'Phased delivery' },
               ].map((item, i) => (
                 <div key={i}>
                   <p className="text-meta uppercase text-content-muted mb-1">{item.label}</p>
