@@ -12,7 +12,6 @@ import SchoolsPage from './components/pages/SchoolsPage';
 import RetreatsPage from './components/pages/RetreatsPage';
 import CommunitiesPage from './components/pages/CommunitiesPage';
 import OrganizationsPage from './components/pages/OrganizationsPage';
-// CaseStudyPage removed — individual case study pages no longer exist
 import HowItWorksPage from './components/pages/HowItWorksPage';
 import PricingPage from './components/pages/PricingPage';
 import ToolsHub from './components/pages/ToolsHub';

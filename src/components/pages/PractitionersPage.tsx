@@ -226,7 +226,7 @@ export default function PractitionersPage() {
             <div className="bg-dark-card border border-border rounded-2xl overflow-hidden">
               <div className="relative w-full border-b border-border bg-gradient-to-br from-violet-900/25 via-violet-900/5 to-transparent p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
-                  <h3 className="font-serif text-h2 font-light">Uria Tsur</h3>
+                  <h3 className="font-serif text-h2 font-light">Vocal Freedom</h3>
                   <p className="text-meta uppercase text-gold mt-1">Vocal Freedom Facilitator — 18+ Cities</p>
                 </div>
                 <div className="flex items-center gap-3 text-meta">
@@ -246,8 +246,8 @@ export default function PractitionersPage() {
                   <footer className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-accent-glow flex items-center justify-center text-accent font-serif text-xs">U</div>
                     <div>
-                      <span className="text-meta text-content-primary">Uria Tsur</span>
-                      <span className="text-meta text-content-muted ml-2">Vocal Facilitator & Musician</span>
+                      <span className="text-meta text-content-primary">Vocal Facilitator</span>
+                      <span className="text-meta text-content-muted ml-2">Touring 18+ cities</span>
                     </div>
                   </footer>
                 </blockquote>

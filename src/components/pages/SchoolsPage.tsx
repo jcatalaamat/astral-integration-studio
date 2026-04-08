@@ -284,8 +284,8 @@ export default function SchoolsPage() {
                 <footer className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-full bg-accent-glow flex items-center justify-center text-accent font-serif text-xs">S</div>
                   <div>
-                    <span className="text-meta text-content-primary">Sera Shivnan</span>
-                    <span className="text-meta text-content-muted ml-2">Reiki Master Teacher</span>
+                    <span className="text-meta text-content-primary">Reiki Master Teacher</span>
+                    <span className="text-meta text-content-muted ml-2">ShivEnergetics</span>
                   </div>
                 </footer>
               </blockquote>
