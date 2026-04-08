@@ -298,8 +298,8 @@ export default function RetreatsPage() {
                   </p>
                 </div>
               </div>
-              <a href="/work/sacred-counsel" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-                Full case study <span aria-hidden="true">&rarr;</span>
+              <a href="https://sacredcounsel.space" target="_blank" rel="noopener noreferrer" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                View the build <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>

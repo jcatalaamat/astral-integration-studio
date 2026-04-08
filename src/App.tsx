@@ -12,7 +12,7 @@ import SchoolsPage from './components/pages/SchoolsPage';
 import RetreatsPage from './components/pages/RetreatsPage';
 import CommunitiesPage from './components/pages/CommunitiesPage';
 import OrganizationsPage from './components/pages/OrganizationsPage';
-import CaseStudyPage from './components/pages/CaseStudyPage';
+// CaseStudyPage removed — individual case study pages no longer exist
 import HowItWorksPage from './components/pages/HowItWorksPage';
 import PricingPage from './components/pages/PricingPage';
 import ToolsHub from './components/pages/ToolsHub';
@@ -29,7 +29,7 @@ function App() {
           {/* Agency site */}
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
-          <Route path="/work/:slug" element={<CaseStudyPage />} />
+          {/* Individual case study pages removed — cards link to live .xyz domains */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/insights" element={<InsightsPage />} />

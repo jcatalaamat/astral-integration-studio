@@ -251,8 +251,8 @@ export default function PractitionersPage() {
                     </div>
                   </footer>
                 </blockquote>
-                <a href="/work/uria-tsur" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-                  Full case study <span aria-hidden="true">&rarr;</span>
+                <a href="https://uriatsur.live" target="_blank" rel="noopener noreferrer" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                  View the build <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
@@ -273,8 +273,8 @@ export default function PractitionersPage() {
                 <p className="text-body-sm text-content-secondary leading-relaxed">
                   A trauma-informed healing practice with a loyal following — but no way to stay with people between ceremonies. Now has a 12-month curriculum of 97 practices, a personalized AI healing assistant, and a pipeline into facilitator training.
                 </p>
-                <a href="/work/inner-ascend" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-                  Full case study <span aria-hidden="true">&rarr;</span>
+                <a href="https://inner-ascend.com" target="_blank" rel="noopener noreferrer" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                  View the build <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>

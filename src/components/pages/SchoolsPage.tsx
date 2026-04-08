@@ -289,8 +289,8 @@ export default function SchoolsPage() {
                   </div>
                 </footer>
               </blockquote>
-              <a href="/work/shivenergetics" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
-                Full case study <span aria-hidden="true">&rarr;</span>
+              <a href="https://shivenergetics.xyz" target="_blank" rel="noopener noreferrer" className="mt-6 text-body-sm text-accent hover:text-content-primary transition-colors inline-flex items-center gap-2">
+                View the build <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>

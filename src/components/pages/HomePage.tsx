@@ -170,7 +170,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ 5 DOORS ═══════ */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#EDE8E0]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
@@ -256,7 +256,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ THE WORK (unified) ═══════ */}
-      <section id="work" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
+      <section id="work" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#EDE8E0]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <p className="text-meta uppercase text-accent mb-6 flex items-center gap-4">
             <span className="w-8 h-px bg-accent" />
@@ -274,7 +274,7 @@ export default function HomePage() {
                 key={study.slug}
                 className={`bg-dark-card border border-border rounded-2xl overflow-hidden hover:border-accent/40 transition-all group bg-gradient-to-br ${study.gradient}`}
               >
-                <a href={study.url || `/work/${study.slug}`} target={study.url ? '_blank' : undefined} rel={study.url ? 'noopener noreferrer' : undefined} className="block p-6 pb-3">
+                <a href={study.url || undefined} target={study.url ? '_blank' : undefined} rel={study.url ? 'noopener noreferrer' : undefined} className="block p-6 pb-3">
                   <p className="text-meta text-accent mb-2">{study.category}</p>
                   <h3 className="font-serif text-h4 font-light group-hover:text-accent transition-colors">{study.type}</h3>
                   <p className="text-body-sm text-content-secondary mt-3 leading-relaxed line-clamp-2">{study.challenge}</p>
@@ -390,7 +390,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ WHY ME ═══════ */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#EDE8E0]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <h2 className="font-serif text-display-sm font-light mb-4">
             I'm the last technical hire <em className="italic gradient-text">you'll ever need.</em>
@@ -452,7 +452,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ CTA ═══════ */}
-      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-[#F5F4F2] to-dark-bg">
+      <section className="py-section px-6 md:px-12 bg-gradient-to-b from-[#EDE8E0] to-dark-bg">
         <div className="max-w-content mx-auto text-center reveal" ref={addRevealRef}>
           <h2 className="font-serif text-display-sm font-light mb-4">Ready to stop duct-taping?</h2>
           <p className="text-body text-content-secondary mb-10">Send me the mess. I'll hand you back a business.</p>
@@ -464,7 +464,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ ABOUT ═══════ */}
-      <section id="about" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#F5F4F2]">
+      <section id="about" className="py-section px-6 md:px-12 bg-gradient-to-b from-dark-bg to-[#EDE8E0]">
         <div className="max-w-content mx-auto reveal" ref={addRevealRef}>
           <div className="grid md:grid-cols-[320px_1fr] gap-12 items-start">
             <div className="space-y-4">

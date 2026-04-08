@@ -10,22 +10,22 @@ export default {
         // ASTRAL INTEGRATION LIGHT THEME
         // Warm light backgrounds
         dark: {
-          bg: '#FAF9F7',
-          card: '#FFFFFF',
-          cardHover: '#F5F3F0',
+          bg: '#F5F0EA',
+          card: '#FDFCFA',
+          cardHover: '#F0EBE4',
         },
-        // Accent colors — warm copper (darker for light bg contrast)
+        // Accent colors — warm terra/copper
         accent: {
-          DEFAULT: '#8B6914',
-          hover: '#6B4F0E',
-          glow: 'rgba(139, 105, 20, 0.1)',
-          glowStrong: 'rgba(139, 105, 20, 0.2)',
-          subtle: 'rgba(139, 105, 20, 0.05)',
-          border: 'rgba(139, 105, 20, 0.15)',
+          DEFAULT: '#9E6B4A',
+          hover: '#7A5238',
+          glow: 'rgba(158, 107, 74, 0.1)',
+          glowStrong: 'rgba(158, 107, 74, 0.2)',
+          subtle: 'rgba(158, 107, 74, 0.05)',
+          border: 'rgba(158, 107, 74, 0.15)',
         },
         gold: {
-          DEFAULT: '#8B6914',
-          soft: 'rgba(139, 105, 20, 0.08)',
+          DEFAULT: '#9E6B4A',
+          soft: 'rgba(158, 107, 74, 0.08)',
         },
         // Semantic state colors
         success: {
@@ -120,8 +120,8 @@ export default {
         '3xl': '24px',
       },
       boxShadow: {
-        'glow': '0 0 40px rgba(196, 149, 106, 0.15)',
-        'glow-lg': '0 0 60px rgba(196, 149, 106, 0.3), 0 10px 40px rgba(0,0,0,0.3)',
+        'glow': '0 0 40px rgba(158, 107, 74, 0.12)',
+        'glow-lg': '0 0 60px rgba(158, 107, 74, 0.25), 0 10px 40px rgba(0,0,0,0.15)',
         'card': '0 4px 20px rgba(0, 0, 0, 0.3)',
       },
     },
