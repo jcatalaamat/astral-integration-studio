@@ -877,7 +877,7 @@ section { padding: var(--s-xl) 0; position: relative; }
 
 .tiers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -1452,15 +1452,15 @@ section { padding: var(--s-xl) 0; position: relative; }
 .footer-giant {
   font-family: var(--f-display);
   font-style: italic;
-  font-size: clamp(4rem, 18vw, 17rem);
+  font-size: clamp(3rem, 14vw, 12rem);
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: rgba(244,238,225,0.08);
   margin-bottom: 3rem;
   text-align: center;
   font-variation-settings: "opsz" 144, "SOFT" 100;
-  white-space: nowrap;
   overflow: hidden;
+  word-break: break-word;
 }
 .footer-inner {
   display: grid;
@@ -1554,6 +1554,7 @@ section { padding: var(--s-xl) 0; position: relative; }
   .container { padding: 0 1.2rem; }
   section { padding: 3rem 0; }
   p { max-width: 100%; }
+  .section-label { margin-bottom: 2rem; padding-top: 1rem; }
   
   /* Nav */
   .nav { padding: 0.8rem 1.2rem; }
@@ -1606,8 +1607,10 @@ section { padding: var(--s-xl) 0; position: relative; }
   .work .kind { font-size: 0.85rem; line-height: 1.4; }
   .work .url { display: none; }
   .work .chev { display: none; }
-  .work-detail { padding: 1rem 0; }
-  .work-detail .tags { flex-wrap: wrap; }
+  .work-detail { padding: 1rem 0; margin-left: 0; max-width: 100%; font-size: 0.9rem; }
+  .work-detail p { max-width: 100%; }
+  .work-detail .tags { flex-wrap: wrap; gap: 0.3rem; }
+  .work-detail .tag { font-size: 0.6rem; padding: 0.25rem 0.5rem; }
   
   /* Pricing */
   .pricing-header h2 { font-size: clamp(2rem, 6vw, 3rem); }
@@ -1648,7 +1651,7 @@ section { padding: var(--s-xl) 0; position: relative; }
   .big-email { font-size: clamp(1.1rem, 3vw, 1.5rem); }
   
   /* Footer */
-  .footer-giant { font-size: clamp(2.5rem, 12vw, 6rem); }
+  .footer-giant { font-size: clamp(2rem, 10vw, 4rem); }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-col-wide { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -2166,26 +2169,26 @@ section { padding: var(--s-xl) 0; position: relative; }
 
     <div class="pricing-header">
       <h2 class="reveal">clear pricing.<br/><em>no surprises.</em></h2>
-      <p class="reveal">two tiers. transparent numbers. everything included. no hidden revisions, no creative accounting, no proposals that balloon halfway through the project.</p>
+      <p class="reveal">three tiers. fixed numbers. everything included. no hidden revisions, no creative accounting, no proposals that balloon halfway through the project.</p>
     </div>
 
     <div class="tiers reveal-stagger">
       <div class="tier">
-        <div class="tier-kicker">Tier A</div>
-        <h3>practitioners &amp; makers</h3>
-        <p class="who">for healers, coaches, therapists, yoga teachers, artisans, musicians, and solo practitioners with an established audience.</p>
+        <div class="tier-kicker">Practitioners</div>
+        <h3>your digital home</h3>
+        <p class="who">solo teachers, healers, coaches, facilitators. you have an audience but no real platform.</p>
 
         <div class="price-row">
           <span class="label">Setup</span>
-          <span class="val"><span class="usd">USD</span>1,500 — 3,000</span>
+          <span class="val"><span class="usd">USD</span>1,500</span>
         </div>
         <div class="price-row">
           <span class="label">Monthly</span>
-          <span class="val"><span class="usd">USD</span>250 — 500</span>
+          <span class="val"><span class="usd">USD</span>250<span style="font-size:0.7em;color:var(--ink-muted)">/mo</span></span>
         </div>
         <div class="price-row">
           <span class="label">Timeline</span>
-          <span class="val">1 — 3 weeks</span>
+          <span class="val">1 — 2 weeks</span>
         </div>
 
         <ul class="tier-includes">
@@ -2198,30 +2201,56 @@ section { padding: var(--s-xl) 0; position: relative; }
       </div>
 
       <div class="tier featured">
-        <div class="tier-kicker">Tier B</div>
-        <h3>schools · retreats · communities</h3>
-        <p class="who">for academies, teacher trainings, retreat centers, ecovillages, multi-practitioner collectives, and community platforms.</p>
+        <div class="tier-kicker">Schools</div>
+        <h3>your teaching platform</h3>
+        <p class="who">certification programs, teacher trainings, academies with students and levels.</p>
 
         <div class="price-row">
           <span class="label">Setup</span>
-          <span class="val"><span class="usd">USD</span>5,000 — 10,000</span>
+          <span class="val"><span class="usd">USD</span>5,000</span>
         </div>
         <div class="price-row">
           <span class="label">Monthly</span>
-          <span class="val"><span class="usd">USD</span>1,000 — 2,000</span>
+          <span class="val"><span class="usd">USD</span>750<span style="font-size:0.7em;color:var(--ink-muted)">/mo</span></span>
         </div>
         <div class="price-row">
           <span class="label">Timeline</span>
-          <span class="val">3 — 6 weeks</span>
+          <span class="val">3 — 4 weeks</span>
         </div>
 
         <ul class="tier-includes">
-          <li>Everything in Tier A</li>
+          <li>Everything in Practitioners</li>
           <li>Courses, certification, progression tracking</li>
           <li>Membership &amp; community layers</li>
+          <li>Practitioner directory</li>
           <li>Multi-offering architecture</li>
-          <li>AI assistants trained on your methodology</li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <div class="tier-kicker">Complex Schools</div>
+        <h3>full infrastructure</h3>
+        <p class="who">300+ students, multi-level certifications, cohorts, AI assistants, bilingual, multi-tenant.</p>
+
+        <div class="price-row">
+          <span class="label">Setup</span>
+          <span class="val"><span class="usd">USD</span>8,000<span style="font-size:0.7em;color:var(--ink-muted)">+</span></span>
+        </div>
+        <div class="price-row">
+          <span class="label">Monthly</span>
+          <span class="val"><span class="usd">USD</span>1,500<span style="font-size:0.7em;color:var(--ink-muted)">/mo</span></span>
+        </div>
+        <div class="price-row">
+          <span class="label">Timeline</span>
+          <span class="val">4 — 6 weeks</span>
+        </div>
+
+        <ul class="tier-includes">
+          <li>Everything in Schools</li>
+          <li>AI assistant trained on your methodology</li>
+          <li>Cohort management</li>
           <li>Multi-tenant &amp; bilingual support</li>
+          <li>Custom integrations</li>
         </ul>
       </div>
     </div>
@@ -2463,7 +2492,7 @@ section { padding: var(--s-xl) 0; position: relative; }
         <a href="mailto:jordi@astralintegration.studio" class="big-email">jordi@astralintegration.studio</a>
 
         <div class="contact-alt">
-          <a href="https://calendly.com/astral-integration/free-strategy-call">Book a discovery call →</a>
+          <a href="https://cal.astralintegration.studio/astral/discovery-call">Book a discovery call →</a>
           <a href="https://wa.me/34611144170">WhatsApp →</a>
           <a href="https://linkedin.com/in/jcamat">LinkedIn →</a>
           <a href="https://github.com/jcatalaamat">GitHub →</a>
@@ -2492,7 +2521,7 @@ section { padding: var(--s-xl) 0; position: relative; }
 ─────────────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-giant">astral&nbsp;integration</div>
+    <div class="footer-giant">astral integration</div>
 
     <div class="footer-inner">
       <div class="footer-col footer-col-wide">
