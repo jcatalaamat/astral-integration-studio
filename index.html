@@ -1670,6 +1670,568 @@ section { padding: var(--s-xl) 0; position: relative; }
   .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
 }
 
+/* ───────────────────────────────────────────────────────────────
+   PILLAR MOCKUPS — interactive platform previews
+─────────────────────────────────────────────────────────────── */
+.mockup {
+  margin-top: 1.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--paper-light);
+  position: relative;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  transition: box-shadow 0.4s;
+}
+.pillar:hover .mockup {
+  box-shadow: 0 8px 30px -12px rgba(176,65,42,0.18);
+}
+
+/* browser chrome */
+.mockup-chrome {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background: var(--paper-dark);
+  border-bottom: 1px solid var(--rule);
+}
+.mockup-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+}
+.mockup-dot:first-child { background: #e07060; }
+.mockup-dot:nth-child(2) { background: #e0b860; }
+.mockup-dot:nth-child(3) { background: #70b060; }
+.mockup-url {
+  flex: 1;
+  margin-left: 6px;
+  padding: 2px 8px;
+  background: var(--paper);
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 0.58rem;
+  color: var(--ink-muted);
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mockup-body {
+  padding: 12px;
+  min-height: 200px;
+  position: relative;
+}
+
+/* ── MOCKUP 01: site preview ── */
+.site-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.site-preview-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.site-preview-logo {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--clay);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.site-preview-nav-links {
+  display: flex;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.site-preview-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+}
+.site-preview-hero-text h5 {
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: 6px;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.site-preview-hero-text h5 em { color: var(--clay); font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+.site-preview-hero-text p {
+  font-size: 0.6rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.site-preview-btn {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 99px;
+}
+.site-preview-img {
+  aspect-ratio: 4/3;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--clay-wash), var(--paper-dark));
+  position: relative;
+  overflow: hidden;
+}
+.site-preview-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 40% 30%, rgba(176,65,42,0.2), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(138,106,44,0.15), transparent 50%);
+}
+.site-preview-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.site-preview-card {
+  padding: 8px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.site-preview-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--clay);
+}
+.site-preview-card .card-bar {
+  height: 3px;
+  background: var(--clay);
+  border-radius: 2px;
+  margin-bottom: 5px;
+  width: 40%;
+}
+.site-preview-card:nth-child(2) .card-bar { width: 60%; background: var(--gold); }
+.site-preview-card:nth-child(3) .card-bar { width: 50%; background: var(--moss); }
+.site-preview-card h6 {
+  font-family: var(--f-display);
+  font-size: 0.68rem;
+  font-weight: 400;
+  margin-bottom: 2px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.site-preview-card span {
+  font-size: 0.52rem;
+  color: var(--ink-muted);
+}
+
+/* ── MOCKUP 02: booking calendar ── */
+.booking-mock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.booking-week-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.booking-week-header span.today {
+  color: var(--clay);
+  font-weight: 600;
+}
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.booking-slot {
+  padding: 5px 4px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  min-height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.booking-slot:hover {
+  border-color: var(--clay);
+  background: var(--clay-wash);
+  transform: translateY(-1px);
+}
+.booking-slot .slot-time {
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--ink-muted);
+}
+.booking-slot .slot-class {
+  font-family: var(--f-display);
+  font-size: 0.6rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.1;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.booking-slot .slot-spots {
+  font-family: var(--f-mono);
+  font-size: 0.44rem;
+  color: var(--moss);
+  letter-spacing: 0.05em;
+}
+.booking-slot.booked {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.booking-slot.booked .slot-time,
+.booking-slot.booked .slot-class,
+.booking-slot.booked .slot-spots {
+  color: var(--paper);
+}
+.booking-slot.booked .slot-spots { color: var(--clay); }
+.booking-slot.empty {
+  background: transparent;
+  border-style: dashed;
+  cursor: default;
+}
+.booking-slot.empty:hover {
+  transform: none;
+  background: transparent;
+  border-color: var(--rule-soft);
+}
+.booking-confirm {
+  display: none;
+  padding: 8px 10px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  font-family: var(--f-mono);
+  font-size: 0.56rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+  animation: mockFadeIn 0.3s ease;
+}
+.booking-confirm.visible { display: block; }
+.booking-confirm strong { color: var(--clay); font-weight: 500; }
+
+@keyframes mockFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MOCKUP 03: student dashboard ── */
+.student-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.student-dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.student-dash-header .student-name {
+  font-family: var(--f-display);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.student-dash-header .student-level {
+  padding: 2px 8px;
+  background: var(--clay);
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.student-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.student-stat {
+  padding: 8px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  text-align: center;
+}
+.student-stat .stat-num {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink);
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.student-stat .stat-num .stat-unit {
+  font-size: 0.5em;
+  color: var(--clay);
+}
+.student-stat .stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.46rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.cert-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cert-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cert-label {
+  font-family: var(--f-mono);
+  font-size: 0.52rem;
+  color: var(--ink-soft);
+  min-width: 56px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.cert-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.cert-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.2s cubic-bezier(.2,.8,.2,1);
+  width: 0;
+}
+.cert-fill.clay { background: var(--clay); }
+.cert-fill.gold { background: var(--gold); }
+.cert-fill.moss { background: var(--moss); }
+.cert-pct {
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--ink-muted);
+  min-width: 24px;
+  text-align: right;
+}
+.student-badge-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.student-badge {
+  padding: 2px 6px;
+  font-family: var(--f-mono);
+  font-size: 0.44rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid;
+}
+.student-badge.earned {
+  background: var(--clay-wash);
+  color: var(--clay-dark);
+  border-color: rgba(176,65,42,0.25);
+}
+.student-badge.locked {
+  background: transparent;
+  color: var(--ink-whisper);
+  border-color: var(--rule-soft);
+  border-style: dashed;
+}
+
+/* ── MOCKUP 04: operations dashboard ── */
+.ops-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ops-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.ops-card {
+  padding: 8px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+}
+.ops-card-label {
+  font-family: var(--f-mono);
+  font-size: 0.46rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.ops-card-val {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.ops-card-val .ops-unit { font-size: 0.55em; color: var(--clay); }
+.ops-card-trend {
+  font-family: var(--f-mono);
+  font-size: 0.44rem;
+  color: var(--moss);
+  margin-top: 2px;
+}
+.ops-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 36px;
+  padding-top: 4px;
+}
+.ops-bar {
+  flex: 1;
+  background: var(--clay-wash);
+  border-radius: 2px 2px 0 0;
+  transition: height 1s cubic-bezier(.2,.8,.2,1), background 0.3s;
+  min-height: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.ops-bar:hover {
+  background: var(--clay);
+}
+.ops-bar-tip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 5px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 0.44rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.ops-bar:hover .ops-bar-tip { display: block; }
+.ops-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0;
+}
+.ops-pipe-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+}
+.ops-pipe-dots {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ops-pipe-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--clay);
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.ops-pipe-stage:hover .ops-pipe-dot {
+  opacity: 1;
+  transform: scale(1.3);
+}
+.ops-pipe-label {
+  font-family: var(--f-mono);
+  font-size: 0.4rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ops-pipe-arrow {
+  color: var(--rule);
+  font-size: 0.6rem;
+  flex-shrink: 0;
+  margin-top: -10px;
+}
+.ops-ai-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: var(--ink);
+  border-radius: 4px;
+  color: var(--paper);
+}
+.ops-ai-dot {
+  width: 5px; height: 5px;
+  background: var(--clay);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.ops-ai-text {
+  font-family: var(--f-mono);
+  font-size: 0.5rem;
+  color: var(--paper-dark);
+  opacity: 0.8;
+  flex: 1;
+}
+.ops-ai-text strong { color: var(--paper); font-weight: 500; }
+
+/* mockup responsive */
+@media (max-width: 880px) {
+  .mockup-body { padding: 8px; min-height: 160px; }
+  .site-preview-hero { grid-template-columns: 1fr; gap: 8px; }
+  .site-preview-img { display: none; }
+  .site-preview-cards { grid-template-columns: 1fr 1fr; }
+  .site-preview-card:nth-child(3) { display: none; }
+  .booking-week-header { font-size: 0.44rem; }
+  .booking-slot { min-height: 34px; padding: 3px 2px; }
+  .booking-slot .slot-class { font-size: 0.52rem; }
+  .booking-slot .slot-time { font-size: 0.44rem; }
+  .booking-slot .slot-spots { display: none; }
+  .student-stats { grid-template-columns: repeat(3, 1fr); }
+  .student-stat .stat-num { font-size: 0.95rem; }
+  .ops-row { grid-template-columns: 1fr 1fr; }
+}
+
 </style>
 <script defer src="https://analytics.astralintegration.studio/script.js" data-website-id="d8fb7a8b-69d2-4132-b8ba-493a10333c2a"></script>
 </head>
@@ -1856,6 +2418,49 @@ section { padding: var(--s-xl) 0; position: relative; }
         <li><span>Editorial layouts</span><span class="replace">elementor</span></li>
         <li><span>90+ Lighthouse scores</span><span class="replace">wordpress plugins</span></li>
       </ul>
+
+      <!-- mockup: site preview -->
+      <div class="mockup">
+        <div class="mockup-chrome">
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+          <span class="mockup-url">yourpractice.com</span>
+        </div>
+        <div class="mockup-body">
+          <div class="site-preview">
+            <div class="site-preview-nav">
+              <span class="site-preview-logo">Amara</span>
+              <div class="site-preview-nav-links">
+                <span>retreats</span><span>practice</span><span>about</span><span>book</span>
+              </div>
+            </div>
+            <div class="site-preview-hero">
+              <div class="site-preview-hero-text">
+                <h5>come home to your <em>breath.</em></h5>
+                <p>immersive breathwork retreats on the pacific coast of oaxaca. small groups. deep work. no shortcuts.</p>
+                <span class="site-preview-btn">book a retreat →</span>
+              </div>
+              <div class="site-preview-img"></div>
+            </div>
+            <div class="site-preview-cards">
+              <div class="site-preview-card">
+                <div class="card-bar"></div>
+                <h6>7-day immersion</h6>
+                <span>nov 12 — 18</span>
+              </div>
+              <div class="site-preview-card">
+                <div class="card-bar"></div>
+                <h6>weekend intensive</h6>
+                <span>dec 3 — 5</span>
+              </div>
+              <div class="site-preview-card">
+                <div class="card-bar"></div>
+                <h6>teacher training</h6>
+                <span>jan 2027</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="pillar">
       <div class="pillar-num">Pillar 02 — Offering</div>
@@ -1867,6 +2472,82 @@ section { padding: var(--s-xl) 0; position: relative; }
         <li><span>Intake forms</span><span class="replace">google forms</span></li>
         <li><span>Multi-stream offerings</span><span class="replace">eventbrite</span></li>
       </ul>
+
+      <!-- mockup: booking calendar -->
+      <div class="mockup">
+        <div class="mockup-chrome">
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+          <span class="mockup-url">yourpractice.com/book</span>
+        </div>
+        <div class="mockup-body">
+          <div class="booking-mock">
+            <div class="booking-week-header">
+              <span>mon</span><span>tue</span><span class="today">wed</span><span>thu</span><span>fri</span><span>sat</span><span>sun</span>
+            </div>
+            <div class="booking-grid" id="bookingGrid">
+              <div class="booking-slot" data-class="vinyasa">
+                <span class="slot-time">7:00</span>
+                <span class="slot-class">vinyasa</span>
+                <span class="slot-spots">4 spots</span>
+              </div>
+              <div class="booking-slot empty"></div>
+              <div class="booking-slot booked">
+                <span class="slot-time">9:00</span>
+                <span class="slot-class">breathwork</span>
+                <span class="slot-spots">you're in</span>
+              </div>
+              <div class="booking-slot" data-class="yin">
+                <span class="slot-time">7:00</span>
+                <span class="slot-class">yin</span>
+                <span class="slot-spots">6 spots</span>
+              </div>
+              <div class="booking-slot" data-class="sound bath">
+                <span class="slot-time">19:00</span>
+                <span class="slot-class">sound bath</span>
+                <span class="slot-spots">2 spots</span>
+              </div>
+              <div class="booking-slot" data-class="meditation">
+                <span class="slot-time">7:00</span>
+                <span class="slot-class">meditation</span>
+                <span class="slot-spots">8 spots</span>
+              </div>
+              <div class="booking-slot" data-class="cacao">
+                <span class="slot-time">18:00</span>
+                <span class="slot-class">cacao</span>
+                <span class="slot-spots">3 spots</span>
+              </div>
+              <div class="booking-slot" data-class="kundalini">
+                <span class="slot-time">9:30</span>
+                <span class="slot-class">kundalini</span>
+                <span class="slot-spots">5 spots</span>
+              </div>
+              <div class="booking-slot" data-class="restorative">
+                <span class="slot-time">17:00</span>
+                <span class="slot-class">restorative</span>
+                <span class="slot-spots">3 spots</span>
+              </div>
+              <div class="booking-slot booked">
+                <span class="slot-time">10:00</span>
+                <span class="slot-class">1:1 session</span>
+                <span class="slot-spots">booked</span>
+              </div>
+              <div class="booking-slot empty"></div>
+              <div class="booking-slot" data-class="ecstatic dance">
+                <span class="slot-time">20:00</span>
+                <span class="slot-class">ecstatic</span>
+                <span class="slot-spots">12 spots</span>
+              </div>
+              <div class="booking-slot empty"></div>
+              <div class="booking-slot" data-class="pranayama">
+                <span class="slot-time">6:30</span>
+                <span class="slot-class">pranayama</span>
+                <span class="slot-spots">6 spots</span>
+              </div>
+            </div>
+            <div class="booking-confirm" id="bookingConfirm"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="pillar">
       <div class="pillar-num">Pillar 03 — Container</div>
@@ -1878,6 +2559,60 @@ section { padding: var(--s-xl) 0; position: relative; }
         <li><span>Student dashboards</span><span class="replace">teachable</span></li>
         <li><span>Your brand, your home</span><span class="replace">facebook groups</span></li>
       </ul>
+
+      <!-- mockup: student dashboard -->
+      <div class="mockup">
+        <div class="mockup-chrome">
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+          <span class="mockup-url">yourschool.com/dashboard</span>
+        </div>
+        <div class="mockup-body">
+          <div class="student-dash" id="studentDash">
+            <div class="student-dash-header">
+              <span class="student-name">Maya Chen</span>
+              <span class="student-level">level ii</span>
+            </div>
+            <div class="student-stats">
+              <div class="student-stat">
+                <div class="stat-num"><span class="count-up" data-target="142">0</span><span class="stat-unit">h</span></div>
+                <div class="stat-label">practice hours</div>
+              </div>
+              <div class="student-stat">
+                <div class="stat-num"><span class="count-up" data-target="23">0</span></div>
+                <div class="stat-label">sessions logged</div>
+              </div>
+              <div class="student-stat">
+                <div class="stat-num"><span class="count-up" data-target="8">0</span></div>
+                <div class="stat-label">modules done</div>
+              </div>
+            </div>
+            <div class="cert-levels">
+              <div class="cert-row">
+                <span class="cert-label">level i</span>
+                <div class="cert-bar"><div class="cert-fill clay" data-width="100%"></div></div>
+                <span class="cert-pct">100%</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-label">level ii</span>
+                <div class="cert-bar"><div class="cert-fill gold" data-width="72%"></div></div>
+                <span class="cert-pct">72%</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-label">level iii</span>
+                <div class="cert-bar"><div class="cert-fill moss" data-width="15%"></div></div>
+                <span class="cert-pct">15%</span>
+              </div>
+            </div>
+            <div class="student-badge-row">
+              <span class="student-badge earned">reiki i certified</span>
+              <span class="student-badge earned">anatomy complete</span>
+              <span class="student-badge earned">50h practice</span>
+              <span class="student-badge locked">reiki ii</span>
+              <span class="student-badge locked">master teacher</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="pillar">
       <div class="pillar-num">Pillar 04 — Machinery</div>
@@ -1889,6 +2624,79 @@ section { padding: var(--s-xl) 0; position: relative; }
         <li><span>Email sequences</span><span class="replace">mailchimp</span></li>
         <li><span>AI-assisted everything</span><span class="replace">—</span></li>
       </ul>
+
+      <!-- mockup: operations dashboard -->
+      <div class="mockup">
+        <div class="mockup-chrome">
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+          <span class="mockup-url">yourplatform.com/admin</span>
+        </div>
+        <div class="mockup-body">
+          <div class="ops-dash" id="opsDash">
+            <div class="ops-row">
+              <div class="ops-card">
+                <div class="ops-card-label">email open rate</div>
+                <div class="ops-card-val"><span class="count-up" data-target="47">0</span><span class="ops-unit">%</span></div>
+                <div class="ops-card-trend">+12% vs last month</div>
+              </div>
+              <div class="ops-card">
+                <div class="ops-card-label">revenue this month</div>
+                <div class="ops-card-val">$<span class="count-up" data-target="4280">0</span></div>
+                <div class="ops-card-trend">+8 new students</div>
+              </div>
+            </div>
+            <div class="ops-card">
+              <div class="ops-card-label">weekly revenue</div>
+              <div class="ops-bars" id="opsBars">
+                <div class="ops-bar" style="height: 45%"><span class="ops-bar-tip">$620</span></div>
+                <div class="ops-bar" style="height: 60%"><span class="ops-bar-tip">$840</span></div>
+                <div class="ops-bar" style="height: 35%"><span class="ops-bar-tip">$480</span></div>
+                <div class="ops-bar" style="height: 72%"><span class="ops-bar-tip">$1,020</span></div>
+                <div class="ops-bar" style="height: 55%"><span class="ops-bar-tip">$760</span></div>
+                <div class="ops-bar" style="height: 88%"><span class="ops-bar-tip">$1,240</span></div>
+                <div class="ops-bar" style="height: 40%"><span class="ops-bar-tip">$540</span></div>
+                <div class="ops-bar" style="height: 65%"><span class="ops-bar-tip">$920</span></div>
+              </div>
+            </div>
+            <div class="ops-card">
+              <div class="ops-card-label">student pipeline</div>
+              <div class="ops-pipeline">
+                <div class="ops-pipe-stage">
+                  <div class="ops-pipe-dots">
+                    <span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span>
+                  </div>
+                  <span class="ops-pipe-label">inquiry</span>
+                </div>
+                <span class="ops-pipe-arrow">→</span>
+                <div class="ops-pipe-stage">
+                  <div class="ops-pipe-dots">
+                    <span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span>
+                  </div>
+                  <span class="ops-pipe-label">intake</span>
+                </div>
+                <span class="ops-pipe-arrow">→</span>
+                <div class="ops-pipe-stage">
+                  <div class="ops-pipe-dots">
+                    <span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span>
+                  </div>
+                  <span class="ops-pipe-label">enrolled</span>
+                </div>
+                <span class="ops-pipe-arrow">→</span>
+                <div class="ops-pipe-stage">
+                  <div class="ops-pipe-dots">
+                    <span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span><span class="ops-pipe-dot"></span>
+                  </div>
+                  <span class="ops-pipe-label">active</span>
+                </div>
+              </div>
+            </div>
+            <div class="ops-ai-bar">
+              <span class="ops-ai-dot"></span>
+              <span class="ops-ai-text"><strong>ai assistant</strong> — answered 14 student questions today</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2627,6 +3435,53 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// ───────────────────────────────────────────────────────────────
+// MOCKUP: booking click-to-book
+// ───────────────────────────────────────────────────────────────
+document.querySelectorAll('#bookingGrid .booking-slot[data-class]').forEach(slot => {
+  slot.addEventListener('click', () => {
+    const name = slot.getAttribute('data-class');
+    const time = slot.querySelector('.slot-time').textContent;
+    const confirm = document.getElementById('bookingConfirm');
+    confirm.innerHTML = 'booked → <strong>' + name + '</strong> at ' + time + ' · confirmation sent to your email';
+    confirm.classList.add('visible');
+    slot.classList.add('booked');
+    const spots = slot.querySelector('.slot-spots');
+    if (spots) spots.textContent = "you're in";
+    setTimeout(() => confirm.classList.remove('visible'), 3000);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// MOCKUP: animated counters + progress bars on scroll
+// ───────────────────────────────────────────────────────────────
+const mockupObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    // animate count-up numbers
+    e.target.querySelectorAll('.count-up').forEach(el => {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const duration = 1200;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * ease).toLocaleString();
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    // animate cert bars
+    e.target.querySelectorAll('.cert-fill').forEach(bar => {
+      const w = bar.getAttribute('data-width');
+      setTimeout(() => { bar.style.width = w; }, 200);
+    });
+    mockupObs.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.mockup').forEach(m => mockupObs.observe(m));
 </script>
 
 </body>
