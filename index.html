@@ -28,7 +28,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family:'Archivo',-apple-system,sans-serif;
   background:var(--bone);color:var(--ink);
@@ -97,7 +97,7 @@ nav.top .inner{
 .brand .wm{font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:-0.005em;text-transform:uppercase;font-variation-settings:"wdth" 100}
 .brand .wm span{color:var(--accent);font-weight:700}
 
-.nav-center{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;max-width:40%;
+.nav-center{
   display:flex;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;
   text-transform:uppercase;color:var(--mute);letter-spacing:0;
 }
@@ -121,7 +121,7 @@ nav.top .inner{
 .hamb.open span:nth-child(3){top:18px;transform:rotate(-45deg)}
 
 /* drawer */
-.drawer{position:fixed;inset:0;z-index:150;pointer-events:none;visibility:hidden}
+.drawer{position:fixed;inset:0;z-index:150;pointer-events:none;visibility:hidden;overflow:hidden}
 .drawer.open{pointer-events:auto;visibility:visible}
 .scrim{position:absolute;inset:0;background:rgba(15,15,16,0.6);opacity:0;transition:opacity .3s}
 .drawer.open .scrim{opacity:1}
@@ -181,11 +181,11 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
 
 .cover-title{
   font-family:'Archivo',sans-serif;font-weight:900;
-  font-size:clamp(40px,11vw,252px);line-height:0.82;letter-spacing:-0.042em;
+  font-size:clamp(64px,14.8vw,252px);line-height:0.82;letter-spacing:-0.042em;
   color:var(--ink);font-variation-settings:"wdth" 100;
 }
 .cover-title .row{display:flex;align-items:baseline;gap:clamp(12px,1.5vw,24px)}
-.cover-title .row.two{justify-content:flex-start;flex-wrap:wrap}
+.cover-title .row.two{justify-content:space-between}
 .cover-title em{font-weight:500;font-style:italic}
 .cover-title .mark-sq{
   display:inline-block;width:0.4em;height:0.4em;background:var(--accent);vertical-align:middle;margin-left:0.1em;
@@ -650,7 +650,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:1180px){
-  .nav-center{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;max-width:40%;display:none}
+  .nav-center{display:none}
   nav.top .inner{grid-template-columns:1fr auto;padding:0 28px}
   section,.inner{padding-left:28px;padding-right:28px}
   .cover{padding:40px 28px 56px}
@@ -678,8 +678,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
 }
 
 @media (max-width:768px){
-  html{overflow-x:hidden}
-  body{font-size:15px;overflow-x:hidden;width:100%;max-width:100%}
+  body{font-size:15px}
   nav.top .inner{height:56px;padding:0 20px;gap:12px}
   .brand .wm{font-size:12px}
   .nav-right .mono,.nav-right a.link{display:none}
@@ -688,7 +687,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
   .studio-tag{font-size:9px;padding:5px 12px}
 
   section,.inner{padding-left:20px;padding-right:20px}
-  .cover{padding:32px 20px 48px;overflow:hidden}
+  .cover{padding:32px 20px 48px}
   .cover-top{grid-template-columns:1fr;gap:8px;padding:12px 0;margin-bottom:44px}
   .cover-top .l,.cover-top .c,.cover-top .r{justify-content:flex-start}
   .cover-title{font-size:clamp(52px,14vw,96px);letter-spacing:-0.036em}
@@ -705,8 +704,8 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
   .object,.specs,.method,.catalogue,.rate-card,.voices,.maker,.notices,.correspondence{padding-left:20px;padding-right:20px;padding-top:56px;padding-bottom:72px}
   .sec-head{grid-template-columns:auto 1fr;gap:14px;padding:18px 0 22px}
   .sec-head .r{display:none}
-  h2.disp{font-size:clamp(28px,8vw,40px)}
-  .cover-title{font-size:clamp(36px,11vw,52px)}
+  h2.disp{font-size:48px}
+  .cover-title{font-size:68px}
 
   .spec-row{grid-template-columns:50px 1fr;gap:14px;padding:26px 0 24px}
   .spec-row .desc,.spec-row .inc-exc{grid-column:2}
@@ -743,12 +742,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
 }
 
 @media (max-width:480px){
-  nav.top .inner{padding:0 14px}
-  .cover-title{font-size:clamp(28px,10vw,42px) !important}
-  .cover-cta .b{flex-direction:column}
-  .cover-cta .b .btn{width:100%}
-  .corr-copy h2.disp{font-size:clamp(28px,9vw,36px) !important}
-  .colo-top{grid-template-columns:1fr !important}
+  nav.top .inner{padding:0 16px}
   .cover{padding:24px 16px 40px}
   .cover-title{font-size:52px;letter-spacing:-0.03em}
   .cover-deck .c{font-size:17px}
@@ -780,9 +774,8 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
 </style>
 </head>
 <body>
-<div style="overflow-x:hidden;width:100%;position:relative;">
 
-<div class="studio-tag"><span class="pulse"></span>astral integration / edition 2026 / v0.9</div>
+<!-- tag removed -->
 
 <!-- ========= NAV ========= -->
 <nav class="top">
@@ -950,7 +943,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
   <div class="object-body">
     <div class="l" data-r>
       <div class="kicker">/ Manifesto · in brief</div>
-      <h2 class="disp">Your practice<br>deserves <em>infra-<br>structure</em> that<br>matches it.</h2>
+      <h2 class="disp">Your mastery<br>deserves <em>infra-<br>structure</em> that<br>matches it.</h2>
       <div class="mono" style="color:var(--mute);margin-top:22px">/ One person · one platform · no duct tape</div>
     </div>
 
@@ -1413,7 +1406,16 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
       <div class="mp-portrait">
         <div class="corner tl">/ JORDI · AMAT</div>
         <div class="corner tr">FIG. 01</div>
-        <img src="/founder.jpeg" alt="Jordi Amat" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <svg viewBox="0 0 300 380" fill="none" stroke="currentColor" stroke-width="0.8">
+          <circle cx="150" cy="105" r="42"/>
+          <path d="M120 130 Q118 150 125 168 Q140 182 150 182 Q160 182 175 168 Q182 150 180 130" opacity="0.6"/>
+          <path d="M128 150 Q150 172 172 150" opacity="0.35"/>
+          <path d="M108 185 Q100 220 104 260 L104 300"/>
+          <path d="M192 185 Q200 220 196 260 L196 300"/>
+          <path d="M104 260 Q90 280 96 310 L110 310"/>
+          <path d="M196 260 Q210 280 204 310 L190 310"/>
+          <path d="M80 315 Q150 295 220 315 Q230 340 210 355 L90 355 Q70 340 80 315 Z"/>
+        </svg>
         <div class="corner bl">Mazunte · 2025</div>
         <div class="corner br">19.05° N<br>96.18° W</div>
       </div>
@@ -1534,8 +1536,8 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
           <a href="mailto:jordi@astralintegration.studio" class="cline"><span class="k">/ Email</span><span class="v">jordi@astralintegration.studio</span><span class="ar">↗</span></a>
           <a href="https://calendly.com/astral-integration/discovery-call" target="_blank" class="cline"><span class="k">/ Schedule</span><span class="v">30-min discovery call</span><span class="ar">↗</span></a>
           <a href="https://wa.me/34611144170" target="_blank" class="cline"><span class="k">/ WhatsApp</span><span class="v">+34 611 144 170</span><span class="ar">↗</span></a>
-          <a href="https://github.com/jcatalaamat" class="cline"><span class="k">/ GitHub</span><span class="v">@jcatalaamat</span><span class="ar">↗</span></a>
-          <a href="https://linkedin.com/in/jcamat" class="cline"><span class="k">/ LinkedIn</span><span class="v">linkedin.com/in/jcamat</span><span class="ar">↗</span></a>
+          <a href="https://github.com/jcatalaamat" target="_blank" class="cline"><span class="k">/ GitHub</span><span class="v">@jcatalaamat</span><span class="ar">↗</span></a>
+          <a href="https://linkedin.com/in/jcamat" target="_blank" class="cline"><span class="k">/ LinkedIn</span><span class="v">linkedin.com/in/jcamat</span><span class="ar">↗</span></a>
         </div>
       </div>
 
@@ -1607,7 +1609,7 @@ section{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
       <h5>/ Elsewhere</h5>
       <ul>
         <li><a href="https://linkedin.com/in/jcamat" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/jcatalaamat" target="_blank">GitHub</a></li>
+        <li><a href="https://wa.me/34611144170" target="_blank">GitHub</a></li>
         <li><a href="https://instagram.com/astralamat" target="_blank">Instagram</a></li>
         <li><a href="https://wa.me/34611144170" target="_blank">WhatsApp</a></li>
       </ul>
@@ -1661,6 +1663,5 @@ document.addEventListener('keydown', e=>{
   if(e.key==='Escape' && drawer.classList.contains('open')) toggleDrawer(false);
 });
 </script>
-</div>
 </body>
 </html>
