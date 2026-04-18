@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>astral-labs/astral-integration: README.md</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #0D1117;
+  --bg-2: #010409;
+  --bg-3: #161B22;
+  --bg-4: #21262D;
+  --border: #30363D;
+  --border-2: #21262D;
+  --text: #E6EDF3;
+  --text-2: #7D8590;
+  --text-3: #6E7681;
+  --accent: #3FB950;
+  --accent-2: #56D364;
+  --blue: #58A6FF;
+  --purple: #A371F7;
+  --yellow: #D29922;
+  --red: #F85149;
+  --orange: #DB6D28;
+  --pink: #DB61A2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'IBM Plex Mono',monospace;
+  background:var(--bg);color:var(--text);
+  font-size:14px;line-height:1.55;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer}
+
+.sans{font-family:'Inter Tight',sans-serif}
+
+/* studio tag */
+.studio-tag{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--text-2);background:rgba(13,17,23,0.92);backdrop-filter:blur(14px);
+  padding:6px 14px;border:1px solid var(--border);border-radius:4px;
+  display:flex;align-items:center;gap:9px;pointer-events:none;
+}
+.studio-tag .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);box-shadow:0 0 8px rgba(63,185,80,0.7)}
+
+/* top nav (GitHub-style) */
+nav.top{
+  background:var(--bg-2);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+}
+nav.top .inner{
+  max-width:1280px;margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.crumb{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:14px}
+.crumb .logo{width:22px;height:22px;background:var(--text);border-radius:999px;position:relative;display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:13px;font-weight:700}
+.crumb a{color:var(--blue);font-weight:500}
+.crumb .slash{color:var(--text-3)}
+.crumb .repo{color:var(--text);font-weight:600}
+.crumb .vis{margin-left:8px;font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:999px;color:var(--text-2)}
+
+.nav-right{display:flex;gap:8px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+  background:var(--bg-3);border:1px solid var(--border);border-radius:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);
+  cursor:pointer;transition:all .15s;
+}
+.btn:hover{background:var(--bg-4);border-color:var(--text-3)}
+.btn.green{background:var(--accent);color:var(--bg-2);border-color:var(--accent);font-weight:600}
+.btn.green:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn .count{padding:2px 6px;background:var(--bg-2);border-radius:999px;font-size:11px;color:var(--text-2);margin-left:4px}
+.btn.green .count{background:rgba(1,4,9,0.3);color:var(--bg-2)}
+
+/* sub-nav with tabs */
+.subnav{
+  background:var(--bg-2);border-bottom:1px solid var(--border);
+  padding:0 24px;max-width:1280px;margin:0 auto;
+  display:flex;gap:2px;align-items:end;overflow-x:auto;
+}
+.subnav::-webkit-scrollbar{display:none}
+.subnav a{
+  padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+  color:var(--text-2);border-bottom:2px solid transparent;margin-bottom:-1px;
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+}
+.subnav a:hover{color:var(--text);text-decoration:none}
+.subnav a.active{color:var(--text);border-bottom-color:var(--orange);font-weight:500}
+.subnav a .ic{font-size:11px;color:var(--text-3)}
+.subnav a.active .ic{color:var(--text)}
+
+/* main grid */
+.main-grid{
+  max-width:1280px;margin:0 auto;padding:24px;
+  display:grid;grid-template-columns:1fr 296px;gap:24px;
+}
+
+/* primary column (README area) */
+.primary{min-width:0}
+
+/* file bar */
+.file-bar{
+  background:var(--bg-3);border:1px solid var(--border);border-radius:6px 6px 0 0;border-bottom:none;
+  display:flex;align-items:center;justify-content:space-between;padding:8px 16px;
+}
+.file-bar .l{display:flex;align-items:center;gap:8px;font-size:12px}
+.file-bar .l .ic{color:var(--text-3);font-size:11px}
+.file-bar .l a{color:var(--blue)}
+.file-bar .r{display:flex;gap:4px;align-items:center}
+.file-bar .r .btn{padding:3px 8px;font-size:11px}
+
+/* README container */
+.readme-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:0 0 6px 6px;
+  padding:0;margin-bottom:24px;
+}
+.readme-head{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-2);
+}
+.readme-head .icon{color:var(--text-3)}
+.readme-head .title{color:var(--text);font-weight:500}
+.readme-head .meta{margin-left:auto;display:flex;gap:16px}
+
+.readme-body{padding:32px 48px 56px;max-width:920px}
+
+/* markdown-style typography */
+h1.md{
+  font-family:'Inter Tight',sans-serif;font-size:36px;font-weight:700;line-height:1.15;
+  margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid var(--border);letter-spacing:-0.012em;
+}
+h1.md .em{color:var(--accent);font-style:italic;font-weight:600}
+h2.md{
+  font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:600;line-height:1.25;
+  margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:-0.008em;
+}
+h2.md .hash{color:var(--text-3);margin-right:8px;font-family:'IBM Plex Mono',monospace;font-weight:400}
+h3.md{
+  font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:600;line-height:1.3;
+  margin:28px 0 12px;letter-spacing:-0.005em;
+}
+h3.md .hash{color:var(--text-3);margin-right:8px;font-family:'IBM Plex Mono',monospace;font-weight:400}
+
+.md p{margin:0 0 16px;color:var(--text);line-height:1.6}
+.md p em{color:var(--accent-2);font-style:italic}
+.md p strong{color:var(--text);font-weight:600}
+.md blockquote{
+  margin:16px 0;padding:0 16px;border-left:3px solid var(--border);
+  color:var(--text-2);font-style:italic;
+}
+.md blockquote em{color:var(--accent-2)}
+
+/* inline code */
+code.inline{
+  background:rgba(110,118,129,0.4);padding:2px 6px;border-radius:4px;
+  font-family:'IBM Plex Mono',monospace;font-size:0.88em;color:var(--text);
+}
+
+/* code block */
+.codeblock{
+  background:var(--bg-3);border:1px solid var(--border);border-radius:6px;
+  padding:14px 18px;margin:16px 0 24px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+  overflow-x:auto;line-height:1.6;
+}
+.codeblock .cm{color:var(--text-3)}
+.codeblock .kw{color:var(--red)}
+.codeblock .str{color:var(--blue)}
+.codeblock .num{color:var(--yellow)}
+.codeblock .fn{color:var(--purple)}
+.codeblock .op{color:var(--text-2)}
+.codeblock .ln{color:var(--text-3);user-select:none;margin-right:18px;display:inline-block;min-width:18px;text-align:right}
+
+/* tables */
+.md-table{
+  width:100%;border-collapse:collapse;margin:16px 0 24px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+}
+.md-table th,.md-table td{
+  padding:8px 14px;border:1px solid var(--border);text-align:left;
+}
+.md-table th{background:var(--bg-3);color:var(--text);font-weight:600}
+.md-table tr:nth-child(even) td{background:var(--bg-3)}
+.md-table td strong{color:var(--text);font-weight:600}
+.md-table td .x{color:var(--red);text-decoration:line-through}
+.md-table td a{color:var(--blue)}
+.md-table .green{color:var(--accent-2);font-weight:600}
+.md-table .red{color:var(--red);font-weight:600}
+.md-table .total td{background:var(--bg-4);font-weight:700;color:var(--text)}
+
+/* lists */
+.md ul,.md ol{margin:8px 0 20px 24px;color:var(--text)}
+.md li{margin-bottom:6px;line-height:1.6}
+.md li code.inline{color:var(--accent-2)}
+
+/* hr */
+.md hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+
+/* callout */
+.callout{
+  border-left:3px solid var(--blue);background:rgba(88,166,255,0.05);padding:14px 18px;border-radius:0 6px 6px 0;
+  margin:16px 0 20px;font-size:13px;color:var(--text);
+}
+.callout.warn{border-color:var(--yellow);background:rgba(210,153,34,0.06)}
+.callout.ok{border-color:var(--accent);background:rgba(63,185,80,0.05)}
+.callout .lbl{color:var(--blue);font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:6px;font-size:12px}
+.callout.warn .lbl{color:var(--yellow)}
+.callout.ok .lbl{color:var(--accent-2)}
+
+/* project list (as pseudo-table) */
+.cat-table a{color:var(--blue)}
+.cat-table a:hover{color:var(--accent-2)}
+
+/* signature block */
+.sig-block{
+  margin-top:48px;padding-top:24px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  font-size:12px;color:var(--text-2);
+}
+.sig-block .hash{color:var(--accent-2);font-weight:600}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:24px;min-width:0}
+.sb-section h4{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--text);
+  margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.sb-section h4 .ic{color:var(--text-3);font-weight:400;font-size:11px}
+
+.about p{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:10px}
+.about p em{color:var(--accent-2);font-style:italic}
+.about .topics{display:flex;flex-wrap:wrap;gap:4px;margin-top:12px}
+.about .topics span{
+  font-size:11px;padding:3px 9px;background:rgba(56,139,253,0.15);color:var(--blue);
+  border-radius:999px;border:1px solid rgba(88,166,255,0.15);
+}
+
+.langs .lrow{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:6px}
+.langs .lrow .sw{width:10px;height:10px;border-radius:999px}
+.langs .lrow .nm{flex:1;color:var(--text)}
+.langs .lrow .pct{color:var(--text-3);font-family:'IBM Plex Mono',monospace}
+.langs .bar{
+  height:8px;border-radius:999px;overflow:hidden;background:var(--bg-3);margin:10px 0 18px;display:flex;
+}
+.langs .bar span{height:100%}
+
+.commits{}
+.commit-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.commit-row:last-child{border-bottom:none}
+.commit-row .av{width:20px;height:20px;border-radius:999px;flex-shrink:0;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.commit-row .info{flex:1;min-width:0}
+.commit-row .msg{color:var(--text);font-size:13px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.commit-row .meta{font-size:11px;color:var(--text-3)}
+.commit-row .meta code{color:var(--blue);font-family:'IBM Plex Mono',monospace}
+
+.repo-stats{display:grid;grid-template-columns:1fr;gap:4px}
+.rs{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.rs:last-child{border-bottom:none}
+.rs .k{color:var(--text-2);display:flex;align-items:center;gap:8px}
+.rs .k .ic{color:var(--text-3)}
+.rs .v{color:var(--text);font-weight:500}
+.rs .v.green{color:var(--accent-2)}
+
+/* footer */
+footer{
+  border-top:1px solid var(--border);background:var(--bg-2);
+  padding:24px;margin-top:24px;
+}
+footer .inner{
+  max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-3);
+}
+footer .inner .links{display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--text-2)}
+footer a:hover{color:var(--blue)}
+footer .sys{display:flex;align-items:center;gap:6px;color:var(--accent-2)}
+footer .sys::before{content:"●";animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:0.3}}
+
+/* mobile */
+@media (max-width:900px){
+  .main-grid{grid-template-columns:1fr;padding:16px}
+  .readme-body{padding:24px 22px 36px}
+  nav.top .inner{padding:10px 16px}
+  .subnav{padding:0 16px}
+  .crumb{font-size:13px}
+  .crumb .slash{display:none}
+  .crumb a:not(:last-of-type){display:none}
+  h1.md{font-size:28px}
+  h2.md{font-size:20px}
+  .readme-head{padding:10px 14px;flex-wrap:wrap}
+  .readme-head .meta{display:none}
+  .md-table{font-size:11px}
+  .md-table th,.md-table td{padding:6px 8px}
+  .sig-block{flex-direction:column;align-items:flex-start}
+}
+
+[data-r]{opacity:0;transform:translateY(14px);transition:opacity .7s, transform .7s}
+[data-r].in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){*{transition:none !important}[data-r]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="dot"></span>astral integration · readme · v0.9</div>
+
+<!-- GitHub-style top nav -->
+<nav class="top">
+  <div class="inner">
+    <div class="crumb">
+      <div class="logo">★</div>
+      <a href="#">astral-labs</a>
+      <span class="slash">/</span>
+      <span class="repo">astral-integration</span>
+      <span class="vis">Public</span>
+    </div>
+    <div class="nav-right">
+      <button class="btn">👁 Watch<span class="count">12</span></button>
+      <button class="btn">⑂ Fork<span class="count">3</span></button>
+      <button class="btn green">★ Star<span class="count">247</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- subnav tabs -->
+<div class="subnav">
+  <a class="active"><span class="ic">▤</span>Code</a>
+  <a><span class="ic">⊙</span>Issues<span class="count" style="background:var(--bg-3);color:var(--text-2);margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px">0</span></a>
+  <a><span class="ic">◫</span>Pull requests</a>
+  <a><span class="ic">▷</span>Actions</a>
+  <a><span class="ic">⊞</span>Projects</a>
+  <a><span class="ic">❂</span>Wiki</a>
+  <a><span class="ic">⚙</span>Settings</a>
+</div>
+
+<!-- main -->
+<div class="main-grid">
+  <!-- primary column -->
+  <div class="primary">
+
+    <!-- repo header strip -->
+    <div class="file-bar">
+      <div class="l">
+        <span class="ic">⎇</span><a>main</a>
+        <span class="ic">▾</span>
+      </div>
+      <div class="r">
+        <button class="btn">Go to file</button>
+        <button class="btn green">⬇ Code</button>
+      </div>
+    </div>
+
+    <!-- README file -->
+    <div class="readme-card">
+      <div class="readme-head">
+        <span class="icon">📘</span>
+        <span class="title">README.md</span>
+        <div class="meta">
+          <span>Last commit · <code style="color:var(--blue)">a3f9c21</code> · 4h ago</span>
+          <span>MIT License</span>
+        </div>
+      </div>
+
+      <div class="readme-body md">
+        <h1 class="md" data-r>Astral <span class="em">Integration</span></h1>
+
+        <blockquote>Custom digital infrastructure for healers, teachers, retreat centers, and <em>people doing original work in the world.</em></blockquote>
+
+        <p><strong>One person. One platform. No duct tape.</strong> I'm Jordi — a former CTO shipping from Mazunte, Oaxaca. I build production-grade websites, booking systems, courses, and community platforms for practitioners. Around 170 builds shipped, first usable version typically lands in 48 hours, you own every line of code from the first commit.</p>
+
+        <div class="callout ok">
+          <div class="lbl">✓ Accepting new clients · April 2026</div>
+          Response within 24h · <code class="inline">jordi@astralintegration.studio</code>
+        </div>
+
+        <hr>
+
+        <!-- WHAT I BUILD -->
+        <h2 class="md" id="what"><span class="hash">##</span>What I build</h2>
+        <p>One platform that replaces seven tools. All of it under your domain, wired from the first commit, maintained by the same person who built it. For:</p>
+        <ul>
+          <li><code class="inline">yoga-schools</code> · <code class="inline">reiki-academies</code> · <code class="inline">breathwork-trainings</code></li>
+          <li><code class="inline">kundalini-teachers</code> · <code class="inline">retreat-centers</code> · <code class="inline">meditation-teachers</code></li>
+          <li><code class="inline">ceremony-facilitators</code> · <code class="inline">sound-healing-trainings</code> · <code class="inline">healing-schools</code></li>
+        </ul>
+
+        <!-- STACK YOU CURRENTLY HAVE -->
+        <h2 class="md" id="stack"><span class="hash">##</span>Stack you currently have <span style="color:var(--text-3);font-weight:400;font-size:14px">→ the thing I replace</span></h2>
+
+        <div class="codeblock">
+<span class="cm"># diagnostic output · typical practitioner stack</span>
+<span class="kw">$</span> current-stack <span class="op">--show-monthly</span>
+
+<span class="op">  ├─</span> <span class="fn">website</span>     WordPress + theme + plugins    <span class="num">$30</span>/mo
+<span class="op">  ├─</span> <span class="fn">courses</span>     Kajabi Growth                  <span class="num">$149</span>/mo
+<span class="op">  ├─</span> <span class="fn">bookings</span>    Acuity Powerhouse              <span class="num">$24</span>/mo
+<span class="op">  ├─</span> <span class="fn">email</span>       Mailchimp Standard             <span class="num">$45</span>/mo
+<span class="op">  ├─</span> <span class="fn">events</span>      Eventbrite                     <span class="str">~7% per ticket</span>
+<span class="op">  ├─</span> <span class="fn">community</span>   Circle Basic                   <span class="num">$89</span>/mo
+<span class="op">  └─</span> <span class="fn">landing</span>     Linktree Pro                   <span class="num">$9</span>/mo
+
+<span class="kw">›</span> TOTAL:  <span class="str" style="color:var(--red);font-weight:600">$346+/mo</span> · <span class="str" style="color:var(--red)">$4,150+/yr</span>
+<span class="kw">›</span> integrated:  <span class="str" style="color:var(--red)">false</span>
+<span class="kw">›</span> you own:     <span class="str" style="color:var(--red)">nothing</span>
+        </div>
+
+        <div class="callout warn">
+          <div class="lbl">⚠ This is not infrastructure. This is rented real estate.</div>
+          You're using <em>their platforms</em> to build <em>their platforms</em> with <em>your content.</em>
+        </div>
+
+        <!-- WHAT I REPLACE IT WITH -->
+        <h2 class="md" id="replace"><span class="hash">##</span>What I replace it with</h2>
+
+        <table class="md-table">
+          <thead>
+            <tr><th>Pillar</th><th>What you get</th><th>What it replaces</th><th>Included</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Presence</strong></td><td>Custom site · 90+ Lighthouse · bilingual-ready</td><td><span class="x">Squarespace</span></td><td class="green">✓</td></tr>
+            <tr><td><strong>Offering</strong></td><td>Native bookings + events + payments</td><td><span class="x">Acuity + Eventbrite</span></td><td class="green">✓</td></tr>
+            <tr><td><strong>Container</strong></td><td>Courses · community · member areas</td><td><span class="x">Kajabi + Circle</span></td><td class="green">✓</td></tr>
+            <tr><td><strong>Machinery</strong></td><td>Email · CRM · analytics · AI assistants</td><td><span class="x">Mailchimp + Zapier</span></td><td class="green">✓</td></tr>
+            <tr class="total"><td>TOTAL</td><td>One domain · one login · one partner</td><td>— replaces 7 tools —</td><td class="green">all-in</td></tr>
+          </tbody>
+        </table>
+
+        <!-- METHOD -->
+        <h2 class="md" id="method"><span class="hash">##</span>Method</h2>
+
+        <div class="codeblock">
+<span class="cm">// the whole process, three commits deep</span>
+
+<span class="kw">function</span> <span class="fn">work_together</span>(you) {
+  <span class="kw">const</span> mess = you.<span class="fn">send</span>(<span class="str">"voice_memo | google_doc | screenshots"</span>);
+  <span class="kw">await</span> jordi.<span class="fn">study</span>(you.<span class="op">practice</span>);   <span class="cm">// ~24h</span>
+  <span class="kw">const</span> build = <span class="kw">await</span> jordi.<span class="fn">ship</span>(mess);    <span class="cm">// ~48h</span>
+  <span class="kw">if</span> (build.<span class="op">feels_right</span>) <span class="kw">return</span> ship();
+  <span class="kw">else</span> iterate();                              <span class="cm">// ~up to 2 rounds</span>
+  <span class="kw">return</span> partnership({ duration: <span class="str">"as_long_as_you_want"</span> });
+}
+        </div>
+
+        <h3 class="md" id="steps"><span class="hash">###</span>The three steps</h3>
+        <ol>
+          <li><strong>Intake.</strong> You send the mess. A voice memo at 2am, a linktree, three screenshots. <em>24 hours.</em></li>
+          <li><strong>Build.</strong> I ship a real, working first version <em>before we ever get on a call.</em> 48 hours to 3 weeks.</li>
+          <li><strong>Stay.</strong> I maintain the whole thing for as long as your practice lasts. <em>You own every line from day one.</em></li>
+        </ol>
+
+        <!-- THE WORK -->
+        <h2 class="md" id="work"><span class="hash">##</span>The work <span style="color:var(--text-3);font-weight:400;font-size:14px">→ latest 14 shipped</span></h2>
+
+        <table class="md-table cat-table">
+          <thead>
+            <tr><th>№</th><th>Project</th><th>Type</th><th>Ship time</th><th>Year</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td><a href="#">Deva Premal &amp; Miten</a></td><td>Music · tour</td><td>14 d</td><td>2025</td></tr>
+            <tr><td>02</td><td><a href="#">Sacred Counsel</a></td><td>Retreat · ceremony</td><td>12 d</td><td>2025</td></tr>
+            <tr><td>03</td><td><a href="#">Gurmukh Kaur</a></td><td>Yoga · legacy</td><td>8 d</td><td>2025</td></tr>
+            <tr><td>04</td><td><a href="#">Skylar Acamesis</a></td><td>Healing · premium</td><td>16 d</td><td>2024</td></tr>
+            <tr><td>05</td><td><a href="#">Shiv Energetics</a></td><td>School · reiki</td><td>23 d</td><td>2024</td></tr>
+            <tr><td>06</td><td><a href="#">Mariana Harpreet</a></td><td>Studio · multi-brand</td><td>21 d</td><td>2024</td></tr>
+            <tr><td>07</td><td><a href="#">Uri Atsur</a></td><td>Voice · ticketing</td><td>11 d</td><td>2024</td></tr>
+            <tr><td>08</td><td><a href="#">Ama Kura</a></td><td>Regenerative</td><td>18 d</td><td>2024</td></tr>
+            <tr><td>09</td><td><a href="#">Mazunte Today</a></td><td>Community · bilingual</td><td>9 d</td><td>2024</td></tr>
+            <tr><td>10</td><td><a href="#">Arte de Renacer</a></td><td>School · breathwork</td><td>19 d</td><td>2023</td></tr>
+            <tr><td>11</td><td><a href="#">Menda Mano</a></td><td>Craft · artisan</td><td>7 d</td><td>2023</td></tr>
+            <tr><td>12</td><td><a href="#">Mujer Despierta</a></td><td>Movement · ES</td><td>8 d</td><td>2023</td></tr>
+            <tr><td>13</td><td><a href="#">Kura Terra</a></td><td>Craft · slow</td><td>6 d</td><td>2023</td></tr>
+            <tr><td>14</td><td><em>— private —</em></td><td>Land · residency</td><td>24 d</td><td>2022</td></tr>
+          </tbody>
+        </table>
+
+        <!-- PRICING -->
+        <h2 class="md" id="pricing"><span class="hash">##</span>Pricing</h2>
+
+        <table class="md-table">
+          <thead>
+            <tr><th>Tier</th><th>For</th><th>Setup</th><th>Monthly</th><th>Ship</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>practitioners</strong></td><td>Solo teachers · healers · coaches</td><td><strong>$1,500</strong></td><td><strong>$250</strong>/mo</td><td>1-2 wks</td></tr>
+            <tr style="background:rgba(63,185,80,0.06)"><td><strong>schools</strong> <span style="color:var(--accent-2)">★</span></td><td>Cert programs · teacher trainings</td><td><strong>$5,000</strong></td><td><strong>$750</strong>/mo</td><td>3-4 wks</td></tr>
+            <tr><td><strong>complex</strong></td><td>300+ students · AI · bilingual · multi-tenant</td><td><strong>$8,000+</strong></td><td><strong>$1,500</strong>/mo</td><td>4-6 wks</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout ok">
+          <div class="lbl">ℹ Every tier includes</div>
+          hosting · domain · SSL · email automation · AI workflows · unlimited revisions · technical partnership · <em>full code + data ownership from day one.</em>
+        </div>
+
+        <!-- ABOUT -->
+        <h2 class="md" id="about"><span class="hash">##</span>About the maintainer</h2>
+
+        <p>Senior full-stack engineer. Former CTO in startups you've probably heard of. Moved to <em>Mazunte, Oaxaca</em> — a small village on the Pacific coast of Mexico — and started building for the people doing what I consider the most original and under-served work in the world: education, healing, ceremony, community.</p>
+
+        <p>I live inside the same world my clients do. Breathwork circles, cacao ceremonies, indigenous Oaxacan traditions, early mornings with coffee and a journal, late nights with a terminal. <em>I don't build for this world from the outside. I build from inside it.</em></p>
+
+        <div class="codeblock">
+<span class="cm">// the principle</span>
+<span class="kw">function</span> <span class="fn">principle</span>() {
+  <span class="kw">return</span> <span class="str">"Building and healing are the same service — "</span> +
+         <span class="str">"listening on different ports."</span>;
+}
+        </div>
+
+        <!-- CONTACT -->
+        <h2 class="md" id="contact"><span class="hash">##</span>Contact</h2>
+
+        <p>Send me the mess. A voice memo, a messy doc, three screenshots, a linktree you're embarrassed of. <em>I don't need polish.</em> I'll read what you send, study your work, and write back within a day.</p>
+
+        <div class="codeblock">
+<span class="kw">const</span> contact = {
+  email:    <span class="str">"jordi@astralintegration.studio"</span>,
+  whatsapp: <span class="str">"+52 · mazunte hours"</span>,
+  github:   <span class="str">"@jordiamat"</span>,
+  linkedin: <span class="str">"linkedin.com/in/jordiamat"</span>,
+  response: <span class="str">"within 24h · usually same-day"</span>
+};
+        </div>
+
+        <!-- SIGNATURE -->
+        <div class="sig-block">
+          <div>
+            <span class="hash">## </span>Maintained by <strong style="color:var(--text)">Jordi Amat</strong>
+            <br><span style="color:var(--text-3)">Mazunte, Oax. · MX · since 2013</span>
+          </div>
+          <button class="btn green" style="padding:8px 18px">Send me the mess →</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section about">
+      <h4>About <span class="ic">⚙</span></h4>
+      <p>A one-person studio shipping custom digital infrastructure from <em>Mazunte, Oaxaca.</em></p>
+      <div class="rs" style="border-top:1px solid var(--border);margin-top:10px;padding-top:10px;border-bottom:none">
+        <span class="k"><span class="ic">◎</span>Website</span>
+        <span class="v"><a>astralintegration.studio</a></span>
+      </div>
+      <div class="topics">
+        <span>yoga</span>
+        <span>healing</span>
+        <span>ceremony</span>
+        <span>retreat</span>
+        <span>teacher-training</span>
+        <span>ai-native</span>
+        <span>full-stack</span>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <h4>Repository stats</h4>
+      <div class="repo-stats">
+        <div class="rs"><span class="k"><span class="ic">★</span>Stars</span><span class="v green">247</span></div>
+        <div class="rs"><span class="k"><span class="ic">👁</span>Watchers</span><span class="v">12</span></div>
+        <div class="rs"><span class="k"><span class="ic">⑂</span>Forks</span><span class="v">3</span></div>
+        <div class="rs"><span class="k"><span class="ic">⊙</span>Open issues</span><span class="v green">0</span></div>
+        <div class="rs"><span class="k"><span class="ic">◆</span>Projects shipped</span><span class="v green">170+</span></div>
+        <div class="rs"><span class="k"><span class="ic">⚡</span>Avg. ship time</span><span class="v">48h</span></div>
+      </div>
+    </div>
+
+    <div class="sb-section langs">
+      <h4>What I practice</h4>
+      <div class="bar">
+        <span style="background:var(--blue);width:32%"></span>
+        <span style="background:var(--yellow);width:24%"></span>
+        <span style="background:var(--purple);width:18%"></span>
+        <span style="background:var(--accent);width:14%"></span>
+        <span style="background:var(--pink);width:12%"></span>
+      </div>
+      <div class="lrow"><span class="sw" style="background:var(--blue)"></span><span class="nm">TypeScript</span><span class="pct">32.4%</span></div>
+      <div class="lrow"><span class="sw" style="background:var(--yellow)"></span><span class="nm">React / Next.js</span><span class="pct">23.8%</span></div>
+      <div class="lrow"><span class="sw" style="background:var(--purple)"></span><span class="nm">AI workflows</span><span class="pct">18.2%</span></div>
+      <div class="lrow"><span class="sw" style="background:var(--accent)"></span><span class="nm">Supabase / Postgres</span><span class="pct">14.1%</span></div>
+      <div class="lrow"><span class="sw" style="background:var(--pink)"></span><span class="nm">Design &amp; copy</span><span class="pct">11.5%</span></div>
+    </div>
+
+    <div class="sb-section commits">
+      <h4>Recent activity <span class="ic">→</span></h4>
+      <div class="commit-row">
+        <div class="av">J</div>
+        <div class="info">
+          <div class="msg">feat(sacred-counsel): add bilingual retreat intake</div>
+          <div class="meta"><code>a3f9c21</code> · 4h ago</div>
+        </div>
+      </div>
+      <div class="commit-row">
+        <div class="av">J</div>
+        <div class="info">
+          <div class="msg">fix(shiv-energetics): student progression dashboard</div>
+          <div class="meta"><code>b8d7c19</code> · 1d ago</div>
+        </div>
+      </div>
+      <div class="commit-row">
+        <div class="av">J</div>
+        <div class="info">
+          <div class="msg">chore(deva-miten): update tour dates for Q3 2026</div>
+          <div class="meta"><code>77e4f33</code> · 2d ago</div>
+        </div>
+      </div>
+      <div class="commit-row">
+        <div class="av">J</div>
+        <div class="info">
+          <div class="msg">docs: rewrite pricing page for 2026 edition</div>
+          <div class="meta"><code>c2a1b8e</code> · 3d ago</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <h4>Status</h4>
+      <div class="rs"><span class="k"><span class="ic">●</span>Accepting clients</span><span class="v green">Yes</span></div>
+      <div class="rs"><span class="k"><span class="ic">◎</span>Response time</span><span class="v">&lt;24h</span></div>
+      <div class="rs"><span class="k"><span class="ic">◉</span>Timezone</span><span class="v">UTC-6 (MZT)</span></div>
+      <div class="rs"><span class="k"><span class="ic">⎈</span>Current load</span><span class="v">68%</span></div>
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>© 2026 · astral-labs/astral-integration · licensed MIT · maintained by @jordiamat</div>
+    <div class="links">
+      <a href="#">Catalogue</a>
+      <a href="#">Pricing</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <span class="sys">all systems normal</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

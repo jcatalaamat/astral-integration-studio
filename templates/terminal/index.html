@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>astral@mazunte:~$ ./astral-integration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #0B0F0A;
+  --bg-2: #11160F;
+  --bg-3: #1A211A;
+  --border: #1F2A1F;
+  --text: #C9E1C5;
+  --text-2: #6E8A6B;
+  --text-3: #4A5F48;
+  --green: #4ADE80;
+  --green-br: #86EFAC;
+  --green-dm: #22A856;
+  --amber: #FFA630;
+  --amber-br: #FFC266;
+  --red: #EF4444;
+  --blue: #60A5FA;
+  --cyan: #67E8F9;
+  --magenta: #E879F9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Source Code Pro',monospace;
+  background:var(--bg);color:var(--text);
+  font-size:14.5px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(74,222,128,0.02) 0px, rgba(74,222,128,0.02) 1px, transparent 1px, transparent 3px);
+}
+a{color:var(--cyan);text-decoration:none}
+a:hover{color:var(--green-br);text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-size:10px;color:var(--text-2);background:var(--bg);border:1px solid var(--border);padding:5px 12px;display:flex;align-items:center;gap:8px;pointer-events:none}
+.studio-tag .d{width:6px;height:6px;background:var(--green);border-radius:999px;box-shadow:0 0 8px rgba(74,222,128,0.6)}
+
+/* terminal window chrome */
+.term{
+  max-width:1280px;margin:0 auto;padding:20px;
+}
+.term-window{
+  background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  box-shadow:0 30px 80px -30px rgba(74,222,128,0.08);margin-bottom:20px;
+  overflow:hidden;
+}
+.term-chrome{
+  display:flex;align-items:center;gap:10px;padding:10px 16px;
+  background:var(--bg-3);border-bottom:1px solid var(--border);
+}
+.term-chrome .dots{display:flex;gap:7px}
+.term-chrome .dots span{width:12px;height:12px;border-radius:999px;background:#444}
+.term-chrome .dots span:nth-child(1){background:#EF4444}
+.term-chrome .dots span:nth-child(2){background:#FFA630}
+.term-chrome .dots span:nth-child(3){background:#4ADE80}
+.term-chrome .title{flex:1;text-align:center;font-size:12px;color:var(--text-2)}
+.term-chrome .meta{font-size:11px;color:var(--text-3)}
+
+.term-body{padding:28px 36px;min-height:auto}
+
+/* prompt line */
+.prompt{display:flex;gap:8px;align-items:baseline;margin-bottom:4px}
+.prompt .user{color:var(--green)}
+.prompt .at{color:var(--text-2)}
+.prompt .host{color:var(--amber)}
+.prompt .path{color:var(--blue)}
+.prompt .dollar{color:var(--text);margin:0 4px}
+.prompt .cmd{color:var(--text);font-weight:500}
+
+.prompt-line{margin-bottom:16px}
+.prompt-line .comment{color:var(--text-3);font-style:italic;margin-left:2px;font-size:13px}
+
+/* hero typing line */
+.hero-cmd{font-size:clamp(16px,2vw,19px);font-weight:500;margin-bottom:18px}
+.hero-cmd .cursor{display:inline-block;width:10px;height:18px;background:var(--green);animation:blink 1s steps(2) infinite;vertical-align:-3px;margin-left:3px}
+@keyframes blink{50%{opacity:0}}
+
+/* banner ASCII */
+.banner{
+  color:var(--green);font-weight:600;font-size:12px;line-height:1.2;white-space:pre;
+  overflow-x:auto;padding:14px 0;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border);margin:20px 0;
+}
+.banner.gr{color:var(--green-br)}
+
+/* output */
+.output{margin:12px 0 28px;padding-left:4px;color:var(--text)}
+.output .k{color:var(--amber)}
+.output .v{color:var(--green-br)}
+.output .c{color:var(--cyan)}
+.output .r{color:var(--red)}
+.output .m{color:var(--text-2)}
+.output .kw{color:var(--magenta)}
+.output .hl{color:var(--amber-br);font-weight:500}
+.output .box{color:var(--text-2)}
+.output .headline{color:var(--green);font-weight:600;margin-bottom:6px;font-size:18px;letter-spacing:-0.02em}
+.output .dimmed{color:var(--text-3);font-style:italic}
+
+/* response with bullet */
+.resp-line{display:flex;gap:10px;color:var(--text)}
+.resp-line::before{content:"▸";color:var(--green);flex-shrink:0}
+.resp-line.warn::before{content:"⚠";color:var(--amber)}
+.resp-line.err::before{content:"✗";color:var(--red)}
+.resp-line.ok::before{content:"✓";color:var(--green)}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:13px}
+.tbl th,.tbl td{padding:7px 12px;text-align:left;border:1px solid var(--border)}
+.tbl th{background:var(--bg-3);color:var(--amber-br);font-weight:600}
+.tbl tr:hover td{background:var(--bg-3)}
+.tbl td strong{color:var(--green-br)}
+.tbl td .r{color:var(--red);text-decoration:line-through}
+.tbl td a{color:var(--cyan)}
+.tbl .hl{color:var(--amber-br)}
+.tbl .tot td{background:rgba(74,222,128,0.08);font-weight:700;color:var(--green-br)}
+
+/* box / callout */
+.box-card{
+  border:1px solid var(--green-dm);background:rgba(74,222,128,0.04);padding:16px 20px;border-radius:4px;
+  margin:12px 0 20px;position:relative;
+}
+.box-card.warn{border-color:var(--amber);background:rgba(255,166,48,0.05)}
+.box-card.info{border-color:var(--blue);background:rgba(96,165,250,0.05)}
+.box-card .lbl{font-size:11px;color:var(--green);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.box-card.warn .lbl{color:var(--amber)}
+.box-card.info .lbl{color:var(--blue)}
+.box-card p{color:var(--text);font-size:13.5px}
+.box-card p em{color:var(--green-br);font-style:italic}
+
+/* list */
+.list{margin:8px 0 20px;padding-left:0;list-style:none}
+.list li{padding:4px 0;color:var(--text);display:flex;gap:10px}
+.list li::before{content:"●";color:var(--green-dm);flex-shrink:0}
+.list li strong{color:var(--green-br)}
+.list li em{color:var(--amber-br);font-style:italic}
+
+/* h / section marker */
+.h{font-size:18px;color:var(--green);font-weight:600;letter-spacing:-0.01em;margin:8px 0 12px;padding-bottom:6px;border-bottom:1px dashed var(--border)}
+.h em{color:var(--amber-br);font-style:italic;font-weight:500}
+
+/* ascii box drawer */
+.ascii-box{color:var(--green-dm);font-size:13px;line-height:1.3;white-space:pre;margin:8px 0 18px;overflow-x:auto}
+
+/* input bar mock */
+.mock-input{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;
+  background:var(--bg-3);border:1px solid var(--green-dm);border-radius:4px;margin:10px 0 6px;
+}
+.mock-input .ps{color:var(--green);font-weight:600}
+.mock-input input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Source Code Pro',monospace;font-size:14px}
+.mock-input input::placeholder{color:var(--text-3)}
+.mock-input .send{padding:6px 14px;background:var(--green);color:var(--bg);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.04em;border:none;cursor:pointer;border-radius:2px}
+.mock-input .send:hover{background:var(--green-br)}
+
+/* nav pill bar */
+.nav-pills{
+  display:flex;gap:2px;background:var(--bg-3);padding:4px;border-radius:6px;
+  border:1px solid var(--border);margin:10px 0 20px;flex-wrap:wrap;
+}
+.nav-pills a{
+  padding:7px 12px;font-size:12px;color:var(--text-2);border-radius:4px;transition:all .15s;
+}
+.nav-pills a:hover{background:var(--bg);color:var(--green-br);text-decoration:none}
+.nav-pills a.active{background:var(--green);color:var(--bg);font-weight:600}
+
+/* status bar */
+.status{
+  display:flex;justify-content:space-between;gap:16px;padding:8px 16px;
+  background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  font-size:11px;color:var(--text-3);margin:18px 0;flex-wrap:wrap;
+}
+.status .on{color:var(--green)}
+.status .warn{color:var(--amber)}
+
+/* footer */
+footer{max-width:1280px;margin:40px auto 80px;padding:0 20px;font-size:11px;color:var(--text-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer a{color:var(--text-2)}
+footer a:hover{color:var(--green-br)}
+footer .sys{color:var(--green)}
+footer .sys::before{content:"●";margin-right:6px;animation:blink 2s infinite}
+
+@media (max-width:680px){
+  body{font-size:13px}
+  .term{padding:14px}
+  .term-body{padding:22px 18px}
+  .banner{font-size:9px}
+  .tbl{font-size:11px}
+  .tbl th,.tbl td{padding:6px 8px}
+  .mock-input{flex-wrap:wrap}
+  .mock-input input{width:100%;flex:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · terminal · v0.9</div>
+
+<main class="term">
+
+  <!-- TERMINAL WINDOW 1: intro -->
+  <div class="term-window">
+    <div class="term-chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="title">astral@mazunte:~/astral-integration</div>
+      <div class="meta">session · 04:17 UTC−6</div>
+    </div>
+    <div class="term-body">
+      <div class="prompt"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~/astral-integration</span><span class="dollar">$</span></div>
+      <div class="hero-cmd" style="color:var(--green-br);font-weight:600">./welcome <span class="cursor"></span></div>
+
+      <div class="banner gr">    ___         _             _ 
+   / _ \ _____| |_ _ __ __ _| |
+  / /_\ / __| __| '__/ _` | |
+ / /_\\\\ \__ \ |_| | | (_| | |
+ \____/|___/\__|_|  \__,_|_|
+                                  integration v2026.04</div>
+
+      <div class="output">
+        <div class="headline">One person. One platform. No duct tape.</div>
+        <div class="dimmed">→ Custom digital infrastructure for healers, teachers, retreat centers, and people doing original work in the world.</div>
+      </div>
+
+      <div class="nav-pills">
+        <a class="active">overview</a>
+        <a>./work</a>
+        <a>./method</a>
+        <a>./pricing</a>
+        <a>./about</a>
+        <a>./faq</a>
+        <a>./contact</a>
+      </div>
+
+      <div class="prompt"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">cat MANIFESTO.md</span></div>
+      <div class="output">
+        <div class="resp-line">I'm <strong style="color:var(--green-br)">Jordi</strong> — a former CTO shipping from <span class="hl">Mazunte, Oaxaca</span>.</div>
+        <div class="resp-line">I build <strong style="color:var(--green-br)">one platform</strong> that replaces <span class="r">seven tools</span>. Site. Bookings. Courses. Community. Email. Payments. Everything.</div>
+        <div class="resp-line">First usable version lands in <strong style="color:var(--amber-br)">48 hours</strong>. Usually.</div>
+        <div class="resp-line ok">You own every line from <em>the first commit</em>.</div>
+      </div>
+
+      <div class="box-card">
+        <div class="lbl">✓ STATUS · Accepting clients · April 2026</div>
+        <p>Response <em>within 24h</em> · usually same-day · <a href="mailto:jordi@astralintegration.studio">jordi@astralintegration.studio</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMINAL WINDOW 2: diagnostic / stack -->
+  <div class="term-window">
+    <div class="term-chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="title">diagnostic · your current stack</div>
+      <div class="meta">STATUS 200 · OK</div>
+    </div>
+    <div class="term-body">
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">diagnose --stack --monthly</span></div>
+
+      <div class="output">
+        <div class="dimmed"># diagnostic output · typical practitioner stack</div>
+      </div>
+
+<div class="ascii-box">├── website       WordPress + plugins        <span style="color:var(--amber)">$30/mo</span>
+├── courses       Kajabi Growth               <span style="color:var(--amber)">$149/mo</span>
+├── bookings      Acuity Powerhouse           <span style="color:var(--amber)">$24/mo</span>
+├── email         Mailchimp Standard          <span style="color:var(--amber)">$45/mo</span>
+├── events        Eventbrite                  <span style="color:var(--red)">~7% per ticket</span>
+├── community     Circle Basic                <span style="color:var(--amber)">$89/mo</span>
+└── landing       Linktree Pro                <span style="color:var(--amber)">$9/mo</span>
+                                              ──────────
+                                  <span style="color:var(--green-br)">TOTAL:</span> <span style="color:var(--red);font-weight:700">$346+/mo</span></div>
+
+      <div class="box-card warn">
+        <div class="lbl">⚠ WARN · This is not infrastructure</div>
+        <p>You are using <em>their platforms</em> to build <em>their platforms</em> with <em>your content</em>. You own none of it.</p>
+      </div>
+
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">./replace_with astral-integration</span></div>
+
+      <div class="output">
+        <div class="resp-line ok">Four pillars. Every build. Fully integrated.</div>
+      </div>
+
+      <table class="tbl">
+        <thead><tr><th>pillar</th><th>item</th><th>replaces</th><th>incl</th></tr></thead>
+        <tbody>
+          <tr><td><strong>01</strong> presence</td><td>custom site · 90+ Lighthouse · bilingual</td><td><span class="r">Squarespace</span></td><td class="hl">✓</td></tr>
+          <tr><td><strong>02</strong> offering</td><td>bookings + events + payments · 0% fees</td><td><span class="r">Acuity + Eventbrite</span></td><td class="hl">✓</td></tr>
+          <tr><td><strong>03</strong> container</td><td>courses + community + members</td><td><span class="r">Kajabi + Circle</span></td><td class="hl">✓</td></tr>
+          <tr><td><strong>04</strong> machinery</td><td>email + CRM + analytics + AI</td><td><span class="r">Mailchimp + Zapier</span></td><td class="hl">✓</td></tr>
+          <tr class="tot"><td>all-in</td><td>one domain · one login · one partner</td><td>— replaces 7 tools —</td><td class="hl">$250+/mo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TERMINAL WINDOW 3: catalogue -->
+  <div class="term-window">
+    <div class="term-chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="title">catalog · 170+ shipped / 14 latest</div>
+      <div class="meta">records 1-14 of 170</div>
+    </div>
+    <div class="term-body">
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">catalog --list --sort=recent --limit=14</span></div>
+      <div class="output"><span class="dimmed">// 14 of 170+ builds · tap any row to open live site</span></div>
+
+      <table class="tbl">
+        <thead><tr><th>#</th><th>project</th><th>type</th><th>domain</th><th>days</th><th>yr</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><strong>Deva Premal &amp; Miten</strong></td><td>music · tour</td><td><a>devapremalmiten.xyz</a></td><td>14</td><td class="hl">'25</td></tr>
+          <tr><td>02</td><td><strong>Sacred Counsel</strong></td><td>retreat · ceremony</td><td><a>sacredcounsel.space</a></td><td>12</td><td class="hl">'25</td></tr>
+          <tr><td>03</td><td><strong>Gurmukh Kaur</strong></td><td>yoga · legacy</td><td><a>gurmukh.xyz</a></td><td>8</td><td class="hl">'25</td></tr>
+          <tr><td>04</td><td><strong>Skylar Acamesis</strong></td><td>healing · premium</td><td><a>skylaracamesis.xyz</a></td><td>16</td><td>'24</td></tr>
+          <tr><td>05</td><td><strong>Shiv Energetics</strong></td><td>school · reiki</td><td><a>shivenergetics.xyz</a></td><td>23</td><td>'24</td></tr>
+          <tr><td>06</td><td><strong>Mariana Harpreet</strong></td><td>studio · multi-brand</td><td><a>marianaharpreet.xyz</a></td><td>21</td><td>'24</td></tr>
+          <tr><td>07</td><td><strong>Uri Atsur</strong></td><td>voice · ticketing</td><td><a>uriatsur.live</a></td><td>11</td><td>'24</td></tr>
+          <tr><td>08</td><td><strong>Ama Kura</strong></td><td>regenerative</td><td><a>amakura.xyz</a></td><td>18</td><td>'24</td></tr>
+          <tr><td>09</td><td><strong>Mazunte Today</strong></td><td>community · bilingual</td><td><a>mazunte.today</a></td><td>9</td><td>'24</td></tr>
+          <tr><td>10</td><td><strong>Arte de Renacer</strong></td><td>school · breathwork</td><td><a>artederenacer.com</a></td><td>19</td><td>'23</td></tr>
+          <tr><td>11</td><td><strong>Menda Mano</strong></td><td>craft · artisan</td><td><a>mendamano.xyz</a></td><td>7</td><td>'23</td></tr>
+          <tr><td>12</td><td><strong>Mujer Despierta</strong></td><td>movement · ES</td><td><a>mujerdespierta.xyz</a></td><td>8</td><td>'23</td></tr>
+          <tr><td>13</td><td><strong>Kura Terra</strong></td><td>craft · slow</td><td><a>kuraterra.xyz</a></td><td>6</td><td>'23</td></tr>
+          <tr><td>14</td><td class="dimmed"><em>— private —</em></td><td>land · residency</td><td><span class="dimmed">—</span></td><td>24</td><td>'22</td></tr>
+        </tbody>
+      </table>
+
+      <div class="output">
+        <div class="resp-line">Showing 14 of <strong class="hl">170+</strong> builds. <a href="#">run `catalog --all`</a> to see everything.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMINAL WINDOW 4: method + pricing -->
+  <div class="term-window">
+    <div class="term-chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="title">method.js · pricing.yml</div>
+      <div class="meta">last commit a3f9c21</div>
+    </div>
+    <div class="term-body">
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">cat method.js</span></div>
+
+<div class="ascii-box"><span style="color:var(--text-3)">// the whole process, three steps deep</span>
+
+<span style="color:var(--magenta)">function</span> <span style="color:var(--blue)">work_together</span>(you) {
+  <span style="color:var(--magenta)">const</span> mess = you.<span style="color:var(--blue)">send</span>(<span style="color:var(--amber-br)">"voice_memo | google_doc | screenshots"</span>);
+  <span style="color:var(--magenta)">await</span> jordi.<span style="color:var(--blue)">study</span>(you.practice);   <span style="color:var(--text-3)">// ~24h turnaround</span>
+  <span style="color:var(--magenta)">const</span> build = <span style="color:var(--magenta)">await</span> jordi.<span style="color:var(--blue)">ship</span>(mess); <span style="color:var(--text-3)">// ~48h first build</span>
+  <span style="color:var(--magenta)">if</span> (build.feels_right) ship();
+  <span style="color:var(--magenta)">else</span> iterate();                           <span style="color:var(--text-3)">// up to 2 rounds</span>
+  <span style="color:var(--magenta)">return</span> partnership({ duration: <span style="color:var(--amber-br)">"as_long_as_you_want"</span> });
+}</div>
+
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">cat pricing.yml</span></div>
+
+<div class="ascii-box"><span style="color:var(--text-3)"># three tiers · fixed · all-inclusive</span>
+
+<span style="color:var(--cyan)">tiers:</span>
+  <span style="color:var(--green-br)">- name:</span>      <span style="color:var(--amber-br)">practitioners</span>
+    <span style="color:var(--green-br)">for:</span>       solo teachers · healers · coaches
+    <span style="color:var(--green-br)">setup:</span>     <span style="color:var(--amber)">$1,500</span>   <span style="color:var(--text-3)"># 1-2 weeks</span>
+    <span style="color:var(--green-br)">monthly:</span>   <span style="color:var(--amber)">$250/mo</span>  <span style="color:var(--text-3)"># all-in</span>
+
+  <span style="color:var(--green-br)">- name:</span>      <span style="color:var(--amber-br)">schools</span>          <span style="color:var(--red)"># ★ most common</span>
+    <span style="color:var(--green-br)">for:</span>       cert programs · teacher trainings
+    <span style="color:var(--green-br)">setup:</span>     <span style="color:var(--amber)">$5,000</span>   <span style="color:var(--text-3)"># 3-4 weeks</span>
+    <span style="color:var(--green-br)">monthly:</span>   <span style="color:var(--amber)">$750/mo</span>  <span style="color:var(--text-3)"># all-in</span>
+
+  <span style="color:var(--green-br)">- name:</span>      <span style="color:var(--amber-br)">complex</span>
+    <span style="color:var(--green-br)">for:</span>       300+ students · AI · bilingual
+    <span style="color:var(--green-br)">setup:</span>     <span style="color:var(--amber)">$8,000+</span> <span style="color:var(--text-3)"># 4-6 weeks</span>
+    <span style="color:var(--green-br)">monthly:</span>   <span style="color:var(--amber)">$1,500/mo</span></div>
+
+      <div class="box-card info">
+        <div class="lbl">ℹ INCLUDED EVERYWHERE</div>
+        <p>hosting · domain · SSL · email automation · AI workflows · unlimited revisions · technical partnership · <em>full code + data ownership from day one</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMINAL WINDOW 5: contact -->
+  <div class="term-window">
+    <div class="term-chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="title">send_mess · interactive</div>
+      <div class="meta">accepting input</div>
+    </div>
+    <div class="term-body">
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">./send_mess</span></div>
+      <div class="output">
+        <div class="h">Send me <em>the mess</em> →</div>
+        <div class="dimmed">A voice memo at 2am is fine. A messy doc is fine. Don't polish.</div>
+      </div>
+
+      <form class="mock-input" onsubmit="event.preventDefault()">
+        <span class="ps">$</span>
+        <input type="text" placeholder="I'm building a reiki academy with 4 cert levels and 300 students..."/>
+        <button class="send" type="submit">→ send</button>
+      </form>
+      <div class="output dimmed" style="font-size:12px;margin-top:0">tab for examples · enter to send · or email <a href="mailto:jordi@astralintegration.studio">jordi@astralintegration.studio</a> directly</div>
+
+      <div class="status">
+        <span class="on">● accepting clients</span>
+        <span>response < 24h</span>
+        <span>tz UTC−6 (MZT)</span>
+        <span class="warn">● current load: 68%</span>
+        <span>since 2013</span>
+      </div>
+
+      <ul class="list">
+        <li><strong>email:</strong> jordi@astralintegration.studio</li>
+        <li><strong>whatsapp:</strong> +52 · <em>mazunte hours</em></li>
+        <li><strong>github:</strong> @jordiamat</li>
+        <li><strong>linkedin:</strong> linkedin.com/in/jordiamat</li>
+      </ul>
+
+      <div class="prompt prompt-line"><span class="user">jordi</span><span class="at">@</span><span class="host">mazunte</span><span class="at">:</span><span class="path">~</span><span class="dollar">$</span> <span class="cmd">exit</span></div>
+      <div class="output" style="color:var(--text-3);font-style:italic;font-size:13px">// process ended · session saved · buen provecho.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div>© 2026 · astral-integration · mazunte.oax.mx · @jordiamat · MIT</div>
+  <div><a>catalog</a> · <a>pricing</a> · <a>about</a> · <a>contact</a> · <span class="sys">all systems normal</span></div>
+</footer>
+
+</body>
+</html>

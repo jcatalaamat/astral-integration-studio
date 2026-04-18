@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Quarterly — Issue 04 / Spring 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;1,6..96,400;1,6..96,700&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F6F0DF;
+  --paper-2: #ECE3CA;
+  --ink: #0E0C08;
+  --ink-2: #2B2418;
+  --mute: #7A6E52;
+  --teal: #0E4946;
+  --teal-br: #1A756E;
+  --gold: #BA7C14;
+  --red: #A7251B;
+  --rule: rgba(14,12,8,0.14);
+  --rule-str: rgba(14,12,8,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Vollkorn',Georgia,serif;
+  background:var(--paper);color:var(--ink);font-size:16px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+.display{font-family:'Bodoni Moda',serif}
+.sans{font-family:'Work Sans',sans-serif}
+
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);background:var(--paper);border:1px solid var(--rule);padding:5px 12px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500}
+.studio-tag .d{width:6px;height:6px;background:var(--teal);border-radius:999px}
+
+.mag{max-width:1200px;margin:0 auto;padding:40px 44px 80px}
+
+/* COVER */
+.cover{padding:24px 0 50px;border-bottom:1px solid var(--rule)}
+.cover-top{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--ink);margin-bottom:56px;font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.cover-top .c{color:var(--ink);font-weight:600}
+
+.cover-top .block{display:flex;align-items:center;gap:6px}
+.cover-top .block::before{content:"";width:6px;height:6px;background:var(--teal)}
+
+.mast{text-align:center;padding:30px 0}
+.mast h1{
+  font-family:'Bodoni Moda',serif;font-weight:800;
+  font-size:clamp(64px,13.5vw,204px);line-height:0.9;letter-spacing:-0.025em;color:var(--ink);
+  font-variation-settings:"opsz" 96;
+}
+.mast h1 em{font-style:italic;font-weight:500}
+.mast .sub-title{
+  margin-top:12px;font-family:'Vollkorn',serif;font-style:italic;font-size:clamp(17px,2vw,22px);color:var(--ink-2);letter-spacing:0.02em;
+}
+
+/* cover feature block */
+.cover-feat{
+  margin-top:60px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start;
+  padding-top:40px;border-top:1px solid var(--rule);
+}
+.cover-feat .l{}
+.cover-feat .kicker{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.cover-feat .kicker::before{content:"";width:18px;height:1px;background:var(--teal)}
+.cover-feat h2{
+  font-family:'Bodoni Moda',serif;font-weight:500;font-style:italic;
+  font-size:clamp(40px,6.2vw,80px);line-height:0.98;letter-spacing:-0.018em;color:var(--ink);
+}
+.cover-feat h2 em{font-style:italic;color:var(--red)}
+.cover-feat .deck{
+  margin-top:28px;font-family:'Vollkorn',serif;font-style:italic;font-size:21px;
+  line-height:1.45;color:var(--ink-2);max-width:520px;
+}
+
+.cover-feat .r .cover-plate{
+  aspect-ratio:3/4;position:relative;overflow:hidden;border:1px solid var(--ink);
+  background:linear-gradient(170deg,#1A756E 0%,#0E4946 45%,#070A0A 100%);
+}
+.cover-feat .r .cover-plate::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(186,124,20,0.3) 0%,transparent 55%)}
+.cover-feat .r .cover-plate svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;color:rgba(246,240,223,0.88)}
+.cover-feat .r .cover-plate .corner-tl{position:absolute;top:20px;left:20px;font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;color:rgba(246,240,223,0.8);text-transform:uppercase;font-weight:600}
+.cover-feat .r .cover-plate .corner-br{position:absolute;bottom:20px;right:20px;font-family:'Bodoni Moda',serif;font-style:italic;font-size:18px;color:rgba(246,240,223,0.95)}
+.cover-feat .r .cap{margin-top:10px;font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.08em;color:var(--mute);font-style:italic;text-transform:uppercase}
+
+/* TABLE OF CONTENTS */
+.toc{padding:60px 0 40px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.toc-h{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px;gap:40px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.toc-h .t{font-family:'Bodoni Moda',serif;font-style:italic;font-size:60px;line-height:0.95;letter-spacing:-0.015em;font-weight:500}
+.toc-h .t em{font-style:italic}
+.toc-h .meta{font-family:'Work Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+.toc-rows{display:flex;flex-direction:column;gap:0}
+.toc-row{
+  display:grid;grid-template-columns:80px 1fr 220px 60px;gap:28px;align-items:baseline;
+  padding:18px 0 16px;border-bottom:1px solid var(--rule);transition:color .2s;cursor:pointer;
+}
+.toc-row:hover{color:var(--red)}
+.toc-row:hover .tt{font-style:italic}
+.toc-row .nm{font-family:'Work Sans',sans-serif;font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.toc-row .tt{font-family:'Bodoni Moda',serif;font-size:26px;line-height:1.05;letter-spacing:-0.01em;font-weight:500}
+.toc-row .tt em{font-style:italic}
+.toc-row .au{font-family:'Vollkorn',serif;font-style:italic;font-size:14px;color:var(--mute)}
+.toc-row .pg{font-family:'Work Sans',sans-serif;font-size:16px;letter-spacing:0.08em;color:var(--ink);text-align:right;font-weight:600}
+
+/* ===== EDITOR'S LETTER ===== */
+.ed-letter{padding:60px 0 50px;border-bottom:1px solid var(--rule)}
+.ed-h{text-align:center;margin-bottom:40px}
+.ed-h .kicker{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);font-weight:600;display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
+.ed-h .kicker::before,.ed-h .kicker::after{content:"";width:24px;height:1px;background:var(--red)}
+.ed-h h3{font-family:'Bodoni Moda',serif;font-style:italic;font-size:60px;line-height:1;letter-spacing:-0.015em;font-weight:500}
+.ed-h h3 em{font-style:italic;color:var(--red)}
+
+.ed-body{max-width:720px;margin:0 auto;columns:2;column-gap:40px;column-rule:1px solid var(--rule)}
+.ed-body p{font-size:15.5px;line-height:1.7;margin-bottom:16px;text-align:justify;hyphens:auto;color:var(--ink)}
+.ed-body p em{font-style:italic;color:var(--ink)}
+.ed-body p:first-child::first-letter{
+  font-family:'Bodoni Moda',serif;font-weight:500;font-size:82px;line-height:0.85;float:left;
+  margin:6px 12px -4px 0;color:var(--red);
+}
+.ed-signature{
+  max-width:720px;margin:36px auto 0;padding-top:20px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.ed-signature .sig{font-family:'Bodoni Moda',serif;font-style:italic;font-size:32px;color:var(--red);letter-spacing:-0.01em}
+.ed-signature .title{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:600}
+
+/* ===== FEATURE ARTICLE ===== */
+.feature{padding:60px 0 50px;border-bottom:1px solid var(--rule)}
+.feat-head{padding-bottom:28px;border-bottom:4px double var(--ink);margin-bottom:36px}
+.feat-head .kicker{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px;display:flex;gap:12px;align-items:center}
+.feat-head .kicker::before{content:"❋";color:var(--red)}
+.feat-head h3{font-family:'Bodoni Moda',serif;font-weight:700;font-size:clamp(44px,6.6vw,96px);line-height:0.92;letter-spacing:-0.025em;margin-bottom:18px}
+.feat-head h3 em{font-style:italic;font-weight:500;color:var(--red)}
+.feat-head .deck{font-family:'Vollkorn',serif;font-style:italic;font-size:22px;line-height:1.45;color:var(--ink-2);max-width:800px}
+
+.feat-body{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start}
+.feat-prose{columns:2;column-gap:32px;column-rule:1px solid var(--rule)}
+.feat-prose p{font-size:15px;line-height:1.7;margin-bottom:14px;text-align:justify;hyphens:auto}
+.feat-prose p em{font-style:italic}
+.feat-prose p:first-child::first-letter{font-family:'Bodoni Moda',serif;font-weight:700;font-size:72px;line-height:0.85;float:left;margin:5px 10px -2px 0;color:var(--teal)}
+.feat-prose .break-quote{
+  break-inside:avoid;font-family:'Bodoni Moda',serif;font-style:italic;font-size:23px;line-height:1.3;
+  color:var(--red);text-align:center;padding:14px 6px;border-top:2px solid var(--red);border-bottom:2px solid var(--red);
+  margin:14px 0;letter-spacing:-0.005em;
+}
+
+.feat-side{}
+.feat-side-box{padding:22px 24px;background:var(--paper-2);border:1px solid var(--rule-str);margin-bottom:20px}
+.feat-side-box .lbl{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:14px}
+.feat-side-box h5{font-family:'Bodoni Moda',serif;font-weight:500;font-style:italic;font-size:24px;line-height:1.1;margin-bottom:14px;letter-spacing:-0.008em}
+.feat-side-box h5 em{font-style:italic;color:var(--red)}
+.feat-side-box .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--rule);font-size:13px}
+.feat-side-box .row:last-child{border-bottom:none}
+.feat-side-box .row .k{color:var(--mute)}
+.feat-side-box .row .v{font-family:'Work Sans',sans-serif;font-weight:600;color:var(--ink)}
+.feat-side-box .row .v em{color:var(--red);font-style:italic;font-family:'Bodoni Moda',serif;font-weight:500}
+.feat-side-box .tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:12px;border-top:2px solid var(--ink)}
+.feat-side-box .tot .l{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);font-weight:700}
+.feat-side-box .tot .v{font-family:'Bodoni Moda',serif;font-weight:700;font-size:32px;color:var(--red);line-height:1}
+
+/* photo essay */
+.essay{padding:60px 0 50px;border-bottom:1px solid var(--rule)}
+.essay-head{text-align:center;margin-bottom:40px}
+.essay-head .kicker{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;display:inline-flex;align-items:center;gap:10px}
+.essay-head .kicker::before,.essay-head .kicker::after{content:"—";color:var(--gold)}
+.essay-head h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(42px,6vw,76px);line-height:0.98;letter-spacing:-0.018em}
+.essay-head h3 em{font-style:italic;color:var(--teal)}
+.essay-head .byline{margin-top:14px;font-family:'Vollkorn',serif;font-style:italic;color:var(--mute);font-size:15px}
+
+.essay-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:16px}
+.plate{aspect-ratio:4/5;position:relative;overflow:hidden;border:1px solid var(--rule-str)}
+.plate.wide{grid-column:span 1;grid-row:span 2;aspect-ratio:3/5}
+.plate.tall{grid-row:span 1;aspect-ratio:4/5}
+.plate.p1{background:linear-gradient(165deg,#1A756E 0%,#0E4946 50%,#0A1615 100%)}
+.plate.p2{background:linear-gradient(165deg,#BA7C14 0%,#6F4A0E 50%,#2D1F08 100%)}
+.plate.p3{background:linear-gradient(165deg,#A7251B 0%,#55120C 50%,#1A0706 100%)}
+.plate.p4{background:linear-gradient(165deg,#E0D5B1 0%,#B09F70 50%,#5E5334 100%)}
+.plate.p5{background:linear-gradient(165deg,#6E8068 0%,#3E4C3A 50%,#191E18 100%)}
+.plate::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 40% 35%,rgba(246,240,223,0.14) 0%,transparent 60%)}
+.plate .corner{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:'Work Sans',sans-serif;font-size:9px;letter-spacing:0.26em;color:rgba(246,240,223,0.78);text-transform:uppercase;font-weight:600}
+.plate .caption{position:absolute;bottom:16px;left:16px;right:16px;padding-top:10px;border-top:1px solid rgba(246,240,223,0.32);color:rgba(246,240,223,0.95)}
+.plate .caption .n{font-family:'Bodoni Moda',serif;font-weight:500;font-size:17px;line-height:1.1;letter-spacing:-0.005em}
+.plate .caption .n em{font-style:italic}
+.plate .caption .m{font-family:'Work Sans',sans-serif;font-size:9px;letter-spacing:0.22em;color:rgba(246,240,223,0.7);text-transform:uppercase;margin-top:4px;font-weight:500}
+.plate svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:55%;color:rgba(246,240,223,0.55);z-index:0}
+
+/* LETTERS */
+.letters{padding:60px 0 50px;border-bottom:1px solid var(--rule)}
+.letters-head{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:30px}
+.letters-head h3{font-family:'Bodoni Moda',serif;font-size:60px;line-height:0.96;letter-spacing:-0.018em;font-weight:500}
+.letters-head h3 em{font-style:italic;color:var(--red)}
+.letters-head .desc{font-family:'Vollkorn',serif;font-style:italic;color:var(--mute);font-size:16px;line-height:1.5}
+
+.letters-grid{columns:2;column-gap:40px;column-rule:1px solid var(--rule)}
+.letter{break-inside:avoid;padding:18px 0;border-bottom:1px dashed var(--rule);margin-bottom:10px}
+.letter .who{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between}
+.letter .who .city{color:var(--mute)}
+.letter p{font-family:'Vollkorn',serif;font-style:italic;font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+.letter p em{font-style:italic;color:var(--red);font-family:'Bodoni Moda',serif;font-weight:500}
+.letter p::before{content:"“";font-family:'Bodoni Moda',serif;font-style:italic;font-size:48px;color:var(--gold);line-height:0;vertical-align:-0.35em;margin-right:2px;font-weight:500}
+
+/* BACK AD */
+.back-ad{padding:60px 0 20px;text-align:center}
+.back-ad .kicker{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--teal);font-weight:600;display:inline-flex;align-items:center;gap:12px;margin-bottom:18px}
+.back-ad .kicker::before,.back-ad .kicker::after{content:"";width:32px;height:1px;background:var(--teal)}
+.back-ad h3{font-family:'Bodoni Moda',serif;font-weight:700;font-size:clamp(56px,9vw,128px);line-height:0.9;letter-spacing:-0.028em}
+.back-ad h3 em{font-style:italic;font-weight:500;color:var(--red)}
+.back-ad .sub{font-family:'Vollkorn',serif;font-style:italic;font-size:clamp(17px,1.8vw,22px);color:var(--ink-2);margin-top:20px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5}
+
+.back-cta{margin-top:36px;padding:28px 30px;border:2px solid var(--ink);background:var(--paper-2);display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:center;text-align:left}
+.back-cta .col .k{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:700;margin-bottom:6px}
+.back-cta .col .v{font-family:'Bodoni Moda',serif;font-size:22px;line-height:1.1;letter-spacing:-0.008em}
+.back-cta .col .v em{font-style:italic;color:var(--red)}
+.back-cta .cta-btn{padding:14px;background:var(--ink);color:var(--paper);font-family:'Work Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;text-align:center}
+.back-cta .cta-btn:hover{background:var(--red)}
+
+footer{padding:40px 0 0;margin-top:40px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+footer .red{color:var(--red)}
+
+@media (max-width:980px){
+  .mag{padding:32px 24px 60px}
+  .cover-top{grid-template-columns:1fr;gap:4px;text-align:center}
+  .cover-feat,.feat-body,.letters-head,.back-cta{grid-template-columns:1fr;gap:28px}
+  .ed-body,.feat-prose,.letters-grid{columns:1}
+  .toc-row{grid-template-columns:50px 1fr 60px;gap:14px}
+  .toc-row .au{display:none}
+  .essay-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .plate.wide{grid-column:span 2;grid-row:span 1;aspect-ratio:3/2}
+  .back-cta{text-align:center}
+  footer{flex-direction:column;text-align:center}
+}
+@media (max-width:480px){
+  .essay-grid{grid-template-columns:1fr}
+  .plate.wide{grid-column:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · quarterly · v0.9</div>
+
+<div class="mag">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-top">
+      <div><span class="block">Mazunte · México</span></div>
+      <div class="c">Astral Quarterly · Spring</div>
+      <div><span class="block" style="justify-content:flex-end">Issue 04 · Vol. XIII · 2026</span></div>
+    </div>
+
+    <div class="mast">
+      <h1>A<em>stral</em></h1>
+      <div class="sub-title">— A Quarterly Journal of Infrastructure &amp; Care —</div>
+    </div>
+
+    <div class="cover-feat">
+      <div class="l">
+        <div class="kicker">Feature · Issue 04</div>
+        <h2>Your mastery<br>deserves <em>infrastructure</em><br>that matches it.</h2>
+        <div class="deck">Notes from a one-person studio shipping digital homes for healers and teachers from a hammock on the Pacific coast — one platform at a time, 170 times and counting.</div>
+      </div>
+      <div class="r">
+        <div class="cover-plate">
+          <div class="corner-tl">№ 04 · Spring 2026</div>
+          <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="100" cy="100" r="70"/>
+            <circle cx="100" cy="100" r="50"/>
+            <circle cx="100" cy="100" r="30"/>
+            <path d="M100 30 V170 M30 100 H170" opacity="0.5"/>
+            <circle cx="100" cy="100" r="9" fill="currentColor"/>
+            <path d="M60 180 L100 200 L140 180" opacity="0.55"/>
+            <circle cx="160" cy="50" r="4" fill="currentColor" opacity="0.7"/>
+          </svg>
+          <div class="corner-br"><em>— the principle</em></div>
+        </div>
+        <div class="cap">Cover · Plate I · the meridians</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section class="toc">
+    <div class="toc-h">
+      <div class="t">Contents<em>.</em></div>
+      <div class="meta">/ Seven pieces · ~ 22 minute read</div>
+    </div>
+    <div class="toc-rows">
+      <a class="toc-row"><span class="nm">№ 01 · Letter</span><span class="tt">From the <em>editor.</em></span><span class="au">by Jordi Amat</span><span class="pg">p. 04</span></a>
+      <a class="toc-row"><span class="nm">№ 02 · Feature</span><span class="tt">How <em>Sacred Counsel</em> replaced seven platforms in twelve days.</span><span class="au">Case study</span><span class="pg">p. 08</span></a>
+      <a class="toc-row"><span class="nm">№ 03 · Photo Essay</span><span class="tt">The studio, the <em>hammock</em>, &amp; the satellite dish.</span><span class="au">From the desk</span><span class="pg">p. 16</span></a>
+      <a class="toc-row"><span class="nm">№ 04 · Pricing</span><span class="tt">Three tiers, fixed <em>rates.</em></span><span class="au">Rate card</span><span class="pg">p. 22</span></a>
+      <a class="toc-row"><span class="nm">№ 05 · Correspondence</span><span class="tt">Letters to the <em>editor.</em></span><span class="au">Reader mail</span><span class="pg">p. 24</span></a>
+      <a class="toc-row"><span class="nm">№ 06 · Manifesto</span><span class="tt">Infrastructure as a form of <em>care.</em></span><span class="au">Essay</span><span class="pg">p. 26</span></a>
+      <a class="toc-row"><span class="nm">№ 07 · Back page</span><span class="tt">Begin a <em>conversation.</em></span><span class="au">Advertisement</span><span class="pg">p. 30</span></a>
+    </div>
+  </section>
+
+  <!-- EDITOR'S LETTER -->
+  <section class="ed-letter">
+    <div class="ed-h">
+      <div class="kicker">№ 01 · From the Editor</div>
+      <h3>A short letter<br>from <em>Mazunte.</em></h3>
+    </div>
+    <div class="ed-body">
+      <p>It has been eleven years since I started building digital infrastructure for practitioners — the teachers, healers, retreat-holders and ceremony-keepers who are, in my view, doing the most original and under-supported work in the world. Each year I build a little faster and I charge a little less, which is either the opposite of every business course I've ever skipped, or the natural shape of a trade that is finally in balance.</p>
+
+      <p>This quarterly is a small indulgence. It is my fourth issue. Inside, you will find a case study of the platform I built with Sacred Counsel (a twenty-year ceremony center that had been running on five disconnected tools); a photo essay from the desk where it all happens; a manifesto on why I think infrastructure is a form of care; and — tucked at the back — a rate card and a way to write to me.</p>
+
+      <p>The through-line, if there is one, is this: your digital presence should <em>match the depth of your practice.</em> Not slick. Not wellness-brand. Not VC-funded. Built with care, by one person, for one other person, and shipped fast enough to feel like respect. If that resonates, read on. If not, the classifieds on page 28 are also excellent.</p>
+    </div>
+    <div class="ed-signature">
+      <div>
+        <div class="title">Editor &amp; builder, Astral Integration</div>
+      </div>
+      <div class="sig">— Jordi Amat</div>
+    </div>
+  </section>
+
+  <!-- FEATURE -->
+  <section class="feature">
+    <div class="feat-head">
+      <div class="kicker">№ 02 · Feature Article · Case Study</div>
+      <h3>How <em>Sacred Counsel</em><br>replaced seven platforms<br>in twelve days.</h3>
+      <div class="deck">A twenty-year ceremony center arrives with a linktree, five revenue streams, and a broken payment flow. What happens when the agency proposal is zero pages long.</div>
+    </div>
+
+    <div class="feat-body">
+      <div class="feat-prose">
+        <p>Sacred Counsel arrived the way most of my clients arrive: through a voice memo. Teresa, the founder, had recorded it at 11:47 on a Sunday night, sitting on a veranda in Valle de Bravo. Twenty years of ceremony. Five revenue streams — a retreat program, a teacher training, a members' circle, a small publishing line, and private sessions — all quietly bleeding out through a patchwork of rented tools.</p>
+
+        <p>Her stack was familiar. A WordPress site from 2017 that loaded at 6.4 seconds on mobile. Bookings on Calendly. Payments through an old Stripe link half the team had forgotten about. A mailing list on Mailchimp's free tier, capped. An Instagram that was essentially the website. And a linktree serving as the "home." What she needed was not better versions of those seven tools. What she needed was <em>one platform</em>.</p>
+
+        <div class="break-quote">“She sent the mess.<br>Twelve days later<br>we shipped.”</div>
+
+        <p>We talked for thirty minutes on the first call. She sent me her workbook. Four days later she received a link. Not a mockup — the real site, with her copy, her photography, the first three retreats already open for booking, and the payment flow live. On day seven the course platform for her Ceremony Keeper training was live. On day nine we imported the mailing list, wired welcome automations in her voice, and opened the members' circle. On day twelve we migrated her domain and sent the announcement email.</p>
+
+        <p>The economics: a fixed fee at the Schools tier ($5,000), a monthly partnership at $750/mo which replaces roughly $430/mo in tool rentals plus the 7% Eventbrite was taking on a hundred tickets a quarter. Within six months the new platform had paid for itself. <em>Within the first year</em>, she opened her first eight-person one-to-one mentorship which could not have existed in the old stack. None of this is unusual for my practice — it is the thing the old architecture was preventing.</p>
+      </div>
+
+      <div class="feat-side">
+        <div class="feat-side-box">
+          <div class="lbl">The build · at a glance</div>
+          <h5>Sacred <em>Counsel.</em></h5>
+          <div class="row"><span class="k">/ Sector</span><span class="v">Retreat · Ceremony</span></div>
+          <div class="row"><span class="k">/ Location</span><span class="v">Valle de Bravo</span></div>
+          <div class="row"><span class="k">/ Tier</span><span class="v"><em>Schools</em></span></div>
+          <div class="row"><span class="k">/ Ship</span><span class="v">12 days</span></div>
+          <div class="row"><span class="k">/ Revenue streams</span><span class="v">5 unified</span></div>
+          <div class="row"><span class="k">/ Old stack</span><span class="v">~$430/mo</span></div>
+          <div class="row"><span class="k">/ New stack</span><span class="v"><em>$750/mo</em></span></div>
+          <div class="tot"><span class="l">ROI month</span><span class="v">6</span></div>
+        </div>
+
+        <div class="feat-side-box" style="background:var(--ink);color:var(--paper);border-color:var(--ink)">
+          <div class="lbl" style="color:var(--gold)">On the record</div>
+          <h5 style="color:var(--paper)">"It finally feels like <em style="color:var(--gold)">my school</em> — not a patchwork."</h5>
+          <div style="font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(246,240,223,0.6);margin-top:12px;font-weight:600">— Sera · Reiki master teacher</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO ESSAY -->
+  <section class="essay">
+    <div class="essay-head">
+      <div class="kicker">№ 03 · Photo Essay</div>
+      <h3>From the <em>studio.</em></h3>
+      <div class="byline">Five plates from a one-person operation on the Pacific coast of Oaxaca</div>
+    </div>
+    <div class="essay-grid">
+      <div class="plate wide p1">
+        <div class="corner"><span>Plate · I</span><span>MZT · 04:17</span></div>
+        <svg viewBox="0 0 240 300" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M20 250 Q60 180 100 200 Q140 220 180 170 L220 190 L220 260 L20 260 Z" fill="currentColor" fill-opacity="0.14"/><path d="M20 260 L220 260"/><circle cx="180" cy="50" r="14" opacity="0.65"/><path d="M30 220 Q120 205 220 220" opacity="0.5"/></svg>
+        <div class="caption"><div class="n">The <em>hammock</em></div><div class="m">Where the weight of decades of agency overhead finally falls through</div></div>
+      </div>
+      <div class="plate p2">
+        <div class="corner"><span>Plate · II</span><span>200 Mbps</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><circle cx="100" cy="100" r="50"/><path d="M100 50 V150 M50 100 H150" opacity="0.5"/><rect x="60" y="160" width="80" height="44" fill="currentColor" fill-opacity="0.15"/><path d="M100 204 L100 240" opacity="0.5"/></svg>
+        <div class="caption"><div class="n">The <em>dish</em></div><div class="m">Satellite · uplink</div></div>
+      </div>
+      <div class="plate tall p3">
+        <div class="corner"><span>Plate · III</span><span>Coffee · 04:30</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><rect x="60" y="100" width="80" height="100" rx="4" fill="currentColor" fill-opacity="0.13"/><path d="M140 120 Q170 120 170 150 Q170 180 140 180"/><path d="M90 80 Q95 90 100 80 M110 75 Q115 85 120 75"/></svg>
+        <div class="caption"><div class="n"><em>Oaxacan</em> coffee</div><div class="m">From the highlands</div></div>
+      </div>
+      <div class="plate p4">
+        <div class="corner"><span>Plate · IV</span><span>v2026.04</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><rect x="40" y="60" width="120" height="80" rx="4" fill="currentColor" fill-opacity="0.14"/><path d="M50 100 L70 85 L90 105 L110 75 L140 100" opacity="0.7"/><circle cx="80" cy="85" r="2" fill="currentColor"/><circle cx="130" cy="100" r="2" fill="currentColor"/><path d="M80 160 H120" opacity="0.5"/><path d="M70 180 H130" opacity="0.4"/></svg>
+        <div class="caption"><div class="n">The <em>terminal</em></div><div class="m">Where it all happens</div></div>
+      </div>
+      <div class="plate p5">
+        <div class="corner"><span>Plate · V</span><span>Ver · 2</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M40 200 L60 100 L90 140 L120 80 L160 130 L180 200 Z" fill="currentColor" fill-opacity="0.14"/><path d="M40 200 L180 200"/><path d="M20 220 L190 220" opacity="0.5"/></svg>
+        <div class="caption"><div class="n">The <em>village</em></div><div class="m">Mazunte · Oax.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTERS -->
+  <section class="letters">
+    <div class="letters-head">
+      <div>
+        <div style="font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:14px">№ 05 · Correspondence</div>
+        <h3>Letters to the<br><em>editor.</em></h3>
+      </div>
+      <div class="desc">A selection of unedited responses from readers, clients, and the sangat. Published with permission. <em>All misspellings retained.</em></div>
+    </div>
+
+    <div class="letters-grid">
+      <div class="letter">
+        <div class="who"><span>Manoela, yoga &amp; retreats</span><span class="city">San Miguel · MX</span></div>
+        <p>Jordi built our entire platform in <em>days.</em> What would have taken months with an agency, he delivered in a weekend. And it was <em>better</em> than anything we'd seen before.</p>
+      </div>
+      <div class="letter">
+        <div class="who"><span>Hector, healer</span><span class="city">Madrid</span></div>
+        <p>I sent him a voice memo and a few screenshots. <em>48 hours later</em> I had a full website, a booking system, and payment processing. I thought this was impossible.</p>
+      </div>
+      <div class="letter">
+        <div class="who"><span>Sera, reiki master</span><span class="city">Valle de Bravo</span></div>
+        <p>It finally feels like <em>my school</em> — not a patchwork of tools duct-taped together. My students notice the difference. I notice the difference.</p>
+      </div>
+      <div class="letter">
+        <div class="who"><span>Uria, vocalist</span><span class="city">Tel Aviv</span></div>
+        <p>Eight ticketing platforms · absolute chaos. Jordi put it all in one place <em>without losing the texture</em> of how I actually work. I don't know anyone else who could have done that.</p>
+      </div>
+      <div class="letter">
+        <div class="who"><span>David, coach</span><span class="city">Berlin</span></div>
+        <p>He doesn't just build tech. <em>He understands the work.</em></p>
+      </div>
+      <div class="letter">
+        <div class="who"><span>Simrat, Companion member</span><span class="city">London</span></div>
+        <p>My practice doubled in the first six months post-launch. Not because of the platform. Because I <em>stopped spending weekends fighting Kajabi.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK AD -->
+  <section class="back-ad">
+    <div class="kicker">№ 07 · Back page · Advertisement</div>
+    <h3>Begin a<br><em>conversation.</em></h3>
+    <div class="sub">Send the mess. Voice memo, messy doc, linktree — polish not required. I read every message personally and respond within 24 hours, usually the same day.</div>
+
+    <div class="back-cta">
+      <div class="col">
+        <div class="k">/ Email</div>
+        <div class="v">jordi@astral<em>integration</em>.studio</div>
+      </div>
+      <div class="col">
+        <div class="k">/ Discovery call</div>
+        <div class="v">30 min · <em>no pitch</em></div>
+      </div>
+      <a class="cta-btn">Send the mess →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>© Astral Quarterly · Issue 04 · Spring 2026 · Jordi Amat · Mazunte · Oaxaca · <span class="red">All rights held lightly</span></div>
+    <div>Next issue · Summer 2026 · subscribe</div>
+  </footer>
+</div>
+</body>
+</html>

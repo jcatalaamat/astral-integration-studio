@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mariana Harpreet — Psychotherapist, Family Constellations facilitator and Kundalini Yoga teacher. Founder of Sadhana Works. Guide of the Awakened Woman Movement. Based in Palma de Mallorca." />
+<title>Mariana Harpreet · Psychotherapist, Kundalini Teacher · Palma de Mallorca</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   MARIANA HARPREET — "Mediterranean Sacred"
+   A website designed around the central thread (sushumna) — the axis of awakening.
+   ========================================================================== */
+
+/* -------- Design tokens -------- */
+:root {
+  /* Palette — Mediterranean Dusk */
+  --parchment:    #f2ebdd;
+  --parchment-2:  #ece2cf;
+  --sand:         #dcc9a9;
+  --clay:         #b4693f;
+  --amber:        #8a5a28;
+  --ochre:        #9c7331;
+  --ink:          #1e1712;
+  --ink-soft:     #2b231b;
+  --rust:         #6d2819;
+  --mist:         #6b7a5b;
+  --line:         rgba(30, 23, 18, 0.14);
+  --line-strong:  rgba(30, 23, 18, 0.28);
+  --gold-line:    #b4843a;
+
+  /* Typography */
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans:  'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* Spacing system */
+  --pad: clamp(20px, 5vw, 64px);
+  --pad-lg: clamp(48px, 10vw, 160px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pad-lg: 56px;
+  }
+}
+
+/* -------- Reset & base -------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; max-width: 100%; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--parchment);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection { background: var(--ink); color: var(--parchment); }
+
+/* Grain overlay — atmosphere */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.28'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   TYPOGRAPHIC SYSTEM
+   ========================================================================== */
+.t-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--amber);
+}
+.t-h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(44px, 7.4vw, 116px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.t-h1 em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--clay);
+}
+.t-h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(36px, 5.6vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.t-h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.t-lead {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+}
+.t-body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.t-small {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   THE CENTRAL LINE — Sushumna, the axis of awakening
+   ========================================================================== */
+.axis {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--gold-line) 8%,
+    var(--gold-line) 92%,
+    transparent 100%
+  );
+  opacity: 0.28;
+  z-index: 2;
+  pointer-events: none;
+}
+.axis-pulse {
+  position: fixed;
+  left: 50%;
+  top: 50vh;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-line);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(180, 132, 58, 0.6);
+  z-index: 3;
+  pointer-events: none;
+  transition: top 0.4s var(--ease);
+}
+@media (max-width: 800px) {
+  .axis, .axis-pulse { display: none; }
+}
+
+/* ==========================================================================
+   TOP BAR & NAV
+   ========================================================================== */
+.announce {
+  border-bottom: 1px solid var(--line);
+  background: var(--parchment);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+}
+.announce-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--pad);
+  gap: 16px;
+  max-width: 100%;
+}
+.announce-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  min-width: 0;
+  mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 24px), transparent 100%);
+}
+.announce-scroll span { display: inline-flex; align-items: center; gap: 10px; }
+.announce-moon {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  color: var(--amber);
+  font-style: italic;
+  font-family: var(--serif);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 12px;
+  padding-right: 16px;
+  border-right: 1px solid var(--line);
+}
+.announce-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--clay); display: inline-block;
+}
+.announce-lang {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 2px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.announce-lang button {
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+.announce-lang button.active {
+  background: var(--ink);
+  color: var(--parchment);
+  opacity: 1;
+}
+
+nav.main {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(242, 235, 221, 0.88);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 20px var(--pad);
+  gap: 24px;
+}
+.nav-left, .nav-right {
+  display: flex;
+  gap: 28px;
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.nav-right { justify-content: flex-end; }
+.nav-left a, .nav-right a {
+  position: relative;
+  transition: color 0.3s var(--ease);
+  padding-bottom: 2px;
+}
+.nav-left a:hover, .nav-right a:hover {
+  color: var(--clay);
+}
+.nav-left a::after, .nav-right a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--clay);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease);
+}
+.nav-left a:hover::after, .nav-right a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.wordmark-monogram {
+  width: 34px; height: 34px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+}
+.wordmark-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.nav-mobile-toggle { display: none; }
+
+/* Mobile menu — hidden by default, shown only on small screens */
+.mobile-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(420px, 90vw);
+  height: 100vh;
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 80px var(--pad) var(--pad);
+  z-index: 40;
+  transform: translateX(100%);
+  transition: transform 0.6s var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  visibility: hidden;
+}
+.mobile-menu.open { transform: translateX(0); visibility: visible; }
+.mobile-menu a {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(242, 235, 221, 0.12);
+}
+.mobile-menu a em { font-style: italic; color: var(--clay); }
+.mobile-close {
+  position: absolute; top: 24px; right: var(--pad);
+  color: var(--parchment); font-size: 13px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .nav-inner { grid-template-columns: auto 1fr auto; padding: 16px var(--pad); }
+  .wordmark { justify-content: flex-start; }
+  .nav-left { display: none; }
+  .nav-right { display: none; }
+  .nav-mobile-toggle {
+    display: flex; flex-direction: column; gap: 5px;
+    width: 28px; cursor: pointer;
+    padding: 6px 0;
+  }
+  .nav-mobile-toggle span {
+    display: block; height: 1px; width: 100%;
+    background: var(--ink);
+    transition: all 0.3s var(--ease);
+  }
+  .mobile-menu { visibility: visible; }
+  .mobile-menu:not(.open) { visibility: hidden; }
+}
+
+/* ---- Small-screen announcement + wordmark tune-ups ---- */
+@media (max-width: 640px) {
+  .announce-inner { padding: 8px 16px; gap: 12px; font-size: 10.5px; }
+  .announce-scroll { gap: 16px; }
+  .announce-moon {
+    padding-right: 12px;
+    border-right: 1px solid var(--line);
+    font-size: 11px;
+  }
+  .announce-moon #moonText {
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .announce-lang { padding: 1px; }
+  .announce-lang button { padding: 3px 8px; font-size: 9.5px; }
+
+  /* Smaller wordmark on tiny screens */
+  .wordmark-text { font-size: 13px; letter-spacing: 0.1em; }
+  .wordmark-monogram { width: 30px; height: 30px; font-size: 12px; }
+
+  /* Ensure pad is comfortable */
+  :root { --pad: 18px; }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 56px) var(--pad) clamp(48px, 8vh, 96px);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr minmax(280px, 440px);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: stretch;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 180px);
+}
+.hero-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.hero-meta-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line-strong);
+  max-width: 80px;
+}
+.hero-headline {
+  margin-bottom: 32px;
+  animation: fadeUp 1.4s var(--ease) both;
+}
+.hero-headline span {
+  display: block;
+  overflow: hidden;
+}
+.hero-headline span > span {
+  display: block;
+  animation: reveal 1.2s var(--ease) both;
+}
+.hero-headline span:nth-child(1) > span { animation-delay: 0.1s; }
+.hero-headline span:nth-child(2) > span { animation-delay: 0.25s; }
+.hero-headline span:nth-child(3) > span { animation-delay: 0.4s; }
+.hero-headline span:nth-child(4) > span { animation-delay: 0.55s; }
+
+.hero-sub {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 580px;
+  margin-bottom: 36px;
+  animation: fadeUp 1.4s var(--ease) 0.7s both;
+}
+.hero-sub::before {
+  content: "";
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--ink);
+  margin-top: 14px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 1.4s var(--ease) 0.9s both;
+}
+
+.hero-right {
+  position: relative;
+  max-height: calc(100vh - 180px);
+  align-self: stretch;
+  background: var(--ink);
+  overflow: hidden;
+  animation: fadeIn 2s var(--ease) 0.3s both;
+}
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-portrait {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(30,23,18,0.1) 0%, rgba(30,23,18,0.5) 100%),
+    url("https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=900&q=80") center/cover;
+}
+.hero-portrait-mask {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(30,23,18,0.3) 100%);
+}
+.hero-portrait-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  color: var(--parchment);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.hero-portrait-label .t-small {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.hero-portrait-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 300;
+  font-variation-settings: "WONK" 1;
+  line-height: 1;
+}
+.hero-right-meta {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--parchment);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.hero-right-index {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: var(--parchment);
+  font-family: var(--serif);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-right { aspect-ratio: 4 / 5; order: -1; max-width: 440px; }
+  .hero-sub { margin-bottom: 40px; }
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--parchment);
+}
+.btn-primary:hover {
+  background: var(--clay);
+  transform: translateY(-1px);
+}
+.btn-primary .btn-arrow {
+  transition: transform 0.4s var(--ease);
+}
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+.btn-secondary {
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn-secondary:hover {
+  background: var(--ink);
+  color: var(--parchment);
+}
+.btn-ghost {
+  color: var(--ink);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+}
+.btn-ghost:hover { color: var(--clay); border-color: var(--clay); }
+.btn-light {
+  background: var(--parchment);
+  color: var(--ink);
+}
+.btn-light:hover { background: var(--sand); }
+
+.btn-arrow {
+  width: 14px; height: 10px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   SECTION: Intention counter
+   ========================================================================== */
+.intention {
+  padding: 40px var(--pad) 40px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--parchment);
+  position: relative;
+}
+.intention-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(24px, 5vw, 80px);
+  align-items: center;
+}
+.intention-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--amber);
+}
+.intention-count {
+  font-family: var(--serif);
+  font-size: clamp(40px, 7vw, 84px);
+  font-weight: 200;
+  font-variation-settings: "opsz" 144;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  text-align: center;
+  white-space: nowrap;
+}
+.intention-count em {
+  font-style: italic;
+  color: var(--clay);
+  font-weight: 300;
+}
+.intention-tick {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.intention-tick .t-small {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.intention-tick .t-small strong {
+  color: var(--clay);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 800px) {
+  .intention-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 12px;
+  }
+  .intention-tick { align-items: center; }
+  .intention-count {
+    font-size: clamp(40px, 12vw, 64px);
+    white-space: normal;
+    line-height: 1.05;
+  }
+  .intention-count em { display: block; margin-bottom: 4px; }
+  .intention-label { font-size: 15px; }
+}
+
+/* ==========================================================================
+   SECTION: Introduction
+   ========================================================================== */
+.intro {
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+}
+.intro-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
+}
+.intro-visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--sand);
+}
+.intro-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.82) contrast(1.05);
+}
+.intro-visual::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(30,23,18,0.25));
+  pointer-events: none;
+}
+.intro-visual-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: var(--parchment);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+
+.intro-content {
+  padding-top: 32px;
+}
+.intro-eyebrow {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.intro-eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--amber);
+}
+.intro-heading {
+  margin-bottom: 40px;
+}
+.intro-heading em {
+  font-style: italic;
+  font-variation-settings: "WONK" 1;
+  color: var(--clay);
+}
+.intro-text {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+.intro-text p + p { margin-top: 18px; }
+.intro-signature {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.intro-signature-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+  line-height: 1;
+}
+.intro-signature-meta .t-small {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.intro-signature-meta strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .intro-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ==========================================================================
+   SECTION: Three Pathways (Services)
+   ========================================================================== */
+.pathways {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+.pathways::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(180, 132, 58, 0.12), transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(180, 105, 63, 0.10), transparent 50%);
+  pointer-events: none;
+}
+.pathways-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  position: relative;
+}
+.pathways-header .t-eyebrow {
+  color: var(--sand);
+}
+.pathways-header .t-h2 {
+  font-weight: 250;
+}
+.pathways-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.pathways-intro {
+  max-width: 440px;
+  color: rgba(242, 235, 221, 0.75);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.pathways-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(242, 235, 221, 0.12);
+  border: 1px solid rgba(242, 235, 221, 0.12);
+  position: relative;
+}
+.pathway {
+  background: var(--ink);
+  padding: 48px 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 560px;
+  transition: background 0.6s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.pathway:hover { background: var(--ink-soft); }
+.pathway.featured {
+  background: linear-gradient(180deg, #2b221a 0%, var(--ink) 100%);
+}
+.pathway-numeral {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clay);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pathway-numeral::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(242, 235, 221, 0.18);
+}
+.pathway-icon {
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  color: var(--clay);
+}
+.pathway-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--parchment);
+}
+.pathway-title em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.pathway-desc {
+  color: rgba(242, 235, 221, 0.72);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.pathway-meta {
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(242, 235, 221, 0.14);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.pathway-meta-left .t-small {
+  display: block;
+  color: rgba(242, 235, 221, 0.5);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.pathway-meta-left strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--parchment);
+  font-style: italic;
+}
+.pathway-cta {
+  color: var(--clay);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.4s var(--ease);
+}
+.pathway-cta:hover { gap: 14px; }
+.pathway-cta svg { width: 18px; }
+
+.pathway-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--clay);
+  padding: 4px 10px;
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  background: var(--ink);
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .pathways-header { grid-template-columns: 1fr; gap: 24px; }
+  .pathways-grid { grid-template-columns: 1fr; }
+  .pathway { min-height: auto; padding: 44px 28px 40px; }
+  .pathway.featured { padding-top: 60px; }
+  .pathway-tag { top: 18px; right: 18px; font-size: 10px; }
+  .pathway-title { font-size: 30px; }
+  .pathway-meta {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   SECTION: The Movement (Awakened Woman)
+   ========================================================================== */
+.movement {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--parchment-2);
+  position: relative;
+  overflow: hidden;
+}
+.movement-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+.movement-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+  margin-bottom: 80px;
+}
+.movement-manifesto {
+  font-family: var(--serif);
+  font-weight: 250;
+  font-size: clamp(28px, 4.2vw, 54px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.movement-manifesto em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.movement-manifesto .line-a { display: block; }
+.movement-manifesto .line-b {
+  display: block;
+  padding-left: clamp(20px, 8vw, 120px);
+}
+.movement-manifesto .line-c { display: block; }
+.movement-manifesto .line-d {
+  display: block;
+  padding-left: clamp(20px, 14vw, 200px);
+}
+.movement-right p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.movement-right p + p { margin-top: 22px; }
+
+.movement-included {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.movement-included-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+  position: sticky;
+  top: 100px;
+}
+.movement-included-label em {
+  display: block;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 8px;
+  font-weight: 500;
+}
+.included-list {
+  display: flex;
+  flex-direction: column;
+}
+.included-item {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 20px;
+  align-items: baseline;
+}
+.included-item:last-child { border-bottom: 1px solid var(--line); }
+.included-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+}
+.included-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.included-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.included-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.included-price {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--clay);
+  letter-spacing: 0.05em;
+}
+
+.movement-cta {
+  margin-top: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.movement-cta-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .movement-top { grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+  .movement-included { grid-template-columns: 1fr; gap: 24px; padding-top: 40px; }
+  .movement-included-label { position: static; font-size: 22px; }
+  .included-item {
+    grid-template-columns: 32px 1fr;
+    gap: 10px 12px;
+    padding: 22px 0;
+  }
+  .included-title { font-size: 19px; }
+  .included-desc { font-size: 14px; }
+  .included-price {
+    grid-column: 2;
+    margin-top: 4px;
+  }
+  .movement-manifesto .line-a,
+  .movement-manifesto .line-b,
+  .movement-manifesto .line-c,
+  .movement-manifesto .line-d {
+    padding-left: 0;
+  }
+  .movement-manifesto .line-b { padding-left: 24px; }
+  .movement-manifesto .line-d { padding-left: 48px; }
+  .movement-cta { margin-top: 48px; }
+  .movement-right p { font-size: 17px; }
+}
+
+/* ---- Buttons & CTAs on mobile ---- */
+@media (max-width: 540px) {
+  .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hero-ctas .btn { justify-content: center; width: 100%; }
+  .btn { padding: 16px 24px; font-size: 11.5px; }
+}
+
+/* ==========================================================================
+   SECTION: Testimonials
+   ========================================================================== */
+.testimonials {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--parchment);
+  overflow: hidden;
+}
+.testimonials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.testimonials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-strong);
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.testimonials-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.testimonials-header-left .t-h3 {
+  font-weight: 300;
+  max-width: 420px;
+}
+.testimonials-header-left .t-h3 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.testimonial-nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.testimonial-nav .t-small { margin: 0 16px; min-width: 48px; }
+.testimonial-nav button {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: grid; place-items: center;
+  transition: all 0.3s var(--ease);
+}
+.testimonial-nav button:hover {
+  background: var(--ink);
+  color: var(--parchment);
+  border-color: var(--ink);
+}
+.testimonial-nav button svg { width: 16px; }
+
+.testimonial-stage {
+  position: relative;
+  display: grid;
+  grid-template-areas: "stack";
+}
+.testimonial {
+  grid-area: stack;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-self: start;
+}
+.testimonial.active { opacity: 1; pointer-events: auto; position: relative; z-index: 2; }
+.testimonial:not(.active) { visibility: hidden; }
+.testimonial-quote {
+  font-family: var(--serif);
+  font-weight: 280;
+  font-style: italic;
+  font-size: clamp(22px, 3.2vw, 40px);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  max-width: 980px;
+}
+.testimonial-quote::before {
+  content: "“";
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 1.2em;
+  line-height: 0;
+  color: var(--clay);
+  vertical-align: -0.08em;
+  margin-right: 8px;
+  font-style: normal;
+}
+.testimonial-quote::after {
+  content: "”";
+  font-family: var(--serif);
+  color: var(--clay);
+  font-style: normal;
+  line-height: 0;
+  vertical-align: -0.08em;
+  margin-left: 4px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  max-width: 420px;
+}
+.testimonial-avatar {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--sand);
+  display: grid; place-items: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.testimonial-author-meta strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 18px;
+  display: block;
+  color: var(--ink);
+}
+.testimonial-author-meta .t-small {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   SECTION: Voices / Collaborations marquee
+   ========================================================================== */
+.voices {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 80px 0 80px;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid rgba(242, 235, 221, 0.1);
+}
+.voices-label {
+  text-align: center;
+  margin-bottom: 36px;
+  color: rgba(242, 235, 221, 0.55);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.voices-marquee {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+  animation: marquee 48s linear infinite;
+  will-change: transform;
+}
+.voice-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 60px;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(22px, 2.4vw, 36px);
+  letter-spacing: -0.01em;
+  color: rgba(242, 235, 221, 0.88);
+}
+.voice-item em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+  font-weight: 350;
+}
+.voice-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clay);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   SECTION: About / Biography
+   ========================================================================== */
+.about {
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+}
+.about-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.about-header {
+  margin-bottom: 80px;
+  max-width: 880px;
+}
+.about-header .t-h2 {
+  font-weight: 250;
+  margin-top: 20px;
+}
+.about-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+}
+.about-visual {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--sand);
+}
+.about-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.85);
+}
+.about-visual-pull {
+  position: absolute;
+  bottom: 24px;
+  left: -30px;
+  right: -30px;
+  padding: 18px 28px;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 20px 60px -20px rgba(30,23,18,0.25);
+}
+.about-visual-pull strong {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--clay);
+}
+
+.about-text {
+  padding-top: 20px;
+  max-width: 620px;
+}
+.about-text p { margin-bottom: 20px; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+.about-text p.lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.credentials {
+  margin-top: 72px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+.cred-group-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.cred-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 32px;
+}
+.cred-list li {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: 17px;
+  line-height: 1.4;
+  padding-left: 16px;
+  position: relative;
+  color: var(--ink);
+}
+.cred-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px; height: 1px;
+  background: var(--clay);
+}
+.cred-list li em {
+  display: block;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.collabs {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.collab-title {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px 32px;
+}
+.collab-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--ink);
+  padding: 6px 0;
+}
+
+@media (max-width: 900px) {
+  .about-body { grid-template-columns: 1fr; gap: 40px; }
+  .credentials { grid-template-columns: 1fr; gap: 32px; }
+  .cred-list { grid-template-columns: 1fr; }
+  .about-visual-pull {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+  .about-header .t-h2 { font-size: clamp(30px, 7vw, 44px); }
+  .about-text p.lead { font-size: 19px; }
+}
+
+/* ---- Testimonials header stack on mobile ---- */
+@media (max-width: 640px) {
+  .testimonials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .testimonial-quote { font-size: clamp(18px, 4.8vw, 22px); line-height: 1.4; }
+  .testimonial-nav button { width: 40px; height: 40px; }
+  .testimonial-nav .t-small { margin: 0 12px; }
+}
+
+/* ---- Voices marquee smaller on mobile ---- */
+@media (max-width: 640px) {
+  .voices { padding: 60px 0; }
+  .voice-item { font-size: 22px; gap: 40px; }
+  .voices-marquee { gap: 40px; }
+}
+
+/* ---- Letter / newsletter form on mobile ---- */
+@media (max-width: 540px) {
+  .letter-form {
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 24px;
+    gap: 12px;
+  }
+  .letter-form input {
+    text-align: center;
+    padding: 4px 0;
+  }
+  .letter-form button { width: 100%; padding: 14px; }
+  .letter-heading { font-size: clamp(28px, 8vw, 42px); }
+  .letter-sub { font-size: 16px; }
+}
+
+/* ---- Studio cards mobile ---- */
+@media (max-width: 640px) {
+  .studio-card { padding: 28px 22px 32px; min-height: auto; }
+  .studio-card-title { font-size: 24px; }
+  .studio-card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* ---- Intro section ---- */
+@media (max-width: 900px) {
+  .intro-inner { grid-template-columns: 1fr; gap: 40px; }
+  .intro-visual { max-width: 460px; margin: 0 auto; width: 100%; }
+  .intro-heading { font-size: clamp(30px, 7vw, 44px); }
+  .intro-content { padding-top: 0; }
+}
+
+/* ==========================================================================
+   SECTION: Events / Studio
+   ========================================================================== */
+.studio {
+  background: var(--parchment-2);
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+.studio-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.studio-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: end;
+  margin-bottom: 64px;
+}
+.studio-heading em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.studio-intro {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 420px;
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+.studio-card {
+  background: var(--parchment-2);
+  padding: 40px 36px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: background 0.4s var(--ease);
+}
+.studio-card:hover { background: var(--parchment); }
+.studio-card-date {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.studio-card-date strong {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clay);
+  padding: 3px 8px;
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+}
+.studio-card-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.studio-card-title em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.studio-card-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.studio-card-meta {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.studio-card-meta .cta-link {
+  color: var(--clay);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .studio-top { grid-template-columns: 1fr; gap: 24px; }
+  .studio-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   SECTION: Newsletter
+   ========================================================================== */
+.letter {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--ink);
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(180, 132, 58, 0.10), transparent 60%);
+  pointer-events: none;
+}
+.letter-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.letter-seal {
+  width: 64px; height: 64px;
+  border: 1px solid rgba(242, 235, 221, 0.3);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 auto 32px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--clay);
+  font-weight: 300;
+}
+.letter-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 20px;
+}
+.letter-heading {
+  font-family: var(--serif);
+  font-weight: 250;
+  font-size: clamp(32px, 5.4vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--parchment);
+}
+.letter-heading em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.letter-sub {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(242, 235, 221, 0.72);
+  margin-bottom: 40px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.letter-form {
+  display: flex;
+  gap: 8px;
+  max-width: 520px;
+  margin: 0 auto;
+  border: 1px solid rgba(242, 235, 221, 0.25);
+  border-radius: 999px;
+  padding: 6px 6px 6px 24px;
+  transition: border 0.3s var(--ease);
+}
+.letter-form:focus-within { border-color: var(--clay); }
+.letter-form input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--parchment);
+  font-family: var(--sans);
+  font-size: 14px;
+  outline: none;
+  letter-spacing: 0.02em;
+}
+.letter-form input::placeholder { color: rgba(242, 235, 221, 0.5); }
+.letter-form button {
+  padding: 14px 24px;
+  background: var(--parchment);
+  color: var(--ink);
+  border-radius: 999px;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background 0.3s var(--ease);
+  white-space: nowrap;
+}
+.letter-form button:hover { background: var(--clay); color: var(--parchment); }
+.letter-terms {
+  margin-top: 24px;
+  font-size: 12px;
+  color: rgba(242, 235, 221, 0.5);
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  background: var(--parchment);
+  padding: 80px var(--pad) 32px;
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 60px);
+  margin-bottom: 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.footer-brand-name em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.footer-brand-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  max-width: 380px;
+}
+.footer-col h4 {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.footer-col a {
+  transition: color 0.3s var(--ease);
+}
+.footer-col a:hover { color: var(--clay); }
+
+.footer-address {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.footer-bottom .mid {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.footer-bottom .mid strong {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+  font-size: 14px;
+}
+.footer-bottom .right {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
+    margin-bottom: 40px;
+    padding-bottom: 36px;
+  }
+  .footer-top > div:first-child { grid-column: 1 / -1; }
+  .footer-brand-name { font-size: 24px; }
+  .footer-brand-desc { font-size: 14px; max-width: 100%; }
+  .footer-address { font-size: 14px; }
+  .footer-bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 14px;
+  }
+  .footer-bottom .right,
+  .footer-bottom .mid {
+    text-align: center;
+    justify-content: center;
+  }
+  .footer-bottom .mid { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
+  footer { padding: 56px var(--pad) 28px; }
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reveal {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll reveals */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+.reveal-section.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== The Axis — Sushumna line through the page ===== -->
+<div class="axis" aria-hidden="true"></div>
+<div class="axis-pulse" aria-hidden="true"></div>
+
+<!-- ===== Announcement bar ===== -->
+<div class="announce">
+  <div class="announce-inner">
+    <div class="announce-scroll">
+      <span class="announce-moon" title="Current lunar phase">
+        <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
+          <defs>
+            <clipPath id="moonClip"><circle cx="10" cy="10" r="8"/></clipPath>
+          </defs>
+          <circle cx="10" cy="10" r="8" fill="none" stroke="#8a5a28" stroke-width="0.6"/>
+          <rect id="moonShade" x="10" y="2" width="8" height="16" fill="#1e1712" clip-path="url(#moonClip)"/>
+        </svg>
+        <span id="moonText">Waxing Gibbous — 86%</span>
+      </span>
+      <span><span class="announce-dot"></span> <span data-en="Next New Moon Meditation · Tuesday 20:00 CET · Free" data-es="Próxima Meditación de Luna Nueva · Martes 20:00 CET · Gratis">Next New Moon Meditation · Tuesday 20:00 CET · Free</span></span>
+      <span><span class="announce-dot" style="background:var(--amber)"></span> <span data-en="Radiant Power of Women Retreat · Mallorca · May 2026" data-es="Retiro Radiant Power of Women · Mallorca · Mayo 2026">Radiant Power of Women Retreat · Mallorca · May 2026</span></span>
+    </div>
+    <div class="announce-lang" role="group" aria-label="Language">
+      <button class="active" data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Navigation ===== -->
+<nav class="main">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="#movement">The Movement</a>
+      <a href="#pathways">The Work</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="#" class="wordmark" aria-label="Mariana Harpreet · Home">
+      <span class="wordmark-monogram">Mh</span>
+      <span class="wordmark-text">Mariana Harpreet</span>
+    </a>
+    <div class="nav-right">
+      <a href="#studio">Studio · Palma</a>
+      <a href="#letter">Letters</a>
+      <a href="#letter" style="color: var(--clay);">Join Free →</a>
+    </div>
+    <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== Mobile menu ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">Close</button>
+  <a href="#movement">The <em>Movement</em></a>
+  <a href="#pathways">The <em>Work</em></a>
+  <a href="#testimonials">Voices</a>
+  <a href="#about">About <em>Mariana</em></a>
+  <a href="#studio">Studio &amp; Events</a>
+  <a href="#letter">Letters</a>
+  <a href="#letter" style="color: var(--clay); margin-top: 24px;">Join Free →</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-meta">
+        <span class="hero-meta-line"></span>
+        <span class="t-eyebrow" data-en="Est. Palma de Mallorca · For one million awakened women" data-es="Desde Palma de Mallorca · Por un millón de mujeres despiertas">Est. Palma de Mallorca · For one million awakened women</span>
+      </div>
+
+      <h1 class="t-h1 hero-headline">
+        <span><span data-en="To awaken" data-es="Para despertar">To awaken</span></span>
+        <span><span data-en="a nation, you must" data-es="una nación, primero hay">a nation, you must</span></span>
+        <span><span data-en="first &lt;em&gt;awaken&lt;/em&gt;" data-es="que &lt;em&gt;despertar&lt;/em&gt;">first <em>awaken</em></span></span>
+        <span><span data-en="its women." data-es="a sus mujeres.">its women.</span></span>
+      </h1>
+
+      <div class="hero-sub t-lead" data-en="Psychotherapist. Family Constellations facilitator. Kundalini Yoga teacher. Mother. I accompany women returning to the enthusiasm of their own life — through the body, the heart, and the lineage." data-es="Psicoterapeuta. Facilitadora de Constelaciones Familiares. Maestra de Kundalini Yoga. Madre. Acompaño a mujeres que regresan al entusiasmo de su propia vida — a través del cuerpo, el corazón y el linaje.">
+        Psychotherapist. Family Constellations facilitator. Kundalini Yoga teacher. Mother. I accompany women returning to the enthusiasm of their own life — through the body, the heart, and the lineage.
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#movement" class="btn btn-primary">
+          <span data-en="Join the Movement — Free" data-es="Únete al Movimiento — Gratis">Join the Movement — Free</span>
+          <svg class="btn-arrow" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#pathways" class="btn btn-secondary" data-en="Explore the Three Pathways" data-es="Descubre los Tres Caminos">
+          Explore the Three Pathways
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- SVG composition shows behind photo, visible if image fails -->
+      <svg class="hero-backdrop" viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="heroGlow" cx="50%" cy="38%" r="55%">
+            <stop offset="0%" stop-color="#b4843a" stop-opacity="0.55"/>
+            <stop offset="60%" stop-color="#6d2819" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#1e1712" stop-opacity="1"/>
+          </radialGradient>
+          <linearGradient id="heroSweep" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2b231b"/>
+            <stop offset="100%" stop-color="#1e1712"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="560" fill="url(#heroSweep)"/>
+        <circle cx="200" cy="210" r="220" fill="url(#heroGlow)"/>
+        <!-- Concentric ceremonial circles -->
+        <g stroke="#b4843a" stroke-width="0.6" fill="none" opacity="0.32">
+          <circle cx="200" cy="210" r="70"/>
+          <circle cx="200" cy="210" r="110"/>
+          <circle cx="200" cy="210" r="155"/>
+        </g>
+        <!-- Solar rays -->
+        <g stroke="#b4843a" stroke-width="0.5" opacity="0.22">
+          <line x1="200" y1="40" x2="200" y2="20"/>
+          <line x1="200" y1="380" x2="200" y2="400"/>
+          <line x1="30" y1="210" x2="10" y2="210"/>
+          <line x1="370" y1="210" x2="390" y2="210"/>
+          <line x1="82" y1="92" x2="68" y2="78"/>
+          <line x1="318" y1="92" x2="332" y2="78"/>
+          <line x1="82" y1="328" x2="68" y2="342"/>
+          <line x1="318" y1="328" x2="332" y2="342"/>
+        </g>
+        <!-- Central bindu -->
+        <circle cx="200" cy="210" r="3" fill="#c6663f"/>
+      </svg>
+      <span class="hero-right-index">fig. 01 — presence</span>
+      <span class="hero-right-meta">Palma de Mallorca — est. 2018</span>
+      <div class="hero-portrait"></div>
+      <div class="hero-portrait-mask"></div>
+      <div class="hero-portrait-label">
+        <div class="t-small">Mariana Harpreet<br/>Psychotherapist</div>
+        <div class="hero-portrait-sign">Mh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Intention counter strip ===== -->
+<section class="intention">
+  <div class="intention-inner">
+    <div class="intention-label">The Intention —</div>
+    <div class="intention-count"><em>1,000,000</em> Awakened Women</div>
+    <div class="intention-tick">
+      <span class="t-small"><strong id="counter">14,328</strong> already breathing with us</span>
+      <span class="t-small">Updated weekly</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Introduction ===== -->
+<section class="intro reveal-section">
+  <div class="intro-inner">
+    <div class="intro-visual">
+      <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=80" alt="Hands in meditative mudra" onerror="this.style.display='none'"/>
+      <div class="intro-visual-caption">Stillness as method, breath as return.</div>
+    </div>
+
+    <div class="intro-content">
+      <div class="intro-eyebrow t-eyebrow">A living practice</div>
+
+      <h2 class="t-h2 intro-heading">
+        The emotional, the physical and the spiritual — integrated with <em>practical clarity.</em>
+      </h2>
+
+      <div class="intro-text t-body">
+        <p>
+          For over two decades I have walked the meeting place of psychology, body and lineage —
+          Gestalt and Systemic Psychotherapy, a doctorate in the language of identity, Family Constellations,
+          Craniosacral work, and the fire of Kundalini Yoga.
+        </p>
+        <p>
+          What I offer is not a menu of techniques but a single, coherent method — one that holds the body
+          you arrived in, the story you inherited, and the woman waiting on the other side of it.
+        </p>
+      </div>
+
+      <div class="intro-signature">
+        <div class="intro-signature-mark">Mh</div>
+        <div class="intro-signature-meta">
+          <span class="t-small"><strong>Mariana Harpreet</strong></span>
+          <span class="t-small">Founder, Sadhana Works · Chopra Foundation Ambassador, Spain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== The Three Pathways ===== -->
+<section class="pathways reveal-section" id="pathways">
+  <div class="pathways-header">
+    <div>
+      <div class="t-eyebrow" style="margin-bottom:16px;">§ Three Pathways</div>
+      <h2 class="t-h2">Where would you like to <em>begin?</em></h2>
+    </div>
+    <p class="pathways-intro">
+      Three doors into the same room. Start where your body is today — expand as you are ready.
+    </p>
+  </div>
+
+  <div class="pathways-grid">
+
+    <div class="pathway">
+      <div class="pathway-numeral">
+        <span>I · Practice</span>
+      </div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <circle cx="26" cy="26" r="18" stroke="currentColor" stroke-width="1"/>
+        <circle cx="26" cy="26" r="10" stroke="currentColor" stroke-width="1"/>
+        <circle cx="26" cy="26" r="2" fill="currentColor"/>
+        <path d="M26 4 L26 14 M26 38 L26 48 M4 26 L14 26 M38 26 L48 26" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <h3 class="pathway-title">Kundalini <em>Yoga</em></h3>
+      <p class="pathway-desc">
+        The fastest path I know to restore clarity in the body and nervous system.
+        Breath, movement, mantra and silence — for beginners and teachers alike.
+      </p>
+      <div class="pathway-meta">
+        <div class="pathway-meta-left">
+          <span class="t-small">Group · Online &amp; in Palma</span>
+          <strong>From €22 / class</strong>
+        </div>
+        <a href="#" class="pathway-cta">
+          Begin
+          <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="pathway featured">
+      <span class="pathway-tag">— most chosen —</span>
+      <div class="pathway-numeral">
+        <span>II · Accompaniment</span>
+      </div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <path d="M26 6 C16 12, 12 22, 26 46 C40 22, 36 12, 26 6 Z" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="26" cy="26" r="1.8" fill="currentColor"/>
+        <path d="M14 28 Q26 20, 38 28" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+      </svg>
+      <h3 class="pathway-title">The Awakening <em>Membership</em></h3>
+      <p class="pathway-desc">
+        Two weekly meetings — Kundalini practice, guided meditation, and a women's circle.
+        A held container for the real work of transformation, month after month.
+      </p>
+      <div class="pathway-meta">
+        <div class="pathway-meta-left">
+          <span class="t-small">Group · Monthly · Worldwide</span>
+          <strong>€88 / month</strong>
+        </div>
+        <a href="#" class="pathway-cta">
+          Join
+          <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="pathway">
+      <div class="pathway-numeral">
+        <span>III · One-to-one</span>
+      </div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <circle cx="18" cy="26" r="10" stroke="currentColor" stroke-width="1"/>
+        <circle cx="34" cy="26" r="10" stroke="currentColor" stroke-width="1"/>
+        <line x1="18" y1="26" x2="34" y2="26" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+      </svg>
+      <h3 class="pathway-title">1:1 Therapy &amp; <em>Constellations</em></h3>
+      <p class="pathway-desc">
+        Trauma release through Psychosomatic Therapy and individual Family Constellations.
+        The deepest, most personal work — for women ready to move what has stayed stuck.
+      </p>
+      <div class="pathway-meta">
+        <div class="pathway-meta-left">
+          <span class="t-small">Private · By application</span>
+          <strong>€180 / session</strong>
+        </div>
+        <a href="#" class="pathway-cta">
+          Apply
+          <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== The Movement ===== -->
+<section class="movement reveal-section" id="movement">
+  <div class="movement-inner">
+    <div class="movement-top">
+      <h2 class="movement-manifesto">
+        <span class="line-a">Because there are</span>
+        <span class="line-b"><em>forms of life</em></span>
+        <span class="line-c">that are not</span>
+        <span class="line-d"><em>life.</em></span>
+      </h2>
+
+      <div class="movement-right">
+        <p>
+          The Awakened Woman Movement is a free global gathering of women — meditating together,
+          breathing together, remembering together. No fee, no gatekeepers, no app to download.
+        </p>
+        <p>
+          When one woman wakes, her world lights up. When a million do, the air itself changes.
+        </p>
+      </div>
+    </div>
+
+    <div class="movement-included">
+      <div>
+        <div class="movement-included-label">
+          What arrives in your inbox once you join
+          <em>— All of it free, always</em>
+        </div>
+      </div>
+
+      <div class="included-list">
+        <div class="included-item">
+          <span class="included-num">01</span>
+          <div class="included-body">
+            <h4 class="included-title">New Moon &amp; Full Moon Meditations</h4>
+            <p class="included-desc">A live practice each lunar cycle — to set intention and to release. Replay always available.</p>
+          </div>
+          <span class="included-price">Monthly · Live</span>
+        </div>
+
+        <div class="included-item">
+          <span class="included-num">02</span>
+          <div class="included-body">
+            <h4 class="included-title">Masterclass in Feminine Vitality</h4>
+            <p class="included-desc">A 60-minute transmission on restoring energy, vitality and sovereignty in the body.</p>
+          </div>
+          <span class="included-price">On arrival</span>
+        </div>
+
+        <div class="included-item">
+          <span class="included-num">03</span>
+          <div class="included-body">
+            <h4 class="included-title">The Awakened Woman Manifesto</h4>
+            <p class="included-desc">The foundation we share. Read it once, let it find you a thousand times.</p>
+          </div>
+          <span class="included-price">Letter №1</span>
+        </div>
+
+        <div class="included-item">
+          <span class="included-num">04</span>
+          <div class="included-body">
+            <h4 class="included-title">Global WhatsApp Community</h4>
+            <p class="included-desc">Women from Mexico City to Mallorca to Dubai to São Paulo. Real voices. Real contact.</p>
+          </div>
+          <span class="included-price">Always open</span>
+        </div>
+
+        <div class="included-item">
+          <span class="included-num">05</span>
+          <div class="included-body">
+            <h4 class="included-title">Wake Up — the weekly letter</h4>
+            <p class="included-desc">A short note from me most Sundays. Stories, practices, what I'm moving through. From inbox to heart.</p>
+          </div>
+          <span class="included-price">Weekly · Direct</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="movement-cta">
+      <span class="movement-cta-label">You are one breath away from this.</span>
+      <a href="#" class="btn btn-primary">
+        Remember Who You Are — Join Free
+        <svg class="btn-arrow" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="testimonials reveal-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="testimonials-header-left">
+        <span class="t-eyebrow">§ The Community Speaks</span>
+        <h3 class="t-h3">Not my words. <em>Theirs.</em></h3>
+      </div>
+      <div class="testimonial-nav">
+        <button id="prevT" aria-label="Previous">
+          <svg viewBox="0 0 16 12" fill="none"><path d="M15 6H1M1 6L6 1M1 6L6 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <span class="t-small" id="tIndex">01 · 03</span>
+        <button id="nextT" aria-label="Next">
+          <svg viewBox="0 0 16 12" fill="none"><path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="testimonial-stage" id="testStage">
+      <div class="testimonial active" data-i="0">
+        <p class="testimonial-quote">
+          Mariana, you opened the doors of your home that I now feel as mine. Thank you for your generosity
+          and the depth with which you transmit the teachings. Each encounter with you goes beyond — putting
+          together pieces I thought were lost, with tenderness and fortitude.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Cs</div>
+          <div class="testimonial-author-meta">
+            <strong>Cecilia Sahari</strong>
+            <span class="t-small">Student · Awakened Woman Community</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="1">
+        <p class="testimonial-quote">
+          The first thing that struck me was her presence — strong, deeply feminine, with great integrity.
+          Her way of teaching reflects empathy, professionalism, and, above all, absence of ego. Mariana is
+          authentic, passionate about healing, and training those who also want to heal. For me, a rare, unique jewel.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Bb</div>
+          <div class="testimonial-author-meta">
+            <strong>Brenda Burns</strong>
+            <span class="t-small">Kundalini Student · Two years</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="2">
+        <p class="testimonial-quote">
+          You gave me hope when I needed it most, and tools to find myself again. I admire your humility,
+          your certainty, and the way you offer your wisdom from the heart. You are a teacher, guide and inspiration
+          in my life — thank you for showing me, with love and patience, how to heal.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Lk</div>
+          <div class="testimonial-author-meta">
+            <strong>Lia Kavalya</strong>
+            <span class="t-small">1:1 Therapy · Palma de Mallorca</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Voices marquee ===== -->
+<section class="voices">
+  <div class="voices-label">In collaboration &amp; recognition</div>
+  <div class="voices-marquee">
+    <div class="voice-item">Chopra Foundation <em>— Ambassador, Spain</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Jugat Guru <em>— Kundalini Master</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Gurumukh &amp; Gurushabad <em>— Golden Bridge</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Svagito Liebermeister <em>— Family Constellations</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Wellness Tourism Mallorca <em>— President</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Mallorca Preservation <em>— Partner</em></div>
+    <div class="voice-dot"></div>
+    <!-- repeat for seamless loop -->
+    <div class="voice-item">Chopra Foundation <em>— Ambassador, Spain</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Jugat Guru <em>— Kundalini Master</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Gurumukh &amp; Gurushabad <em>— Golden Bridge</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Svagito Liebermeister <em>— Family Constellations</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Wellness Tourism Mallorca <em>— President</em></div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">Mallorca Preservation <em>— Partner</em></div>
+    <div class="voice-dot"></div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about reveal-section" id="about">
+  <div class="about-inner">
+    <div class="about-header">
+      <span class="t-eyebrow">§ About · Mariana Harpreet</span>
+      <h2 class="t-h2">From Mexico City to Mallorca — a life built in <em>service of awakening.</em></h2>
+    </div>
+
+    <div class="about-body">
+      <div class="about-visual">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="Kundalini practice" onerror="this.style.display='none'"/>
+        <div class="about-visual-pull">
+          <strong>“I am convinced</strong> that mental, emotional and spiritual health must be integral —
+          body, mind and soul held as one.”
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="lead">
+          I was born in Mexico City and raised with an early, stubborn interest in the architecture
+          of the mind, the body and the spirit — and a quiet certainty that any pain can be composted
+          into a life of joy.
+        </p>
+        <p>
+          I hold a Bachelor of Arts, two Master's degrees in Gestalt and Systemic Psychotherapy,
+          a Doctorate in Literature on the relationship between language and identity, and certifications
+          as a Family Constellation Facilitator, Craniosacral Therapist and Kundalini Yoga Teacher.
+        </p>
+        <p>
+          Today I live in Palma de Mallorca, where I founded <strong>Sadhana Works</strong> — a conscious
+          lifestyle studio I grew into one of the Mediterranean's most respected wellness companies.
+          I serve as <strong>Regional Ambassador of the Chopra Foundation</strong> in Spain, and as
+          President of the Wellness Tourism Association of Mallorca, where I work to turn the island
+          into a world destination of consciousness.
+        </p>
+        <p>
+          I am a mother of three, which remains the teaching that contains all others.
+        </p>
+      </div>
+    </div>
+
+    <div class="credentials">
+      <div>
+        <div class="cred-group-label">Formation</div>
+        <ul class="cred-list">
+          <li>Gestalt Psychotherapy <em>M.A.</em></li>
+          <li>Systemic Psychotherapy <em>M.A.</em></li>
+          <li>Literature &amp; Identity <em>Ph.D.</em></li>
+          <li>Family Constellations <em>Certified Facilitator</em></li>
+          <li>Craniosacral Therapy <em>Certified</em></li>
+          <li>Kundalini Yoga <em>Teacher · KRI</em></li>
+        </ul>
+      </div>
+      <div>
+        <div class="cred-group-label">Leadership</div>
+        <ul class="cred-list">
+          <li>Sadhana Works <em>Founder &amp; Director</em></li>
+          <li>Chopra Foundation <em>Ambassador, Spain</em></li>
+          <li>Wellness Tourism Mallorca <em>President</em></li>
+          <li>Mallorca Preservation <em>Partner</em></li>
+          <li>Radiant Power of Women <em>Co-lead retreat</em></li>
+          <li>Awakened Woman Movement <em>Founder</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="collabs">
+      <div class="collab-title">Teachers &amp; collaborators · past and present</div>
+      <div class="collab-grid">
+        <div class="collab-name">Jugat Guru</div>
+        <div class="collab-name">Gurumukh Kaur Khalsa</div>
+        <div class="collab-name">Gurushabad Singh</div>
+        <div class="collab-name">Svagito Liebermeister</div>
+        <div class="collab-name">Dr. Deepak Chopra</div>
+        <div class="collab-name">The Golden Bridge lineage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Studio / Events ===== -->
+<section class="studio reveal-section" id="studio">
+  <div class="studio-inner">
+    <div class="studio-top">
+      <h2 class="t-h2 studio-heading">The Studio &amp; <em>what's next.</em></h2>
+      <p class="studio-intro">
+        Every season holds a few live invitations — on Zoom, in Palma, or at retreat destinations across
+        Europe and Latin America. Here is what is open now.
+      </p>
+    </div>
+
+    <div class="studio-grid">
+
+      <div class="studio-card">
+        <div class="studio-card-date">
+          <strong>Live</strong> · Every Tuesday · 20:00 CET
+        </div>
+        <h3 class="studio-card-title">New Moon &amp; Full Moon <em>Meditations</em></h3>
+        <p class="studio-card-desc">
+          Our monthly rhythm — a live 45-minute meditation to set the new moon's intention,
+          and to release with the full. Free, open to anyone holding breath.
+        </p>
+        <div class="studio-card-meta">
+          <span>Zoom · Worldwide</span>
+          <a href="#" class="cta-link">Receive the link
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <div class="studio-card-date">
+          <strong>May 2026</strong> · 5 days · Mallorca
+        </div>
+        <h3 class="studio-card-title">Radiant Power of <em>Women</em> Retreat</h3>
+        <p class="studio-card-desc">
+          In collaboration with Gurumukh &amp; Gurushabad. Five days of Kundalini, Sat Nam Rasayan,
+          constellations and the sea. Held at Sadhana Works and Tramuntana retreat house.
+        </p>
+        <div class="studio-card-meta">
+          <span>Limited · 18 seats</span>
+          <a href="#" class="cta-link">Apply
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <div class="studio-card-date">
+          <strong>Rolling</strong> · Weekly group · Online
+        </div>
+        <h3 class="studio-card-title">The Awakening <em>Circle</em></h3>
+        <p class="studio-card-desc">
+          Our members-only women's circle. Two live gatherings a week — Kundalini, meditation,
+          and a spoken circle held in Spanish and English.
+        </p>
+        <div class="studio-card-meta">
+          <span>Members · Worldwide</span>
+          <a href="#" class="cta-link">Enter the Circle
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="studio-card">
+        <div class="studio-card-date">
+          <strong>In Palma</strong> · Private · By request
+        </div>
+        <h3 class="studio-card-title">1:1 Constellations &amp; <em>Therapy</em></h3>
+        <p class="studio-card-desc">
+          90-minute private sessions at Carrer de Sant Feliu, or online. A short intake call
+          precedes every first session.
+        </p>
+        <div class="studio-card-meta">
+          <span>Carrer de Sant Feliu · Palma</span>
+          <a href="#" class="cta-link">Request a session
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Letter / Newsletter ===== -->
+<section class="letter reveal-section" id="letter">
+  <div class="letter-inner">
+    <div class="letter-seal">Mh</div>
+    <div class="letter-eyebrow">— WAKE UP · A Sunday Letter</div>
+    <h2 class="letter-heading">A letter from me, <em>most Sundays.</em></h2>
+    <p class="letter-sub">
+      Short, honest, occasionally long. Stories from Palma, from the studio, from my own practice.
+      A quiet way to be in contact. You can leave anytime.
+    </p>
+    <form class="letter-form" onsubmit="return subscribeSubmit(event)">
+      <input type="email" placeholder="Your email, gently" required aria-label="Email" id="letterEmail"/>
+      <button type="submit">Subscribe →</button>
+    </form>
+    <p class="letter-terms">No spam. Unsubscribe in one click. Replies go directly to Mariana.</p>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Mariana <em>Harpreet</em></div>
+        <p class="footer-brand-desc">
+          Guiding women to remember the joy, clarity and purpose of truly living —
+          from the studio in Palma de Mallorca, out into the world.
+        </p>
+        <div class="footer-address">
+          Carrer de Sant Feliu, 17<br/>
+          Local 8 &amp; 9 · 07012 Palma<br/>
+          Illes Balears, Spain
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>The Work</h4>
+        <ul>
+          <li><a href="#pathways">Kundalini Yoga</a></li>
+          <li><a href="#pathways">The Awakening Membership</a></li>
+          <li><a href="#pathways">1:1 Therapy &amp; Constellations</a></li>
+          <li><a href="#studio">Retreats &amp; events</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The Movement</h4>
+        <ul>
+          <li><a href="#movement">Awakened Woman — join free</a></li>
+          <li><a href="#movement">The Manifesto</a></li>
+          <li><a href="#movement">New Moon meditations</a></li>
+          <li><a href="#letter">The Sunday letter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mariana@marianaharpreet.com">mariana@marianaharpreet.com</a></li>
+          <li><a href="https://wa.me/34610120391">WhatsApp · +34 610 12 03 91</a></li>
+          <li><a href="https://sadhana.works" target="_blank" rel="noopener">sadhana.works ↗</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="left">© 2026 Mariana Harpreet · Sadhana Works S.L.</div>
+      <div class="mid">A practice in service of <strong>one million awakened women.</strong></div>
+      <div class="right">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">EN</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ==========================================================================
+     Interactive behaviour
+     ========================================================================== */
+
+  /* Mobile menu */
+  const mToggle = document.getElementById('mobileToggle');
+  const mMenu = document.getElementById('mobileMenu');
+  const mClose = document.getElementById('mobileClose');
+  mToggle && mToggle.addEventListener('click', () => mMenu.classList.add('open'));
+  mClose && mClose.addEventListener('click', () => mMenu.classList.remove('open'));
+  mMenu && mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mMenu.classList.remove('open')));
+
+  /* Testimonial carousel */
+  const stage = document.getElementById('testStage');
+  const tItems = stage ? [...stage.querySelectorAll('.testimonial')] : [];
+  const tIndexEl = document.getElementById('tIndex');
+  let tI = 0;
+  function showT(i) {
+    tI = (i + tItems.length) % tItems.length;
+    tItems.forEach(el => el.classList.toggle('active', +el.dataset.i === tI));
+    tIndexEl.textContent = String(tI + 1).padStart(2,'0') + ' · ' + String(tItems.length).padStart(2,'0');
+  }
+  document.getElementById('prevT') && document.getElementById('prevT').addEventListener('click', () => showT(tI - 1));
+  document.getElementById('nextT') && document.getElementById('nextT').addEventListener('click', () => showT(tI + 1));
+  /* Auto-rotate */
+  if (tItems.length) setInterval(() => showT(tI + 1), 8000);
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal-section').forEach(el => io.observe(el));
+
+  /* Counter — subtle count-up */
+  const counterEl = document.getElementById('counter');
+  if (counterEl) {
+    const target = 14328;
+    const duration = 2400;
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const p = Math.min(1, (ts - start) / duration);
+      const easeOut = 1 - Math.pow(1 - p, 3);
+      const val = Math.floor(target * easeOut);
+      counterEl.textContent = val.toLocaleString('en-US');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    /* Start when visible */
+    const ob = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { requestAnimationFrame(step); ob.disconnect(); } });
+    });
+    ob.observe(counterEl);
+  }
+
+  /* Axis pulse — follows scroll position */
+  const pulse = document.querySelector('.axis-pulse');
+  if (pulse) {
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY;
+      const max = document.body.scrollHeight - window.innerHeight;
+      const p = Math.min(1, Math.max(0, scroll / max));
+      pulse.style.top = (10 + p * 80) + 'vh';
+    }, { passive: true });
+  }
+
+  /* Bilingual toggle */
+  const langButtons = document.querySelectorAll('.announce-lang button');
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val) el.innerHTML = val;
+    });
+  }
+  langButtons.forEach(b => b.addEventListener('click', () => {
+    langButtons.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    setLang(b.dataset.lang);
+  }));
+
+  /* Live lunar phase — approximate but real */
+  function updateMoon() {
+    const synodic = 29.530588853;
+    const knownNew = new Date('2000-01-06T18:14:00Z').getTime();
+    const now = Date.now();
+    const daysSince = (now - knownNew) / 86400000;
+    const phase = (daysSince % synodic) / synodic; /* 0 = new, 0.5 = full */
+    const illum = Math.round((1 - Math.cos(phase * 2 * Math.PI)) / 2 * 100);
+    const phaseNames = [
+      [0.03, 'New Moon'], [0.22, 'Waxing Crescent'], [0.28, 'First Quarter'],
+      [0.47, 'Waxing Gibbous'], [0.53, 'Full Moon'], [0.72, 'Waning Gibbous'],
+      [0.78, 'Last Quarter'], [0.97, 'Waning Crescent'], [1.01, 'New Moon']
+    ];
+    const name = phaseNames.find(p => phase <= p[0])[1];
+    const moonTextEl = document.getElementById('moonText');
+    const moonShadeEl = document.getElementById('moonShade');
+    if (moonTextEl) moonTextEl.textContent = name + ' — ' + illum + '%';
+    /* Shade position: 0 phase (new) = full cover, 0.5 (full) = no cover */
+    if (moonShadeEl) {
+      const offsetX = phase < 0.5 ? (phase * 2) * 16 - 8 : (phase - 0.5) * 2 * -16;
+      moonShadeEl.setAttribute('x', (2 + offsetX).toFixed(1));
+    }
+  }
+  updateMoon();
+
+  /* Newsletter submit (prevents default, shows state) */
+  function subscribeSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('letterEmail');
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Thank you ✓';
+    btn.style.background = 'var(--clay)';
+    btn.style.color = 'var(--parchment)';
+    input.value = '';
+    setTimeout(() => { btn.textContent = 'Subscribe →'; btn.style.background = ''; btn.style.color = ''; }, 3200);
+    return false;
+  }
+</script>
+
+</body>
+</html>

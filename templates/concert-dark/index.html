@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deva Premal &amp; Miten — Sacred Mantra Music</title>
+<meta name="description" content="Flame carriers of a 5,000-year-old tradition. Grammy-nominated sacred music. 25+ albums. Global tours. The Gayatri Sangha community. Mantras for life.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a08;
+  --bg-raised:#111110;
+  --bg-card:#161614;
+  --bg-surface:#1c1c19;
+  --amber:#d4944a;
+  --amber-dim:#a06828;
+  --amber-glow:rgba(212,148,74,0.15);
+  --amber-bright:#e8b06a;
+  --cream:#f0e6d4;
+  --cream-dim:rgba(240,230,212,0.6);
+  --cream-faint:rgba(240,230,212,0.35);
+  --cream-ghost:rgba(240,230,212,0.12);
+  --white:#fff;
+  --heading:'Playfair Display',Georgia,serif;
+  --body:'Outfit',-apple-system,sans-serif;
+}
+::selection{background:var(--amber);color:var(--bg)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream-dim);font-family:var(--body);font-weight:300;font-size:15px;line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+img{display:block;max-width:100%;height:auto}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--amber-dim);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--amber)}
+
+/* ───────── NAV ───────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,8,0.75);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid rgba(212,148,74,0.08);transition:background .3s}
+nav.scrolled{background:rgba(10,10,8,0.95)}
+.nav-brand{font-family:var(--heading);font-size:20px;font-weight:500;color:var(--cream);letter-spacing:0.5px}
+.nav-brand span{color:var(--amber);font-style:italic}
+nav ul{list-style:none;display:flex;gap:36px}
+nav a{text-decoration:none;font-family:var(--body);font-size:14px;font-weight:400;color:var(--cream-faint);letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+nav a:hover{color:var(--amber)}
+.nav-cta{padding:8px 24px;border:1px solid var(--amber-dim);color:var(--amber)!important;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:all .3s}
+.nav-cta:hover{background:var(--amber);color:var(--bg)!important;border-color:var(--amber)}
+
+/* ───────── HERO ───────── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.hero-grain{position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;width:100%;padding:0 80px 100px;max-width:1400px;margin:0 auto}
+.hero-tag{display:inline-flex;gap:20px;align-items:center;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:28px;opacity:0;animation:fadeIn .8s cubic-bezier(0.16,1,0.3,1) forwards .3s}
+.hero-tag .dot{width:4px;height:4px;border-radius:50%;background:var(--amber);opacity:.5}
+.hero h1{font-family:var(--heading);font-size:clamp(44px,7vw,96px);font-weight:500;color:var(--cream);line-height:1.05;letter-spacing:-1px;margin-bottom:24px;max-width:900px;opacity:0;animation:slideUp .8s cubic-bezier(0.16,1,0.3,1) forwards .5s}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:17px;font-weight:300;color:var(--cream-faint);line-height:1.9;max-width:540px;margin-bottom:40px;opacity:0;animation:slideUp .8s cubic-bezier(0.16,1,0.3,1) forwards .7s}
+.hero-actions{display:flex;gap:16px;align-items:center;opacity:0;animation:slideUp .8s cubic-bezier(0.16,1,0.3,1) forwards .9s}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;font-family:var(--body);font-size:13px;font-weight:500;text-decoration:none;letter-spacing:1px;transition:all .3s cubic-bezier(0.16,1,0.3,1)}
+.btn-amber{background:var(--amber);color:var(--bg);position:relative;overflow:hidden;box-shadow:0 0 32px rgba(212,148,74,0.2)}
+.btn-amber:hover{background:var(--amber-bright);transform:translateY(-1px);box-shadow:0 0 48px rgba(212,148,74,0.4),0 8px 32px rgba(212,148,74,0.3)}
+.btn-ghost{border:1px solid var(--cream-ghost);color:var(--cream-dim)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cream-ghost);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;animation:pulse 2s ease infinite}
+.hero-scroll .line{width:1px;height:32px;background:linear-gradient(to bottom,var(--amber-dim),transparent)}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
+
+/* ───────── DIVIDER ───────── */
+.amber-line{width:100%;max-width:1100px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--amber-dim),transparent);opacity:.3}
+
+/* ───────── STATS ───────── */
+.stats{padding:80px 48px;max-width:1100px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--cream-ghost);border-radius:0}
+.stat-item{padding:48px 40px;text-align:center;position:relative}
+.stat-item:not(:last-child){border-right:1px solid var(--cream-ghost)}
+.stat-num{font-family:var(--heading);font-size:clamp(36px,4vw,56px);font-weight:600;color:var(--cream);line-height:1}
+.stat-label{font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-top:10px}
+
+/* ───────── SECTIONS ───────── */
+.section{padding:120px 48px;max-width:1100px;margin:0 auto}
+.section-full{padding:120px 48px}
+.s-tag{font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+.s-heading{font-family:var(--heading);font-size:clamp(32px,4.5vw,60px);font-weight:400;color:var(--cream);line-height:1.15;letter-spacing:-0.5px;margin-bottom:20px}
+.s-heading em{font-style:italic;color:var(--amber)}
+.s-text{color:var(--cream-faint);max-width:520px;line-height:1.9;margin-bottom:56px}
+
+/* ───────── ABOUT ───────── */
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-photo-wrap{position:relative}
+.about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;
+  background:linear-gradient(145deg,#1a1510,#2a1a10,#141210);
+  border:1px solid var(--cream-ghost);
+}
+.about-photo-caption{position:absolute;bottom:-12px;right:-12px;background:var(--bg);padding:12px 20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);border:1px solid var(--cream-ghost)}
+.about-content{padding-top:20px}
+.about-pullquote{font-family:var(--heading);font-size:clamp(20px,2.5vw,28px);font-weight:400;color:var(--cream);line-height:1.5;margin-bottom:32px;position:relative;padding-left:24px;border-left:2px solid var(--amber)}
+.about-body p{margin-bottom:20px;color:var(--cream-dim);line-height:1.9}
+.about-body p em{color:var(--cream);font-style:normal;font-weight:400}
+
+/* ───────── QUOTE ───────── */
+.quote-block{padding:120px 48px;text-align:center;position:relative}
+.quote-block::before{content:'\201C';font-family:var(--heading);font-size:180px;color:var(--amber);opacity:.1;position:absolute;top:10px;left:50%;transform:translateX(-50%);line-height:1}
+.quote-block blockquote{font-family:var(--heading);font-size:clamp(22px,3.5vw,40px);font-weight:400;font-style:italic;color:var(--cream);line-height:1.5;max-width:700px;margin:0 auto;position:relative;z-index:1}
+.quote-block .attr{margin-top:24px;font-family:var(--body);font-size:12px;font-weight:400;color:var(--amber);letter-spacing:1.5px;text-transform:uppercase}
+
+/* ───────── ALBUMS ───────── */
+.albums-scroll{position:relative}
+.albums-track{display:flex;gap:20px;overflow-x:auto;padding:0 48px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.albums-track::-webkit-scrollbar{display:none}
+.album-card{flex:0 0 280px;scroll-snap-align:start;position:relative;cursor:pointer;group:true}
+.album-art{width:280px;height:280px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg-card),var(--bg-surface));
+  border:1px solid var(--cream-ghost);
+  transition:all .4s cubic-bezier(0.16,1,0.3,1);
+}
+.album-art::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--amber-bright));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
+.album-card:hover .album-art{border-color:var(--amber-dim);box-shadow:0 0 40px rgba(212,148,74,0.12)}
+.album-card:hover .album-art::after{transform:scaleX(1)}
+.album-art-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,8,0.8) 0%,transparent 50%);opacity:0;transition:opacity .4s}
+.album-card:hover .album-art-overlay{opacity:1}
+.album-meta{padding:14px 0}
+.album-name{font-family:var(--heading);font-size:16px;font-weight:500;color:var(--cream);transition:color .3s}
+.album-card:hover .album-name{color:var(--amber)}
+.album-year{font-size:12px;color:var(--cream-faint);margin-top:2px;font-weight:300}
+.album-badge{position:absolute;top:12px;right:12px;background:var(--amber);color:var(--bg);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;z-index:2}
+
+/* albums grid fallback for wider displays */
+.albums-section-header{display:flex;justify-content:space-between;align-items:flex-end;max-width:1100px;margin:0 auto;padding:0 48px;margin-bottom:48px}
+.albums-nav{display:flex;gap:8px}
+.albums-nav button{width:40px;height:40px;border:1px solid var(--cream-ghost);background:transparent;color:var(--cream-faint);cursor:pointer;font-size:18px;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.albums-nav button:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ───────── TOUR ───────── */
+.tour-section{background:var(--bg-raised)}
+.tour-inner{max-width:1100px;margin:0 auto}
+.tour-list{display:flex;flex-direction:column}
+.tour-item{display:grid;grid-template-columns:100px 1fr auto auto;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--cream-ghost);transition:all .3s}
+.tour-item:first-child{border-top:1px solid var(--cream-ghost)}
+.tour-item:hover{padding-left:12px;border-bottom-color:var(--amber-dim)}
+.tour-date{text-align:left}
+.tour-month{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber)}
+.tour-day{font-family:var(--heading);font-size:32px;font-weight:600;color:var(--cream);line-height:1.1}
+.tour-details h4{font-family:var(--heading);font-size:20px;font-weight:500;color:var(--cream);margin-bottom:2px}
+.tour-details .city{font-size:14px;color:var(--cream-faint);font-weight:300}
+.tour-type{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px}
+.type-concert{color:var(--amber);border:1px solid var(--amber-dim)}
+.type-retreat{color:#8aaa78;border:1px solid rgba(138,170,120,0.3)}
+.tour-link{text-decoration:none;font-size:12px;color:var(--cream-faint);letter-spacing:1px;border:1px solid var(--cream-ghost);padding:8px 20px;transition:all .3s;white-space:nowrap}
+.tour-link:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ───────── SANGHA ───────── */
+.sangha-section{position:relative;overflow:hidden}
+.sangha-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,148,74,0.08),transparent 70%)}
+.sangha-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sangha-content{}
+.sangha-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sangha-card{padding:40px;background:rgba(240,230,212,0.03);border:1px solid var(--cream-ghost);transition:all .4s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+.sangha-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--amber-bright));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
+.sangha-card:hover{border-color:var(--amber-dim);background:rgba(212,148,74,0.04)}
+.sangha-card:hover::before{transform:scaleX(1)}
+.sangha-card strong{display:block;font-family:var(--heading);font-size:16px;font-weight:500;color:var(--cream);margin-bottom:6px}
+.sangha-card span{font-size:13px;color:var(--cream-faint);line-height:1.6}
+.sangha-visual{position:relative;height:100%;min-height:400px;
+  background:linear-gradient(135deg,rgba(42,26,16,0.8),rgba(10,10,8,0.9)),
+    linear-gradient(to bottom right,#2a1810,#1a1510);
+  background-size:cover;background-position:center;
+  border:1px solid var(--cream-ghost);
+  display:flex;align-items:center;justify-content:center;
+}
+.sangha-visual-text{font-family:var(--heading);font-size:clamp(24px,3vw,40px);font-style:italic;color:var(--amber);opacity:.3;text-align:center;padding:40px;line-height:1.4}
+
+/* ───────── CONNECT / CTA ───────── */
+.cta-section{text-align:center;padding:140px 48px;position:relative}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,148,74,0.06),transparent 60%)}
+.cta-section h2{font-family:var(--heading);font-size:clamp(36px,5vw,64px);font-weight:400;color:var(--cream);letter-spacing:-0.5px;margin-bottom:16px;position:relative;z-index:1}
+.cta-section h2 em{font-style:italic;color:var(--amber)}
+.cta-section p{color:var(--cream-faint);margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.9;position:relative;z-index:1}
+.cta-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* ───────── FOOTER ───────── */
+footer{border-top:1px solid var(--cream-ghost);padding:80px 48px 48px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;margin-bottom:64px}
+.footer-brand{font-family:var(--heading);font-size:20px;font-weight:500;color:var(--cream);letter-spacing:0.5px;margin-bottom:16px}
+.footer-brand span{color:var(--amber);font-style:italic}
+.footer-tagline{font-size:14px;color:var(--cream-faint);line-height:1.8;max-width:280px}
+.footer-col h4{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:12px}
+.footer-col a{text-decoration:none;font-size:14px;color:var(--cream-faint);transition:color .3s}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:32px;border-top:1px solid var(--cream-ghost);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom span{font-size:12px;color:var(--cream-ghost);letter-spacing:1px}
+.footer-bottom-links{display:flex;gap:24px}
+.footer-bottom-links a{text-decoration:none;font-size:12px;color:var(--cream-ghost);letter-spacing:1px;transition:color .3s}
+.footer-bottom-links a:hover{color:var(--amber)}
+
+/* ───────── REVEAL ANIMATION ───────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ───────── HAMBURGER ───────── */
+.hamburger{display:none;background:none;border:none;cursor:pointer;width:32px;height:24px;position:relative;z-index:101}
+.hamburger span{display:block;width:100%;height:1.5px;background:var(--cream);position:absolute;left:0;transition:all .3s cubic-bezier(0.16,1,0.3,1)}
+.hamburger span:nth-child(1){top:0}
+.hamburger span:nth-child(2){top:50%;transform:translateY(-50%)}
+.hamburger span:nth-child(3){bottom:0}
+.hamburger.active span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+.nav-mobile-cta{display:none}
+
+/* ───────── RESPONSIVE ───────── */
+@media(max-width:1024px){
+  .about-layout{grid-template-columns:1fr;gap:48px}
+  .sangha-inner{grid-template-columns:1fr}
+  .sangha-visual{min-height:240px}
+  .tour-item{grid-template-columns:80px 1fr auto}
+  .tour-link{display:none}
+}
+@media(max-width:768px){
+  nav{padding:0 20px;height:56px}
+  .nav-cta-desktop{display:none!important}
+  .hamburger{display:block}
+  nav ul{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(10,10,8,0.97);backdrop-filter:blur(24px);flex-direction:column;padding:48px 24px;gap:0}
+  nav ul.open{display:flex}
+  nav ul li{border-bottom:1px solid var(--cream-ghost)}
+  nav ul a{display:block;padding:20px 0;font-size:16px!important;letter-spacing:1px}
+  .nav-mobile-cta{display:block}
+  .nav-mobile-cta a{color:var(--amber)!important}
+  .hero-content{padding:0 24px 64px}
+  .hero h1{font-size:clamp(36px,10vw,56px)}
+  .hero-sub{font-size:15px}
+  .section,.section-full,.quote-block,.cta-section{padding:80px 24px}
+  .stats{padding:48px 0}
+  .stats-grid{grid-template-columns:1fr 1fr;border:none;gap:0}
+  .stat-item{border-right:none!important;border-bottom:1px solid var(--cream-ghost);padding:32px 24px}
+  .stat-item:nth-child(odd){border-right:1px solid var(--cream-ghost)!important}
+  .stat-item:nth-child(n+3){border-bottom:none}
+  .albums-section-header{padding:0 24px}
+  .albums-track{padding:0 24px 24px;gap:16px}
+  .album-card{flex:0 0 220px}
+  .album-art{width:220px;height:220px}
+  .tour-item{grid-template-columns:64px 1fr auto;gap:16px;padding:20px 0}
+  .tour-details h4{font-size:16px}
+  .tour-day{font-size:26px}
+  .sangha-grid{grid-template-columns:1fr}
+  .cta-section{padding:80px 24px}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:12px}
+  .hero-scroll{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-grid>div:first-child{grid-column:1/-1}
+}
+@media(max-width:480px){
+  .hero h1{font-size:32px}
+  .tour-item{grid-template-columns:1fr;gap:8px}
+  .tour-date{display:flex;gap:8px;align-items:baseline}
+  .tour-day{font-size:20px}
+  .tour-type{justify-self:start}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="nav-brand">Deva Premal <span>&amp;</span> Miten</div>
+  <ul id="nav-menu">
+    <li><a href="#about">Story</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#tour">Tour 2026</a></li>
+    <li><a href="#sangha">Sangha</a></li>
+    <li class="nav-mobile-cta"><a href="#connect">Connect</a></li>
+  </ul>
+  <a href="#connect" class="nav-cta nav-cta-desktop">Connect</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:linear-gradient(to bottom, rgba(10,10,8,0.3) 0%, rgba(10,10,8,0.1) 40%, rgba(10,10,8,0.7) 70%, rgba(10,10,8,1) 100%),url('img/deva-solo-portrait.jpg');background-size:cover;background-position:center top">
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      Grammy Nominated <span class="dot"></span> 25+ Albums <span class="dot"></span> 227K Followers
+    </div>
+    <h1>Flame carriers of a <em>5,000-year-old</em> tradition.</h1>
+    <p class="hero-sub">Sacred mantra music that has traveled from ancient India to concert halls across the world. From the womb to the stage. The Gayatri Mantra as a way of life.</p>
+    <div class="hero-actions">
+      <a href="#tour" class="btn btn-amber">2026 Tour Dates</a>
+      <a href="#sangha" class="btn btn-ghost">Gayatri Sangha</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats reveal">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Albums</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">227K</div>
+      <div class="stat-label">Instagram</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Countries Toured</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Grammy</div>
+      <div class="stat-label">Nominated</div>
+    </div>
+  </div>
+</div>
+
+<div class="amber-line"></div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="about-layout">
+    <div class="about-photo-wrap reveal">
+      <img class="about-photo" src="img/dpm-portrait-together.jpg" alt="Deva Premal and Miten" loading="lazy">
+      <div class="about-photo-caption">Since 1990</div>
+    </div>
+    <div class="about-content">
+      <div class="s-tag reveal">The Story</div>
+      <div class="about-pullquote reveal reveal-delay-1">Her father chanted the Gayatri Mantra to her in the womb. She chanted it to him as he took his last breath. The circle was complete.</div>
+      <div class="about-body reveal reveal-delay-2">
+        <p>Deva Premal grew up in a home of Sanskrit mantras and classical music in Nuremberg, Germany. At 11, she became a disciple of Osho. At 17, she traveled to India and found her path.</p>
+        <p>Miten was a London musician who opened for Fleetwood Mac and The Kinks. At 29, he left everything for an ashram in India. There he found meditation — and eventually, Deva.</p>
+        <p>Together they recorded their first album, <em>The Essence</em>, in the apartment where Deva was born. That album launched a global mantra revolution. 25+ albums, Grammy nomination, concerts from Siberia to Peru, and a community that spans every continent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="amber-line"></div>
+
+<!-- ═══ QUOTE 1 ═══ -->
+<div class="quote-block reveal">
+  <blockquote>&ldquo;The Gayatri Mantra was chanted to me before I was born. It is not something I learned. It is something I remembered.&rdquo;</blockquote>
+  <div class="attr">&mdash; Deva Premal</div>
+</div>
+
+<div class="amber-line"></div>
+
+<!-- ═══ MUSIC ═══ -->
+<section class="section-full" id="music">
+  <div class="albums-section-header">
+    <div>
+      <div class="s-tag reveal">Discography</div>
+      <div class="s-heading reveal reveal-delay-1">Sacred <em>sound</em></div>
+      <p class="s-text reveal reveal-delay-2" style="margin-bottom:0">25+ albums of mantra music. From the intimate to the epic. Every album is a meditation.</p>
+    </div>
+    <div class="albums-nav reveal">
+      <button onclick="document.querySelector('.albums-track').scrollBy({left:-300,behavior:'smooth'})" aria-label="Previous">&larr;</button>
+      <button onclick="document.querySelector('.albums-track').scrollBy({left:300,behavior:'smooth'})" aria-label="Next">&rarr;</button>
+    </div>
+  </div>
+
+  <div style="height:48px"></div>
+
+  <div class="albums-scroll">
+    <div class="albums-track">
+      <div class="album-card">
+        <div class="album-art" style="background:url('img/album-blossoming.jpg') center/cover no-repeat">
+          <div class="album-art-overlay"></div>
+          <div class="album-badge">New</div>
+        </div>
+        <div class="album-meta">
+          <div class="album-name">The Inevitable Blossoming of the Heart</div>
+          <div class="album-year">2025</div>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-art" style="background:url('img/album-gaia-ma.jpg') center/cover no-repeat">
+          <div class="album-art-overlay"></div>
+        </div>
+        <div class="album-meta">
+          <div class="album-name">Gaia Ma</div>
+          <div class="album-year">2025</div>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-art" style="background:url('img/album-three-jewels.jpg') center/cover no-repeat">
+          <div class="album-art-overlay"></div>
+        </div>
+        <div class="album-meta">
+          <div class="album-name">The Three Jewels</div>
+          <div class="album-year">2025</div>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-art" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1510,#2a1a10)">
+          <div style="text-align:center;padding:24px">
+            <div style="font-family:var(--heading);font-size:28px;color:var(--cream);font-style:italic">The Essence</div>
+            <div style="font-size:12px;color:var(--amber);margin-top:8px;letter-spacing:1px">1998 &middot; Where it began</div>
+          </div>
+          <div class="album-art-overlay"></div>
+        </div>
+        <div class="album-meta">
+          <div class="album-name">The Essence</div>
+          <div class="album-year">1998 &middot; The album that started it all</div>
+        </div>
+      </div>
+
+      <!-- spacer for scroll padding -->
+      <div style="flex:0 0 48px"></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px" class="reveal">
+    <a href="https://open.spotify.com/artist/1HlfpEoaUxMUFPFWvn8FVG" target="_blank" class="btn btn-ghost">Listen on Spotify &rarr;</a>
+  </div>
+</section>
+
+<div class="amber-line"></div>
+
+<!-- ═══ TOUR ═══ -->
+<section class="section-full tour-section" id="tour">
+  <div class="tour-inner" style="padding:120px 48px">
+    <div class="s-tag reveal">Tour 2026</div>
+    <div class="s-heading reveal reveal-delay-1">On the <em>road</em></div>
+    <p class="s-text reveal reveal-delay-2">From Sacred Valley to London. Concerts and retreats across two continents.</p>
+
+    <div class="tour-list">
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Apr</div>
+          <div class="tour-day">11</div>
+        </div>
+        <div class="tour-details">
+          <h4>Shamanic Wisdom &amp; Sacred Mantra</h4>
+          <div class="city">Sacred Valley, Peru</div>
+        </div>
+        <div class="tour-type type-retreat">Retreat</div>
+        <a href="#" class="tour-link">Details</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Apr</div>
+          <div class="tour-day">18</div>
+        </div>
+        <div class="tour-details">
+          <h4>Teatro Nescafe de las Artes</h4>
+          <div class="city">Santiago, Chile</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Apr</div>
+          <div class="tour-day">23</div>
+        </div>
+        <div class="tour-details">
+          <h4>Gran Rex Theatre</h4>
+          <div class="city">Buenos Aires, Argentina</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Apr</div>
+          <div class="tour-day">26</div>
+        </div>
+        <div class="tour-details">
+          <h4>Vivo Rio</h4>
+          <div class="city">Rio de Janeiro, Brazil</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">May</div>
+          <div class="tour-day">5</div>
+        </div>
+        <div class="tour-details">
+          <h4>Espaco Unimed</h4>
+          <div class="city">Sao Paulo, Brazil</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Sep</div>
+          <div class="tour-day">3</div>
+        </div>
+        <div class="tour-details">
+          <h4>Gayatri Gathering</h4>
+          <div class="city">Yoga Vidya, Germany</div>
+        </div>
+        <div class="tour-type type-retreat">Retreat</div>
+        <a href="#" class="tour-link">Details</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Sep</div>
+          <div class="tour-day">9</div>
+        </div>
+        <div class="tour-details">
+          <h4>Paral-lel 62</h4>
+          <div class="city">Barcelona, Spain</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Sep</div>
+          <div class="tour-day">14</div>
+        </div>
+        <div class="tour-details">
+          <h4>Circus Krone</h4>
+          <div class="city">Munich, Germany</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Sep</div>
+          <div class="tour-day">24</div>
+        </div>
+        <div class="tour-details">
+          <h4>The Brancaccio Theatre</h4>
+          <div class="city">Rome, Italy</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+
+      <div class="tour-item reveal">
+        <div class="tour-date">
+          <div class="tour-month">Sep</div>
+          <div class="tour-day">30</div>
+        </div>
+        <div class="tour-details">
+          <h4>Union Chapel</h4>
+          <div class="city">London, UK</div>
+        </div>
+        <div class="tour-type type-concert">Concert</div>
+        <a href="#" class="tour-link">Tickets</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="amber-line"></div>
+
+<!-- ═══ SANGHA ═══ -->
+<section class="section-full sangha-section" id="sangha">
+  <div class="sangha-bg"></div>
+  <div class="sangha-inner" style="padding:120px 48px">
+    <div class="sangha-content">
+      <div class="s-tag reveal">Community</div>
+      <div class="s-heading reveal reveal-delay-1">Gayatri <em>Sangha</em></div>
+      <p class="s-text reveal reveal-delay-2">A global community united by mantra. Satsang circles worldwide. Online gatherings. The practice continues between concerts.</p>
+
+      <div class="sangha-grid reveal reveal-delay-3">
+        <div class="sangha-card">
+          <strong>Online Satsang</strong>
+          <span>Live group chanting and meditation</span>
+        </div>
+        <div class="sangha-card">
+          <strong>Satsang Circles</strong>
+          <span>Local groups worldwide</span>
+        </div>
+        <div class="sangha-card">
+          <strong>Mantra Practice</strong>
+          <span>Guided tools and teachings</span>
+        </div>
+        <div class="sangha-card">
+          <strong>Holiday Groups</strong>
+          <span>Immersive retreats in sacred places</span>
+        </div>
+        <div class="sangha-card">
+          <strong>Gayatri Fund</strong>
+          <span>Nepal compassion in action</span>
+        </div>
+        <div class="sangha-card">
+          <strong>Newsletter</strong>
+          <span>Tour updates, teachings, mantras</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sangha-visual reveal" style="background:linear-gradient(135deg,rgba(42,26,16,0.6),rgba(10,10,8,0.7)),url('img/deva-chanting-live.jpg') center/cover no-repeat">
+      <div class="sangha-visual-text">Om Bhur Bhuvaḥ Swaḥ<br>Tat Savitur Vareṇyaṃ</div>
+    </div>
+  </div>
+</section>
+
+<div class="amber-line"></div>
+
+<!-- ═══ QUOTE 2 ═══ -->
+<div class="quote-block reveal">
+  <blockquote>&ldquo;Chanting is not about making beautiful sounds. It is about making a beautiful silence.&rdquo;</blockquote>
+  <div class="attr">&mdash; Miten</div>
+</div>
+
+<div class="amber-line"></div>
+
+<!-- ═══ CONNECT ═══ -->
+<section class="cta-section" id="connect">
+  <h2 class="reveal">Join the <em>chant</em></h2>
+  <p class="reveal reveal-delay-1">Concert tickets, retreat bookings, community, and music — your connection starts here.</p>
+  <div class="cta-links reveal reveal-delay-2">
+    <a href="https://cal.astralintegration.studio/astral/discovery-call" target="_blank" class="btn btn-amber">Book a Call</a>
+    <a href="https://wa.me/34611144170" target="_blank" class="btn btn-ghost">WhatsApp</a>
+    <a href="https://www.instagram.com/devapremalmiten/" target="_blank" class="btn btn-ghost">Instagram</a>
+    <a href="https://devapremalmiten.com" target="_blank" class="btn btn-ghost">Current Site</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Deva Premal <span>&amp;</span> Miten</div>
+      <p class="footer-tagline">Flame carriers of a 5,000-year-old tradition. Sacred mantra music for the world.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Music</h4>
+      <ul>
+        <li><a href="https://open.spotify.com/artist/1HlfpEoaUxMUFPFWvn8FVG" target="_blank">Spotify</a></li>
+        <li><a href="https://music.apple.com/artist/deva-premal/66822960" target="_blank">Apple Music</a></li>
+        <li><a href="https://www.youtube.com/@DevaPremalmiten" target="_blank">YouTube</a></li>
+        <li><a href="#music">Discography</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/devapremalmiten/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.facebook.com/DevaPremalMiten" target="_blank">Facebook</a></li>
+        <li><a href="https://devapremalmiten.com" target="_blank">Official Site</a></li>
+        <li><a href="#sangha">Gayatri Sangha</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#tour">Tour 2026</a></li>
+        <li><a href="#about">Story</a></li>
+        <li><a href="#connect">Contact</a></li>
+        <li><a href="https://wa.me/34611144170" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>deva premal &amp; miten &middot; 2026</span>
+    <div class="footer-bottom-links">
+      <a href="https://devapremalmiten.com">devapremalmiten.com</a>
+      <a href="https://astralintegration.studio" target="_blank">site by astral</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll-aware nav
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  lastScroll = y;
+}, { passive: true });
+
+// Intersection observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('open');
+  document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+});
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="6" fill="#0a0a0f"/>
+  <!-- Subtle accent border -->
+  <rect x="0.5" y="0.5" width="31" height="31" rx="5.5" stroke="#7B68EE" stroke-opacity="0.3"/>
+  <!-- "A" mark with gradient -->
+  <defs>
+    <linearGradient id="aGradient" x1="8" y1="8" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7B68EE"/>
+      <stop offset="100%" stop-color="#C9A96E"/>
+    </linearGradient>
+  </defs>
+  <text x="16" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="500" fill="url(#aGradient)">A</text>
+</svg>

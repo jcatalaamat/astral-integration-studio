@@ -1,0 +1,3135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Astral Integration — Custom digital infrastructure for healers, teachers, retreat centers, and original work. One person replaces your entire tech stack and stays as your long-term technical partner." />
+<title>Astral Integration — Platforms for People Who Teach</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://astralintegration.studio/">
+<meta property="og:title" content="Astral Integration — Platforms for People Who Teach">
+<meta property="og:description" content="I build the tech for healers, teachers, and retreat centers. One person replaces your entire tech stack and stays as your long-term technical partner.">
+<meta property="og:image" content="https://astralintegration.studio/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="Astral Integration — Platforms for People Who Teach">
+<meta property="twitter:description" content="I build the tech for healers, teachers, and retreat centers. Send me your messy notes.">
+<meta property="twitter:image" content="https://astralintegration.studio/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   ASTRAL INTEGRATION v4 — "Mediterranean Sacred" adapted
+   Design substrate from Mariana Harpreet site. Content from Astral Studio.
+   The central axis = the spine of the platform.
+   ========================================================================== */
+
+/* -------- Design tokens -------- */
+:root {
+  /* Palette — Mediterranean Dusk */
+  --parchment:    #f2ebdd;
+  --parchment-2:  #ece2cf;
+  --sand:         #dcc9a9;
+  --clay:         #b4693f;
+  --amber:        #8a5a28;
+  --ochre:        #9c7331;
+  --ink:          #1e1712;
+  --ink-soft:     #2b231b;
+  --rust:         #6d2819;
+  --mist:         #6b7a5b;
+  --line:         rgba(30, 23, 18, 0.14);
+  --line-strong:  rgba(30, 23, 18, 0.28);
+  --gold-line:    #b4843a;
+
+  /* Typography */
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans:  'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* Spacing system */
+  --pad: clamp(20px, 5vw, 64px);
+  --pad-lg: clamp(48px, 10vw, 160px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pad-lg: 56px;
+  }
+}
+
+/* -------- Reset & base -------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; max-width: 100%; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--parchment);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection { background: var(--ink); color: var(--parchment); }
+
+/* Grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.28'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   TYPOGRAPHIC SYSTEM
+   ========================================================================== */
+.t-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--amber);
+}
+.t-h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(44px, 7.4vw, 116px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.t-h1 em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--clay);
+}
+.t-h2 {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-size: clamp(36px, 5.6vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.t-h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.t-lead {
+  font-family: var(--serif);
+  font-weight: 350;
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+}
+.t-body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.t-small {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   THE CENTRAL LINE — the spine of the platform
+   ========================================================================== */
+.axis {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--gold-line) 8%,
+    var(--gold-line) 92%,
+    transparent 100%
+  );
+  opacity: 0.28;
+  z-index: 2;
+  pointer-events: none;
+}
+.axis-pulse {
+  position: fixed;
+  left: 50%;
+  top: 50vh;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-line);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(180, 132, 58, 0.6);
+  z-index: 3;
+  pointer-events: none;
+  transition: top 0.4s var(--ease);
+}
+@media (max-width: 800px) {
+  .axis, .axis-pulse { display: none; }
+}
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+nav.main {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(242, 235, 221, 0.88);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 20px var(--pad);
+  gap: 24px;
+}
+.nav-left, .nav-right {
+  display: flex;
+  gap: 28px;
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.nav-right { justify-content: flex-end; }
+.nav-left a, .nav-right a {
+  position: relative;
+  transition: color 0.3s var(--ease);
+  padding-bottom: 2px;
+}
+.nav-left a:hover, .nav-right a:hover {
+  color: var(--clay);
+}
+.nav-left a::after, .nav-right a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--clay);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease);
+}
+.nav-left a:hover::after, .nav-right a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.wordmark-dot {
+  width: 8px; height: 8px;
+  background: var(--clay);
+  border-radius: 50%;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.wordmark-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.wordmark-text em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.nav-mobile-toggle { display: none; }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(420px, 90vw);
+  height: 100vh;
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 80px var(--pad) var(--pad);
+  z-index: 40;
+  transform: translateX(100%);
+  transition: transform 0.6s var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  visibility: hidden;
+}
+.mobile-menu.open { transform: translateX(0); visibility: visible; }
+.mobile-menu a {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(242, 235, 221, 0.12);
+}
+.mobile-menu a em { font-style: italic; color: var(--clay); }
+.mobile-close {
+  position: absolute; top: 24px; right: var(--pad);
+  color: var(--parchment); font-size: 13px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .nav-inner { grid-template-columns: auto 1fr auto; padding: 16px var(--pad); }
+  .wordmark { justify-content: flex-start; }
+  .nav-left { display: none; }
+  .nav-right { display: none; }
+  .nav-mobile-toggle {
+    display: flex; flex-direction: column; gap: 5px;
+    width: 28px; cursor: pointer;
+    padding: 6px 0;
+  }
+  .nav-mobile-toggle span {
+    display: block; height: 1px; width: 100%;
+    background: var(--ink);
+    transition: all 0.3s var(--ease);
+  }
+  .mobile-menu { visibility: visible; }
+  .mobile-menu:not(.open) { visibility: hidden; }
+}
+
+@media (max-width: 640px) {
+  .wordmark-text { font-size: 13px; letter-spacing: 0.1em; }
+  :root { --pad: 18px; }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding: clamp(32px, 5vh, 56px) var(--pad) clamp(48px, 8vh, 96px);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr minmax(280px, 440px);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: stretch;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+}
+.hero-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.hero-meta-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line-strong);
+  max-width: 80px;
+}
+.hero-headline {
+  margin-bottom: 32px;
+  animation: fadeUp 1.4s var(--ease) both;
+}
+.hero-headline span {
+  display: block;
+  overflow: hidden;
+}
+.hero-headline span > span {
+  display: block;
+  animation: reveal 1.2s var(--ease) both;
+}
+.hero-headline span:nth-child(1) > span { animation-delay: 0.1s; }
+.hero-headline span:nth-child(2) > span { animation-delay: 0.25s; }
+.hero-headline span:nth-child(3) > span { animation-delay: 0.4s; }
+.hero-headline span:nth-child(4) > span { animation-delay: 0.55s; }
+
+.hero-sub {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 580px;
+  margin-bottom: 36px;
+  animation: fadeUp 1.4s var(--ease) 0.7s both;
+}
+.hero-sub::before {
+  content: "";
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--ink);
+  margin-top: 14px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 1.4s var(--ease) 0.9s both;
+}
+
+.hero-right {
+  position: relative;
+  max-height: calc(100vh - 120px);
+  align-self: stretch;
+  background: var(--ink);
+  overflow: hidden;
+  animation: fadeIn 2s var(--ease) 0.3s both;
+}
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-portrait {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(30,23,18,0.1) 0%, rgba(30,23,18,0.5) 100%);
+  z-index: 1;
+}
+.hero-portrait img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+}
+.hero-portrait-mask {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(30,23,18,0.3) 100%);
+  z-index: 2;
+}
+.hero-portrait-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  color: var(--parchment);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  z-index: 3;
+}
+.hero-portrait-label .t-small {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.hero-portrait-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 300;
+  font-variation-settings: "WONK" 1;
+  line-height: 1;
+}
+.hero-right-meta {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--parchment);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  z-index: 3;
+}
+.hero-right-index {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: var(--parchment);
+  font-family: var(--serif);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-right { aspect-ratio: 4 / 5; order: -1; max-width: 440px; }
+  .hero-sub { margin-bottom: 40px; }
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--parchment);
+}
+.btn-primary:hover {
+  background: var(--clay);
+  transform: translateY(-1px);
+}
+.btn-primary .btn-arrow {
+  transition: transform 0.4s var(--ease);
+}
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+.btn-secondary {
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn-secondary:hover {
+  background: var(--ink);
+  color: var(--parchment);
+}
+.btn-ghost {
+  color: var(--ink);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+}
+.btn-ghost:hover { color: var(--clay); border-color: var(--clay); }
+.btn-light {
+  background: var(--parchment);
+  color: var(--ink);
+}
+.btn-light:hover { background: var(--sand); }
+
+.btn-arrow {
+  width: 14px; height: 10px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   SECTION: Stats strip
+   ========================================================================== */
+.stats-strip {
+  padding: 40px var(--pad);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--parchment);
+}
+.stats-strip-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 4vw, 60px);
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 200;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.stat-num em { color: var(--clay); font-style: italic; }
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+@media (max-width: 640px) {
+  .stats-strip-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+/* ==========================================================================
+   SECTION: Problem / Introduction
+   ========================================================================== */
+.intro {
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+}
+.intro-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
+}
+.intro-visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--sand);
+  padding: 2.5rem;
+  border: 1px solid var(--line-strong);
+}
+.intro-visual::before {
+  content: "THE USUAL MESS";
+  position: absolute;
+  top: -0.55rem; left: 1.4rem;
+  background: var(--parchment);
+  padding: 0 0.6rem;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  font-weight: 500;
+  z-index: 2;
+}
+.tool-stack-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem 2rem;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.tool-stack-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--line);
+  list-style: none;
+}
+.tool-stack-list li span:last-child {
+  color: var(--clay);
+  font-size: 11px;
+}
+.tool-stack-total {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.intro-content {
+  padding-top: 32px;
+}
+.intro-eyebrow {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.intro-eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--amber);
+}
+.intro-heading {
+  margin-bottom: 40px;
+}
+.intro-heading em {
+  font-style: italic;
+  font-variation-settings: "WONK" 1;
+  color: var(--clay);
+}
+.intro-text {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+.intro-text p + p { margin-top: 18px; }
+
+@media (max-width: 900px) {
+  .intro-inner { grid-template-columns: 1fr; gap: 40px; }
+  .intro-content { padding-top: 0; }
+  .tool-stack-list { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   SECTION: Four Pillars (replacing The Three Pathways)
+   ========================================================================== */
+.pathways {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+.pathways::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(180, 132, 58, 0.12), transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(180, 105, 63, 0.10), transparent 50%);
+  pointer-events: none;
+}
+.pathways-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  position: relative;
+}
+.pathways-header .t-eyebrow {
+  color: var(--sand);
+}
+.pathways-header .t-h2 {
+  font-weight: 250;
+}
+.pathways-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.pathways-intro {
+  max-width: 440px;
+  color: rgba(242, 235, 221, 0.75);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.pathways-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: rgba(242, 235, 221, 0.12);
+  border: 1px solid rgba(242, 235, 221, 0.12);
+  position: relative;
+}
+.pathway {
+  background: var(--ink);
+  padding: 48px 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 420px;
+  transition: background 0.6s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.pathway:hover { background: var(--ink-soft); }
+.pathway::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--clay);
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--ease);
+}
+.pathway:hover::before { transform: translateX(0); }
+.pathway-numeral {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clay);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pathway-numeral::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(242, 235, 221, 0.18);
+}
+.pathway-icon {
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  color: var(--clay);
+}
+.pathway-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--parchment);
+}
+.pathway-title em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.pathway-desc {
+  color: rgba(242, 235, 221, 0.72);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.pathway-replaces {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(242, 235, 221, 0.14);
+}
+.pathway-replaces ul {
+  list-style: none;
+  font-size: 12px;
+  color: rgba(242, 235, 221, 0.5);
+}
+.pathway-replaces li {
+  padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.pathway-replaces li::before {
+  content: "replaces";
+  margin-right: 8px;
+  color: var(--clay);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pathway-replaces li span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .pathways-header { grid-template-columns: 1fr; gap: 24px; }
+  .pathways-grid { grid-template-columns: 1fr; }
+  .pathway { min-height: auto; padding: 44px 28px 40px; }
+  .pathway-title { font-size: 30px; }
+}
+
+/* ==========================================================================
+   SECTION: Process (3 steps) — movement-style manifesto layout
+   ========================================================================== */
+.process {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--parchment-2);
+  position: relative;
+  overflow: hidden;
+}
+.process-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.process-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+  margin-bottom: 80px;
+}
+.process-manifesto {
+  font-family: var(--serif);
+  font-weight: 250;
+  font-size: clamp(28px, 4.2vw, 54px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.process-manifesto em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.process-manifesto .line-a { display: block; }
+.process-manifesto .line-b {
+  display: block;
+  padding-left: clamp(20px, 8vw, 120px);
+}
+.process-manifesto .line-c { display: block; }
+.process-manifesto .line-d {
+  display: block;
+  padding-left: clamp(20px, 14vw, 200px);
+}
+.process-right p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.process-right p + p { margin-top: 22px; }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.process-steps-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+  position: sticky;
+  top: 100px;
+}
+.process-steps-label em {
+  display: block;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 8px;
+  font-weight: 500;
+}
+.steps-list {
+  display: flex;
+  flex-direction: column;
+}
+.step-item {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 20px;
+  align-items: baseline;
+}
+.step-item:last-child { border-bottom: 1px solid var(--line); }
+.step-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+}
+.step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.step-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.step-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.step-time {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--clay);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 900px) {
+  .process-top { grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+  .process-steps { grid-template-columns: 1fr; gap: 24px; padding-top: 40px; }
+  .process-steps-label { position: static; font-size: 22px; }
+  .step-item {
+    grid-template-columns: 32px 1fr;
+    gap: 10px 12px;
+    padding: 22px 0;
+  }
+  .step-title { font-size: 19px; }
+  .step-time { grid-column: 2; margin-top: 4px; }
+  .process-manifesto .line-a,
+  .process-manifesto .line-b,
+  .process-manifesto .line-c,
+  .process-manifesto .line-d { padding-left: 0; }
+  .process-manifesto .line-b { padding-left: 24px; }
+  .process-manifesto .line-d { padding-left: 48px; }
+  .process-right p { font-size: 17px; }
+}
+
+/* ==========================================================================
+   SECTION: Portfolio — works list
+   ========================================================================== */
+.portfolio {
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+}
+.portfolio-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.portfolio-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.portfolio-header .t-h2 { font-weight: 250; }
+.portfolio-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.portfolio-meta {
+  max-width: 440px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.works {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ink);
+}
+.work {
+  display: grid;
+  grid-template-columns: 50px 2.5fr 4fr 2fr 32px;
+  gap: 2rem;
+  padding: 1.8rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+  cursor: pointer;
+}
+.work:hover {
+  background: var(--parchment-2);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.work-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--clay);
+}
+.work-client {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.1;
+  font-weight: 350;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.work-client em { color: var(--clay); font-style: italic; }
+.work-kind {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.work-url {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-align: right;
+  transition: color 0.3s;
+}
+.work-url a {
+  border-bottom: 1px solid var(--line);
+  transition: color 0.3s;
+}
+.work:hover .work-url a { color: var(--clay); }
+.work-chev {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: rgba(30,23,18,0.25);
+  transition: color 0.3s, transform 0.3s;
+  text-align: right;
+}
+.work:hover .work-chev { color: var(--clay); transform: translateX(4px); }
+
+.work-detail {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 1rem 0 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: calc(50px + 2rem);
+}
+.work.open .work-detail { display: block; }
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+.work-tag {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  background: var(--sand);
+  color: var(--amber);
+  border-radius: 3px;
+}
+
+@media (max-width: 900px) {
+  .portfolio-header { grid-template-columns: 1fr; gap: 24px; }
+  .work { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.2rem 0.5rem; }
+  .work-num { font-size: 0.6rem; }
+  .work-client { font-size: 1.1rem; }
+  .work-url { display: none; }
+  .work-chev { display: none; }
+  .work-detail { margin-left: 0; }
+}
+
+/* ==========================================================================
+   SECTION: Pricing — three tiers, pathway-card style
+   ========================================================================== */
+.pricing {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+.pricing::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(180, 132, 58, 0.12), transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(180, 105, 63, 0.10), transparent 50%);
+  pointer-events: none;
+}
+.pricing-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  text-align: center;
+  position: relative;
+}
+.pricing-header .t-eyebrow { color: var(--sand); margin-bottom: 16px; }
+.pricing-header .t-h2 {
+  font-weight: 250;
+  max-width: 18ch;
+  margin: 0 auto 24px;
+}
+.pricing-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.pricing-header p {
+  color: rgba(242, 235, 221, 0.72);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(242, 235, 221, 0.12);
+  border: 1px solid rgba(242, 235, 221, 0.12);
+  position: relative;
+}
+.tier {
+  background: var(--ink);
+  padding: 48px 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 520px;
+  transition: background 0.6s var(--ease);
+  position: relative;
+}
+.tier:hover { background: var(--ink-soft); }
+.tier.featured {
+  background: linear-gradient(180deg, #2b221a 0%, var(--ink) 100%);
+}
+.tier-kicker {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--clay);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tier-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(242, 235, 221, 0.18);
+}
+.tier-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--parchment);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.tier-who {
+  color: rgba(242, 235, 221, 0.6);
+  font-size: 14px;
+  line-height: 1.55;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(242, 235, 221, 0.14);
+}
+.tier-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--clay);
+  padding: 4px 10px;
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  background: var(--ink);
+  z-index: 2;
+}
+.tier-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.tier-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(242, 235, 221, 0.14);
+}
+.tier-price-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.5);
+}
+.tier-price-val {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--parchment);
+}
+.tier-includes {
+  margin-top: auto;
+  font-size: 13px;
+  color: rgba(242, 235, 221, 0.65);
+  line-height: 1.6;
+  list-style: none;
+}
+.tier-includes li {
+  padding: 3px 0;
+  display: flex;
+  gap: 8px;
+}
+.tier-includes li::before {
+  content: "—";
+  color: var(--clay);
+  flex-shrink: 0;
+}
+.tier-cta {
+  margin-top: 24px;
+}
+.tier-cta a {
+  color: var(--clay);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.4s var(--ease);
+}
+.tier-cta a:hover { gap: 14px; }
+.tier-cta a svg { width: 18px; }
+
+.pricing-note {
+  text-align: center;
+  margin-top: 48px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(242, 235, 221, 0.6);
+  position: relative;
+}
+.pricing-note a { color: var(--clay); border-bottom: 1px solid var(--clay); }
+
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .tier { min-height: auto; padding: 44px 28px 40px; }
+  .tier.featured { padding-top: 60px; }
+  .tier-tag { top: 18px; right: 18px; font-size: 10px; }
+  .tier-title { font-size: 26px; }
+}
+
+/* ==========================================================================
+   SECTION: Testimonials — carousel
+   ========================================================================== */
+.testimonials {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--parchment);
+  overflow: hidden;
+}
+.testimonials-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.testimonials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-strong);
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.testimonials-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.testimonials-header-left .t-h3 {
+  font-weight: 300;
+  max-width: 420px;
+}
+.testimonials-header-left .t-h3 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.testimonial-nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.testimonial-nav .t-small { margin: 0 16px; min-width: 48px; }
+.testimonial-nav button {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: grid; place-items: center;
+  transition: all 0.3s var(--ease);
+}
+.testimonial-nav button:hover {
+  background: var(--ink);
+  color: var(--parchment);
+  border-color: var(--ink);
+}
+.testimonial-nav button svg { width: 16px; }
+
+.testimonial-stage {
+  position: relative;
+  display: grid;
+  grid-template-areas: "stack";
+}
+.testimonial {
+  grid-area: stack;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-self: start;
+}
+.testimonial.active { opacity: 1; pointer-events: auto; position: relative; z-index: 2; }
+.testimonial:not(.active) { visibility: hidden; }
+.testimonial-quote {
+  font-family: var(--serif);
+  font-weight: 280;
+  font-style: italic;
+  font-size: clamp(22px, 3.2vw, 40px);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  max-width: 980px;
+}
+.testimonial-quote::before {
+  content: "\201C";
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 1.2em;
+  line-height: 0;
+  color: var(--clay);
+  vertical-align: -0.08em;
+  margin-right: 8px;
+  font-style: normal;
+}
+.testimonial-quote::after {
+  content: "\201D";
+  font-family: var(--serif);
+  color: var(--clay);
+  font-style: normal;
+  line-height: 0;
+  vertical-align: -0.08em;
+  margin-left: 4px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  max-width: 420px;
+}
+.testimonial-avatar {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--sand);
+  display: grid; place-items: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.testimonial-author-meta strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 18px;
+  display: block;
+  color: var(--ink);
+}
+.testimonial-author-meta .t-small {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+  .testimonials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .testimonial-quote { font-size: clamp(18px, 4.8vw, 22px); line-height: 1.4; }
+  .testimonial-nav button { width: 40px; height: 40px; }
+  .testimonial-nav .t-small { margin: 0 12px; }
+}
+
+/* ==========================================================================
+   SECTION: Voices marquee — audience types
+   ========================================================================== */
+.voices {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid rgba(242, 235, 221, 0.1);
+}
+.voices-label {
+  text-align: center;
+  margin-bottom: 36px;
+  color: rgba(242, 235, 221, 0.55);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.voices-marquee {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+  animation: marquee 48s linear infinite;
+  will-change: transform;
+}
+.voice-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 60px;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(22px, 2.4vw, 36px);
+  letter-spacing: -0.01em;
+  color: rgba(242, 235, 221, 0.88);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.voice-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clay);
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .voices { padding: 60px 0; }
+  .voice-item { font-size: 22px; gap: 40px; }
+  .voices-marquee { gap: 40px; }
+}
+
+/* ==========================================================================
+   SECTION: About
+   ========================================================================== */
+.about {
+  padding: var(--pad-lg) var(--pad);
+  position: relative;
+}
+.about-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.about-header {
+  margin-bottom: 80px;
+  max-width: 880px;
+}
+.about-header .t-h2 {
+  font-weight: 250;
+  margin-top: 20px;
+}
+.about-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+}
+.about-visual {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--sand);
+}
+.about-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.85);
+}
+.about-visual-pull {
+  position: absolute;
+  bottom: 24px;
+  left: -30px;
+  right: -30px;
+  padding: 18px 28px;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 20px 60px -20px rgba(30,23,18,0.25);
+}
+.about-visual-pull strong {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--clay);
+}
+
+.about-text {
+  padding-top: 20px;
+  max-width: 620px;
+}
+.about-text p { margin-bottom: 20px; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+.about-text p.lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.about-values {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--parchment-2);
+  border-left: 3px solid var(--clay);
+}
+.about-values h4 {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.about-values p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  margin-bottom: 0;
+}
+
+.about-meta-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+.about-meta-cell {
+  background: var(--parchment);
+  padding: 16px 14px;
+}
+.about-meta-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.about-meta-val {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 4px;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+@media (max-width: 900px) {
+  .about-body { grid-template-columns: 1fr; gap: 40px; }
+  .about-header .t-h2 { font-size: clamp(30px, 7vw, 44px); }
+  .about-text p.lead { font-size: 19px; }
+  .about-visual-pull {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
+   SECTION: FAQ
+   ========================================================================== */
+.faq {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--parchment-2);
+  border-top: 1px solid var(--line);
+}
+.faq-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+.faq-header .t-h2 {
+  font-weight: 250;
+  margin-top: 20px;
+  font-size: clamp(32px, 5vw, 56px);
+}
+.faq-header .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.faq-header p {
+  color: var(--ink-soft);
+  margin-top: 16px;
+  font-size: 15px;
+}
+.faq-list { border-top: 1px solid var(--ink); }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+  cursor: pointer;
+}
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.3;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  transition: color 0.3s;
+}
+.faq-item:hover .faq-q { color: var(--clay); }
+.faq-q .t { flex: 1; }
+.faq-q .plus {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--clay);
+  font-size: 1.6rem;
+  line-height: 0.8;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q .plus { transform: rotate(45deg); }
+.faq-item.open .faq-q { font-style: italic; color: var(--clay); font-variation-settings: "opsz" 144, "SOFT" 100; }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-size: 15px;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.open .faq-a {
+  max-height: 500px;
+  padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .faq-grid { grid-template-columns: 1fr; gap: 24px; }
+  .faq-q { font-size: 1.05rem; gap: 1rem; }
+}
+
+/* ==========================================================================
+   SECTION: Contact
+   ========================================================================== */
+.contact {
+  padding: var(--pad-lg) var(--pad);
+  background: var(--ink);
+  color: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(180, 105, 63, 0.18), transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(180, 132, 58, 0.12), transparent 50%);
+  pointer-events: none;
+}
+.contact-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 100px);
+  align-items: start;
+}
+.contact-copy .t-eyebrow { color: var(--sand); margin-bottom: 16px; }
+.contact-copy .t-h2 {
+  font-weight: 250;
+  margin-bottom: 24px;
+}
+.contact-copy .t-h2 em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.contact-desc {
+  color: rgba(242, 235, 221, 0.72);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.55;
+  margin-bottom: 40px;
+  max-width: 440px;
+}
+.contact-email {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: var(--parchment);
+  display: inline-block;
+  border-bottom: 1px solid var(--clay);
+  padding-bottom: 4px;
+  transition: color 0.3s;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.contact-email:hover { color: var(--clay); }
+.contact-links {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.contact-links a {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.6);
+  transition: color 0.3s;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+.contact-links a:hover { color: var(--clay); border-bottom-color: var(--clay); }
+
+.contact-form {
+  background: rgba(242, 235, 221, 0.04);
+  border: 1px solid rgba(242, 235, 221, 0.12);
+  padding: 40px;
+  backdrop-filter: blur(8px);
+}
+.contact-form label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 235, 221, 0.6);
+  margin-bottom: 8px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(242, 235, 221, 0.2);
+  padding: 10px 0;
+  color: var(--parchment);
+  font-family: var(--serif);
+  font-size: 17px;
+  margin-bottom: 28px;
+  font-variation-settings: "opsz" 144, "SOFT" 60;
+  transition: border-color 0.3s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--clay);
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(242, 235, 221, 0.3);
+  font-style: italic;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.contact-form .btn {
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+  background: var(--clay);
+  color: var(--parchment);
+  border: none;
+}
+.contact-form .btn:hover { background: var(--parchment); color: var(--ink); }
+
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-form { padding: 28px; }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  background: var(--parchment);
+  padding: 80px var(--pad) 32px;
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-giant {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(48px, 12vw, 140px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: rgba(30, 23, 18, 0.06);
+  text-align: center;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  margin-bottom: 48px;
+  overflow: hidden;
+  word-break: break-word;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 60px);
+  margin-bottom: 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.footer-brand-name em {
+  font-style: italic;
+  color: var(--clay);
+  font-variation-settings: "WONK" 1;
+}
+.footer-brand-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  max-width: 380px;
+}
+.footer-col h4 {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.footer-col a {
+  transition: color 0.3s var(--ease);
+}
+.footer-col a:hover { color: var(--clay); }
+
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.footer-bottom .mid {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.footer-bottom .right {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
+    margin-bottom: 40px;
+    padding-bottom: 36px;
+  }
+  .footer-top > div:first-child { grid-column: 1 / -1; }
+  .footer-brand-name { font-size: 24px; }
+  .footer-brand-desc { font-size: 14px; max-width: 100%; }
+  .footer-bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 14px;
+  }
+  .footer-bottom .right,
+  .footer-bottom .mid {
+    text-align: center;
+    justify-content: center;
+  }
+  .footer-bottom .mid { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
+  footer { padding: 56px var(--pad) 28px; }
+}
+
+/* Buttons & CTAs on mobile */
+@media (max-width: 540px) {
+  .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hero-ctas .btn { justify-content: center; width: 100%; }
+  .btn { padding: 16px 24px; font-size: 11.5px; }
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reveal {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll reveals */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+.reveal-section.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+</style>
+<script defer src="https://analytics.astralintegration.studio/script.js" data-website-id="d8fb7a8b-69d2-4132-b8ba-493a10333c2a"></script>
+</head>
+<body>
+
+<!-- ===== The Axis — the spine of the platform ===== -->
+<div class="axis" aria-hidden="true"></div>
+<div class="axis-pulse" aria-hidden="true"></div>
+
+<!-- ===== Navigation ===== -->
+<nav class="main">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="#solution">The Work</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a href="#" class="wordmark" aria-label="Astral Integration — Home">
+      <span class="wordmark-dot"></span>
+      <span class="wordmark-text">Astral <em>Integration</em></span>
+    </a>
+    <div class="nav-right">
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" style="color: var(--clay);">Book a Call →</a>
+    </div>
+    <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== Mobile menu ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">Close</button>
+  <a href="#solution">The <em>Work</em></a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#about">About <em>Jordi</em></a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact" style="color: var(--clay); margin-top: 24px;">Book a Call →</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-meta">
+        <span class="hero-meta-line"></span>
+        <span class="t-eyebrow">Platforms for people who teach · Mazunte, Oaxaca</span>
+      </div>
+
+      <h1 class="t-h1 hero-headline">
+        <span><span>your mastery</span></span>
+        <span><span><em>deserves</em></span></span>
+        <span><span>infrastructure</span></span>
+        <span><span>that matches it.</span></span>
+      </h1>
+
+      <div class="hero-sub t-lead">
+        i build the quiet machinery behind sacred work — websites, bookings, courses, payments, community, everything — for healers, teachers, retreat centers, and people doing original work in the world. one person. one platform. no duct tape.
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">
+          Send Me Your Messy Notes
+          <svg class="btn-arrow" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#portfolio" class="btn btn-secondary">
+          See the Work
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <svg class="hero-backdrop" viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="heroGlow" cx="50%" cy="38%" r="55%">
+            <stop offset="0%" stop-color="#b4843a" stop-opacity="0.55"/>
+            <stop offset="60%" stop-color="#6d2819" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#1e1712" stop-opacity="1"/>
+          </radialGradient>
+          <linearGradient id="heroSweep" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2b231b"/>
+            <stop offset="100%" stop-color="#1e1712"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="560" fill="url(#heroSweep)"/>
+        <circle cx="200" cy="210" r="220" fill="url(#heroGlow)"/>
+        <g stroke="#b4843a" stroke-width="0.6" fill="none" opacity="0.32">
+          <circle cx="200" cy="210" r="70"/>
+          <circle cx="200" cy="210" r="110"/>
+          <circle cx="200" cy="210" r="155"/>
+        </g>
+        <g stroke="#b4843a" stroke-width="0.5" opacity="0.22">
+          <line x1="200" y1="40" x2="200" y2="20"/>
+          <line x1="200" y1="380" x2="200" y2="400"/>
+          <line x1="30" y1="210" x2="10" y2="210"/>
+          <line x1="370" y1="210" x2="390" y2="210"/>
+          <line x1="82" y1="92" x2="68" y2="78"/>
+          <line x1="318" y1="92" x2="332" y2="78"/>
+          <line x1="82" y1="328" x2="68" y2="342"/>
+          <line x1="318" y1="328" x2="332" y2="342"/>
+        </g>
+        <circle cx="200" cy="210" r="3" fill="#c6663f"/>
+      </svg>
+      <span class="hero-right-index">fig. 01 — infrastructure</span>
+      <span class="hero-right-meta">Mazunte, Oaxaca — est. 2013</span>
+      <div class="hero-portrait">
+        <img src="/founder.jpeg" alt="Jordi Amat — Founder, Astral Integration" />
+      </div>
+      <div class="hero-portrait-mask"></div>
+      <div class="hero-portrait-label">
+        <div class="t-small">Jordi Amat<br/>Founder</div>
+        <div class="hero-portrait-sign">Ja</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats strip ===== -->
+<section class="stats-strip reveal-section">
+  <div class="stats-strip-inner">
+    <div>
+      <div class="stat-num"><em>170</em>+</div>
+      <div class="stat-label">Sites shipped</div>
+    </div>
+    <div>
+      <div class="stat-num"><em>48</em>h</div>
+      <div class="stat-label">Average first build</div>
+    </div>
+    <div>
+      <div class="stat-num">1</div>
+      <div class="stat-label">Person, one platform</div>
+    </div>
+    <div>
+      <div class="stat-num"><em>0</em></div>
+      <div class="stat-label">Proposals ever sent</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Problem / Introduction ===== -->
+<section class="intro reveal-section">
+  <div class="intro-inner">
+    <div class="intro-visual">
+      <ul class="tool-stack-list">
+        <li><span>Website</span> <span>WordPress $30/mo</span></li>
+        <li><span>Courses</span> <span>Kajabi $149/mo</span></li>
+        <li><span>Bookings</span> <span>Acuity $24/mo</span></li>
+        <li><span>Email</span> <span>Mailchimp $45/mo</span></li>
+        <li><span>Payments</span> <span>Stripe % fees</span></li>
+        <li><span>Events</span> <span>Eventbrite 7%</span></li>
+        <li><span>Community</span> <span>Circle $89/mo</span></li>
+        <li><span>Landing</span> <span>Linktree $9/mo</span></li>
+      </ul>
+      <div class="tool-stack-total">
+        <span>Monthly total</span>
+        <span style="color: var(--clay);">$346+ / no integration</span>
+      </div>
+    </div>
+
+    <div class="intro-content">
+      <div class="intro-eyebrow t-eyebrow">I — The Situation</div>
+
+      <h2 class="t-h2 intro-heading">
+        you changed someone's <em>life</em> this week.
+      </h2>
+
+      <div class="intro-text t-body">
+        <p>and then spent the weekend fighting Kajabi.</p>
+        <p>your practice runs on seven platforms that don't speak to each other. each one sends you a bill. each one holds a piece of your work hostage. students who want to sign up get sent through three different tools.</p>
+        <p><strong>you're using their platforms to build their platforms with your content.</strong> and your digital presence doesn't match the depth of your teaching — not even close.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Four Pillars ===== -->
+<section class="pathways reveal-section" id="solution">
+  <div class="pathways-header">
+    <div>
+      <div class="t-eyebrow" style="margin-bottom:16px;">II — The Alternative</div>
+      <h2 class="t-h2">one home. <em>everything connected.</em></h2>
+    </div>
+    <p class="pathways-intro">
+      stop duct-taping seven platforms together. get one that was built for you, owned by you, and evolves with your teaching.
+    </p>
+  </div>
+
+  <div class="pathways-grid">
+    <div class="pathway">
+      <div class="pathway-numeral"><span>I — Presence</span></div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <rect x="8" y="8" width="36" height="36" rx="2" stroke="currentColor" stroke-width="1"/>
+        <line x1="8" y1="20" x2="44" y2="20" stroke="currentColor" stroke-width="1"/>
+        <circle cx="26" cy="33" r="5" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <h3 class="pathway-title">your <em>site.</em></h3>
+      <p class="pathway-desc">custom-designed. fast. SEO-ready. no templates, no page builders. a site that looks like you and loads in under a second — on the phone, in the jungle, with two bars of 3G.</p>
+      <div class="pathway-replaces">
+        <ul>
+          <li><span>Squarespace, WordPress, Elementor</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pathway">
+      <div class="pathway-numeral"><span>II — Offering</span></div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <rect x="6" y="10" width="40" height="32" rx="2" stroke="currentColor" stroke-width="1"/>
+        <line x1="6" y1="18" x2="46" y2="18" stroke="currentColor" stroke-width="1"/>
+        <line x1="18" y1="10" x2="18" y2="42" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+        <circle cx="32" cy="30" r="6" stroke="currentColor" stroke-width="1"/>
+        <path d="M32 27 L32 33 M29 30 L35 30" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <h3 class="pathway-title">bookings &amp; <em>events.</em></h3>
+      <p class="pathway-desc">classes, workshops, retreats, 1:1s — all with calendar sync, waitlists, intake forms, and payments in one step. no acuity. no eventbrite taking 7% of every ticket.</p>
+      <div class="pathway-replaces">
+        <ul>
+          <li><span>Acuity, Calendly, Eventbrite</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pathway">
+      <div class="pathway-numeral"><span>III — Container</span></div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <path d="M26 6 C16 12, 12 22, 26 46 C40 22, 36 12, 26 6 Z" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="26" cy="26" r="1.8" fill="currentColor"/>
+        <path d="M14 28 Q26 20, 38 28" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+      </svg>
+      <h3 class="pathway-title">community &amp; <em>courses.</em></h3>
+      <p class="pathway-desc">courses, content libraries, member areas, subscriptions. your own container — not someone else's algorithm. students log in, progress through, stay connected.</p>
+      <div class="pathway-replaces">
+        <ul>
+          <li><span>Kajabi, Circle, Teachable</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pathway">
+      <div class="pathway-numeral"><span>IV — Machinery</span></div>
+      <svg class="pathway-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+        <circle cx="26" cy="26" r="18" stroke="currentColor" stroke-width="1"/>
+        <circle cx="26" cy="26" r="10" stroke="currentColor" stroke-width="1"/>
+        <circle cx="26" cy="26" r="2" fill="currentColor"/>
+        <path d="M26 4 L26 14 M26 38 L26 48 M4 26 L14 26 M38 26 L48 26" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <h3 class="pathway-title">the quiet <em>operations.</em></h3>
+      <p class="pathway-desc">email automations, CRM, analytics, payments, invoicing, AI assistants — everything wired together so you can teach instead of troubleshoot.</p>
+      <div class="pathway-replaces">
+        <ul>
+          <li><span>Zapier, HubSpot, Mailchimp</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Process — 3 steps ===== -->
+<section class="process reveal-section" id="how">
+  <div class="process-inner">
+    <div class="process-top">
+      <h2 class="process-manifesto">
+        <span class="line-a">send me</span>
+        <span class="line-b"><em>the mess.</em></span>
+        <span class="line-c">i'll send you</span>
+        <span class="line-d"><em>a business.</em></span>
+      </h2>
+
+      <div class="process-right">
+        <p>no proposals. no discovery calls that go nowhere. no decks. no months of back-and-forth.</p>
+        <p>you send me whatever you have. i build. we talk when there's something real to look at.</p>
+      </div>
+    </div>
+
+    <div class="process-steps">
+      <div>
+        <div class="process-steps-label">
+          How it works
+          <em>— three steps, no ceremony</em>
+        </div>
+      </div>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <h4 class="step-title">You send me the mess.</h4>
+            <p class="step-desc">A voice memo at 2am. A messy Google Doc. A linktree. Your instagram bio. Three screenshots of your current site. I'll read it, study your work, and sketch what your digital home should be.</p>
+          </div>
+          <span class="step-time">1 day</span>
+        </div>
+
+        <div class="step-item">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <h4 class="step-title">I build it before we talk.</h4>
+            <p class="step-desc">No wireframes. No proposal. 48 hours later you get a link to your actual platform — your photos, your copy, your brand — live, working, yours to click around. If it's wrong, we iterate. If it's right, we ship.</p>
+          </div>
+          <span class="step-time">48h — 3 weeks</span>
+        </div>
+
+        <div class="step-item">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <h4 class="step-title">I stay.</h4>
+            <p class="step-desc">This isn't a handoff. I remain your technical partner — maintaining, evolving, scaling as the work grows. You own every line of code, every database, every domain. If you ever want to leave, you take it all with you.</p>
+          </div>
+          <span class="step-time">as long as you want</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Voices marquee ===== -->
+<section class="voices">
+  <div class="voices-label">I build for</div>
+  <div class="voices-marquee">
+    <div class="voice-item">yoga schools</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">reiki academies</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">breathwork trainings</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">kundalini teachers</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">retreat centers</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">coaching programs</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">healing schools</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">ceremony facilitators</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">sound healing</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">meditation teachers</div>
+    <div class="voice-dot"></div>
+    <!-- repeat for seamless loop -->
+    <div class="voice-item">yoga schools</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">reiki academies</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">breathwork trainings</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">kundalini teachers</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">retreat centers</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">coaching programs</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">healing schools</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">ceremony facilitators</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">sound healing</div>
+    <div class="voice-dot"></div>
+    <div class="voice-item">meditation teachers</div>
+    <div class="voice-dot"></div>
+  </div>
+</section>
+
+<!-- ===== Portfolio ===== -->
+<section class="portfolio reveal-section" id="portfolio">
+  <div class="portfolio-inner">
+    <div class="portfolio-header">
+      <div>
+        <span class="t-eyebrow" style="margin-bottom:16px;display:block;">III — The Archive</span>
+        <h2 class="t-h2">the <em>work.</em></h2>
+      </div>
+      <p class="portfolio-meta">every site is a custom build. no templates. no themes. each one designed for the practitioner's specific work, brand, and audience. <span style="display:block;margin-top:8px;color:var(--clay);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;">tap any row to read more</span></p>
+    </div>
+
+    <div class="works">
+      <div class="work">
+        <span class="work-num">01</span>
+        <div class="work-client">sacred music <em>artists</em></div>
+        <div class="work-kind">Discography, tours &amp; community for touring devotional musicians. Dark immersive experience.</div>
+        <div class="work-url"><a href="https://devapremalmiten.xyz" target="_blank" rel="noopener">devapremalmiten.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Touring sacred music artists with a sprawling discography and global tour. We built a single dark, immersive platform: horizontal-scrolling discography as the hero, concert-hall tour listings, unified community area, and a store that feels like part of the work rather than bolted on.</p>
+          <div class="work-tags"><span class="work-tag">Discography</span><span class="work-tag">Touring</span><span class="work-tag">Community</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">02</span>
+        <div class="work-client">retreat center — <em>Sacred Counsel</em></div>
+        <div class="work-kind">Multi-stream revenue platform for a center with 20+ years of ceremony experience.</div>
+        <div class="work-url"><a href="https://sacredcounsel.space" target="_blank" rel="noopener">sacredcounsel.space</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>A center in Valle de Bravo, Mexico with two decades of ceremony work and five distinct revenue streams. One platform underneath, five front doors. Multi-tenant architecture with circle-scoped data and custom preparation sequences.</p>
+          <div class="work-tags"><span class="work-tag">Retreats</span><span class="work-tag">Multi-stream</span><span class="work-tag">Intake</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">03</span>
+        <div class="work-client">legacy yoga <em>teacher</em></div>
+        <div class="work-kind">Editorial landing &amp; unified booking for a teacher with 50+ years of practice across 5 continents.</div>
+        <div class="work-url"><a href="https://gurmukh.xyz" target="_blank" rel="noopener">gurmukh.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Fifty years of practice. Five continents of students. We built a warm editorial landing page, a timeline-based schedule showing all offerings in one view, and a single unified inquiry flow that routes intelligently by intent.</p>
+          <div class="work-tags"><span class="work-tag">Editorial</span><span class="work-tag">Timeline</span><span class="work-tag">Unified booking</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">04</span>
+        <div class="work-client">medical <em>intuitive</em></div>
+        <div class="work-kind">Premium healing practice on seven duct-taped platforms. Consolidated into one.</div>
+        <div class="work-url"><a href="https://skylaracamesis.xyz" target="_blank" rel="noopener">skylaracamesis.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Seven tools, seven logins, seven monthly bills. We built a single premium platform with a clear offering hierarchy, a membership layer, and a practitioner directory for her trained students.</p>
+          <div class="work-tags"><span class="work-tag">Premium</span><span class="work-tag">Membership</span><span class="work-tag">Directory</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">05</span>
+        <div class="work-client">reiki <em>academy</em></div>
+        <div class="work-kind">Hundreds of students, multiple certification levels. Student progression, practice-hour logging, AI assistant.</div>
+        <div class="work-url"><a href="https://shivenergetics.xyz" target="_blank" rel="noopener">shivenergetics.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Prerequisite-gated courses, automatic practice-hour logging with teacher verification, auto-generated practitioner directory, and an AI assistant trained on the methodology.</p>
+          <div class="work-tags"><span class="work-tag">Certification</span><span class="work-tag">Progression</span><span class="work-tag">AI assistant</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">06</span>
+        <div class="work-client">yoga studio + personal brand <em>+ movement</em></div>
+        <div class="work-kind">Three interconnected brands: studio, teacher, global movement. Four custom domains, unified design.</div>
+        <div class="work-url"><a href="https://marianaharpreet.xyz" target="_blank" rel="noopener">marianaharpreet.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Four interconnected sites across four custom domains — each with its own visual identity but sharing a design substrate, so students can move between the studio, the teacher, and the movement without losing continuity.</p>
+          <div class="work-tags"><span class="work-tag">Multi-brand</span><span class="work-tag">Studio</span><span class="work-tag">Movement</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">07</span>
+        <div class="work-client">touring <em>facilitator</em></div>
+        <div class="work-kind">Events on 8 ticketing platforms. Unified ticketing, 300+ subscriber membership, certification course.</div>
+        <div class="work-url"><a href="https://uriatsur.live" target="_blank" rel="noopener">uriatsur.live</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Unified ticketing with venue-specific flows, a membership portal past 300 subscribers, a certification course for leaders, and fully bilingual English/Hebrew interfaces.</p>
+          <div class="work-tags"><span class="work-tag">Ticketing</span><span class="work-tag">Membership</span><span class="work-tag">Bilingual</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">08</span>
+        <div class="work-client">regenerative <em>center</em></div>
+        <div class="work-kind">School, restaurant, natural pool, workshops. Single digital home with cross-discovery.</div>
+        <div class="work-url"><a href="https://amakura.xyz" target="_blank" rel="noopener">amakura.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>A single digital home where reading about the restaurant surfaces related events, and reading about the school surfaces teachers' upcoming workshops. A site that understands the center is one organism.</p>
+          <div class="work-tags"><span class="work-tag">Multi-offering</span><span class="work-tag">Cross-discovery</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">09</span>
+        <div class="work-client">community <em>platform</em></div>
+        <div class="work-kind">Coastal town directory, event calendar, classifieds, weekly digest. Bilingual.</div>
+        <div class="work-url"><a href="https://mazunte.today" target="_blank" rel="noopener">mazunte.today</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Bilingual community platform with daily event calendar, practitioner directory, local classifieds, and weekly Sunday digest. The first thing visitors and locals pull up on Saturday morning.</p>
+          <div class="work-tags"><span class="work-tag">Community</span><span class="work-tag">Directory</span><span class="work-tag">Bilingual</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">10</span>
+        <div class="work-client">breathwork <em>school</em></div>
+        <div class="work-kind">Rebrand from women's movement to breathwork school. Teacher training, retreats. Spanish-first.</div>
+        <div class="work-url"><a href="https://artederenacer.com" target="_blank" rel="noopener">artederenacer.com</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>New brand identity, teacher training enrollment with prerequisite tracking, retreat booking, and a respectful community transition layer. Spanish-first, English secondary.</p>
+          <div class="work-tags"><span class="work-tag">Rebrand</span><span class="work-tag">Teacher training</span><span class="work-tag">Spanish-first</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">11</span>
+        <div class="work-client">textile <em>artisan</em></div>
+        <div class="work-kind">Bespoke robes from hand-selected linen. Linen-texture overlay, earthy palette, custom orders.</div>
+        <div class="work-url"><a href="https://mendamano.xyz" target="_blank" rel="noopener">mendamano.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>The cloth itself is the hero — subtle linen-texture overlay, earthy palette matched to natural dyes, and a custom order flow that starts with a conversation rather than a cart.</p>
+          <div class="work-tags"><span class="work-tag">Artisan</span><span class="work-tag">Bespoke</span><span class="work-tag">Slow commerce</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">12</span>
+        <div class="work-client">women's <em>movement</em></div>
+        <div class="work-kind">Circles, retreats, online programs in Spanish. Living archive during parent brand's rebrand.</div>
+        <div class="work-url"><a href="https://mujerdespierta.xyz" target="_blank" rel="noopener">mujerdespierta.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>A standalone site functioning as both an active offering platform and a living archive, so the momentum didn't get lost in the rebrand.</p>
+          <div class="work-tags"><span class="work-tag">Spanish</span><span class="work-tag">Archive</span><span class="work-tag">Circles</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">13</span>
+        <div class="work-client">plant-dyed <em>slow fashion</em></div>
+        <div class="work-kind">Plant-dyed wearable art. Earth tones, natural textures. Process and story before price.</div>
+        <div class="work-url"><a href="https://kuraterra.xyz" target="_blank" rel="noopener">kuraterra.xyz</a></div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>The site treats the collection as art rather than inventory. Buying a piece feels like adopting a small artwork, not clicking "add to cart."</p>
+          <div class="work-tags"><span class="work-tag">Slow fashion</span><span class="work-tag">Wearable art</span></div>
+        </div>
+      </div>
+
+      <div class="work">
+        <span class="work-num">14</span>
+        <div class="work-client">eco farm + artist <em>residency</em></div>
+        <div class="work-kind">Eco-farm, artist residency, natural building school. Three booking models, one land.</div>
+        <div class="work-url">— private —</div>
+        <span class="work-chev">›</span>
+        <div class="work-detail">
+          <p>Three distinct programs sharing the same land, each with a completely different booking model. The land's story comes first, and the three booking models branch out from there.</p>
+          <div class="work-tags"><span class="work-tag">Eco-farm</span><span class="work-tag">Residency</span><span class="work-tag">Multi-model</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Pricing ===== -->
+<section class="pricing reveal-section" id="pricing">
+  <div class="pricing-header">
+    <div class="t-eyebrow">IV — Pricing</div>
+    <h2 class="t-h2">clear pricing. <em>no surprises.</em></h2>
+    <p>three tiers. fixed numbers. everything included. no hidden revisions, no proposals that balloon halfway through.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="tier">
+      <div class="tier-kicker"><span>Practitioners</span></div>
+      <h3 class="tier-title">your digital home</h3>
+      <p class="tier-who">solo teachers, healers, coaches, facilitators. you have an audience but no real platform.</p>
+      <div class="tier-prices">
+        <div class="tier-price-row">
+          <span class="tier-price-label">Setup</span>
+          <span class="tier-price-val">$1,500</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Monthly</span>
+          <span class="tier-price-val">$250/mo</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Timeline</span>
+          <span class="tier-price-val">1 — 2 weeks</span>
+        </div>
+      </div>
+      <ul class="tier-includes">
+        <li>Custom-designed, fast, SEO-ready site</li>
+        <li>Bookings &amp; payments in one flow</li>
+        <li>Email list + welcome automation</li>
+        <li>Hosting, domain, SSL, ongoing support</li>
+        <li>Full ownership of code + data from day one</li>
+      </ul>
+      <div class="tier-cta">
+        <a href="#contact">Begin <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tier featured">
+      <span class="tier-tag">— most common —</span>
+      <div class="tier-kicker"><span>Schools</span></div>
+      <h3 class="tier-title">your teaching platform</h3>
+      <p class="tier-who">certification programs, teacher trainings, academies with students and levels.</p>
+      <div class="tier-prices">
+        <div class="tier-price-row">
+          <span class="tier-price-label">Setup</span>
+          <span class="tier-price-val">$5,000</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Monthly</span>
+          <span class="tier-price-val">$750/mo</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Timeline</span>
+          <span class="tier-price-val">3 — 4 weeks</span>
+        </div>
+      </div>
+      <ul class="tier-includes">
+        <li>Everything in Practitioners</li>
+        <li>Courses, certification, progression tracking</li>
+        <li>Membership &amp; community layers</li>
+        <li>Practitioner directory</li>
+        <li>Multi-offering architecture</li>
+      </ul>
+      <div class="tier-cta">
+        <a href="#contact">Begin <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-kicker"><span>Complex Schools</span></div>
+      <h3 class="tier-title">full infrastructure</h3>
+      <p class="tier-who">300+ students, multi-level certifications, cohorts, AI assistants, bilingual, multi-tenant.</p>
+      <div class="tier-prices">
+        <div class="tier-price-row">
+          <span class="tier-price-label">Setup</span>
+          <span class="tier-price-val">$8,000+</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Monthly</span>
+          <span class="tier-price-val">$1,500/mo</span>
+        </div>
+        <div class="tier-price-row">
+          <span class="tier-price-label">Timeline</span>
+          <span class="tier-price-val">4 — 6 weeks</span>
+        </div>
+      </div>
+      <ul class="tier-includes">
+        <li>Everything in Schools</li>
+        <li>AI assistant trained on your methodology</li>
+        <li>Cohort management</li>
+        <li>Multi-tenant &amp; bilingual support</li>
+        <li>Custom integrations</li>
+      </ul>
+      <div class="tier-cta">
+        <a href="#contact">Begin <svg viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="pricing-note">
+    organizations and large networks — custom scope.
+    <a href="#contact">let's talk.</a>
+  </p>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="testimonials reveal-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="testimonials-header-left">
+        <span class="t-eyebrow">V — What Clients Say</span>
+        <h3 class="t-h3">voices from the other side of the <em>build.</em></h3>
+      </div>
+      <div class="testimonial-nav">
+        <button id="prevT" aria-label="Previous">
+          <svg viewBox="0 0 16 12" fill="none"><path d="M15 6H1M1 6L6 1M1 6L6 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <span class="t-small" id="tIndex">01 / 05</span>
+        <button id="nextT" aria-label="Next">
+          <svg viewBox="0 0 16 12" fill="none"><path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="testimonial-stage" id="testStage">
+      <div class="testimonial active" data-i="0">
+        <p class="testimonial-quote">
+          jordi built our entire platform in days. what would have taken months with an agency, he delivered in a weekend. and it was better than anything we'd seen before.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Mn</div>
+          <div class="testimonial-author-meta">
+            <strong>Manoela</strong>
+            <span class="t-small">Yoga teacher &amp; retreat leader</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="1">
+        <p class="testimonial-quote">
+          i sent him a voice memo and a few screenshots. forty-eight hours later i had a full website, a booking system, and payment processing. i still don't understand how.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Hc</div>
+          <div class="testimonial-author-meta">
+            <strong>Hector</strong>
+            <span class="t-small">Healer &amp; facilitator</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="2">
+        <p class="testimonial-quote">
+          he doesn't just build tech. he understands the work.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Dv</div>
+          <div class="testimonial-author-meta">
+            <strong>David</strong>
+            <span class="t-small">Coach &amp; therapist</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="3">
+        <p class="testimonial-quote">
+          it finally feels like my school, not a patchwork of tools duct-taped together. my students can find things now. i can find things now.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Ss</div>
+          <div class="testimonial-author-meta">
+            <strong>Sera Shivnan</strong>
+            <span class="t-small">Reiki master teacher</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial" data-i="4">
+        <p class="testimonial-quote">
+          i was managing tickets across eight platforms, whatsapp groups for everything, absolute chaos. jordi put it all in one place without losing the texture of how i actually work.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">Ut</div>
+          <div class="testimonial-author-meta">
+            <strong>Uria Tsur</strong>
+            <span class="t-small">Vocal facilitator &amp; musician</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about reveal-section" id="about">
+  <div class="about-inner">
+    <div class="about-header">
+      <span class="t-eyebrow">VI — The Builder</span>
+      <h2 class="t-h2">from startups to the jungle — a practice built in <em>service of sacred work.</em></h2>
+    </div>
+
+    <div class="about-body">
+      <div class="about-visual">
+        <img src="/founder.jpeg" alt="Jordi Amat in Mazunte" />
+        <div class="about-visual-pull">
+          <strong>"building and healing</strong> are the same act — listening closely, noticing what's misaligned, and making the smallest possible change that lets the whole system function again."
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="lead">
+          senior full-stack engineer. former CTO. i spent a decade building production systems and leading engineering teams in startups you've probably heard of. then i moved to mazunte, oaxaca.
+        </p>
+        <p>
+          i live inside the same world my clients do. breathwork circles, cacao ceremonies, indigenous oaxacan traditions, plant medicine, sound, silence, early mornings with coffee and a journal, late nights with a terminal. i don't build for this world from the outside. i build from inside it.
+        </p>
+        <p>
+          the technical competence is old — a decade of shipping production systems — but the speed is new. i work with AI tools that let me move at a velocity that used to require a full team. and i charge a fraction of what an agency would because my overhead is a hammock, a satellite dish, and a cup of Oaxacan coffee.
+        </p>
+        <p>
+          i don't do sales calls. i don't send proposals. i find people whose work i respect, i build them something real, and i send them the link. if they like it, we work together. if not, they keep the build anyway.
+        </p>
+
+        <div class="about-values">
+          <h4>The Principle</h4>
+          <p>they were never separate processes. building and healing are the same service — listening on different ports.</p>
+        </div>
+
+        <div class="about-meta-grid">
+          <div class="about-meta-cell">
+            <div class="about-meta-label">Based in</div>
+            <div class="about-meta-val">Mazunte, Oax.</div>
+          </div>
+          <div class="about-meta-cell">
+            <div class="about-meta-label">Shipping since</div>
+            <div class="about-meta-val">2013</div>
+          </div>
+          <div class="about-meta-cell">
+            <div class="about-meta-label">Sites shipped</div>
+            <div class="about-meta-val">170+</div>
+          </div>
+          <div class="about-meta-cell">
+            <div class="about-meta-label">Stack</div>
+            <div class="about-meta-val">Modern, AI-native</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq reveal-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-grid">
+      <div class="faq-header">
+        <span class="t-eyebrow">VII — Common Questions</span>
+        <h2 class="t-h2">things people <em>ask.</em></h2>
+        <p>answers to the questions that usually come up in the first email. if yours isn't here, it's the kind of thing we can discuss on a call.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">Why not just hire a freelance web developer?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>you can. but a freelancer builds what you spec. which means you already need to know what you need. i don't build from a spec. i learn your practice, make the architectural decisions, and stay to adjust them as your work evolves.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">Why not just use Squarespace, Wix, or Kajabi?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>those tools are excellent if your practice fits their template. most don't. squarespace can't handle a five-level certification progression. kajabi can't host a retreat with intake + integration + homestay booking. the limitation isn't "is this a website" — it's "can this platform hold the shape of my actual work."</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">What if I just want a simple site for now?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>then you get a simple site for now. we can start with a clean presence and a booking flow, and add courses, membership, and automations as your practice grows. you're not signing up for a skyscraper on day one.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">What do I own after the build?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>everything. the domain, the code repository, the database, the email list, the hosting accounts — every credential. if you ever want to leave and take everything with you, you can. no lock-in, no held-hostage logins.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">What does the monthly fee cover?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>hosting, maintenance, security updates, performance monitoring, small iterations, and unlimited support. more importantly: my continued attention. when something needs to grow, someone who built it is watching.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">Do you work with clients outside Mexico?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>most of the portfolio is. clients across mexico, the united states, europe, israel, india, and dubai. what matters is whether your work fits the studio — honest, original, and made for real people.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">How are you this fast?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>ten years of production engineering plus a custom AI-accelerated build system. eight specialized agents handle scaffolding, copy, design, SEO, QA, and iteration in parallel. what used to take a team of five, two months, now takes one person, one week.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">What if the build isn't right?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>we iterate until it is. the first build is a draft, not a deliverable. you click around, you tell me what feels wrong, and i adjust. i'd rather redo a section three times than hand over something that doesn't match.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">Do you do one-off projects?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>occasionally, but the studio is built around ongoing partnership. your practice isn't a snapshot — it grows and changes. the monthly partnership is where the real value lives.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span class="t">What if I'm not sure what I need?</span><span class="plus">+</span></div>
+          <div class="faq-a"><p>then send me whatever you have. a voice memo, a messy google doc, a screenshot, your instagram bio. that's enough. the first build is where "what do i need" gets answered.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <span class="t-eyebrow">VIII — The Conversation</span>
+        <h2 class="t-h2">tell me about your <em>work.</em></h2>
+        <p class="contact-desc">no pitch. no pressure. no proposals. just a conversation about what you need and whether i can help. if i'm not the right fit, i'll tell you — and probably send you to someone who is.</p>
+        <a href="mailto:jordi@astralintegration.studio" class="contact-email">jordi@astralintegration.studio</a>
+        <div class="contact-links">
+          <a href="https://calendly.com/astral-integration/discovery-call">Book a discovery call →</a>
+          <a href="https://wa.me/34611144170">WhatsApp →</a>
+          <a href="https://linkedin.com/in/jcamat">LinkedIn →</a>
+          <a href="https://github.com/jcatalaamat">GitHub →</a>
+          <a href="https://instagram.com/astralamat">Instagram →</a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you. I\'ll reply within 48 hours.');">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" placeholder="Your name" required />
+
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" placeholder="you@yourpractice.com" required />
+
+        <label for="f-work">What are you working on?</label>
+        <textarea id="f-work" placeholder="A voice memo's worth of context is fine. Don't polish it."></textarea>
+
+        <button type="submit" class="btn">Send message <svg class="btn-arrow" viewBox="0 0 14 10" fill="none"><path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-giant">astral integration</div>
+
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Astral <em>Integration</em></div>
+        <p class="footer-brand-desc">custom digital infrastructure for healers, teachers, retreat centers, and people doing original work in the world.</p>
+        <span class="t-small" style="color:var(--ink-soft);">jordi@astralintegration.studio</span><br/>
+        <span class="t-small" style="color:var(--ink-soft);">built with care in mazunte, oaxaca</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>For</h4>
+        <ul>
+          <li>Yoga schools &amp; academies</li>
+          <li>Reiki &amp; healing trainings</li>
+          <li>Breathwork &amp; ceremony</li>
+          <li>Retreat centers that teach</li>
+          <li>Coaches with programs</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#solution">The work</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://linkedin.com/in/jcamat">LinkedIn</a></li>
+          <li><a href="https://github.com/jcatalaamat">GitHub</a></li>
+          <li><a href="https://instagram.com/astralamat">Instagram</a></li>
+          <li><a href="https://wa.me/34611144170">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 astral integration · jordi amat</span>
+      <div class="mid">
+        built from <strong>mazunte</strong>
+      </div>
+      <div class="right">
+        <a href="https://linkedin.com/in/jcamat" style="color:var(--clay);">LinkedIn</a>
+        <a href="https://github.com/jcatalaamat" style="color:var(--clay);">GitHub</a>
+        <a href="https://instagram.com/astralamat" style="color:var(--clay);">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ───────────────────────────────────────────────────────────────
+// MOBILE MENU
+// ───────────────────────────────────────────────────────────────
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+
+mobileToggle?.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose?.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu?.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// ───────────────────────────────────────────────────────────────
+// SCROLL REVEALS
+// ───────────────────────────────────────────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+document.querySelectorAll('.reveal-section').forEach(el => obs.observe(el));
+
+// ───────────────────────────────────────────────────────────────
+// TESTIMONIAL CAROUSEL
+// ───────────────────────────────────────────────────────────────
+const testimonials = document.querySelectorAll('#testStage .testimonial');
+const tIndex = document.getElementById('tIndex');
+let currentT = 0;
+
+function showTestimonial(i) {
+  testimonials.forEach(t => t.classList.remove('active'));
+  testimonials[i].classList.add('active');
+  tIndex.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(testimonials.length).padStart(2, '0');
+}
+
+document.getElementById('nextT')?.addEventListener('click', () => {
+  currentT = (currentT + 1) % testimonials.length;
+  showTestimonial(currentT);
+});
+document.getElementById('prevT')?.addEventListener('click', () => {
+  currentT = (currentT - 1 + testimonials.length) % testimonials.length;
+  showTestimonial(currentT);
+});
+
+// Auto-advance every 8 seconds
+setInterval(() => {
+  currentT = (currentT + 1) % testimonials.length;
+  showTestimonial(currentT);
+}, 8000);
+
+// ───────────────────────────────────────────────────────────────
+// PORTFOLIO EXPAND
+// ───────────────────────────────────────────────────────────────
+document.querySelectorAll('.work').forEach(w => {
+  w.addEventListener('click', () => {
+    w.classList.toggle('open');
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// FAQ TOGGLE
+// ───────────────────────────────────────────────────────────────
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// SMOOTH ANCHOR SCROLL
+// ───────────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#' || id.length < 2) return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// AXIS PULSE — follows scroll position
+// ───────────────────────────────────────────────────────────────
+const axisPulse = document.querySelector('.axis-pulse');
+if (axisPulse && window.innerWidth > 800) {
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        const pulseY = 10 + scrollPct * 80;
+        axisPulse.style.top = pulseY + 'vh';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+</script>
+
+</body>
+</html>

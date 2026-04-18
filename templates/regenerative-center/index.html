@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amakura — Colectivo Biodisciplinario</title>
+    <meta name="description" content="Escuela de Agricultura Regenerativa, Bioconstruccion, Artes y Oficios. Zapotal, Santa Maria Tonameca, Oaxaca.">
+    <meta property="og:title" content="Amakura — Colectivo Biodisciplinario">
+    <meta property="og:description" content="Rescatando nuestras raices. Tejiendo experiencias. Compartiendo saberes.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/web/hero-1.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0e1410;
+            --bg2: #141e16;
+            --bg3: #1a2a1c;
+            --surface: #1e2e20;
+            --border: #2a3a2c;
+            --border-light: #344036;
+            --text: #c8bfa8;
+            --text-mid: #a09880;
+            --text-dim: #6a6252;
+            --heading: #ede6d6;
+            --cream: #f5efe0;
+            --green: #5a8a4a;
+            --green-light: #7aaa6a;
+            --green-dim: #3a5a30;
+            --amber: #c49a45;
+            --amber-light: #d4b060;
+            --terracotta: #b57040;
+            --terracotta-light: #d08a55;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        ::selection {
+            background: var(--green-dim);
+            color: var(--cream);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) var(--bg);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── loader ── */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 300;
+            color: var(--green-light);
+            letter-spacing: 0.2em;
+            text-transform: lowercase;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        .loader-sub {
+            font-size: 0.6rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            animation: loaderPulse 1.5s ease-in-out infinite 0.2s;
+        }
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ── scroll progress ── */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green), var(--amber));
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ── nav ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(14, 20, 16, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(42, 58, 44, 0.3);
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--green-light);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 1px;
+            background: var(--cream);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+        /* ── hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            background: url('img/web/hero-1.jpg') center/cover no-repeat;
+            transform: scale(1.1);
+            animation: heroZoom 25s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.2); }
+        }
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(14, 20, 16, 0.5) 0%, rgba(14, 20, 16, 0.85) 70%),
+                linear-gradient(to bottom, rgba(14, 20, 16, 0.3) 0%, rgba(14, 20, 16, 0.7) 100%);
+        }
+        .hero canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+        }
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.7s forwards;
+        }
+        .hero-pills {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+        .hero-pill {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            padding: 0.5rem 1.2rem;
+            border: 1px solid rgba(90, 138, 74, 0.3);
+            border-radius: 2rem;
+            backdrop-filter: blur(8px);
+            background: rgba(14, 20, 16, 0.3);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 1.2s forwards;
+            z-index: 2;
+        }
+        .hero-scroll span {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--green), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── stats strip ── */
+        .stats {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 2rem;
+        }
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            color: var(--green-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        /* ── sections ── */
+        section {
+            padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3rem);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            color: var(--heading);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .section-text {
+            max-width: 600px;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .section-text + .section-text {
+            margin-top: 1rem;
+        }
+
+        /* ── reveal animation ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+
+        /* ── intro ── */
+        .intro { background: var(--bg); }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .intro-image {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background: var(--bg2);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease;
+        }
+        .intro-image:hover img { transform: scale(1.05); }
+        .intro-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-mid);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── horizontal gallery ── */
+        .h-gallery {
+            padding: 0 0 0 clamp(1.5rem, 5vw, 3rem);
+            background: var(--bg);
+            overflow: hidden;
+        }
+        .h-gallery-label {
+            max-width: 1100px;
+            margin: 0 auto clamp(1.5rem, 3vw, 2rem);
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .h-gallery-track {
+            display: flex;
+            gap: 1rem;
+            cursor: grab;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x proximity;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: clamp(4rem, 10vw, 8rem);
+        }
+        .h-gallery-track::-webkit-scrollbar { display: none; }
+        .h-gallery-track.grabbing { cursor: grabbing; }
+        .h-gallery-item {
+            flex: 0 0 auto;
+            width: clamp(250px, 30vw, 380px);
+            aspect-ratio: 3 / 4;
+            border-radius: 2px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            position: relative;
+        }
+        .h-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .h-gallery-item:hover img { transform: scale(1.05); }
+        .h-gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.2rem 1.2rem;
+            background: linear-gradient(to top, rgba(14, 20, 16, 0.8) 0%, transparent 100%);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .h-gallery-item:hover .h-gallery-item-caption { opacity: 1; }
+
+        /* ── pillars ── */
+        .pillars { background: var(--bg2); }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .pillar {
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+        }
+        .pillar:hover {
+            border-color: var(--green-dim);
+            transform: translateY(-4px);
+        }
+        .pillar:hover::before { opacity: 1; }
+        .pillar-image {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: var(--bg3);
+        }
+        .pillar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            opacity: 0.8;
+        }
+        .pillar:hover .pillar-image img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+        .pillar-body {
+            padding: 2rem;
+        }
+        .pillar-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: var(--green-dim);
+            margin-bottom: 0.8rem;
+        }
+        .pillar-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+        .pillar-desc {
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+
+        /* ── image break ── */
+        .image-break {
+            padding: 0;
+            height: 60vh;
+            min-height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-break-inner {
+            position: absolute;
+            inset: -20%;
+        }
+        .image-break-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+        .image-break-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--bg2) 0%, transparent 25%, transparent 75%, var(--bg) 100%);
+        }
+        .image-break-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+        .image-break-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--cream);
+            max-width: 650px;
+            line-height: 1.4;
+        }
+        .image-break-text span {
+            display: block;
+            margin-top: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+        }
+
+        /* ── la milpa ── */
+        .milpa { background: var(--bg); }
+        .milpa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .milpa-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+        .milpa-img {
+            aspect-ratio: 1;
+            background: var(--bg2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .milpa-img:first-child {
+            grid-column: span 2;
+            aspect-ratio: 2 / 1;
+        }
+        .milpa-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .milpa-img:hover img { transform: scale(1.04); }
+        .milpa-features {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .milpa-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .milpa-feature-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--terracotta);
+        }
+
+        /* ── talleres ── */
+        .talleres { background: var(--bg2); }
+        .talleres-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+        .talleres-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .taller {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .taller:first-child { border-top: 1px solid var(--border); }
+        .taller:hover { padding-left: 1rem; background: rgba(90, 138, 74, 0.02); }
+        .taller-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--green-dim);
+        }
+        .taller-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--heading);
+            margin-bottom: 0.3rem;
+        }
+        .taller-info p {
+            font-size: 0.85rem;
+            color: var(--text-mid);
+        }
+        .taller-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .taller-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            border: 1px solid rgba(196, 154, 69, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            white-space: nowrap;
+        }
+        .taller-tag.done {
+            color: var(--green);
+            border-color: rgba(90, 138, 74, 0.3);
+        }
+        .taller-tag.next {
+            color: var(--terracotta);
+            border-color: rgba(181, 112, 64, 0.3);
+        }
+
+        /* ── biopiscina ── */
+        .biopiscina {
+            background: var(--bg);
+            text-align: center;
+        }
+        .biopiscina .section-text {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .biopiscina-image {
+            margin-top: 3rem;
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            background: var(--bg2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .biopiscina-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease;
+        }
+        .biopiscina-image:hover img { transform: scale(1.05); }
+
+        /* ── bambu ── */
+        .bambu { background: var(--bg2); }
+        .bambu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .bambu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        .bambu-table th {
+            text-align: left;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            font-weight: 400;
+        }
+        .bambu-table td {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(42, 58, 44, 0.3);
+            font-size: 0.9rem;
+        }
+        .bambu-table td:last-child {
+            text-align: right;
+            color: var(--amber);
+            font-weight: 400;
+        }
+        .bambu-table tr {
+            transition: background 0.2s ease;
+        }
+        .bambu-table tbody tr:hover {
+            background: rgba(90, 138, 74, 0.03);
+        }
+        .bambu-note {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+        .bambu-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            color: var(--amber);
+            border: 1px solid rgba(196, 154, 69, 0.4);
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .bambu-cta:hover {
+            background: rgba(196, 154, 69, 0.1);
+            border-color: var(--amber);
+        }
+        .bambu-image {
+            aspect-ratio: 3 / 4;
+            background: var(--bg3);
+            border-radius: 2px;
+            overflow: hidden;
+            position: sticky;
+            top: 6rem;
+        }
+        .bambu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── equipo ── */
+        .equipo { background: var(--bg); }
+        .equipo-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .equipo-member {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .equipo-member:hover { transform: translateY(-4px); }
+        .equipo-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--green-light);
+            font-weight: 300;
+        }
+        .equipo-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--heading);
+            margin-bottom: 0.2rem;
+        }
+        .equipo-ig {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .equipo-ig:hover { color: var(--green-light); }
+
+        /* ── comunidad ── */
+        .comunidad { background: var(--bg2); }
+        .comunidad-text {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        .comunidad-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+        }
+        .comunidad-img {
+            aspect-ratio: 1;
+            background: var(--bg3);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .comunidad-img:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .comunidad-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .comunidad-img:hover img { transform: scale(1.05); }
+
+        /* ── instagram embed ── */
+        .ig-section {
+            background: var(--bg);
+            text-align: center;
+        }
+        .ig-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        .ig-item {
+            aspect-ratio: 1;
+            background: var(--bg2);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .ig-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .ig-item:hover img { transform: scale(1.08); opacity: 0.7; }
+        .ig-item-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .ig-item:hover .ig-item-overlay { opacity: 1; }
+        .ig-item-overlay svg { width: 24px; height: 24px; fill: var(--cream); }
+        .ig-follow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 2.5rem;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .ig-follow:hover {
+            background: var(--bg2);
+            border-color: var(--green);
+        }
+
+        /* ── como llegar ── */
+        .como-llegar { background: var(--bg2); }
+        .como-llegar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+        .como-llegar-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .como-llegar-step {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+        .como-llegar-step-num {
+            flex: 0 0 auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: var(--green-light);
+        }
+        .como-llegar-step-text h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--heading);
+            margin-bottom: 0.2rem;
+        }
+        .como-llegar-step-text p {
+            font-size: 0.85rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+        .map-container {
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 1;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.5) contrast(1.1) brightness(0.7);
+            transition: filter 0.4s ease;
+        }
+        .map-container:hover iframe {
+            filter: grayscale(0.2) contrast(1) brightness(0.85);
+        }
+
+        /* ── visita ── */
+        .visita { background: var(--bg); }
+        .visita-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .visita-block h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+        .visita-block p, .visita-block a {
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            line-height: 1.8;
+            text-decoration: none;
+        }
+        .visita-block a:hover { color: var(--cream); }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            background: var(--green-dim);
+            color: var(--cream);
+            border: 1px solid var(--green);
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background: var(--green);
+            color: #fff;
+        }
+
+        /* ── footer ── */
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 3rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-brand-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+        .footer-brand-sub {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            max-width: 300px;
+            line-height: 1.7;
+        }
+        .footer-col h4 {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1.2rem;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-mid);
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+        }
+        .footer-col a:hover { color: var(--cream); }
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        .footer-credit {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-credit:hover { color: var(--green-light); }
+
+        /* ── mobile ── */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(14, 20, 16, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .intro-grid,
+            .milpa-grid,
+            .bambu-grid,
+            .como-llegar-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .talleres-intro {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .taller {
+                grid-template-columns: 50px 1fr;
+                gap: 1rem;
+            }
+            .taller-meta {
+                grid-column: 2;
+                justify-self: start;
+            }
+            .equipo-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+            .comunidad-text {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .comunidad-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            .ig-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .visita-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .bambu-image { position: static; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-pills { gap: 0.5rem; }
+            .hero-pill { font-size: 0.55rem; padding: 0.4rem 0.8rem; }
+            .milpa-images { grid-template-columns: 1fr; }
+            .milpa-img:first-child { grid-column: 1; aspect-ratio: 4/3; }
+            .comunidad-gallery { grid-template-columns: 1fr; }
+            .comunidad-img:first-child { grid-column: 1; grid-row: 1; }
+            .equipo-grid { grid-template-columns: repeat(2, 1fr); }
+            .h-gallery-item { width: 75vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- loader -->
+    <div class="loader">
+        <span class="loader-text">amakura</span>
+        <span class="loader-sub">colectivo biodisciplinario</span>
+    </div>
+
+    <!-- scroll progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- nav -->
+    <nav>
+        <a href="#" class="nav-logo">amakura</a>
+        <button class="nav-toggle" aria-label="menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#nosotros">nosotros</a></li>
+            <li><a href="#escuela">escuela</a></li>
+            <li><a href="#milpa">la milpa</a></li>
+            <li><a href="#talleres">talleres</a></li>
+            <li><a href="#bambu">bambu</a></li>
+            <li><a href="#equipo">equipo</a></li>
+            <li><a href="#comunidad">comunidad</a></li>
+            <li><a href="#visita">visita</a></li>
+        </ul>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-image"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <canvas id="fireflies"></canvas>
+        <div class="hero-content">
+            <p class="hero-label">colectivo biodisciplinario &mdash; zapotal, oaxaca</p>
+            <h1 class="hero-title">amakura</h1>
+            <p class="hero-sub">Rescatando nuestras raices. Tejiendo experiencias. Compartiendo saberes.</p>
+            <div class="hero-pills">
+                <span class="hero-pill">agricultura regenerativa</span>
+                <span class="hero-pill">bioconstruccion</span>
+                <span class="hero-pill">artes y oficios</span>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>descubre</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- stats -->
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="reveal">
+                <div class="stat-num" data-count="1">0</div>
+                <div class="stat-label">ano de vida</div>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <div class="stat-num" data-count="3">0</div>
+                <div class="stat-label">disciplinas</div>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <div class="stat-num" data-count="6">0</div>
+                <div class="stat-label">talleres impartidos</div>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <div class="stat-num" data-count="5222">0</div>
+                <div class="stat-label">comunidad</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- intro -->
+    <section class="intro" id="nosotros">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-image reveal">
+                    <img src="img/web/intro.jpg" alt="Amakura desde arriba">
+                </div>
+                <div>
+                    <p class="section-label reveal">nosotros</p>
+                    <h2 class="section-title reveal reveal-delay-1">Un espacio donde<br>la tierra ensena</h2>
+                    <p class="section-text reveal reveal-delay-2">
+                        Amakura es un colectivo biodisciplinario en El Zapotal, Santa Maria Tonameca, Oaxaca. Nacimos de la necesidad de rescatar saberes ancestrales y compartirlos con quienes buscan otra forma de habitar la tierra.
+                    </p>
+                    <p class="section-text reveal reveal-delay-2">
+                        Somos escuela, somos huerto, somos comunidad. Desde la agricultura regenerativa hasta la bioconstruccion, desde los oficios tradicionales hasta las artes — todo lo que hacemos nace de la practica, del hacer con las manos y del aprender en colectivo.
+                    </p>
+                    <p class="section-text reveal reveal-delay-2">
+                        Inauguramos en marzo de 2025 con la conviccion de que la educacion es un acto de responsabilidad, y que el conocimiento mas valioso se transmite de tierra a mano, de mano a comunidad.
+                    </p>
+                    <p class="intro-quote reveal reveal-delay-3">
+                        "Lo que sale de nuestras casas no desaparece — regresa a la tierra, a los mantos, al mar."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- horizontal gallery -->
+    <div class="h-gallery">
+        <p class="h-gallery-label reveal">galeria &mdash; arrastra para explorar</p>
+        <div class="h-gallery-track">
+            <div class="h-gallery-item">
+                <img src="img/web/fin-de-semana.jpg" alt="Fin de semana en Amakura">
+                <div class="h-gallery-item-caption">fin de semana</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/domo-geodesico.jpg" alt="Taller de domos geodesicos">
+                <div class="h-gallery-item-caption">domos geodesicos</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/taller-agua-1.jpg" alt="Taller de aguas">
+                <div class="h-gallery-item-caption">tratamiento de aguas</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/aniversario-1.jpg" alt="Aniversario">
+                <div class="h-gallery-item-caption">1er aniversario</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/inauguracion.jpg" alt="Inauguracion">
+                <div class="h-gallery-item-caption">inauguracion</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/taller-agua-promo.jpg" alt="Taller aguas residuales">
+                <div class="h-gallery-item-caption">aguas residuales</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/aniversario-invite.jpg" alt="Invitacion aniversario">
+                <div class="h-gallery-item-caption">comunidad</div>
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/web/bambu-1.jpg" alt="Bambu">
+                <div class="h-gallery-item-caption">bambu guadua</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pillars -->
+    <section class="pillars" id="escuela">
+        <div class="container">
+            <p class="section-label reveal">escuela</p>
+            <h2 class="section-title reveal reveal-delay-1">Tres caminos,<br>una misma raiz</h2>
+            <div class="pillars-grid">
+                <div class="pillar reveal">
+                    <div class="pillar-image">
+                        <img src="img/web/milpa-3.jpg" alt="Agricultura">
+                    </div>
+                    <div class="pillar-body">
+                        <span class="pillar-num">01</span>
+                        <h3 class="pillar-name">Agricultura Regenerativa</h3>
+                        <p class="pillar-desc">Milpa, sistemas de agua, compostaje. Cultivamos alimentos que nutren la tierra en lugar de agotarla. Cada semilla es un acto de responsabilidad. El ciclo de la vida empieza en el suelo.</p>
+                    </div>
+                </div>
+                <div class="pillar reveal reveal-delay-1">
+                    <div class="pillar-image">
+                        <img src="img/web/domo-geodesico.jpg" alt="Bioconstruccion">
+                    </div>
+                    <div class="pillar-body">
+                        <span class="pillar-num">02</span>
+                        <h3 class="pillar-name">Bioconstruccion</h3>
+                        <p class="pillar-desc">Bambu, adobe, domos geodesicos, tratamiento de aguas residuales. Arquitectura que nace de la tierra y vuelve a ella. Construimos refugios que dialogan con el entorno.</p>
+                    </div>
+                </div>
+                <div class="pillar reveal reveal-delay-2">
+                    <div class="pillar-image">
+                        <img src="img/web/aniversario-poster.jpg" alt="Artes y Oficios">
+                    </div>
+                    <div class="pillar-body">
+                        <span class="pillar-num">03</span>
+                        <h3 class="pillar-name">Artes y Oficios</h3>
+                        <p class="pillar-desc">Los saberes que se transmiten con las manos. Oficios tradicionales, arte en la naturaleza, y la practica como forma de educacion. Aprender haciendo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- image break with quote -->
+    <div class="image-break">
+        <div class="image-break-inner">
+            <img src="img/web/panorama.jpg" alt="Vista panoramica">
+        </div>
+        <div class="image-break-overlay"></div>
+        <div class="image-break-text">
+            <p class="reveal">Cada persona que se lleva este conocimiento es una semilla de cambio.</p>
+            <span class="reveal reveal-delay-1">amakura</span>
+        </div>
+    </div>
+
+    <!-- la milpa -->
+    <section class="milpa" id="milpa">
+        <div class="container">
+            <div class="milpa-grid">
+                <div>
+                    <p class="section-label reveal">restaurante</p>
+                    <h2 class="section-title reveal reveal-delay-1">La Milpa</h2>
+                    <p class="section-text reveal reveal-delay-2">
+                        Nuestra cocina nace del campo. Recetas mexicanas con ingredientes locales, preparadas sobre el comal y acompanadas de mezcal. Todo lo que servimos cuenta una historia — de la milpa al plato, del fuego a la mesa.
+                    </p>
+                    <p class="section-text reveal reveal-delay-2">
+                        Un espacio para comer despacio, conversar largo y alimentar algo mas que el cuerpo. La Milpa no es solo un restaurante — es la extension de nuestra milpa, donde lo que sembramos llega a tu mesa.
+                    </p>
+                    <div class="milpa-features reveal reveal-delay-3">
+                        <div class="milpa-feature"><span class="milpa-feature-dot"></span> comal</div>
+                        <div class="milpa-feature"><span class="milpa-feature-dot"></span> mezcal</div>
+                        <div class="milpa-feature"><span class="milpa-feature-dot"></span> ingredientes locales</div>
+                        <div class="milpa-feature"><span class="milpa-feature-dot"></span> viernes a domingo</div>
+                    </div>
+                </div>
+                <div class="milpa-images reveal">
+                    <div class="milpa-img">
+                        <img src="img/web/milpa-1.jpg" alt="La Milpa cocina">
+                    </div>
+                    <div class="milpa-img">
+                        <img src="img/web/milpa-2.jpg" alt="Comida tradicional">
+                    </div>
+                    <div class="milpa-img">
+                        <img src="img/web/milpa-3.jpg" alt="Ingredientes locales">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- talleres -->
+    <section class="talleres" id="talleres">
+        <div class="container">
+            <div class="talleres-intro">
+                <div>
+                    <p class="section-label reveal">ciclo 2026</p>
+                    <h2 class="section-title reveal reveal-delay-1">Talleres</h2>
+                </div>
+                <p class="section-text reveal reveal-delay-2">Educacion a traves de la practica. Nuestros talleres son inmersiones de fin de semana donde aprendes construyendo, cultivando, creando. No es teoria — es tierra en las manos.</p>
+            </div>
+            <div class="talleres-list">
+                <div class="taller reveal">
+                    <span class="taller-num">01</span>
+                    <div class="taller-info">
+                        <h3>Domos Geodesicos</h3>
+                        <p>Construccion de un icosaedro con bambu y materiales naturales. Dos dias de inmersion practica.</p>
+                    </div>
+                    <div class="taller-meta">
+                        <span class="taller-tag done">feb 2026</span>
+                    </div>
+                </div>
+                <div class="taller reveal reveal-delay-1">
+                    <span class="taller-num">02</span>
+                    <div class="taller-info">
+                        <h3>Tratamiento de Aguas Residuales</h3>
+                        <p>Diseno e implementacion de sistemas domesticos. Compromiso ambiental desde lo local.</p>
+                    </div>
+                    <div class="taller-meta">
+                        <span class="taller-tag done">mar 2026</span>
+                    </div>
+                </div>
+                <div class="taller reveal reveal-delay-2">
+                    <span class="taller-num">03</span>
+                    <div class="taller-info">
+                        <h3>Proximo Taller</h3>
+                        <p>El ciclo continua. Siguenos en Instagram para el calendario completo de actividades.</p>
+                    </div>
+                    <div class="taller-meta">
+                        <span class="taller-tag next">proximamente</span>
+                    </div>
+                </div>
+                <div class="taller reveal reveal-delay-3">
+                    <span class="taller-num">04</span>
+                    <div class="taller-info">
+                        <h3>Inscripciones Abiertas</h3>
+                        <p>Escribenos por mensaje directo o WhatsApp para cualquier duda o informacion sobre talleres.</p>
+                    </div>
+                    <div class="taller-meta">
+                        <span class="taller-tag">informes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- biopiscina -->
+    <section class="biopiscina">
+        <div class="container">
+            <p class="section-label reveal">lago</p>
+            <h2 class="section-title reveal reveal-delay-1">Biopiscina</h2>
+            <p class="section-text reveal reveal-delay-2">Un cuerpo de agua natural en medio de la selva tropical. El mejor plan para un fin de semana: comer delicioso en La Milpa y disfrutar del lago con tu familia. Sin quimicos, sin prisa.</p>
+            <div class="biopiscina-image reveal reveal-delay-3">
+                <img src="img/web/biopiscina.jpg" alt="Biopiscina de Amakura">
+            </div>
+        </div>
+    </section>
+
+    <!-- bambu -->
+    <section class="bambu" id="bambu">
+        <div class="container">
+            <div class="bambu-grid">
+                <div>
+                    <p class="section-label reveal">materiales</p>
+                    <h2 class="section-title reveal reveal-delay-1">Bambu<br>Guadua Angustifolia</h2>
+                    <p class="section-text reveal reveal-delay-2">
+                        Cultivamos y vendemos bambu Guadua Angustifolia, la especie mas resistente para construccion. Preservado con inmersion en acido borico y borax para maxima durabilidad.
+                    </p>
+                    <table class="bambu-table reveal reveal-delay-2">
+                        <thead>
+                            <tr>
+                                <th>producto</th>
+                                <th style="text-align:right">precio mxn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tallos 6m &mdash; diametro 10cm</td><td>$460</td></tr>
+                            <tr><td>Tallos 6m &mdash; diametro 9cm</td><td>$420</td></tr>
+                            <tr><td>Tallos 6m &mdash; diametro 6-7cm</td><td>$290</td></tr>
+                            <tr><td>Tallos 4m &mdash; diametro 5cm</td><td>$105</td></tr>
+                            <tr><td>Tallos 3m &mdash; diametro 5cm</td><td>$75</td></tr>
+                            <tr><td>Tallos 3m &mdash; diametro 3-4cm</td><td>$55</td></tr>
+                            <tr><td>Esterilla 3m</td><td>$175</td></tr>
+                            <tr><td>Reglilla 25cm</td><td>$80</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="bambu-note reveal reveal-delay-3">Metodo de preservacion: inmersion en acido borico y borax.</p>
+                    <a href="https://wa.me/529581004640?text=Hola%2C%20me%20interesa%20el%20bambu" class="bambu-cta reveal reveal-delay-3" target="_blank" rel="noopener">
+                        solicitar bambu &rarr;
+                    </a>
+                </div>
+                <div class="bambu-image reveal">
+                    <img src="img/web/bambu.jpg" alt="Bambu Guadua Angustifolia">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- equipo -->
+    <section class="equipo" id="equipo">
+        <div class="container">
+            <p class="section-label reveal">equipo</p>
+            <h2 class="section-title reveal reveal-delay-1">Las manos detras<br>de Amakura</h2>
+            <p class="section-text reveal reveal-delay-2">El colectivo que sostiene este proyecto con amor y ganas de hacerlo crecer.</p>
+            <div class="equipo-grid">
+                <div class="equipo-member reveal">
+                    <div class="equipo-avatar">S</div>
+                    <div class="equipo-name">Silvestre</div>
+                </div>
+                <div class="equipo-member reveal reveal-delay-1">
+                    <div class="equipo-avatar">J</div>
+                    <div class="equipo-name">Jimena</div>
+                    <a href="https://instagram.com/jimena_riva" class="equipo-ig" target="_blank" rel="noopener">@jimena_riva</a>
+                </div>
+                <div class="equipo-member reveal reveal-delay-1">
+                    <div class="equipo-avatar">R</div>
+                    <div class="equipo-name">Ruben</div>
+                    <a href="https://instagram.com/la.veta.viva" class="equipo-ig" target="_blank" rel="noopener">@la.veta.viva</a>
+                </div>
+                <div class="equipo-member reveal reveal-delay-2">
+                    <div class="equipo-avatar">P</div>
+                    <div class="equipo-name">Pablo</div>
+                </div>
+                <div class="equipo-member reveal reveal-delay-2">
+                    <div class="equipo-avatar">S</div>
+                    <div class="equipo-name">Sidney</div>
+                    <a href="https://instagram.com/cydnechanel" class="equipo-ig" target="_blank" rel="noopener">@cydnechanel</a>
+                </div>
+                <div class="equipo-member reveal reveal-delay-3">
+                    <div class="equipo-avatar">V</div>
+                    <div class="equipo-name">Vivo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- comunidad -->
+    <section class="comunidad" id="comunidad">
+        <div class="container">
+            <div class="comunidad-text">
+                <div>
+                    <p class="section-label reveal">colectivo</p>
+                    <h2 class="section-title reveal reveal-delay-1">Amakura somos<br>todas y todos</h2>
+                </div>
+                <p class="section-text reveal reveal-delay-2">
+                    Talleres, platicas, comida, musica, mercado de artesanias, circo, show de fuego — celebramos la vida en comunidad. En marzo de 2026 festejamos nuestro primer aniversario con toda la comunidad de la costa oaxaquena. Gracias a quienes de distintas maneras se involucran en esto.
+                </p>
+            </div>
+            <div class="comunidad-gallery">
+                <div class="comunidad-img reveal">
+                    <img src="img/web/comunidad-1.jpg" alt="Comunidad Amakura">
+                </div>
+                <div class="comunidad-img reveal reveal-delay-1">
+                    <img src="img/web/comunidad-2.jpg" alt="Talleres">
+                </div>
+                <div class="comunidad-img reveal reveal-delay-2">
+                    <img src="img/web/comunidad-3.jpg" alt="Celebracion">
+                </div>
+                <div class="comunidad-img reveal reveal-delay-1">
+                    <img src="img/web/comunidad-4.jpg" alt="Musica">
+                </div>
+                <div class="comunidad-img reveal reveal-delay-2">
+                    <img src="img/web/comunidad-5.jpg" alt="Mercado artesanal">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- instagram -->
+    <section class="ig-section">
+        <div class="container">
+            <p class="section-label reveal">instagram</p>
+            <h2 class="section-title reveal reveal-delay-1">@amakura.mx</h2>
+            <div class="ig-grid">
+                <a href="https://www.instagram.com/p/DWXNaFwjwCU/" target="_blank" rel="noopener" class="ig-item reveal">
+                    <img src="img/web/bambu-1.jpg" alt="Bambu en venta">
+                    <div class="ig-item-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+                </a>
+                <a href="https://www.instagram.com/p/DWPP0acD8xi/" target="_blank" rel="noopener" class="ig-item reveal reveal-delay-1">
+                    <img src="img/web/taller-agua-1.jpg" alt="Taller de aguas">
+                    <div class="ig-item-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+                </a>
+                <a href="https://www.instagram.com/p/DV9y0P9jFcv/" target="_blank" rel="noopener" class="ig-item reveal reveal-delay-2">
+                    <img src="img/web/aniversario-1.jpg" alt="Aniversario">
+                    <div class="ig-item-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+                </a>
+                <a href="https://www.instagram.com/p/DSGr_CTDETH/" target="_blank" rel="noopener" class="ig-item reveal reveal-delay-3">
+                    <img src="img/web/hero-1.jpg" alt="Recorrido por Amakura">
+                    <div class="ig-item-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+                </a>
+            </div>
+            <a href="https://instagram.com/amakura.mx" class="ig-follow reveal" target="_blank" rel="noopener">
+                seguir en instagram &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- como llegar -->
+    <section class="como-llegar">
+        <div class="container">
+            <p class="section-label reveal">como llegar</p>
+            <h2 class="section-title reveal reveal-delay-1">Encuentranos</h2>
+            <div class="como-llegar-grid">
+                <div class="como-llegar-steps">
+                    <div class="como-llegar-step reveal">
+                        <span class="como-llegar-step-num">1</span>
+                        <div class="como-llegar-step-text">
+                            <h4>Desde Puerto Escondido</h4>
+                            <p>Toma la carretera costera (Hwy 200) direccion Pochutla. En aproximadamente 30 minutos llegas a la zona de El Zapotal.</p>
+                        </div>
+                    </div>
+                    <div class="como-llegar-step reveal reveal-delay-1">
+                        <span class="como-llegar-step-num">2</span>
+                        <div class="como-llegar-step-text">
+                            <h4>Desde Mazunte / San Agustinillo</h4>
+                            <p>Direccion Puerto Escondido por la costera. El Zapotal esta en el municipio de Santa Maria Tonameca, entre ambos destinos.</p>
+                        </div>
+                    </div>
+                    <div class="como-llegar-step reveal reveal-delay-2">
+                        <span class="como-llegar-step-num">3</span>
+                        <div class="como-llegar-step-text">
+                            <h4>En El Zapotal</h4>
+                            <p>Calle Causuches s/n, El Zapotal, Santa Maria Tonameca, Oaxaca 70947. Pregunta por Amakura — todos nos conocen.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container reveal">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3000!2d-96.78121!3d17.10306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDA2JzExLjAiTiA5NsKwNDYnNTIuNCJX!5e0!3m2!1ses!2smx!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- visita -->
+    <section class="visita" id="visita">
+        <div class="container">
+            <p class="section-label reveal">visitanos</p>
+            <h2 class="section-title reveal reveal-delay-1">Ven a Amakura</h2>
+            <div class="visita-grid">
+                <div class="visita-block reveal">
+                    <h3>Ubicacion</h3>
+                    <p>Calle Causuches s/n<br>El Zapotal, Santa Maria Tonameca<br>Oaxaca, Mexico 70947</p>
+                </div>
+                <div class="visita-block reveal reveal-delay-1">
+                    <h3>Horario</h3>
+                    <p>Viernes, sabado y domingo<br>Restaurante La Milpa<br>Biopiscina y recorridos<br>Talleres por calendario</p>
+                </div>
+                <div class="visita-block reveal reveal-delay-2">
+                    <h3>Contacto</h3>
+                    <p>
+                        <a href="https://instagram.com/amakura.mx" target="_blank" rel="noopener">@amakura.mx</a><br>
+                        <a href="https://instagram.com/milpa_zapotal" target="_blank" rel="noopener">@milpa_zapotal</a><br>
+                        <a href="tel:+529581004640">+52 958 100 4640</a>
+                    </p>
+                    <a href="https://wa.me/529581004640" class="whatsapp-btn" target="_blank" rel="noopener">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        whatsapp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-text">amakura</div>
+                    <p class="footer-brand-sub">Colectivo biodisciplinario. Escuela de Agricultura Regenerativa, Bioconstruccion, Artes y Oficios. Zapotal, Oaxaca.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>explorar</h4>
+                    <a href="#nosotros">nosotros</a>
+                    <a href="#escuela">escuela</a>
+                    <a href="#milpa">la milpa</a>
+                    <a href="#talleres">talleres</a>
+                    <a href="#bambu">bambu</a>
+                </div>
+                <div class="footer-col">
+                    <h4>conectar</h4>
+                    <a href="https://instagram.com/amakura.mx" target="_blank" rel="noopener">instagram</a>
+                    <a href="https://wa.me/529581004640" target="_blank" rel="noopener">whatsapp</a>
+                    <a href="tel:+529581004640">telefono</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">amakura &copy; 2025 &mdash; zapotal, oaxaca</span>
+                <a href="https://astralintegration.studio" class="footer-credit" target="_blank" rel="noopener">hecho por astral</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── loader ──
+        window.addEventListener('load', () => {
+            setTimeout(() => document.querySelector('.loader').classList.add('hidden'), 800);
+        });
+
+        // ── scroll progress ──
+        const progressBar = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY;
+            const d = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (s / d * 100) + '%';
+        }, { passive: true });
+
+        // ── nav scroll ──
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        }, { passive: true });
+
+        // ── nav toggle ──
+        const toggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                toggle.classList.remove('active');
+            });
+        });
+
+        // ── scroll reveal ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── counter animation ──
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    const duration = 2000;
+                    const start = performance.now();
+                    function update(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = target >= 1000
+                            ? Math.floor(eased * target).toLocaleString() + '+'
+                            : Math.floor(eased * target);
+                        if (progress < 1) requestAnimationFrame(update);
+                    }
+                    requestAnimationFrame(update);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObserver.observe(el));
+
+        // ── horizontal gallery drag ──
+        const track = document.querySelector('.h-gallery-track');
+        let isDown = false, startX, scrollLeft;
+        track.addEventListener('mousedown', e => {
+            isDown = true;
+            track.classList.add('grabbing');
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+        track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('grabbing'); });
+        track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
+        track.addEventListener('mousemove', e => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+        });
+
+        // ── parallax image break ──
+        const imageBreaks = document.querySelectorAll('.image-break-inner');
+        window.addEventListener('scroll', () => {
+            imageBreaks.forEach(el => {
+                const rect = el.parentElement.getBoundingClientRect();
+                const speed = 0.3;
+                el.style.transform = `translateY(${rect.top * speed}px)`;
+            });
+        }, { passive: true });
+
+        // ── fireflies canvas ──
+        const canvas = document.getElementById('fireflies');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            const count = Math.min(50, Math.floor(canvas.width * canvas.height / 20000));
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.25,
+                    vy: (Math.random() - 0.5) * 0.25,
+                    radius: Math.random() * 2 + 0.5,
+                    alpha: Math.random(),
+                    alphaDir: (Math.random() - 0.5) * 0.008,
+                    hue: Math.random() > 0.5 ? 80 : 40
+                });
+            }
+        }
+
+        function animateFireflies() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha += p.alphaDir;
+                if (p.alpha <= 0.05 || p.alpha >= 0.7) p.alphaDir *= -1;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                const color = p.hue === 80
+                    ? `rgba(122, 170, 106, ${p.alpha * 0.5})`
+                    : `rgba(196, 154, 69, ${p.alpha * 0.35})`;
+                ctx.fillStyle = color;
+                ctx.shadowBlur = p.radius * 6;
+                ctx.shadowColor = color;
+                ctx.fill();
+            });
+            ctx.shadowBlur = 0;
+            requestAnimationFrame(animateFireflies);
+        }
+
+        resizeCanvas();
+        createParticles();
+        animateFireflies();
+        window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+
+        // ── smooth scroll ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+</html>

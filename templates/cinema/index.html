@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Integration — Cinema · Reel I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #070605;
+  --bg-2: #0F0C08;
+  --bg-3: #1A1612;
+  --cream: #EDE4D0;
+  --cream-2: #D8CDB5;
+  --cream-dm: #A89C7E;
+  --mute: #7B7158;
+  --mute-2: #5A513E;
+  --gold: #D4A34D;
+  --gold-br: #E9BF68;
+  --red: #AC2E28;
+  --rule: rgba(237,228,208,0.14);
+  --rule-str: rgba(237,228,208,0.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--bg);color:var(--cream);
+  font-size:15px;line-height:1.6;font-weight:300;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+.display{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:-0.018em}
+.mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-dm);font-weight:400}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-dm);background:rgba(7,6,5,0.88);backdrop-filter:blur(10px);border:1px solid var(--rule);padding:5px 13px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500}
+.studio-tag .d{width:6px;height:6px;background:var(--gold);border-radius:999px;box-shadow:0 0 10px rgba(212,163,77,0.6)}
+
+/* letterbox bars - persistent */
+.letter-top,.letter-bot{
+  position:fixed;left:0;right:0;z-index:150;background:var(--bg);height:38px;pointer-events:none;
+}
+.letter-top{top:0;border-bottom:1px solid var(--rule)}
+.letter-bot{bottom:0;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);pointer-events:auto}
+.letter-bot .l,.letter-bot .r{display:flex;gap:18px;align-items:center}
+.letter-bot .red{color:var(--red)}
+.letter-bot .pulse{width:6px;height:6px;background:var(--gold);border-radius:999px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:0.35}}
+
+/* =============== SCENE 1: COLD OPEN =============== */
+.scene-1{
+  min-height:100vh;min-height:100svh;position:relative;padding:38px 44px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(212,163,77,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 65%, rgba(172,46,40,0.05) 0%, transparent 55%),
+    linear-gradient(170deg, #0F0C08 0%, #070605 100%);
+  overflow:hidden;
+}
+.scene-1::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg, rgba(237,228,208,0.025) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+/* film grain */
+.scene-1::after{
+  content:"";position:absolute;inset:-20%;pointer-events:none;
+  background-image:radial-gradient(rgba(237,228,208,0.015) 1px, transparent 1px);
+  background-size:3px 3px;
+  animation:grain 8s steps(10) infinite;mix-blend-mode:overlay;
+}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}30%{transform:translate(3%,-2%)}50%{transform:translate(-3%,5%)}70%{transform:translate(5%,3%)}}
+
+.s1-top-strip{
+  position:absolute;top:58px;left:44px;right:44px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--mute);font-weight:500;
+}
+.s1-top-strip .c{text-align:center;color:var(--gold)}
+.s1-top-strip .r{text-align:right}
+
+.s1-inner{max-width:1400px;margin:0 auto;width:100%;text-align:center;position:relative;z-index:2}
+
+.s1-kicker{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(18px,2vw,24px);
+  color:var(--gold);letter-spacing:0.1em;margin-bottom:40px;display:inline-flex;align-items:center;gap:18px;
+}
+.s1-kicker::before,.s1-kicker::after{content:"";width:50px;height:1px;background:var(--gold);opacity:0.6}
+
+.s1-title{
+  font-family:'Playfair Display',serif;font-weight:500;
+  font-size:clamp(64px,14vw,220px);line-height:0.9;letter-spacing:-0.028em;color:var(--cream);
+  text-shadow:0 2px 60px rgba(212,163,77,0.08);
+}
+.s1-title em{font-style:italic;color:var(--gold);font-weight:500}
+.s1-title .block{display:block}
+
+.s1-sub{
+  margin-top:48px;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(17px,1.8vw,21px);color:var(--cream-dm);max-width:620px;margin-left:auto;margin-right:auto;line-height:1.55;letter-spacing:0.005em;
+}
+.s1-sub em{color:var(--gold);font-style:italic}
+
+.s1-meta{
+  margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:860px;margin-left:auto;margin-right:auto;
+  padding-top:30px;border-top:1px solid var(--rule);
+}
+.s1-meta .m{text-align:left}
+.s1-meta .m .n{font-family:'Playfair Display',serif;font-weight:500;font-size:40px;line-height:1;color:var(--cream);letter-spacing:-0.018em}
+.s1-meta .m .n em{font-style:italic;color:var(--gold)}
+.s1-meta .m .l{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-top:8px;font-weight:500;line-height:1.6}
+
+.s1-cue{
+  position:absolute;bottom:78px;left:50%;transform:translateX(-50%);
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500;
+  display:flex;flex-direction:column;align-items:center;gap:10px;animation:bob 3s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(4px)}}
+.s1-cue::after{content:"";width:1px;height:28px;background:var(--gold)}
+
+/* =============== SCENE 2: SYNOPSIS =============== */
+.scene-2{padding:180px 44px 160px;max-width:1300px;margin:0 auto;position:relative}
+.scene-marker{
+  display:flex;align-items:baseline;gap:20px;margin-bottom:60px;padding-bottom:20px;border-bottom:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.26em;text-transform:uppercase;font-weight:500;
+}
+.scene-marker .ch{color:var(--gold)}
+.scene-marker .ti{flex:1;color:var(--cream);letter-spacing:0.04em;text-transform:none;font-style:italic;font-family:'Playfair Display',serif;font-size:16px}
+.scene-marker .tm{color:var(--mute)}
+
+.scene-2 h2{
+  font-family:'Playfair Display',serif;font-weight:500;font-style:italic;
+  font-size:clamp(44px,6.8vw,96px);line-height:1;letter-spacing:-0.022em;color:var(--cream);margin-bottom:48px;max-width:1100px;
+}
+.scene-2 h2 em{font-style:italic;color:var(--gold)}
+
+.scene-2-body{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:start}
+.scene-2-body .prose p{font-size:19px;line-height:1.7;color:var(--cream);font-weight:300;margin-bottom:20px;max-width:620px}
+.scene-2-body .prose p em{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:20px;font-weight:400}
+.scene-2-body .prose p strong{color:var(--cream);font-weight:500}
+
+.side-card{padding:28px 30px;border:1px solid var(--rule-str);background:rgba(237,228,208,0.025)}
+.side-card .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px}
+.side-card .nums{display:grid;grid-template-columns:1fr;gap:16px}
+.side-card .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--rule);align-items:baseline}
+.side-card .row:last-child{border-bottom:none}
+.side-card .row .k{font-size:14px;color:var(--cream-dm);font-family:'Inter',sans-serif}
+.side-card .row .v{font-family:'Playfair Display',serif;font-size:26px;line-height:1;color:var(--cream);letter-spacing:-0.01em}
+.side-card .row .v em{font-style:italic;color:var(--gold)}
+
+/* =============== SCENE 3: REEL (projects) =============== */
+.reel{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:0}
+
+.still{
+  min-height:100vh;padding:90px 44px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  border-bottom:1px solid var(--rule);position:relative;max-width:1400px;margin:0 auto;
+}
+.still:last-child{border-bottom:none}
+.still.reverse{grid-template-columns:1fr 1fr}
+.still.reverse .still-frame{order:2}
+.still.reverse .still-copy{order:1}
+
+.still-frame{
+  aspect-ratio:21/9;position:relative;overflow:hidden;border:1px solid var(--rule-str);
+  box-shadow:0 40px 120px -40px rgba(0,0,0,0.8);
+}
+.still-frame.f1{background:linear-gradient(160deg, #1A1612 0%, #362510 40%, #8A5A22 85%, #D4A34D 100%)}
+.still-frame.f2{background:linear-gradient(160deg, #0F0C08 0%, #1D2C2C 40%, #3E6363 80%, #8FBAB4 100%)}
+.still-frame.f3{background:linear-gradient(160deg, #0A0C10 0%, #1A2436 40%, #4A5A7E 85%, #A8B8D8 100%)}
+.still-frame.f4{background:linear-gradient(160deg, #0E0B08 0%, #3A1A12 40%, #8E2A20 85%, #D46650 100%)}
+.still-frame.f5{background:linear-gradient(160deg, #080A08 0%, #1C2A1E 40%, #4A6B4A 85%, #A8C498 100%)}
+.still-frame::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 45% 35%, rgba(237,228,208,0.22) 0%, transparent 65%);
+}
+.still-frame::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg, rgba(237,228,208,0.02) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+.still-frame .sf-corner{
+  position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(237,228,208,0.8);font-weight:500;z-index:2;
+}
+.still-frame .sf-svg{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46%;max-width:360px;
+  color:rgba(237,228,208,0.85);z-index:1;
+}
+.still-frame .sf-caption{
+  position:absolute;bottom:20px;left:20px;right:20px;padding-top:14px;border-top:1px solid rgba(237,228,208,0.3);
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;z-index:2;
+}
+.still-frame .sf-caption .nm{
+  font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(18px,1.8vw,26px);line-height:1.1;letter-spacing:-0.008em;color:rgba(237,228,208,0.98);
+}
+.still-frame .sf-caption .nm em{font-style:italic;color:var(--gold-br)}
+.still-frame .sf-caption .url{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(237,228,208,0.65);text-align:right;font-weight:500}
+
+.still-copy{padding:0 20px}
+.still-copy .slate{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.still-copy .slate::before{content:"";width:22px;height:1px;background:var(--gold)}
+.still-copy h3{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:-0.02em;color:var(--cream);margin-bottom:22px;max-width:500px}
+.still-copy h3 em{font-style:italic;color:var(--gold)}
+.still-copy .deck{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:20px;line-height:1.45;color:var(--cream-2);margin-bottom:26px;max-width:500px}
+.still-copy .deck em{color:var(--gold);font-style:italic}
+.still-copy p{font-size:15px;line-height:1.7;color:var(--cream-dm);margin-bottom:16px;max-width:500px;font-weight:300}
+.still-copy p em{color:var(--gold-br);font-style:italic}
+
+.still-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:26px;padding-top:20px;border-top:1px solid var(--rule)}
+.still-specs .sp .k{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:5px}
+.still-specs .sp .v{font-family:'Playfair Display',serif;font-size:19px;line-height:1;color:var(--cream);letter-spacing:-0.008em}
+.still-specs .sp .v em{color:var(--gold);font-style:italic}
+
+/* =============== SCENE 4: CLOSING CREDITS (pricing) =============== */
+.credits{padding:160px 44px 140px;max-width:960px;margin:0 auto;position:relative;text-align:center}
+.credits h2{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:clamp(40px,6vw,88px);line-height:1;letter-spacing:-0.022em;color:var(--cream);margin-bottom:18px}
+.credits h2 em{color:var(--gold)}
+.credits .sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,1.6vw,19px);color:var(--cream-dm);max-width:540px;margin:0 auto 60px;line-height:1.5}
+.credits .sub em{color:var(--gold)}
+
+.credit-rows{display:flex;flex-direction:column;gap:0;text-align:left;max-width:720px;margin:0 auto 50px}
+.crow{
+  display:grid;grid-template-columns:220px 1fr auto;gap:30px;align-items:baseline;
+  padding:30px 0;border-bottom:1px solid var(--rule);
+}
+.crow:first-child{border-top:1px solid var(--rule)}
+.crow .role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.crow .name{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(22px,2.4vw,32px);line-height:1.1;letter-spacing:-0.012em;color:var(--cream)}
+.crow .name em{font-style:italic;color:var(--gold)}
+.crow .name small{display:block;font-family:'Inter',sans-serif;font-style:italic;font-size:13px;color:var(--cream-dm);margin-top:6px;font-weight:300}
+.crow .price{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,40px);line-height:1;color:var(--cream);letter-spacing:-0.015em;text-align:right;white-space:nowrap}
+.crow .price em{color:var(--gold);font-style:italic}
+.crow .price small{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);margin-top:8px;font-weight:500}
+
+.credits-note{font-family:'Playfair Display',serif;font-style:italic;color:var(--cream-dm);font-size:15px;margin:10px auto;max-width:500px;line-height:1.5}
+.credits-note em{color:var(--gold)}
+
+/* =============== SCENE 5: FINAL TITLE CARD =============== */
+.fin{
+  padding:160px 44px 120px;min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(212,163,77,0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #070605 0%, #0F0C08 100%);
+  border-top:1px solid var(--rule);position:relative;overflow:hidden;
+}
+.fin::before{
+  content:"";position:absolute;inset:-20%;pointer-events:none;
+  background-image:radial-gradient(rgba(237,228,208,0.015) 1px, transparent 1px);
+  background-size:3px 3px;animation:grain 8s steps(10) infinite;mix-blend-mode:overlay;
+}
+
+.fin .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:40px;display:inline-flex;gap:16px;align-items:center}
+.fin .kicker::before,.fin .kicker::after{content:"";width:30px;height:1px;background:var(--gold);opacity:0.7}
+
+.fin h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(56px,10vw,160px);line-height:0.92;letter-spacing:-0.028em;color:var(--cream);margin-bottom:32px}
+.fin h2 em{font-style:italic;color:var(--gold)}
+.fin .sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--cream-dm);max-width:600px;margin:0 auto 56px;line-height:1.45}
+.fin .sub em{color:var(--gold)}
+
+.fin-lines{display:flex;flex-direction:column;gap:8px;max-width:520px;width:100%;margin:0 auto 60px;position:relative;z-index:2}
+.fl{display:grid;grid-template-columns:100px 1fr auto;gap:18px;padding:18px 24px;align-items:baseline;background:rgba(237,228,208,0.04);border:1px solid var(--rule);transition:all .25s;text-align:left}
+.fl:hover{background:rgba(212,163,77,0.12);border-color:var(--gold)}
+.fl:hover .v em{color:var(--gold-br)}
+.fl .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.fl .v{font-family:'Playfair Display',serif;font-size:19px;line-height:1;color:var(--cream);letter-spacing:-0.008em}
+.fl .v em{color:var(--gold);font-style:italic}
+.fl .ar{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);font-weight:500}
+
+.fin-sign{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500;
+  padding-top:32px;border-top:1px solid var(--rule);max-width:520px;margin:0 auto;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;align-items:center;
+}
+.fin-sign strong{color:var(--cream);font-weight:500}
+.fin-sign .d{width:4px;height:4px;background:var(--gold);border-radius:999px}
+
+/* "END" marker */
+.end-mark{
+  margin-top:56px;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:64px;color:var(--gold);letter-spacing:0.08em;
+  position:relative;
+}
+.end-mark::before,.end-mark::after{content:"·";margin:0 20px;color:var(--mute)}
+
+@media (max-width:980px){
+  body{font-size:14px}
+  .letter-top,.letter-bot{height:30px}
+  .letter-bot{padding:0 16px;font-size:9px}
+  .letter-bot .l,.letter-bot .r{gap:10px}
+  .scene-1{padding:36px 24px;min-height:90vh}
+  .s1-top-strip{top:46px;left:24px;right:24px;grid-template-columns:1fr;gap:4px;text-align:center}
+  .s1-top-strip .r{text-align:center}
+  .s1-meta{grid-template-columns:1fr 1fr;gap:20px}
+  .s1-cue{bottom:54px}
+  .scene-2{padding:96px 24px 80px}
+  .scene-2-body{grid-template-columns:1fr;gap:40px}
+  .still,.still.reverse{grid-template-columns:1fr;gap:36px;padding:56px 24px;min-height:auto}
+  .still.reverse .still-frame{order:1}
+  .still.reverse .still-copy{order:2}
+  .still-specs{grid-template-columns:1fr 1fr;gap:16px}
+  .credits{padding:96px 24px 80px}
+  .crow{grid-template-columns:1fr;gap:8px;padding:20px 0;text-align:left}
+  .crow .price{text-align:left}
+  .fin{padding:96px 24px 70px}
+  .fl{grid-template-columns:80px 1fr auto;padding:14px 18px;gap:14px}
+  .fl .v{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · cinema · v0.9</div>
+
+<!-- LETTERBOX BARS -->
+<div class="letter-top"></div>
+<div class="letter-bot">
+  <div class="l"><span class="pulse"></span><span>Astral Integration · Reel I</span></div>
+  <div class="r"><span class="red">● REC</span><span>2026.04.17</span><span>MZT</span></div>
+</div>
+
+<!-- ================ SCENE 1: COLD OPEN ================ -->
+<section class="scene-1">
+  <div class="s1-top-strip">
+    <div class="l">A Studio · Mazunte · Oaxaca</div>
+    <div class="c">— Reel I · Edition IV · Spring 2026 —</div>
+    <div class="r">Aspect · 2.35:1</div>
+  </div>
+
+  <div class="s1-inner">
+    <div class="s1-kicker">A one-person studio presents</div>
+
+    <h1 class="s1-title">
+      <span class="block">Your <em>mastery</em></span>
+      <span class="block">deserves</span>
+      <span class="block"><em>infrastructure</em></span>
+    </h1>
+
+    <div class="s1-sub">Every practice is a kind of film — a thing that unfolds in time, that has <em>texture and weight</em>, that deserves a presentation frame built with the same care as the work it carries. This studio builds those frames.</div>
+
+    <div class="s1-meta">
+      <div class="m"><div class="n">170<em>+</em></div><div class="l">Frames shipped<br>since 2013</div></div>
+      <div class="m"><div class="n">48<em>h</em></div><div class="l">First cut<br>avg. turnaround</div></div>
+      <div class="m"><div class="n"><em>1</em></div><div class="l">Director<br>/ editor / crew</div></div>
+      <div class="m"><div class="n">17<em>.</em></div><div class="l">Countries<br>the work reaches</div></div>
+    </div>
+  </div>
+
+  <div class="s1-cue">Scroll / to begin</div>
+</section>
+
+<!-- ================ SCENE 2: SYNOPSIS ================ -->
+<section class="scene-2">
+  <div class="scene-marker">
+    <span class="ch">Scene · 01</span>
+    <span class="ti">The synopsis &mdash; in which we establish the premise.</span>
+    <span class="tm">00:00 → 03:12</span>
+  </div>
+
+  <h2>One <em>platform.</em><br>Seven tools <em>dissolved.</em></h2>
+
+  <div class="scene-2-body">
+    <div class="prose">
+      <p>I'm <strong>Jordi</strong> &mdash; a former CTO shipping from a hammock on the Pacific coast of Mexico. I build one platform that replaces seven tools: your site, bookings, courses, community, email, events, payments. All under your own domain. Wired from the first commit. <em>Yours to own from day one.</em></p>
+      <p>The alternative is the stack you already know &mdash; seven rented services that don't speak, each one taking a slice, each one holding your work hostage. The agencies won't stay. The platforms own everything you make. <em>I'm the last technical hire you'll ever need.</em></p>
+      <p>First usable version typically ships in <em>48 hours.</em> Not a wireframe. Not a proposal. The actual working site, with your copy, your photos, bookings live, payments open. If it's wrong, we iterate. If it's right, we ship.</p>
+    </div>
+    <div class="side-card">
+      <div class="lbl">/ Reel stats</div>
+      <div class="nums">
+        <div class="row"><span class="k">Old stack cost</span><span class="v"><em>$346</em>/mo</span></div>
+        <div class="row"><span class="k">New stack from</span><span class="v"><em>$250</em>/mo</span></div>
+        <div class="row"><span class="k">Platform fees</span><span class="v"><em>0%</em></span></div>
+        <div class="row"><span class="k">Ownership</span><span class="v"><em>full</em></span></div>
+        <div class="row"><span class="k">Tools replaced</span><span class="v">7 → <em>1</em></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ SCENE 3: THE REEL ================ -->
+<section class="reel">
+
+  <!-- still 1 -->
+  <div class="still">
+    <div class="still-frame f1">
+      <div class="sf-corner"><span>Reel I · Still 01</span><span>2025</span></div>
+      <svg class="sf-svg" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.9">
+        <circle cx="150" cy="140" r="90"/><circle cx="150" cy="140" r="60"/><circle cx="150" cy="140" r="30"/>
+        <path d="M150 50 V230 M60 140 H240" opacity="0.45"/>
+        <circle cx="150" cy="140" r="8" fill="currentColor"/>
+        <path d="M60 300 Q150 280 240 300" opacity="0.5"/>
+      </svg>
+      <div class="sf-caption"><div class="nm">Deva Premal &amp; <em>Miten</em></div><div class="url">devapremalmiten.xyz</div></div>
+    </div>
+    <div class="still-copy">
+      <div class="slate">Scene 02 &mdash; In which a tour goes off-platform</div>
+      <h3>Devotional music, <em>unmediated.</em></h3>
+      <div class="deck">A full discography, world-touring concert platform, and private listening room — consolidated from five rented services into one domain in <em>14 days.</em></div>
+      <p>Eventbrite was taking 7% of every ticket. Mailchimp held their mailing list hostage at the free-tier cap. The WordPress site loaded in six seconds. <em>None of it was theirs.</em> After: one platform, zero platform fees, one login, thirty years of devotional music gathered under a single roof.</p>
+      <div class="still-specs">
+        <div class="sp"><div class="k">Genre</div><div class="v">Music · <em>Tour</em></div></div>
+        <div class="sp"><div class="k">Runtime</div><div class="v"><em>14</em> days</div></div>
+        <div class="sp"><div class="k">Replaced</div><div class="v"><em>5</em> tools</div></div>
+        <div class="sp"><div class="k">Fees saved</div><div class="v"><em>7%</em></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- still 2 -->
+  <div class="still reverse">
+    <div class="still-frame f2">
+      <div class="sf-corner"><span>Reel I · Still 02</span><span>2025</span></div>
+      <svg class="sf-svg" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.9">
+        <path d="M40 280 Q80 200 130 220 Q170 240 200 180 L260 280 Z" fill="currentColor" fill-opacity="0.14"/>
+        <path d="M40 280 L260 280"/>
+        <circle cx="220" cy="80" r="14" opacity="0.7"/>
+        <path d="M60 310 Q150 290 240 310" opacity="0.4"/>
+      </svg>
+      <div class="sf-caption"><div class="nm">Sacred <em>Counsel</em></div><div class="url">sacredcounsel.space</div></div>
+    </div>
+    <div class="still-copy">
+      <div class="slate">Scene 03 &mdash; Twenty years gathered into one home</div>
+      <h3>A ceremony center, <em>finally whole.</em></h3>
+      <div class="deck">Five revenue streams &mdash; retreats, a teacher training, a members' circle, a publishing arm, private sessions &mdash; unified into a single multi-tenant platform in <em>twelve days.</em></div>
+      <p>Teresa sent a voice memo on a Sunday night from a veranda in Valle de Bravo. Four days later she received a real working site. <em>The new 1:1 mentorship program launched three weeks after go-live</em> — a thing that couldn't exist in the old architecture.</p>
+      <div class="still-specs">
+        <div class="sp"><div class="k">Genre</div><div class="v">Ceremony</div></div>
+        <div class="sp"><div class="k">Runtime</div><div class="v"><em>12</em> days</div></div>
+        <div class="sp"><div class="k">Streams</div><div class="v"><em>5</em> unified</div></div>
+        <div class="sp"><div class="k">ROI</div><div class="v">month <em>6</em></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- still 3 -->
+  <div class="still">
+    <div class="still-frame f3">
+      <div class="sf-corner"><span>Reel I · Still 03</span><span>2024</span></div>
+      <svg class="sf-svg" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.9">
+        <rect x="90" y="100" width="120" height="100" rx="4" fill="currentColor" fill-opacity="0.15"/>
+        <path d="M100 130 H200 M100 150 H180 M100 170 H200" opacity="0.55"/>
+        <circle cx="150" cy="70" r="14"/>
+        <path d="M60 300 Q150 280 240 300" opacity="0.45"/>
+      </svg>
+      <div class="sf-caption"><div class="nm">Shiv <em>Energetics</em></div><div class="url">shivenergetics.xyz</div></div>
+    </div>
+    <div class="still-copy">
+      <div class="slate">Scene 04 &mdash; A reiki academy with an intelligent assistant</div>
+      <h3>Hundreds of students, <em>one roof.</em></h3>
+      <div class="deck">Student progression dashboards, practice-hour logging, auto-generated practitioner directory, and <em>an AI assistant trained on 800 hours</em> of the school's recorded teachings.</div>
+      <p>Five disconnected platforms and a spreadsheet serving as the practitioner directory. An inbox of students asking the same methodology questions. Rebuilt in 23 days as a single home with certification tracking, community, and an AI trained to answer like the founder does.</p>
+      <div class="still-specs">
+        <div class="sp"><div class="k">Genre</div><div class="v">School</div></div>
+        <div class="sp"><div class="k">Runtime</div><div class="v"><em>23</em> days</div></div>
+        <div class="sp"><div class="k">Students</div><div class="v"><em>300+</em></div></div>
+        <div class="sp"><div class="k">AI hours</div><div class="v"><em>800</em></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- still 4 -->
+  <div class="still reverse">
+    <div class="still-frame f4">
+      <div class="sf-corner"><span>Reel I · Still 04</span><span>2024</span></div>
+      <svg class="sf-svg" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.9">
+        <circle cx="100" cy="130" r="32"/><circle cx="200" cy="130" r="32"/>
+        <circle cx="150" cy="220" r="42" fill="currentColor" fill-opacity="0.14"/>
+        <path d="M80 250 L220 250" opacity="0.5"/>
+      </svg>
+      <div class="sf-caption"><div class="nm">Mariana <em>Harpreet</em></div><div class="url">marianaharpreet.xyz</div></div>
+    </div>
+    <div class="still-copy">
+      <div class="slate">Scene 05 &mdash; Three brands, one membership</div>
+      <h3>A studio, a practice, <em>a movement.</em></h3>
+      <div class="deck">Three distinct brand voices on four domains, sharing a single members' vault and one billing system. A single card that worked at <em>every door.</em></div>
+      <p>Each brand needed its own design language, its own offerings, its own audience. But the membership needed to be one thing. 21 days later, three sites with distinct personalities shared a single backend &mdash; cleanly, with no data leaks, no brand dilution.</p>
+      <div class="still-specs">
+        <div class="sp"><div class="k">Genre</div><div class="v">Multi-brand</div></div>
+        <div class="sp"><div class="k">Runtime</div><div class="v"><em>21</em> days</div></div>
+        <div class="sp"><div class="k">Brands</div><div class="v"><em>3</em></div></div>
+        <div class="sp"><div class="k">Domains</div><div class="v"><em>4</em></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- still 5 -->
+  <div class="still">
+    <div class="still-frame f5">
+      <div class="sf-corner"><span>Reel I · Still 05</span><span>2024</span></div>
+      <svg class="sf-svg" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.9">
+        <rect x="130" y="100" width="40" height="100" rx="20"/>
+        <path d="M100 200 Q100 230 150 230 Q200 230 200 200" fill="none"/>
+        <path d="M150 230 V260"/>
+        <path d="M120 270 H180" opacity="0.5"/>
+        <path d="M50 320 Q150 300 250 320" opacity="0.4"/>
+      </svg>
+      <div class="sf-caption"><div class="nm">Uri <em>Atsur</em></div><div class="url">uriatsur.live</div></div>
+    </div>
+    <div class="still-copy">
+      <div class="slate">Scene 06 &mdash; Eight platforms fold into one</div>
+      <h3>A voice, <em>unbounded.</em></h3>
+      <div class="deck">A vocal facilitator running events in <em>eleven countries</em> had ticketing spread across eight services. Unified into a single bilingual members' platform in 11 days.</div>
+      <p>Each event brought a new 3-7% fee from a different vendor. Each platform held a different slice of the audience. Migrated every event, every historic attendee, every active subscriber into one home. <em>Zero fees. One sign-in. One voice.</em></p>
+      <div class="still-specs">
+        <div class="sp"><div class="k">Genre</div><div class="v">Voice</div></div>
+        <div class="sp"><div class="k">Runtime</div><div class="v"><em>11</em> days</div></div>
+        <div class="sp"><div class="k">Platforms</div><div class="v"><em>8</em> → 1</div></div>
+        <div class="sp"><div class="k">Langs</div><div class="v">EN · <em>HE</em></div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================ SCENE 4: CREDITS / PRICING ================ -->
+<section class="credits">
+  <div class="scene-marker" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <span class="ch">Scene · Final</span>
+    <span class="ti">The closing credits &mdash; in which rates are disclosed, plainly.</span>
+    <span class="tm">end roll</span>
+  </div>
+
+  <h2>Three <em>tiers.</em></h2>
+  <div class="sub">Fixed, all-in, everything included. <em>No change orders, no creative accounting, no proposals that balloon halfway through.</em></div>
+
+  <div class="credit-rows">
+    <div class="crow">
+      <div class="role">Tier 01</div>
+      <div class="name">Practi<em>tioners.</em><small>Solo teachers, healers, coaches · 1-2 weeks to ship</small></div>
+      <div class="price"><em>$1,500</em><small>+ $250/mo · all-in</small></div>
+    </div>
+    <div class="crow">
+      <div class="role">Tier 02 ★</div>
+      <div class="name">Schools.<small>Certification programs, teacher trainings, academies · 3-4 weeks</small></div>
+      <div class="price"><em>$5,000</em><small>+ $750/mo · all-in</small></div>
+    </div>
+    <div class="crow">
+      <div class="role">Tier 03</div>
+      <div class="name">Complex <em>schools.</em><small>300+ students · AI · bilingual · multi-tenant · 4-6 weeks</small></div>
+      <div class="price"><em>$8,000+</em><small>+ $1,500/mo · all-in</small></div>
+    </div>
+  </div>
+
+  <div class="credits-note">Every tier includes hosting, domain, SSL, email automation, AI workflows, unlimited revisions, and <em>me, on call</em>, for as long as your practice lasts.</div>
+</section>
+
+<!-- ================ SCENE 5: FIN ================ -->
+<section class="fin">
+  <div class="kicker">/ Begin the conversation</div>
+  <h2>Send me<br>the <em>mess.</em></h2>
+  <div class="sub">A voice memo at 2am. A messy google doc. A Linktree. <em>Polish is not required, nor encouraged.</em> I read every message personally and write back within a day.</div>
+
+  <div class="fin-lines">
+    <a href="mailto:jordi@astralintegration.studio" class="fl"><span class="k">/ Email</span><span class="v">jordi@astralintegration<em>.studio</em></span><span class="ar">↗</span></a>
+    <a href="#" class="fl"><span class="k">/ Call</span><span class="v">30-min <em>discovery</em></span><span class="ar">↗</span></a>
+    <a href="#" class="fl"><span class="k">/ Whatsapp</span><span class="v">+52 · <em>Mazunte hrs</em></span><span class="ar">↗</span></a>
+  </div>
+
+  <div class="fin-sign">
+    <span><strong>Jordi Amat</strong></span><span class="d"></span>
+    <span>Mazunte · Oax · MX</span><span class="d"></span>
+    <span>since 2013</span><span class="d"></span>
+    <span>rev. 2026.04.17</span>
+  </div>
+
+  <div class="end-mark"><em>fin</em></div>
+</section>
+
+</body>
+</html>

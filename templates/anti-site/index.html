@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>astral integration — what are you working on?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F1ECE2;
+  --paper-2: #E6DFCC;
+  --ink: #0F0E0B;
+  --ink-2: #2E2B23;
+  --mute: #7A7266;
+  --mute-2: #A79E90;
+  --accent: #D83F1E;
+  --rule: rgba(15,14,11,0.1);
+  --rule-str: rgba(15,14,11,0.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Bricolage Grotesque',-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  font-size:17px;font-weight:400;line-height:1.5;letter-spacing:-0.005em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+.mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:400}
+
+/* studio tag */
+.studio-tag{
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:200;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--mute);display:flex;align-items:center;gap:9px;pointer-events:none;
+}
+.studio-tag .dot{width:6px;height:6px;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:0.3}}
+
+/* top corner marks */
+.corner{position:fixed;top:24px;z-index:100;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--ink-2);font-weight:500;pointer-events:none}
+.corner.tl{left:32px;text-transform:uppercase}
+.corner.tr{right:32px;text-align:right;pointer-events:auto}
+.corner.tr a{color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:2px}
+.corner.tr a:hover{color:var(--accent)}
+
+/* ============ SCREEN 1: THE QUESTION ============ */
+.s1{
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:100px 40px 80px;text-align:center;position:relative;
+}
+.s1::before{
+  content:"";position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(216,63,30,0.07) 0%,transparent 55%);
+  pointer-events:none;
+}
+
+.s1 .kicker{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:44px;display:flex;align-items:center;gap:14px;
+}
+.s1 .kicker::before,.s1 .kicker::after{content:"";width:30px;height:1px;background:var(--accent);opacity:0.6}
+
+.s1 h1{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+  font-size:clamp(48px,8.4vw,132px);line-height:0.95;letter-spacing:-0.028em;
+  max-width:1240px;margin-bottom:56px;font-variation-settings:"opsz" 96;
+  color:var(--ink);
+}
+.s1 h1 em{font-style:italic;color:var(--accent);font-weight:400}
+
+.field-wrap{
+  max-width:720px;width:100%;margin:0 auto;position:relative;
+}
+.field-wrap .field{
+  display:flex;align-items:center;gap:14px;padding:22px 28px;
+  background:var(--paper-2);border:1px solid var(--rule-str);border-radius:999px;
+  transition:all .25s ease;
+}
+.field-wrap .field:focus-within{
+  border-color:var(--ink);background:#FFF9EA;box-shadow:0 16px 48px -16px rgba(15,14,11,0.22);
+}
+.field-wrap input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(17px,2vw,22px);font-weight:400;color:var(--ink);
+  letter-spacing:-0.005em;
+}
+.field-wrap input::placeholder{color:var(--mute-2);font-style:italic}
+.field-wrap .send-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;
+  background:var(--ink);color:var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+  flex-shrink:0;transition:background .2s;
+}
+.field-wrap .send-btn:hover{background:var(--accent)}
+
+/* examples */
+.examples{
+  margin-top:22px;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:var(--mute);
+}
+.examples .lbl{text-transform:uppercase;letter-spacing:0.16em}
+.examples button{
+  padding:6px 12px;background:transparent;border:1px solid var(--rule-str);border-radius:999px;
+  color:var(--ink-2);font-family:inherit;font-size:11px;cursor:pointer;transition:all .2s;
+}
+.examples button:hover{border-color:var(--ink);background:var(--paper-2)}
+.examples button em{color:var(--accent);font-style:italic;margin-left:4px}
+
+/* hint below */
+.s1 .note{
+  margin-top:56px;max-width:500px;font-size:15px;color:var(--mute);line-height:1.5;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:400;
+}
+.s1 .note em{color:var(--ink-2);font-style:italic;font-weight:500}
+
+/* scroll cue */
+.scroll-cue{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(4px)}}
+.scroll-cue::after{content:"↓";font-size:14px;color:var(--accent)}
+
+/* ============ SCREEN 2: WHY ============ */
+.s2{
+  min-height:80vh;padding:140px 40px;display:flex;flex-direction:column;justify-content:center;
+  max-width:980px;margin:0 auto;
+}
+.s2 .mono-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:40px;display:flex;align-items:center;gap:14px;
+}
+.s2 .mono-label::before{content:"";width:30px;height:1px;background:var(--accent)}
+.s2 p{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:400;
+  font-size:clamp(22px,3vw,40px);line-height:1.3;letter-spacing:-0.014em;max-width:900px;
+}
+.s2 p em{font-style:italic;color:var(--accent);font-weight:400}
+.s2 p strong{font-weight:600;color:var(--ink)}
+.s2 .meta-bar{
+  margin-top:56px;padding-top:22px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute);
+}
+.s2 .meta-bar span strong{color:var(--ink);font-weight:700}
+
+/* ============ SCREEN 3: WORK ============ */
+.s3{
+  padding:120px 40px 100px;max-width:1280px;margin:0 auto;
+}
+.s3 .head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  padding-bottom:20px;border-bottom:1px solid var(--rule-str);margin-bottom:44px;flex-wrap:wrap;
+}
+.s3 .head h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(30px,4vw,48px);
+  line-height:1;letter-spacing:-0.018em;
+}
+.s3 .head h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.s3 .head .mono{color:var(--mute)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;
+  background:var(--paper-2);border:1px solid var(--rule);
+  font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:400;color:var(--ink);
+  transition:all .2s;cursor:pointer;
+}
+.chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+.chip:hover .yr{color:var(--accent)}
+.chip .nm em{font-style:italic;color:var(--accent);font-weight:500}
+.chip .yr{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute);letter-spacing:0.04em;transition:color .2s}
+.chip:hover .nm em{color:var(--paper)}
+
+.s3 .all-link{
+  margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-2);
+}
+.s3 .all-link a{color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:2px}
+.s3 .all-link a:hover{color:var(--accent)}
+
+/* ============ SCREEN 4: PRICING (three lines) ============ */
+.s4{
+  padding:140px 40px 120px;max-width:1100px;margin:0 auto;
+}
+.s4 .mono-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:56px;display:flex;align-items:center;gap:14px;
+}
+.s4 .mono-label::before{content:"";width:30px;height:1px;background:var(--accent)}
+
+.price-line{
+  display:grid;grid-template-columns:180px 1fr auto;gap:40px;align-items:baseline;
+  padding:32px 0;border-bottom:1px solid var(--rule);
+}
+.price-line:last-of-type{border-bottom:none}
+.price-line .tier{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--mute);font-weight:500;
+}
+.price-line .desc{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(22px,2.8vw,36px);line-height:1.25;
+  letter-spacing:-0.015em;color:var(--ink);
+}
+.price-line .desc em{font-style:italic;color:var(--accent);font-weight:400}
+.price-line .amt{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(20px,2.4vw,30px);
+  letter-spacing:-0.012em;white-space:nowrap;
+}
+.price-line .amt em{color:var(--accent);font-style:italic;font-weight:400}
+.price-line .amt small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-top:6px;text-align:right}
+
+.s4 .post{
+  margin-top:52px;padding-top:28px;border-top:1px solid var(--rule-str);
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-2);
+}
+.s4 .post em{color:var(--accent);font-style:italic}
+
+/* ============ SCREEN 5: CONTACT ============ */
+.s5{
+  padding:140px 40px 160px;max-width:900px;margin:0 auto;text-align:center;position:relative;
+}
+.s5 .mono-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:44px;display:inline-flex;align-items:center;gap:14px;
+}
+.s5 .mono-label::before,.s5 .mono-label::after{content:"";width:30px;height:1px;background:var(--accent);opacity:0.6}
+
+.s5 h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+  font-size:clamp(44px,7vw,104px);line-height:0.95;letter-spacing:-0.028em;margin-bottom:40px;
+}
+.s5 h2 em{font-style:italic;color:var(--accent);font-weight:400}
+
+.s5 .lede{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-style:italic;
+  font-size:clamp(19px,2.2vw,26px);line-height:1.4;color:var(--ink-2);max-width:640px;margin:0 auto 48px;
+}
+
+.contact-lines{
+  max-width:540px;margin:0 auto 40px;display:flex;flex-direction:column;gap:10px;
+}
+.cline{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:18px 26px;background:var(--paper-2);border:1px solid var(--rule);border-radius:999px;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:var(--ink);transition:all .2s;
+}
+.cline:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cline:hover .ar{color:var(--accent);transform:translateX(4px)}
+.cline .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute)}
+.cline:hover .k{color:var(--mute-2)}
+.cline .v{font-weight:400}
+.cline .v em{font-style:italic;color:var(--accent)}
+.cline:hover .v em{color:var(--paper)}
+.cline .ar{color:var(--mute);font-family:'JetBrains Mono',monospace;font-size:12px;transition:all .2s}
+
+.s5 .sign{
+  margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);
+  display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
+}
+.s5 .sign strong{color:var(--ink);font-weight:500}
+
+/* bottom bar */
+.bottom-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:90;
+  background:rgba(241,236,226,0.92);backdrop-filter:blur(14px);
+  border-top:1px solid var(--rule);padding:10px 24px;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-2);
+}
+.bottom-bar .sys{display:flex;align-items:center;gap:8px;color:var(--mute)}
+.bottom-bar .sys::before{content:"●";color:#4E7A3E;animation:pulse 1.6s infinite}
+.bottom-bar .sig{color:var(--ink)}
+.bottom-bar .sig em{color:var(--accent);font-style:italic;font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:500;text-transform:none;letter-spacing:0}
+
+/* reveals */
+[data-r]{opacity:0;transform:translateY(18px);transition:opacity 1s ease, transform 1s ease}
+[data-r].in{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:860px){
+  .corner.tl{left:20px;font-size:10px}
+  .corner.tr{right:20px;font-size:10px}
+  .s1{padding:96px 24px 100px;min-height:92vh}
+  .s1 .kicker{margin-bottom:36px}
+  .s1 h1{font-size:52px;margin-bottom:40px}
+  .field-wrap .field{padding:14px 18px;flex-direction:column;gap:12px;border-radius:20px}
+  .field-wrap input{width:100%;font-size:18px}
+  .field-wrap .send-btn{width:100%;justify-content:center;padding:13px}
+  .examples{gap:6px;font-size:10px}
+  .examples button{font-size:10px;padding:5px 10px}
+  .s1 .note{margin-top:40px;font-size:14px}
+  .scroll-cue{bottom:24px}
+
+  .s2,.s3,.s4,.s5{padding-left:24px;padding-right:24px}
+  .s2{padding-top:96px;padding-bottom:96px;min-height:auto}
+  .s2 p{font-size:22px}
+  .s2 .meta-bar{margin-top:40px;font-size:10px}
+  .s3{padding-top:88px;padding-bottom:72px}
+  .s3 .head h2{font-size:28px}
+  .chip{font-size:13px;padding:8px 14px}
+  .s4{padding-top:96px;padding-bottom:96px}
+  .price-line{grid-template-columns:1fr;gap:10px;padding:24px 0}
+  .price-line .amt{text-align:left}
+  .price-line .amt small{text-align:left}
+  .s5{padding-top:96px;padding-bottom:128px}
+  .s5 h2{font-size:44px}
+  .cline{padding:14px 20px;font-size:15px}
+  .bottom-bar{padding:8px 16px;font-size:9px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important}
+  [data-r]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="dot"></span>astral integration · anti-site · v0.9</div>
+
+<div class="corner tl">❋ MAZUNTE · MX · 2026</div>
+<div class="corner tr"><a href="mailto:jordi@astralintegration.studio">Or write directly ↗</a></div>
+
+<!-- ============ SCREEN 1 ============ -->
+<section class="s1">
+  <div class="kicker">/ A one-person studio · Mazunte, Oaxaca</div>
+
+  <h1 data-r>Hi. What are<br>you working <em>on?</em></h1>
+
+  <div class="field-wrap" data-r>
+    <form class="field" onsubmit="event.preventDefault()">
+      <input id="main-input" type="text" placeholder="e.g. a yoga school with 300 students" autofocus/>
+      <button class="send-btn">Send →</button>
+    </form>
+  </div>
+
+  <div class="examples" data-r>
+    <span class="lbl">/ try:</span>
+    <button data-ex="a reiki academy with four certification levels">a reiki academy with <em>four levels</em></button>
+    <button data-ex="a retreat center with five revenue streams">a retreat center · <em>five streams</em></button>
+    <button data-ex="a breathwork teacher on eight platforms">a breathwork teacher · <em>eight platforms</em></button>
+  </div>
+
+  <div class="note">
+    I'm Jordi — a former CTO who ships websites, bookings, courses, and community platforms for practitioners, <em>from a hammock in Mazunte.</em>  Send me the shape of the mess and I'll send you a platform.
+  </div>
+
+  <div class="scroll-cue">/ or scroll</div>
+</section>
+
+<!-- ============ SCREEN 2 ============ -->
+<section class="s2">
+  <div class="mono-label">/ The short answer</div>
+  <p data-r>One person. One platform. <strong>Everything connected.</strong> I replace your seven rented tools — Kajabi, Acuity, Mailchimp, Circle, Eventbrite, WordPress, Linktree — with <em>one home on your own domain.</em> Shipped in 48 hours. Yours from the first commit.</p>
+
+  <div class="meta-bar">
+    <span><strong>170+</strong> sites shipped</span>
+    <span><strong>48h</strong> first build</span>
+    <span><strong>1</strong> person</span>
+    <span><strong>0</strong> proposals ever sent</span>
+    <span><strong>since 2013</strong></span>
+  </div>
+</section>
+
+<!-- ============ SCREEN 3 ============ -->
+<section class="s3">
+  <div class="head">
+    <h2>The <em>work.</em></h2>
+    <span class="mono">/ 14 most recent · tap any one</span>
+  </div>
+
+  <div class="chips" data-r>
+    <a href="#" class="chip"><span class="nm">Deva Premal &amp; <em>Miten</em></span><span class="yr">'25</span></a>
+    <a href="#" class="chip"><span class="nm">Sacred <em>Counsel</em></span><span class="yr">'25</span></a>
+    <a href="#" class="chip"><span class="nm"><em>Gurmukh</em> Kaur</span><span class="yr">'25</span></a>
+    <a href="#" class="chip"><span class="nm">Skylar <em>Acamesis</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Shiv <em>Energetics</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Mariana <em>Harpreet</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Uri <em>Atsur</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Ama <em>Kura</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Mazunte <em>Today</em></span><span class="yr">'24</span></a>
+    <a href="#" class="chip"><span class="nm">Arte de <em>Renacer</em></span><span class="yr">'23</span></a>
+    <a href="#" class="chip"><span class="nm">Menda <em>Mano</em></span><span class="yr">'23</span></a>
+    <a href="#" class="chip"><span class="nm">Mujer <em>Despierta</em></span><span class="yr">'23</span></a>
+    <a href="#" class="chip"><span class="nm">Kura <em>Terra</em></span><span class="yr">'23</span></a>
+    <a href="#" class="chip"><span class="nm">— <em>private</em> —</span><span class="yr">'22</span></a>
+  </div>
+
+  <div class="all-link">
+    <div>/ 170+ builds total · 14 shown</div>
+    <a href="#">See the full catalogue →</a>
+  </div>
+</section>
+
+<!-- ============ SCREEN 4 ============ -->
+<section class="s4">
+  <div class="mono-label">/ Rate card</div>
+
+  <div class="price-line">
+    <div class="tier">/ Practitioners</div>
+    <div class="desc">A solo teacher who needs a <em>real home.</em></div>
+    <div class="amt"><em>$1,500</em> &nbsp; <span style="color:var(--mute-2)">·</span> &nbsp; $250/mo<small>1-2 weeks</small></div>
+  </div>
+
+  <div class="price-line">
+    <div class="tier">/ Schools &nbsp;★</div>
+    <div class="desc">A certification program or teacher <em>training academy.</em></div>
+    <div class="amt"><em>$5,000</em> &nbsp; <span style="color:var(--mute-2)">·</span> &nbsp; $750/mo<small>3-4 weeks</small></div>
+  </div>
+
+  <div class="price-line">
+    <div class="tier">/ Complex</div>
+    <div class="desc">300+ students · bilingual · <em>multi-tenant</em> · AI.</div>
+    <div class="amt"><em>$8,000+</em> &nbsp; <span style="color:var(--mute-2)">·</span> &nbsp; $1,500/mo<small>4-6 weeks</small></div>
+  </div>
+
+  <div class="post">
+    <div>/ Everything included · no change orders · <em>no surprise invoices</em></div>
+    <div>/ You own all code &amp; data · from day one</div>
+  </div>
+</section>
+
+<!-- ============ SCREEN 5 ============ -->
+<section class="s5">
+  <div class="mono-label">/ Or · directly</div>
+  <h2 data-r>Send me<br><em>the mess.</em></h2>
+  <div class="lede">A voice memo at 2am. A messy google doc. A linktree. Three screenshots. <em>I don't need polish.</em></div>
+
+  <div class="contact-lines" data-r>
+    <a href="mailto:jordi@astralintegration.studio" class="cline"><span class="k">/ Email</span><span class="v">jordi@astralintegration<em>.studio</em></span><span class="ar">↗</span></a>
+    <a href="#" class="cline"><span class="k">/ Schedule</span><span class="v">30-min <em>discovery call</em></span><span class="ar">↗</span></a>
+    <a href="#" class="cline"><span class="k">/ WhatsApp</span><span class="v">+52 · <em>Mazunte hours</em></span><span class="ar">↗</span></a>
+  </div>
+
+  <div class="sign">
+    <span><strong>Jordi Amat</strong></span>
+    <span>·</span>
+    <span>Mazunte, Oaxaca</span>
+    <span>·</span>
+    <span>since 2013</span>
+  </div>
+</section>
+
+<!-- bottom bar -->
+<div class="bottom-bar">
+  <div>© 2026 · astral integration</div>
+  <div class="sig"><em>Jordi Amat</em> · mazunte, mx</div>
+  <div class="sys">all systems normal</div>
+</div>
+
+<script>
+const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.08});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+
+// example chips fill input
+const input = document.getElementById('main-input');
+document.querySelectorAll('.examples button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    input.value = b.dataset.ex;
+    input.focus();
+  });
+});
+</script>
+</body>
+</html>

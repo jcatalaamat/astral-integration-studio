@@ -1,0 +1,1768 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jugat Guru — Kundalini Yoga & the Technology of the Soul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink: #0A0804;
+  --ink-2: #141009;
+  --ink-3: #1E180F;
+  --ink-4: #2B2216;
+  --paper: #F1EADC;
+  --paper-2: #E8DEC8;
+  --paper-3: #D6CBB4;
+  --oud: #C69B4E;
+  --oud-light: #E4B96B;
+  --oud-deep: #8B6A2A;
+  --terra: #A84A2C;
+  --terra-deep: #74301B;
+  --sage: #7A8264;
+  --ink-mute: #7D7366;
+  --cream-mute: rgba(241,234,220,0.62);
+  --cream-soft: rgba(241,234,220,0.85);
+  --rule-ink: rgba(241,234,220,0.12);
+  --rule-paper: rgba(10,8,4,0.14);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',-apple-system,sans-serif;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:16px;font-weight:400;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit}
+
+/* ===== TYPE ===== */
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+.serif-i{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:400}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--oud);font-weight:400}
+
+h1.disp{
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(52px,9vw,148px);line-height:0.92;letter-spacing:-0.022em;
+}
+h1.disp i{font-style:italic;color:var(--oud-light)}
+h2.disp{
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(40px,6vw,88px);line-height:0.98;letter-spacing:-0.015em;
+}
+h2.disp i{font-style:italic}
+h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-0.005em}
+
+/* ===== STUDIO TAG ===== */
+.studio-tag{
+  position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:200;display:none;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);background:rgba(20,16,9,0.7);
+  padding:7px 16px;border-radius:999px;border:1px solid var(--rule-ink);
+  backdrop-filter:blur(14px);display:flex;align-items:center;gap:9px;pointer-events:none;
+}
+.studio-tag .pulse{
+  width:6px;height:6px;border-radius:999px;background:var(--oud);
+  box-shadow:0 0 0 4px rgba(198,155,78,0.15);animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(198,155,78,0.15)}50%{box-shadow:0 0 0 6px rgba(198,155,78,0.05)}}
+
+/* ===== NAV ===== */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,8,4,0.72);backdrop-filter:saturate(1.3) blur(18px);
+  border-bottom:1px solid var(--rule-ink);
+}
+nav.top .inner{
+  max-width:1480px;margin:0 auto;padding:0 48px;
+  height:76px;display:flex;align-items:center;justify-content:space-between;gap:36px;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .sigil{width:38px;height:38px}
+.brand .wordmark{line-height:1.05}
+.brand .wordmark .n{font-family:'Instrument Serif',serif;font-weight:400;font-size:22px;letter-spacing:-0.005em}
+.brand .wordmark .n i{font-style:italic;color:var(--oud)}
+.brand .wordmark .s{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-mute);margin-top:4px}
+
+nav.top ul{display:flex;list-style:none;gap:36px}
+nav.top ul a{font-size:14px;font-weight:400;color:var(--cream-soft);transition:color .2s}
+nav.top ul a:hover{color:var(--oud-light)}
+
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:0.01em;cursor:pointer;border:none;
+  font-family:inherit;transition:all .2s ease;
+}
+.btn.pri{background:var(--oud);color:var(--ink)}
+.btn.pri:hover{background:var(--oud-light)}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--rule-ink)}
+.btn.ghost:hover{border-color:var(--oud);color:var(--oud-light)}
+.btn.light{background:var(--paper);color:var(--ink)}
+.btn.light:hover{background:var(--paper-2)}
+.btn.outline-dark{background:transparent;color:var(--ink);border:1px solid var(--rule-paper)}
+.btn.outline-dark:hover{border-color:var(--ink)}
+
+/* hamburger */
+.hamb{
+  display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--rule-ink);
+  background:var(--ink-2);cursor:pointer;padding:0;position:relative;flex-shrink:0;
+}
+.hamb span{
+  position:absolute;left:12px;right:12px;height:1.4px;background:var(--paper);border-radius:2px;
+  transition:all .25s ease;
+}
+.hamb span:nth-child(1){top:14px}
+.hamb span:nth-child(2){top:20px}
+.hamb span:nth-child(3){top:26px}
+.hamb.open span:nth-child(1){top:20px;transform:rotate(45deg)}
+.hamb.open span:nth-child(2){opacity:0}
+.hamb.open span:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:150;pointer-events:none;visibility:hidden}
+.drawer.open{pointer-events:auto;visibility:visible}
+.scrim{position:absolute;inset:0;background:rgba(10,8,4,0.7);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s}
+.drawer.open .scrim{opacity:1}
+.drawer-panel{
+  position:absolute;top:0;right:0;height:100%;width:min(360px,90vw);
+  background:var(--ink-2);border-left:1px solid var(--rule-ink);padding:22px 26px 28px;
+  display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;
+}
+.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--rule-ink);margin-bottom:10px}
+.drawer-close{width:38px;height:38px;border-radius:999px;border:1px solid var(--rule-ink);background:transparent;cursor:pointer;color:var(--paper);font-size:14px}
+.drawer-nav{display:flex;flex-direction:column;padding:16px 0}
+.drawer-nav a{padding:18px 4px;border-bottom:1px solid var(--rule-ink);font-family:'Instrument Serif',serif;font-size:26px;color:var(--paper)}
+.drawer-nav a:hover{color:var(--oud-light)}
+.drawer-foot{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px}
+
+/* ===== SECTIONS ===== */
+section{max-width:1480px;margin:0 auto;padding:0 48px;position:relative}
+.full{max-width:none;padding:0}
+.inner{max-width:1480px;margin:0 auto;padding:0 48px}
+
+/* ===== HERO ===== */
+.hero{padding:72px 48px 110px;position:relative;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-10%;right:-10%;width:720px;height:720px;border-radius:50%;
+  background:radial-gradient(circle, rgba(198,155,78,0.16) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";position:absolute;bottom:-20%;left:-10%;width:580px;height:580px;border-radius:50%;
+  background:radial-gradient(circle, rgba(168,74,44,0.1) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.hero-meta{
+  display:flex;align-items:center;gap:22px;margin-bottom:68px;padding-bottom:20px;
+  border-bottom:1px solid var(--rule-ink);position:relative;z-index:2;
+}
+.hero-meta .dot{width:5px;height:5px;border-radius:999px;background:var(--oud)}
+.hero-meta span{color:var(--cream-mute)}
+.hero-meta .city{color:var(--paper)}
+.hero-meta .right{margin-left:auto;display:flex;gap:22px}
+
+.hero-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:80px;align-items:end;position:relative;z-index:2}
+
+.hero-title .eyebrow{margin-bottom:28px}
+.hero-title h1.disp{max-width:950px}
+.hero-title h1.disp i{font-style:italic;color:var(--oud-light);display:inline-block}
+
+.hero-title .sub{
+  margin-top:44px;font-family:'Instrument Serif',serif;font-size:clamp(22px,2.3vw,30px);
+  line-height:1.28;font-style:italic;color:var(--cream-soft);max-width:680px;font-weight:400;
+}
+.hero-title .sub span{font-style:normal;color:var(--oud-light)}
+
+.hero-title .ctas{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.hero-title .ctas .btn{padding:15px 24px;font-size:14px}
+
+/* portrait card */
+.portrait{
+  position:relative;aspect-ratio:3/4;max-width:440px;margin-left:auto;
+  background:linear-gradient(170deg, #1F1709 0%, #0A0804 60%, #201608 100%);
+  border-radius:8px;overflow:hidden;border:1px solid var(--rule-ink);
+}
+.portrait::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 35%, rgba(228,185,107,0.25) 0%, transparent 55%);
+}
+.portrait svg{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);width:74%;height:auto;
+  color:var(--oud);opacity:0.9;
+}
+.portrait .tag-tl{
+  position:absolute;top:18px;left:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--cream-mute);
+}
+.portrait .tag-tr{
+  position:absolute;top:18px;right:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--oud);letter-spacing:0.16em;
+}
+.portrait .caption{
+  position:absolute;bottom:22px;left:20px;right:20px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.portrait .caption .nm{
+  font-family:'Instrument Serif',serif;font-size:22px;line-height:1;
+}
+.portrait .caption .nm i{font-style:italic;color:var(--oud-light)}
+.portrait .caption .nm small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-mute);margin-top:8px;font-weight:400}
+.portrait .caption .fr{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-mute);text-align:right;line-height:1.6;
+}
+
+/* marquee */
+.marquee-wrap{
+  margin-top:96px;border-top:1px solid var(--rule-ink);border-bottom:1px solid var(--rule-ink);
+  padding:22px 0;overflow:hidden;position:relative;
+}
+.marquee{display:flex;gap:72px;white-space:nowrap;animation:marq 38s linear infinite}
+.marquee .item{
+  font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--cream-mute);display:flex;align-items:center;gap:72px;
+}
+.marquee .item::after{content:"✦";font-style:normal;color:var(--oud)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== STATEMENT BAND ===== */
+.statement{
+  background:var(--ink-2);padding:140px 48px;position:relative;overflow:hidden;
+  border-top:1px solid var(--rule-ink);border-bottom:1px solid var(--rule-ink);
+}
+.statement::before{
+  content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;
+  background:radial-gradient(circle,rgba(198,155,78,0.05) 0%,transparent 60%);
+}
+.statement .inner-narrow{max-width:1100px;margin:0 auto;position:relative}
+.statement .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:48px;color:var(--oud)}
+.statement .eyebrow::before,.statement .eyebrow::after{content:"";flex:0 0 60px;height:1px;background:var(--oud);opacity:0.4}
+.statement .eyebrow::after{flex:1;max-width:auto}
+.statement-text{
+  font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(26px,3.2vw,42px);
+  line-height:1.3;letter-spacing:-0.01em;color:var(--paper);
+}
+.statement-text i{font-style:italic;color:var(--oud-light)}
+.statement-text .big-quote{font-size:1.5em;color:var(--oud);line-height:0;vertical-align:-0.2em;margin-right:0.08em;font-family:'Instrument Serif',serif;font-style:italic}
+
+.statement-sign{
+  margin-top:64px;display:flex;gap:24px;align-items:center;
+  padding-top:36px;border-top:1px solid var(--rule-ink);
+}
+.sig{font-family:'Instrument Serif',serif;font-style:italic;font-size:42px;color:var(--oud-light);line-height:1}
+.sig-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-mute);line-height:1.7}
+.sig-meta strong{color:var(--paper);font-weight:500}
+
+/* ===== STUDIO (DUBAI) ===== */
+.studio-sec{
+  background:var(--paper);color:var(--ink);padding:140px 48px;position:relative;
+}
+.studio-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:60px;background:var(--oud);
+}
+.studio-head{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;margin-bottom:72px;padding-bottom:56px;border-bottom:1px solid var(--rule-paper)}
+.studio-head .eyebrow{color:var(--terra);margin-bottom:22px}
+.studio-head h2.disp{max-width:640px;color:var(--ink)}
+.studio-head .right p{font-size:18px;line-height:1.55;color:var(--ink-3);margin-bottom:28px}
+.studio-head .info{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding-top:24px;border-top:1px solid var(--rule-paper)}
+.studio-head .info dt{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
+.studio-head .info dd{font-family:'Instrument Serif',serif;font-size:22px;line-height:1.2;color:var(--ink);margin-bottom:14px}
+.studio-head .info dd i{font-style:italic;color:var(--terra)}
+
+/* weekly schedule */
+.schedule{
+  background:var(--ink);color:var(--paper);border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 100px -40px rgba(10,8,4,0.4);
+}
+.sched-head{display:flex;align-items:center;padding:20px 28px;border-bottom:1px solid var(--rule-ink);gap:16px}
+.sched-head .t{font-family:'Instrument Serif',serif;font-size:20px;letter-spacing:-0.005em}
+.sched-head .t i{font-style:italic;color:var(--oud)}
+.sched-head .badge{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;padding:5px 10px;background:rgba(198,155,78,0.15);color:var(--oud-light);border-radius:999px}
+.sched-week{display:grid;grid-template-columns:repeat(7,1fr)}
+.sched-day{border-right:1px solid var(--rule-ink);padding:16px 14px 18px;min-height:180px}
+.sched-day:last-child{border-right:none}
+.sched-day .d-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--rule-ink)}
+.sched-day .d-head .nm{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--cream-mute)}
+.sched-day .d-head .num{font-family:'Instrument Serif',serif;font-size:20px;color:var(--paper)}
+.sched-day .d-head .num.today{color:var(--oud-light)}
+.slot{
+  display:block;padding:8px 0;border-bottom:1px dashed var(--rule-ink);font-size:12px;line-height:1.4;
+}
+.slot:last-child{border-bottom:none}
+.slot .time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--oud);letter-spacing:0.1em;display:block;margin-bottom:3px}
+.slot .name{color:var(--paper)}
+.slot .name i{font-style:italic}
+.slot.full{opacity:0.4}
+.slot.full .name::after{content:" · full";color:var(--terra);font-size:10px;letter-spacing:0.08em;font-family:'IBM Plex Mono',monospace}
+.sched-foot{
+  display:flex;justify-content:space-between;align-items:center;padding:16px 28px;
+  background:var(--ink-2);border-top:1px solid var(--rule-ink);font-size:12px;
+}
+.sched-foot .legend{display:flex;gap:20px;color:var(--cream-mute)}
+.sched-foot .legend span::before{content:"●";color:var(--oud);margin-right:6px;font-size:8px}
+
+/* ===== OFFERINGS ===== */
+.offerings{padding:140px 48px;background:var(--ink)}
+.section-head{
+  display:grid;grid-template-columns:1fr 1.6fr;gap:72px;align-items:start;
+  padding-bottom:56px;border-bottom:1px solid var(--rule-ink);margin-bottom:64px;
+}
+.section-head .left .eyebrow{margin-bottom:20px}
+.section-head .right{padding-top:16px}
+.section-head .right p{font-size:17px;color:var(--cream-soft);max-width:560px}
+
+.offer-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.offer{
+  padding:36px 32px 32px;border:1px solid var(--rule-ink);border-radius:18px;
+  background:linear-gradient(180deg,rgba(241,234,220,0.02),transparent);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:360px;
+  transition:all .3s ease;
+}
+.offer:hover{border-color:var(--oud);background:linear-gradient(180deg,rgba(198,155,78,0.06),transparent)}
+.offer.span-7{grid-column:span 7}
+.offer.span-5{grid-column:span 5}
+.offer.span-4{grid-column:span 4}
+.offer.span-8{grid-column:span 8}
+.offer.span-6{grid-column:span 6}
+
+.offer .n-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.offer .num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--oud)}
+.offer .format{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--cream-mute);text-transform:uppercase}
+.offer .icn-wrap{margin-bottom:26px}
+.offer .icn{width:56px;height:56px;color:var(--oud)}
+.offer h3{color:var(--paper);margin-bottom:14px;font-size:32px;letter-spacing:-0.01em}
+.offer h3 i{font-style:italic;color:var(--oud-light)}
+.offer p{font-size:14px;color:var(--cream-soft);line-height:1.6;margin-bottom:24px;max-width:500px}
+.offer .meta-row{
+  margin-top:auto;padding-top:20px;border-top:1px solid var(--rule-ink);
+  display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--cream-mute);
+  font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;
+}
+.offer .meta-row .price{color:var(--paper);font-size:13px}
+.offer .arrow{position:absolute;top:36px;right:32px;color:var(--cream-mute);transition:color .2s, transform .3s ease}
+.offer:hover .arrow{color:var(--oud-light);transform:translate(4px,-4px)}
+
+.offer.feat{background:linear-gradient(170deg,rgba(198,155,78,0.14) 0%,rgba(198,155,78,0.02) 70%);border-color:rgba(198,155,78,0.35)}
+.offer.feat::after{
+  content:"";position:absolute;top:0;right:0;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(228,185,107,0.2) 0%, transparent 65%);pointer-events:none;
+}
+
+/* ===== MEMBERSHIP / PRACTICE APP ===== */
+.practice-band{
+  background:linear-gradient(180deg, var(--ink-2) 0%, var(--ink-3) 100%);
+  padding:140px 48px;position:relative;overflow:hidden;
+}
+.practice-band::before{
+  content:"";position:absolute;inset:0;opacity:0.04;pointer-events:none;
+  background-image:radial-gradient(circle at 20% 40%, var(--oud) 0%, transparent 40%), radial-gradient(circle at 80% 70%, var(--terra) 0%, transparent 45%);
+}
+.practice-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:center;margin-top:48px}
+
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.phone-wrap::before{
+  content:"";position:absolute;width:540px;height:540px;border-radius:999px;
+  background:radial-gradient(circle, rgba(198,155,78,0.28) 0%, transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;
+}
+.phone{
+  width:350px;border-radius:46px;padding:13px;background:#050301;position:relative;z-index:1;
+  box-shadow:0 60px 120px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(198,155,78,0.1);
+}
+.phone .notch{
+  position:absolute;top:22px;left:50%;transform:translateX(-50%);
+  width:96px;height:26px;background:#000;border-radius:999px;z-index:2;
+}
+.phone-screen{
+  border-radius:36px;background:linear-gradient(180deg,#1A120A 0%, #0A0804 100%);
+  padding:50px 20px 24px;min-height:700px;overflow:hidden;position:relative;
+}
+.ps-time{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--paper);text-align:center;margin-bottom:8px}
+.ps-greet{
+  text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;
+  color:var(--oud-light);margin-bottom:22px;
+}
+.pcard{
+  background:rgba(241,234,220,0.04);border:1px solid rgba(241,234,220,0.08);
+  border-radius:20px;padding:20px;margin-bottom:12px;
+}
+.pcard.hero{
+  background:linear-gradient(160deg,rgba(198,155,78,0.18),rgba(168,74,44,0.08));
+  border-color:rgba(198,155,78,0.28);
+}
+.pcard .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--oud-light);text-transform:uppercase;margin-bottom:10px}
+.pcard .title{font-family:'Instrument Serif',serif;font-size:22px;line-height:1.15;color:var(--paper);margin-bottom:5px}
+.pcard .title i{font-style:italic;color:var(--oud-light)}
+.pcard .desc{font-size:11px;color:var(--cream-mute);line-height:1.5}
+.pcard .playrow{display:flex;align-items:center;gap:12px;margin-top:14px}
+.playbtn{
+  width:42px;height:42px;border-radius:999px;background:var(--oud);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.wave{flex:1;display:flex;align-items:center;gap:3px;height:32px}
+.wave span{flex:1;background:var(--oud-light);border-radius:2px;min-height:4px}
+.pcard .timings{display:flex;justify-content:space-between;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(241,234,220,0.45)}
+.voice-tag{
+  display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(241,234,220,0.08);
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--oud-light);text-transform:uppercase;
+}
+.voice-tag::before{content:"◉";color:var(--oud)}
+
+.prow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.prow .pcard{padding:14px;margin:0}
+.prow .pcard .val{font-family:'Instrument Serif',serif;font-size:26px;line-height:1}
+.prow .pcard .val i{font-style:italic;color:var(--oud-light)}
+.prow .pcard .v2{font-size:10px;color:rgba(241,234,220,0.55);margin-top:4px}
+
+.practice-copy .eyebrow{color:var(--oud);margin-bottom:22px}
+.practice-copy h2.disp{color:var(--paper);margin-bottom:28px}
+.practice-copy h2.disp i{color:var(--oud-light)}
+.practice-copy > p{font-size:17px;color:var(--cream-soft);line-height:1.6;max-width:520px;margin-bottom:40px}
+.feature-list{display:flex;flex-direction:column;gap:24px;border-top:1px solid var(--rule-ink);padding-top:28px}
+.feat{display:grid;grid-template-columns:42px 1fr;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--rule-ink)}
+.feat:last-child{border-bottom:none;padding-bottom:0}
+.feat .f-icn{color:var(--oud);width:32px;height:32px;margin-top:2px}
+.feat h4{font-family:'Instrument Serif',serif;font-size:22px;color:var(--paper);margin-bottom:6px;letter-spacing:-0.005em}
+.feat h4 i{font-style:italic}
+.feat p{font-size:13px;color:var(--cream-mute);line-height:1.55}
+
+/* ===== RETREATS ===== */
+.retreats{background:var(--paper);color:var(--ink);padding:140px 48px;position:relative}
+.retreats .section-head{border-color:var(--rule-paper)}
+.retreats .section-head .eyebrow{color:var(--terra)}
+.retreats .section-head h2.disp{color:var(--ink)}
+.retreats .section-head .right p{color:var(--ink-3)}
+
+.retreat-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px;margin-top:28px}
+.retreat{
+  position:relative;border-radius:18px;overflow:hidden;min-height:500px;
+  display:flex;flex-direction:column;justify-content:space-between;padding:30px;
+  color:var(--paper);
+}
+.retreat.r1{background:linear-gradient(165deg,#1A0C04 0%,#3A1D0C 60%,#5C2D14 100%)}
+.retreat.r2{background:linear-gradient(165deg,#0A1108 0%,#1E2D1A 60%,#364834 100%)}
+.retreat.r3{background:linear-gradient(165deg,#140B1C 0%,#2A1A3D 60%,#4A2F65 100%)}
+.retreat .r-top{display:flex;justify-content:space-between;align-items:flex-start}
+.retreat .r-date{
+  display:inline-block;padding:6px 12px;background:rgba(241,234,220,0.12);border-radius:999px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--paper);backdrop-filter:blur(6px);border:1px solid rgba(241,234,220,0.15);
+}
+.retreat .r-spots{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--oud-light);
+  padding:6px 12px;background:rgba(198,155,78,0.15);border-radius:999px;border:1px solid rgba(198,155,78,0.25);text-transform:uppercase;
+}
+.retreat .r-spots.few{color:#E8936B;background:rgba(168,74,44,0.18);border-color:rgba(168,74,44,0.3)}
+.retreat .r-middle{
+  flex:1;display:flex;align-items:center;justify-content:center;
+}
+.retreat .r-middle svg{width:65%;max-width:240px;opacity:0.35;color:var(--oud-light)}
+.retreat .r-body .loc{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--oud-light);margin-bottom:10px;text-transform:uppercase}
+.retreat h3.r-title{font-family:'Instrument Serif',serif;font-size:32px;line-height:1.1;color:var(--paper);margin-bottom:10px;letter-spacing:-0.005em}
+.retreat h3.r-title i{font-style:italic;color:var(--oud-light)}
+.retreat .r-desc{font-size:13px;color:rgba(241,234,220,0.75);line-height:1.55;margin-bottom:20px}
+.retreat .r-foot{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(241,234,220,0.15);font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(241,234,220,0.7)}
+.retreat .r-foot .price{font-family:'Instrument Serif',serif;font-size:20px;color:var(--paper);font-style:italic}
+.retreat .r-foot .price span{font-family:'IBM Plex Mono',monospace;font-size:10px;font-style:normal;color:var(--cream-mute);margin-left:4px;letter-spacing:0.14em}
+
+/* ===== TEACHER TRAINING ===== */
+.training{background:var(--ink);padding:140px 48px}
+.training-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:72px;align-items:start}
+.training-copy .eyebrow{margin-bottom:20px}
+.training-copy h2.disp{margin-bottom:28px}
+.training-copy > p{font-size:17px;color:var(--cream-soft);line-height:1.6;margin-bottom:36px;max-width:480px}
+.training-copy .proof{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:32px;border-top:1px solid var(--rule-ink)}
+.training-copy .proof .p-item .n{font-family:'Instrument Serif',serif;font-size:42px;line-height:1;color:var(--oud-light);letter-spacing:-0.01em}
+.training-copy .proof .p-item .l{font-size:12px;color:var(--cream-mute);margin-top:8px}
+
+.pathway{
+  background:var(--ink-2);border:1px solid var(--rule-ink);border-radius:18px;overflow:hidden;
+}
+.pw-head{padding:22px 28px;border-bottom:1px solid var(--rule-ink);display:flex;justify-content:space-between;align-items:center}
+.pw-head .t{font-family:'Instrument Serif',serif;font-size:22px;color:var(--paper)}
+.pw-head .t i{font-style:italic;color:var(--oud)}
+.pw-head .status{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--oud-light);padding:5px 10px;background:rgba(198,155,78,0.12);border-radius:999px;text-transform:uppercase}
+.pw-body{padding:24px 28px 30px}
+.pw-progress{
+  display:flex;align-items:center;gap:0;margin-bottom:32px;padding:14px 0;
+  border-top:1px solid var(--rule-ink);border-bottom:1px solid var(--rule-ink);
+}
+.pw-step{flex:1;position:relative;padding:8px 0 8px 32px}
+.pw-step .dot{
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:22px;height:22px;border-radius:999px;border:1px solid var(--rule-ink);
+  display:flex;align-items:center;justify-content:center;font-size:10px;
+}
+.pw-step.done .dot{background:var(--oud);color:var(--ink);border-color:var(--oud)}
+.pw-step.active .dot{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.pw-step .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--cream-mute);text-transform:uppercase}
+.pw-step .v{font-family:'Instrument Serif',serif;font-size:16px;color:var(--paper);margin-top:3px;line-height:1.2}
+.pw-step.done .v{color:var(--oud-light)}
+
+.pw-module-list{display:flex;flex-direction:column;gap:2px}
+.pw-mod{
+  display:grid;grid-template-columns:60px 1fr auto auto;gap:18px;align-items:center;
+  padding:18px 8px;border-bottom:1px solid var(--rule-ink);
+}
+.pw-mod:last-child{border-bottom:none}
+.pw-mod:hover{background:rgba(198,155,78,0.04)}
+.pw-mod .no{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--oud);letter-spacing:0.1em}
+.pw-mod .desc .t{font-family:'Instrument Serif',serif;font-size:19px;color:var(--paper);line-height:1.2;margin-bottom:3px}
+.pw-mod .desc .t i{font-style:italic}
+.pw-mod .desc .m{font-size:12px;color:var(--cream-mute)}
+.pw-mod .dur{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--cream-mute);letter-spacing:0.08em;text-align:right}
+.pw-mod .pill{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;padding:4px 9px;
+  border-radius:4px;text-transform:uppercase;
+}
+.pw-mod .pill.core{background:rgba(198,155,78,0.15);color:var(--oud-light)}
+.pw-mod .pill.live{background:rgba(168,74,44,0.18);color:#E8936B}
+.pw-mod .pill.self{background:rgba(122,130,100,0.18);color:var(--sage)}
+
+/* ===== TESTIMONIAL ===== */
+.voices{background:var(--paper);color:var(--ink);padding:140px 48px}
+.voices .section-head{border-color:var(--rule-paper)}
+.voices .section-head .eyebrow{color:var(--terra)}
+.voices .section-head h2.disp{color:var(--ink)}
+.voices .section-head .right p{color:var(--ink-3)}
+
+.voice-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px}
+.voice{
+  padding:34px;border:1px solid var(--rule-paper);border-radius:18px;background:var(--paper-2);
+  display:flex;flex-direction:column;
+}
+.voice.feat{background:var(--ink);color:var(--paper);border:none}
+.voice .q-mark{font-family:'Instrument Serif',serif;font-size:64px;color:var(--terra);line-height:0.3;margin-bottom:28px;font-style:italic}
+.voice.feat .q-mark{color:var(--oud-light)}
+.voice blockquote{
+  font-family:'Instrument Serif',serif;font-size:22px;line-height:1.3;color:var(--ink);margin-bottom:auto;letter-spacing:-0.005em;
+}
+.voice blockquote i{font-style:italic;color:var(--terra)}
+.voice.feat blockquote{color:var(--paper);font-size:26px}
+.voice.feat blockquote i{color:var(--oud-light)}
+.voice .who{
+  margin-top:32px;padding-top:22px;border-top:1px solid var(--rule-paper);
+  display:flex;align-items:center;gap:14px;
+}
+.voice.feat .who{border-color:var(--rule-ink)}
+.voice .av{
+  width:44px;height:44px;border-radius:999px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--paper);
+}
+.voice .nm{font-weight:500;font-size:14px;color:var(--ink)}
+.voice.feat .nm{color:var(--paper)}
+.voice .role{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--ink-mute);margin-top:3px;text-transform:uppercase}
+.voice.feat .role{color:var(--cream-mute)}
+
+/* ===== JOURNAL ===== */
+.journal{background:var(--ink);padding:140px 48px}
+.journal .section-head{border-color:var(--rule-ink)}
+.journal-list{display:flex;flex-direction:column;border-top:1px solid var(--rule-ink)}
+.journ-row{
+  display:grid;grid-template-columns:120px 1fr 200px 140px;gap:32px;align-items:center;
+  padding:32px 0;border-bottom:1px solid var(--rule-ink);transition:background .2s;
+  padding-left:12px;padding-right:12px;
+}
+.journ-row:hover{background:rgba(198,155,78,0.04)}
+.journ-row .j-date{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--oud);text-transform:uppercase}
+.journ-row .j-title{font-family:'Instrument Serif',serif;font-size:28px;line-height:1.15;color:var(--paper);letter-spacing:-0.005em}
+.journ-row .j-title i{font-style:italic;color:var(--oud-light)}
+.journ-row .j-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--cream-mute);text-transform:uppercase}
+.journ-row .j-read{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper);text-align:right;display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.journ-row .j-read::after{content:"→";color:var(--oud);font-size:14px;transition:transform .2s}
+.journ-row:hover .j-read::after{transform:translateX(4px)}
+
+/* ===== CONTACT / BOOK ===== */
+.contact{
+  background:linear-gradient(180deg,var(--ink-2) 0%,var(--ink) 100%);
+  padding:140px 48px;position:relative;overflow:hidden;
+}
+.contact::before{
+  content:"";position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(198,155,78,0.2) 0%,transparent 60%);
+}
+.contact-layout{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:96px;align-items:start;position:relative;
+}
+.contact-copy .eyebrow{margin-bottom:22px}
+.contact-copy h2.disp{font-size:clamp(44px,7vw,96px);margin-bottom:32px}
+.contact-copy h2.disp i{color:var(--oud-light)}
+.contact-copy > p{font-size:18px;color:var(--cream-soft);line-height:1.55;max-width:520px;margin-bottom:40px}
+.contact-options{display:flex;flex-direction:column;gap:14px}
+.copt{
+  display:grid;grid-template-columns:46px 1fr auto;gap:18px;align-items:center;
+  padding:18px 22px;border:1px solid var(--rule-ink);border-radius:14px;
+  background:rgba(241,234,220,0.02);transition:all .2s;
+}
+.copt:hover{border-color:var(--oud);background:rgba(198,155,78,0.05)}
+.copt .c-icn{color:var(--oud);width:30px;height:30px}
+.copt h4{font-family:'Instrument Serif',serif;font-size:20px;color:var(--paper);margin-bottom:2px}
+.copt h4 i{font-style:italic}
+.copt p{font-size:12px;color:var(--cream-mute)}
+.copt .arrow{color:var(--cream-mute)}
+.copt:hover .arrow{color:var(--oud-light)}
+
+/* booking form */
+.book-card{
+  background:var(--paper);border-radius:20px;padding:34px 32px 30px;color:var(--ink);
+  box-shadow:0 40px 120px -30px rgba(0,0,0,0.5);
+}
+.book-card .bc-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--rule-paper);margin-bottom:22px}
+.book-card .bc-head .t{font-family:'Instrument Serif',serif;font-size:24px}
+.book-card .bc-head .t i{font-style:italic;color:var(--terra)}
+.book-card .bc-head .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;padding:5px 10px;background:rgba(168,74,44,0.12);color:var(--terra);border-radius:999px;text-transform:uppercase}
+
+.field{margin-bottom:16px}
+.field label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:8px;display:block}
+.field .input{
+  width:100%;padding:12px 14px;background:var(--paper-2);border:1px solid transparent;border-radius:10px;
+  font-family:'Outfit',sans-serif;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;
+}
+.field .input.placeholder{color:var(--ink-mute)}
+.selectrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.svc-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.svc{
+  padding:14px;border:1px solid var(--rule-paper);border-radius:10px;cursor:pointer;
+  background:var(--paper-2);transition:all .2s;
+}
+.svc.sel{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.svc .s-t{font-family:'Instrument Serif',serif;font-size:18px;line-height:1;margin-bottom:4px}
+.svc.sel .s-t i{color:var(--oud-light)}
+.svc .s-m{font-size:11px;color:var(--ink-mute);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;text-transform:uppercase}
+.svc.sel .s-m{color:var(--cream-mute)}
+.svc .s-p{font-family:'Instrument Serif',serif;font-size:20px;margin-top:8px;font-style:italic}
+.svc.sel .s-p{color:var(--oud-light)}
+
+.book-card .bc-foot{margin-top:20px;padding-top:18px;border-top:1px solid var(--rule-paper);display:flex;justify-content:space-between;align-items:center}
+.book-card .bc-foot .total{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.12em;text-transform:uppercase}
+.book-card .bc-foot .total strong{display:block;font-family:'Instrument Serif',serif;font-size:28px;color:var(--ink);font-weight:400;margin-top:4px;letter-spacing:-0.01em}
+.book-card .bc-foot .total strong i{font-style:italic;color:var(--terra)}
+
+/* ===== FOOTER ===== */
+footer{background:#050301;color:var(--cream-soft);padding:88px 48px 40px;border-top:1px solid var(--rule-ink)}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.4fr;gap:60px;max-width:1480px;margin:0 auto;padding-bottom:60px;border-bottom:1px solid var(--rule-ink)}
+.foot-brand p{font-size:14px;line-height:1.6;margin-top:24px;max-width:340px;color:var(--cream-mute)}
+.foot-brand .socials{display:flex;gap:10px;margin-top:22px}
+.foot-brand .socials a{
+  width:40px;height:40px;border-radius:999px;border:1px solid var(--rule-ink);
+  display:flex;align-items:center;justify-content:center;color:var(--paper);
+}
+.foot-brand .socials a:hover{border-color:var(--oud);color:var(--oud-light)}
+.foot-col h5{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--oud);margin-bottom:20px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-col ul a{font-size:13px;color:var(--cream-soft)}
+.foot-col ul a:hover{color:var(--oud-light)}
+
+.foot-signup{padding-left:20px;border-left:1px solid var(--rule-ink)}
+.foot-signup h5{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--oud);margin-bottom:14px}
+.foot-signup p{font-size:13px;color:var(--cream-mute);margin-bottom:16px;line-height:1.5}
+.foot-signup .form{display:flex;gap:6px}
+.foot-signup .form input{
+  flex:1;padding:11px 14px;background:var(--ink-2);border:1px solid var(--rule-ink);border-radius:999px;
+  color:var(--paper);font-family:'Outfit',sans-serif;font-size:13px;
+}
+.foot-signup .form button{padding:11px 18px;border-radius:999px;background:var(--oud);color:var(--ink);border:none;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit}
+
+.foot-bot{max-width:1480px;margin:24px auto 0;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(241,234,220,0.4);text-transform:uppercase}
+.foot-bot a{color:rgba(241,234,220,0.55)}
+.foot-bot a:hover{color:var(--oud-light)}
+
+/* ===== reveals ===== */
+[data-r]{opacity:0;transform:translateY(22px);transition:opacity .9s ease, transform .9s ease}
+[data-r].in{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1180px){
+  nav.top ul{display:none}
+  nav.top .inner{padding:0 32px}
+  .nav-right .btn.ghost{display:none}
+  section,.inner{padding-left:32px;padding-right:32px}
+  .hero{padding:56px 32px 88px}
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .portrait{max-width:380px;margin:0 auto}
+  .studio-head,.practice-layout,.training-layout,.contact-layout{grid-template-columns:1fr;gap:56px}
+  .section-head{grid-template-columns:1fr;gap:32px}
+  .sched-week{grid-template-columns:repeat(4,1fr)}
+  .sched-day:nth-child(4){border-right:none}
+  .sched-day{border-bottom:1px solid var(--rule-ink)}
+  .offer.span-7,.offer.span-5,.offer.span-4,.offer.span-8,.offer.span-6{grid-column:span 6}
+  .retreat-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .retreat:first-child{grid-column:1/-1}
+  .voice-grid{grid-template-columns:1fr 1fr}
+  .voice.feat{grid-column:1/-1}
+  .foot-top{grid-template-columns:1fr 1fr 1fr;gap:40px}
+  .foot-brand{grid-column:1/-1}
+  .foot-signup{grid-column:1/-1;border-left:none;padding-left:0;padding-top:24px;border-top:1px solid var(--rule-ink)}
+  .journ-row{grid-template-columns:100px 1fr 140px}
+  .journ-row .j-read{display:none}
+}
+
+@media (max-width:768px){
+  body{font-size:15px}
+  nav.top .inner{height:64px;padding:0 20px;gap:14px}
+  .brand .wordmark .n{font-size:18px}
+  .brand .wordmark .s{font-size:8px}
+  .brand .sigil{width:32px;height:32px}
+  .nav-right .btn.pri{padding:8px 14px;font-size:12px}
+  .hamb{display:block}
+
+  section,.inner{padding-left:24px;padding-right:24px}
+  .hero{padding:44px 24px 72px}
+  .hero::before{width:480px;height:480px}
+  .hero-meta{margin-bottom:44px;flex-wrap:wrap;gap:12px}
+  .hero-meta .right{margin-left:0;width:100%;gap:16px}
+  .hero-title .sub{font-size:19px;margin-top:32px}
+  .hero-title .ctas{margin-top:28px}
+  .hero-title .ctas .btn{padding:12px 18px;font-size:13px}
+  .portrait{max-width:320px}
+  .marquee .item{font-size:18px;gap:48px}
+  .marquee{gap:48px}
+
+  .statement{padding:96px 24px}
+  .statement .eyebrow::before{flex-basis:30px}
+  .statement-sign{flex-direction:column;align-items:flex-start;gap:16px}
+
+  .studio-sec,.offerings,.practice-band,.retreats,.training,.voices,.journal,.contact{padding:88px 24px}
+  .studio-head{gap:40px;margin-bottom:56px;padding-bottom:40px}
+  .studio-head .info{grid-template-columns:1fr;gap:22px}
+  .studio-head .info dd{font-size:19px}
+  .sched-head{padding:16px 20px;gap:10px;flex-wrap:wrap}
+  .sched-head .t{font-size:17px}
+  .sched-week{grid-template-columns:repeat(2,1fr)}
+  .sched-day{min-height:auto;border-right:1px solid var(--rule-ink) !important}
+  .sched-day:nth-child(2n){border-right:none !important}
+  .sched-foot{padding:14px 20px;flex-wrap:wrap;gap:10px}
+
+  .offer{padding:28px 24px 24px;min-height:auto}
+  .offer.span-7,.offer.span-5,.offer.span-4,.offer.span-8,.offer.span-6{grid-column:span 12}
+  .offer h3{font-size:26px}
+  .offer .arrow{top:28px;right:24px}
+
+  .phone{width:300px;padding:10px;border-radius:40px}
+  .phone-screen{min-height:640px;padding:44px 16px 20px;border-radius:32px}
+  .phone-wrap::before{width:380px;height:380px}
+  .practice-copy h2.disp{font-size:44px}
+  .feat h4{font-size:19px}
+
+  .retreat-grid{grid-template-columns:1fr;gap:14px}
+  .retreat:first-child{grid-column:auto}
+  .retreat{min-height:420px;padding:26px}
+  .retreat h3.r-title{font-size:26px}
+
+  .training-copy h2.disp{font-size:44px}
+  .training-copy .proof{grid-template-columns:1fr 1fr;gap:18px}
+  .training-copy .proof .p-item .n{font-size:34px}
+  .pw-progress{flex-direction:column;align-items:stretch;gap:10px}
+  .pw-step{padding:8px 0 8px 32px}
+  .pw-mod{grid-template-columns:40px 1fr auto;gap:12px;padding:14px 4px}
+  .pw-mod .pill{display:none}
+  .pw-mod .desc .t{font-size:16px}
+
+  .voice-grid{grid-template-columns:1fr}
+  .voice.feat{grid-column:auto}
+  .voice{padding:26px}
+  .voice blockquote{font-size:19px}
+  .voice.feat blockquote{font-size:22px}
+
+  .journ-row{grid-template-columns:1fr;gap:8px;padding:24px 4px}
+  .journ-row .j-title{font-size:22px}
+
+  .contact-copy h2.disp{font-size:44px}
+  .book-card{padding:26px 24px 24px}
+  .book-card .bc-head .t{font-size:20px}
+  .svc-options{grid-template-columns:1fr 1fr}
+  .selectrow{grid-template-columns:1fr}
+
+  footer{padding:60px 24px 32px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:36px 24px}
+  .foot-brand{grid-column:1/-1}
+  .foot-bot{flex-direction:column;gap:10px;text-align:center}
+}
+
+@media (max-width:480px){
+  .studio-tag{font-size:9px;padding:5px 12px;letter-spacing:0.18em}
+  nav.top .inner{padding:0 16px;gap:10px}
+  .brand .wordmark .s{display:none}
+  .nav-right .btn.pri{padding:7px 12px;font-size:11px}
+
+  section,.inner{padding-left:18px;padding-right:18px}
+  .hero{padding:40px 18px 56px}
+  .hero-meta{padding-bottom:14px;margin-bottom:32px}
+  .hero-meta .right .mono:last-child{display:none}
+  h1.disp{font-size:44px;letter-spacing:-0.018em}
+  .hero-title .sub{font-size:17px}
+  .hero-title .ctas .btn{width:100%;justify-content:space-between}
+  .portrait{max-width:280px;aspect-ratio:3/4}
+
+  .statement{padding:64px 18px}
+  .statement .eyebrow::before,.statement .eyebrow::after{display:none}
+
+  .studio-sec,.offerings,.practice-band,.retreats,.training,.voices,.journal,.contact{padding:64px 18px}
+  .section-head{gap:20px;padding-bottom:28px;margin-bottom:36px}
+  h2.disp{font-size:38px}
+  .section-head .right p{font-size:15px}
+
+  .sched-head{padding:12px 16px}
+  .sched-head .t{font-size:15px}
+  .sched-head .badge{font-size:9px;padding:4px 8px}
+  .sched-day{padding:14px 12px}
+  .sched-foot{padding:12px 16px;font-size:11px}
+  .sched-foot .legend{gap:14px;font-size:11px}
+
+  .offer{padding:24px 20px}
+  .offer h3{font-size:22px}
+  .offer p{font-size:13px}
+
+  .phone{width:min(280px,84vw);padding:9px;border-radius:36px}
+  .phone .notch{width:80px;height:22px;top:18px}
+  .phone-screen{border-radius:28px;padding:38px 14px 18px;min-height:560px}
+  .phone-wrap::before{width:280px;height:280px}
+  .practice-copy h2.disp,.training-copy h2.disp,.contact-copy h2.disp{font-size:36px}
+
+  .retreat{min-height:380px;padding:22px}
+  .retreat h3.r-title{font-size:22px}
+  .retreat .r-date,.retreat .r-spots{font-size:9px;padding:5px 10px}
+
+  .training-copy .proof .p-item .n{font-size:28px}
+  .pw-head{padding:18px 20px;gap:10px;flex-wrap:wrap}
+  .pw-head .t{font-size:18px}
+  .pw-body{padding:20px 20px 24px}
+  .pw-mod{grid-template-columns:32px 1fr;gap:10px}
+  .pw-mod .dur{display:none}
+  .pw-mod .desc .t{font-size:15px}
+  .pw-mod .desc .m{font-size:11px}
+
+  .voice{padding:22px}
+  .voice blockquote{font-size:17px}
+  .voice.feat blockquote{font-size:19px}
+  .voice .q-mark{font-size:52px}
+
+  .contact{padding:64px 18px}
+  .contact-options .copt{padding:14px 16px;gap:14px;grid-template-columns:26px 1fr auto}
+  .copt .c-icn{width:24px;height:24px}
+  .copt h4{font-size:17px}
+  .book-card{padding:22px 20px 22px;border-radius:16px}
+  .svc{padding:12px}
+  .svc .s-t{font-size:15px}
+  .svc .s-p{font-size:17px}
+
+  footer{padding:48px 20px 28px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:32px 20px}
+  .foot-col h5{margin-bottom:14px}
+  .foot-col ul a{font-size:12px}
+  .foot-signup .form{flex-direction:column}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+  [data-r]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="pulse"></span>Astral Labs × Jugat Guru · Revamp Preview · v0.9</div>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="brand">
+      <svg class="sigil" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1"/>
+        <path d="M20 6 C12 14 12 26 20 34 C28 26 28 14 20 6 Z" fill="currentColor" opacity="0.15"/>
+        <circle cx="20" cy="20" r="5" fill="var(--oud)"/>
+        <path d="M20 2 V6 M20 34 V38 M2 20 H6 M34 20 H38" stroke="var(--oud)" stroke-width="1"/>
+      </svg>
+      <div class="wordmark">
+        <div class="n">Jugat <i>Guru</i></div>
+        <div class="s">Kundalini · Dubai · Est. 2014</div>
+      </div>
+    </a>
+    <ul>
+      <li><a href="#studio">The Studio</a></li>
+      <li><a href="#offerings">Teachings</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#retreats">Retreats</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#journal">Journal</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn ghost">Sign in</button>
+      <button class="btn pri">Book a session</button>
+      <button class="hamb" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- drawer -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="scrim"></div>
+  <aside class="drawer-panel">
+    <div class="drawer-head">
+      <div class="mono" style="color:var(--cream-mute)">Menu</div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="#studio">The Studio</a>
+      <a href="#offerings">Teachings</a>
+      <a href="#practice">Practice</a>
+      <a href="#retreats">Retreats</a>
+      <a href="#training">Training</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="drawer-foot">
+      <button class="btn ghost" style="width:100%;justify-content:center">Sign in</button>
+      <button class="btn pri" style="width:100%;justify-content:center">Book a session</button>
+      <div class="mono" style="margin-top:18px;color:var(--cream-mute);text-align:center">Dubai · UAE · KRI L3</div>
+    </div>
+  </aside>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-meta">
+    <span class="mono">◉ Amrit Vela · 04:14 GST</span>
+    <div class="dot"></div>
+    <span class="mono city">Dubai · Al Quoz Studio</span>
+    <div class="right">
+      <span class="mono">EN</span>
+      <span class="mono">ES</span>
+      <span class="mono">العربية</span>
+    </div>
+  </div>
+
+  <div class="hero-grid">
+    <div class="hero-title" data-r>
+      <div class="eyebrow">✦ The Teacher's Studio</div>
+      <h1 class="disp">I teach the<br>technology<br>of the <i>soul.</i></h1>
+      <div class="sub">Kundalini Yoga in the lineage of Yogi Bhajan — <span>studio practice, global retreats, and a daily sadhana companion</span> for the modern practitioner.</div>
+      <div class="ctas">
+        <button class="btn pri">Book a session <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn ghost">Join the membership</button>
+        <button class="btn ghost" style="padding:11px 16px">▸ Watch — 1:48</button>
+      </div>
+    </div>
+
+    <div class="portrait" data-r>
+      <div class="tag-tl">◦ Portrait · 2025</div>
+      <div class="tag-tr">Nº 04</div>
+      <svg viewBox="0 0 300 400" fill="none" stroke="currentColor" stroke-width="1.1">
+        <!-- turbaned figure in seated meditation, line art -->
+        <!-- turban -->
+        <path d="M100 120 Q100 80 150 75 Q200 80 200 120 Q200 130 198 140 L102 140 Q100 130 100 120 Z"/>
+        <path d="M112 120 Q114 104 130 98 M170 98 Q186 104 188 120" opacity="0.5"/>
+        <path d="M105 115 Q105 100 150 95 Q195 100 195 115" opacity="0.4"/>
+        <!-- face -->
+        <path d="M120 140 Q120 175 135 195 Q150 210 165 195 Q180 175 180 140"/>
+        <!-- beard suggestion -->
+        <path d="M138 190 Q150 225 162 190" opacity="0.5"/>
+        <!-- eyes hint (closed, meditating) -->
+        <path d="M132 162 L142 162 M158 162 L168 162" opacity="0.4"/>
+        <!-- body / cross-legged -->
+        <path d="M108 210 Q108 240 118 260 L118 300"/>
+        <path d="M192 210 Q192 240 182 260 L182 300"/>
+        <!-- arms/hands in gyan mudra -->
+        <path d="M118 258 Q105 278 108 300 Q115 305 125 300"/>
+        <path d="M182 258 Q195 278 192 300 Q185 305 175 300"/>
+        <!-- crossed legs base -->
+        <path d="M90 310 Q150 290 210 310 Q220 332 200 345 L100 345 Q80 332 90 310 Z"/>
+        <!-- asana cushion line -->
+        <path d="M60 350 L240 350" opacity="0.35"/>
+        <!-- halo rings -->
+        <circle cx="150" cy="155" r="90" opacity="0.12"/>
+        <circle cx="150" cy="155" r="120" opacity="0.08"/>
+      </svg>
+      <div class="caption">
+        <div class="nm">Jugat <i>Guru</i><small>KRI Level 3 · Teacher</small></div>
+        <div class="fr">D X B<br>25.09° N<br>55.17° E</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-wrap" data-r>
+    <div class="marquee">
+      <span class="item">Studio practice in Al Quoz</span>
+      <span class="item">Retreats in Rishikesh · Andalucía · Oaxaca</span>
+      <span class="item">Level 1 KRI Teacher Training</span>
+      <span class="item">Daily sadhana companion</span>
+      <span class="item">Private mentorship</span>
+      <span class="item">Studio practice in Al Quoz</span>
+      <span class="item">Retreats in Rishikesh · Andalucía · Oaxaca</span>
+      <span class="item">Level 1 KRI Teacher Training</span>
+      <span class="item">Daily sadhana companion</span>
+      <span class="item">Private mentorship</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATEMENT ============ -->
+<section class="full statement">
+  <div class="inner-narrow" data-r>
+    <div class="eyebrow">◦ A note from the teacher ◦</div>
+    <div class="statement-text">
+      <span class="big-quote">"</span>Kundalini is not a belief. It is a <i>technology</i> — a precise method for clearing the channels of the body so the soul can move through them. I teach it the way it was given to me: <i>without modification,</i> in the lineage of Yogi Bhajan, in the first hour before dawn, in the studio or in your pocket. For eleven years I have asked one question of my students: <i>will you sit for forty days?</i>"
+    </div>
+    <div class="statement-sign">
+      <div class="sig">— Jugat Guru</div>
+      <div class="sig-meta">
+        <strong>Dubai · 2026</strong><br>
+        Read the full manifesto →
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STUDIO ============ -->
+<section class="full studio-sec" id="studio">
+  <div class="inner">
+    <div class="studio-head">
+      <div class="left">
+        <div class="eyebrow">▸ 01 · The Studio</div>
+        <h2 class="disp">Al Quoz,<br>Dubai —<br><i>open every morning.</i></h2>
+      </div>
+      <div class="right">
+        <p>A 180-square-metre practice space in Dubai's arts district. White walls, copper bells, a single window facing east. Morning sadhana at 4:30, classes from 7am to 9pm, six days a week. Drop-in welcome; members reserve first.</p>
+        <dl class="info">
+          <div><dt>Location</dt><dd>Al Quoz 1, Street 8<br>Warehouse 34 · <i>DXB</i></dd></div>
+          <div><dt>Hours</dt><dd>04:30 — 21:30<br>Closed <i>Sunday mornings</i></dd></div>
+          <div><dt>Capacity</dt><dd>24 mats<br>8 <i>private rooms</i></dd></div>
+          <div><dt>Languages</dt><dd>English · Punjabi<br>Arabic · <i>Spanish</i></dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="schedule" data-r>
+      <div class="sched-head">
+        <div class="t">This week's <i>schedule</i></div>
+        <span class="mono" style="color:var(--cream-mute)">APR 17 — APR 23, 2026</span>
+        <span class="badge">17 open slots</span>
+      </div>
+      <div class="sched-week">
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">MON</span><span class="num">17</span></div>
+          <div class="slot"><span class="time">04:30</span><span class="name">Aquarian <i>Sadhana</i></span></div>
+          <div class="slot"><span class="time">07:00</span><span class="name">Morning Kriya</span></div>
+          <div class="slot full"><span class="time">19:00</span><span class="name">Naad Yoga</span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">TUE</span><span class="num">18</span></div>
+          <div class="slot"><span class="time">04:30</span><span class="name">Aquarian <i>Sadhana</i></span></div>
+          <div class="slot"><span class="time">12:30</span><span class="name">Midday Kriya</span></div>
+          <div class="slot"><span class="time">19:00</span><span class="name">Breath of <i>Fire</i></span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">WED</span><span class="num">19</span></div>
+          <div class="slot"><span class="time">04:30</span><span class="name">Aquarian <i>Sadhana</i></span></div>
+          <div class="slot"><span class="time">07:00</span><span class="name">Morning Kriya</span></div>
+          <div class="slot"><span class="time">19:00</span><span class="name">Gong &amp; <i>Savasana</i></span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">THU</span><span class="num today">20</span></div>
+          <div class="slot"><span class="time">04:30</span><span class="name">Aquarian <i>Sadhana</i></span></div>
+          <div class="slot full"><span class="time">12:30</span><span class="name">Midday Kriya</span></div>
+          <div class="slot"><span class="time">19:00</span><span class="name">Women's <i>Circle</i></span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">FRI</span><span class="num">21</span></div>
+          <div class="slot"><span class="time">04:30</span><span class="name">Aquarian <i>Sadhana</i></span></div>
+          <div class="slot"><span class="time">07:00</span><span class="name">Morning Kriya</span></div>
+          <div class="slot"><span class="time">18:00</span><span class="name">Silent <i>Sit</i></span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">SAT</span><span class="num">22</span></div>
+          <div class="slot"><span class="time">06:00</span><span class="name">Saturday <i>Sadhana</i></span></div>
+          <div class="slot"><span class="time">10:00</span><span class="name">Kriya Intensive <i>3hr</i></span></div>
+          <div class="slot"><span class="time">17:00</span><span class="name">White Tantric</span></div>
+        </div>
+        <div class="sched-day">
+          <div class="d-head"><span class="nm">SUN</span><span class="num">23</span></div>
+          <div class="slot"><span class="time">10:00</span><span class="name">Family Yoga</span></div>
+          <div class="slot full"><span class="time">16:00</span><span class="name">Mentorship <i>Circle</i></span></div>
+          <div class="slot"><span class="time">19:00</span><span class="name">Gurdwara <i>Kirtan</i></span></div>
+        </div>
+      </div>
+      <div class="sched-foot">
+        <div class="legend">
+          <span>Open</span>
+          <span style="opacity:0.5"><span style="color:var(--terra)">●</span> Full</span>
+          <span><span style="color:var(--sage)">●</span> Members first</span>
+        </div>
+        <button class="btn light" style="padding:8px 16px;font-size:12px">View full schedule →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFERINGS ============ -->
+<section class="offerings" id="offerings">
+  <div class="section-head">
+    <div class="left">
+      <div class="eyebrow">▸ 02 · How I Teach</div>
+      <h2 class="disp">Six ways <i>in.</i></h2>
+    </div>
+    <div class="right">
+      <p>Every student arrives at a different door. Whether you come for a single class or stay for a thousand-day sadhana, the path is the same — it's only the pace that changes.</p>
+    </div>
+  </div>
+
+  <div class="offer-grid">
+    <div class="offer span-7 feat" data-r>
+      <div class="n-row"><span class="num">01 / FLAGSHIP</span><span class="format">Annual · Membership</span></div>
+      <svg class="icn" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3">
+        <circle cx="28" cy="28" r="22"/>
+        <path d="M28 10 C20 18 20 38 28 46 C36 38 36 18 28 10 Z" fill="currentColor" opacity="0.2"/>
+        <circle cx="28" cy="28" r="5" fill="currentColor"/>
+        <path d="M28 4 V10 M28 46 V52 M4 28 H10 M46 28 H52"/>
+      </svg>
+      <h3>The Daily <i>Sadhana Companion</i></h3>
+      <p>My full library of kriyas, pranayamas, and meditations — narrated in my voice, guided by AI, prescribed by the path you choose. Unlimited studio drop-in, member-first retreat booking, and a private sangat circle of 2,400 practitioners.</p>
+      <div class="meta-row">
+        <span>Free 7-day trial</span>
+        <span class="price">AED 299 / month</span>
+      </div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5H9M19 5V15"/></svg>
+    </div>
+
+    <div class="offer span-5" data-r>
+      <div class="n-row"><span class="num">02 / STUDIO</span><span class="format">Dubai · Drop-in</span></div>
+      <svg class="icn" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3">
+        <rect x="8" y="16" width="40" height="28" rx="2"/>
+        <path d="M8 16 L28 4 L48 16"/>
+        <circle cx="28" cy="30" r="3" fill="currentColor"/>
+        <path d="M14 38 H42" opacity="0.4"/>
+      </svg>
+      <h3>Weekly <i>Studio</i> classes</h3>
+      <p>In-person Kundalini kriya, breathwork, and mantra — six days a week in Al Quoz. All levels, including beginners. Mats, props, and chai are provided.</p>
+      <div class="meta-row">
+        <span>18 classes / wk</span>
+        <span class="price">AED 120 / drop-in</span>
+      </div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5H9M19 5V15"/></svg>
+    </div>
+
+    <div class="offer span-4" data-r>
+      <div class="n-row"><span class="num">03 / 1 : 1</span><span class="format">Private · Mentorship</span></div>
+      <svg class="icn" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3">
+        <circle cx="20" cy="22" r="8"/>
+        <circle cx="40" cy="30" r="6"/>
+        <path d="M8 48 C8 38 32 38 32 48 M28 48 C28 42 48 42 48 48"/>
+        <path d="M26 20 Q30 22 34 26" opacity="0.4"/>
+      </svg>
+      <h3><i>Private</i> mentorship</h3>
+      <p>Monthly 1:1 sessions — I prescribe your daily practice, adjust your sadhana, and hold you through the forty days.</p>
+      <div class="meta-row">
+        <span>Waitlist: 8 months</span>
+        <span class="price">AED 4,200 / mo</span>
+      </div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5H9M19 5V15"/></svg>
+    </div>
+
+    <div class="offer span-4" data-r>
+      <div class="n-row"><span class="num">04 / TRAINING</span><span class="format">KRI Level 1 · 9mo</span></div>
+      <svg class="icn" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3">
+        <path d="M28 6 L50 18 L28 30 L6 18 Z"/>
+        <path d="M14 24 V36 C14 36 20 42 28 42 C36 42 42 36 42 36 V24"/>
+        <line x1="50" y1="18" x2="50" y2="32"/>
+        <circle cx="50" cy="34" r="1.5" fill="currentColor"/>
+      </svg>
+      <h3>Teacher <i>Training</i></h3>
+      <p>KRI-certified Level 1 (Instructor), delivered across nine months with a Himalayan residency. Next cohort: September 2026.</p>
+      <div class="meta-row">
+        <span>16 seats · 4 left</span>
+        <span class="price">AED 22,400</span>
+      </div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5H9M19 5V15"/></svg>
+    </div>
+
+    <div class="offer span-4" data-r>
+      <div class="n-row"><span class="num">05 / RETREAT</span><span class="format">Seasonal · Global</span></div>
+      <svg class="icn" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3">
+        <path d="M6 42 L20 20 L28 30 L36 14 L50 42 Z"/>
+        <circle cx="40" cy="12" r="4"/>
+        <path d="M6 42 H50" opacity="0.4"/>
+      </svg>
+      <h3>International <i>retreats</i></h3>
+      <p>Three per year, each in a place that itself teaches — Rishikesh, Andalucía, Oaxaca. Seven to ten days, full sadhana, small circles.</p>
+      <div class="meta-row">
+        <span>12 — 18 students</span>
+        <span class="price">from $3,800</span>
+      </div>
+      <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5H9M19 5V15"/></svg>
+    </div>
+
+    <div class="offer span-12" style="grid-column:span 12;min-height:auto;flex-direction:row;align-items:center;padding:28px 32px" data-r>
+      <div class="n-row" style="margin:0;flex:0 0 auto;margin-right:40px"><span class="num">06 / WRITING</span></div>
+      <div style="flex:1">
+        <div style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--paper);letter-spacing:-0.005em">The <i style="color:var(--oud-light)">Journal</i> — weekly letters from the practice, free to all.</div>
+        <div style="font-size:13px;color:var(--cream-mute);margin-top:4px">Essays on sadhana, lineage, and the long game. 14,200 subscribers.</div>
+      </div>
+      <button class="btn pri" style="flex-shrink:0;margin-left:20px">Subscribe free</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRACTICE APP ============ -->
+<section class="full practice-band" id="practice">
+  <div class="inner">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">▸ 03 · The Companion App</div>
+        <h2 class="disp">Your practice,<br>in <i>my voice.</i></h2>
+      </div>
+      <div class="right">
+        <p>Built on five years of recorded lectures and a cloned voice I trained myself. The Companion delivers your prescribed sadhana every morning, narrated the way I'd narrate it if I were there — because part of me is.</p>
+      </div>
+    </div>
+
+    <div class="practice-layout">
+      <div class="phone-wrap" data-r>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="phone-screen">
+            <div class="ps-time">4:14</div>
+            <div class="ps-greet">◦ Sat Nam, Deva ◦</div>
+
+            <div class="pcard hero">
+              <div class="lbl">Amrit Vela · Day 112</div>
+              <div class="title">Kriya for the <i>radiant body</i></div>
+              <div class="desc">Prescribed for week 3 of your 40-day path · 62 min</div>
+              <div class="playrow">
+                <div class="playbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="wave">
+                  <span style="height:40%"></span><span style="height:70%"></span><span style="height:55%"></span><span style="height:90%"></span><span style="height:45%"></span><span style="height:80%"></span><span style="height:60%"></span><span style="height:35%"></span><span style="height:75%"></span><span style="height:50%"></span><span style="height:85%"></span><span style="height:40%"></span><span style="height:65%"></span><span style="height:55%"></span><span style="height:30%"></span><span style="height:70%"></span>
+                </div>
+              </div>
+              <div class="timings"><span>00:00</span><span>1:02:00</span></div>
+              <div class="voice-tag">Narrated by Jugat · AI-assisted</div>
+            </div>
+
+            <div class="pcard">
+              <div class="lbl">Today's mantra</div>
+              <div class="title" style="font-size:18px">Ra Ma Da Sa · Sa Say So Hung</div>
+              <div class="desc">The healing mantra. Eight sacred sounds for regeneration.</div>
+            </div>
+
+            <div class="prow">
+              <div class="pcard">
+                <div class="lbl">Streak</div>
+                <div class="val">112<span style="font-size:14px;color:var(--oud-light);margin-left:3px">d</span></div>
+                <div class="v2">of 1,000-day<br>path</div>
+              </div>
+              <div class="pcard">
+                <div class="lbl">Sangat live</div>
+                <div class="val"><i>847</i></div>
+                <div class="v2">practicing with<br>you now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-copy" data-r>
+        <div class="eyebrow">✦ The Sadhana Companion</div>
+        <h2 class="disp">A teacher<br>in your <i>pocket.</i></h2>
+        <p>Not an algorithm. Not a wellness feed. A disciplined daily practice guided by the same teacher you come to in Dubai — or the same teacher you'd come to if Dubai were closer.</p>
+
+        <div class="feature-list">
+          <div class="feat">
+            <svg class="f-icn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="16" cy="16" r="13"/><path d="M16 3 C10 10 10 22 16 29 C22 22 22 10 16 3 Z" fill="currentColor" opacity="0.2"/><circle cx="16" cy="16" r="3" fill="currentColor"/></svg>
+            <div><h4>Daily <i>Aquarian Sadhana</i></h4><p>The full 2½ hour pre-dawn practice, in my voice, every morning. Offline audio, Apple Watch controls, lock-screen ready.</p></div>
+          </div>
+          <div class="feat">
+            <svg class="f-icn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 12 L24 12 L24 24 L8 24 Z"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/><circle cx="20" cy="16" r="1.5" fill="currentColor"/><path d="M10 20 H22" opacity="0.4"/><path d="M14 8 V12 M18 8 V12" opacity="0.4"/></svg>
+            <div><h4>Prescribed <i>kriyas</i></h4><p>Based on your intake and the season, I prescribe specific kriyas. They appear in your queue with short audio context from me before each practice.</p></div>
+          </div>
+          <div class="feat">
+            <svg class="f-icn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="16" cy="16" r="12"/><path d="M16 4 V28 M4 16 H28" opacity="0.4"/><circle cx="10" cy="12" r="2" fill="currentColor"/><circle cx="22" cy="20" r="2" fill="currentColor"/></svg>
+            <div><h4>The live <i>sangat</i></h4><p>See who is practicing the same kriya as you, in real time, across 42 countries. Optional — sadhana is solo work, but you are not alone.</p></div>
+          </div>
+          <div class="feat">
+            <svg class="f-icn" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 8 L18 8 L26 16 L18 24 L6 24 Z"/><circle cx="22" cy="16" r="1.5" fill="currentColor"/></svg>
+            <div><h4>Ask <i>Jugat</i></h4><p>A private AI line trained on 800+ hours of my recorded teachings. Ask a question at 3 AM — receive the 90-second passage from my archive that answers it.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RETREATS ============ -->
+<section class="full retreats" id="retreats">
+  <div class="inner">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">▸ 04 · Retreats, 2026</div>
+        <h2 class="disp">Three<br>pilgrimages.<br><i>One breath.</i></h2>
+      </div>
+      <div class="right">
+        <p>Each retreat is a place that teaches on its own — I am only the translator. Small group sizes, full sadhana, silent meals, and the kind of presence that only dissolves in the right landscape.</p>
+      </div>
+    </div>
+
+    <div class="retreat-grid">
+      <div class="retreat r1" data-r>
+        <div class="r-top">
+          <span class="r-date">JUN 14 — 22 · 2026</span>
+          <span class="r-spots few">3 spots left</span>
+        </div>
+        <div class="r-middle">
+          <svg viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M10 140 L50 80 L80 110 L120 40 L160 90 L190 140 Z"/>
+            <circle cx="140" cy="35" r="12"/>
+            <path d="M10 140 H190" opacity="0.3"/>
+            <path d="M40 150 Q80 130 120 150 Q160 135 190 150" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="r-body">
+          <div class="loc">↣ Rishikesh · Himalayas · India</div>
+          <h3 class="r-title">Ganges <i>summer</i> sadhana</h3>
+          <p class="r-desc">Eight days on the bank of Mother Ganga, two daily sadhanas, silence from 6pm to 9am, and a pilgrimage to Vashishta Cave. Accommodation at Ved Niketan Ashram.</p>
+          <div class="r-foot">
+            <span>8 DAYS · 18 STUDENTS</span>
+            <span class="price">$3,800<span>shared</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="retreat r2" data-r>
+        <div class="r-top">
+          <span class="r-date">SEP 28 — OCT 5</span>
+          <span class="r-spots">7 spots left</span>
+        </div>
+        <div class="r-middle">
+          <svg viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M30 130 Q30 90 60 80 Q90 70 100 100 Q110 70 140 80 Q170 90 170 130 Z"/>
+            <path d="M50 140 H150" opacity="0.4"/>
+            <circle cx="160" cy="40" r="8" opacity="0.6"/>
+            <path d="M20 140 L180 140" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="r-body">
+          <div class="loc">↣ Alpujarra · Granada · Spain</div>
+          <h3 class="r-title">Andalucían <i>autumn</i></h3>
+          <p class="r-desc">A converted olive mill in the Alpujarra mountains. Morning kriya, afternoon hiking, Moorish silence. Cohosted with flamenco guitarist Rafael Cortés.</p>
+          <div class="r-foot">
+            <span>7 DAYS · 14 STUDENTS</span>
+            <span class="price">$4,200<span>shared</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="retreat r3" data-r>
+        <div class="r-top">
+          <span class="r-date">DEC 27 — JAN 3</span>
+          <span class="r-spots">10 spots left</span>
+        </div>
+        <div class="r-middle">
+          <svg viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M20 110 Q100 70 180 110 Q180 140 100 150 Q20 140 20 110 Z"/>
+            <path d="M30 108 Q100 80 170 108" opacity="0.5"/>
+            <circle cx="50" cy="40" r="3" opacity="0.6"/>
+            <circle cx="70" cy="50" r="2" opacity="0.5"/>
+            <circle cx="130" cy="35" r="2.5" opacity="0.5"/>
+            <circle cx="150" cy="55" r="2" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="r-body">
+          <div class="loc">↣ Mazunte · Oaxaca · México</div>
+          <h3 class="r-title">Pacific <i>year's end</i></h3>
+          <p class="r-desc">Eight days on the Pacific coast of Mexico with a New Year's Eve fire ceremony. Cacao, temazcal, and sea-swimming between sadhanas. Hosted at Casa Pan de Miel.</p>
+          <div class="r-foot">
+            <span>8 DAYS · 16 STUDENTS</span>
+            <span class="price">$3,600<span>shared</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRAINING ============ -->
+<section class="full training" id="training">
+  <div class="inner">
+    <div class="training-layout">
+      <div class="training-copy">
+        <div class="eyebrow">▸ 05 · Teacher Training</div>
+        <h2 class="disp">Become a<br><i>teacher.</i></h2>
+        <p>KRI-certified Level 1 (Instructor), delivered across nine months of hybrid learning — Dubai in-person intensives, live online modules, a 14-day residency in the Himalayas, and one-to-one mentorship. Sixteen students per cohort.</p>
+
+        <div class="proof">
+          <div class="p-item"><div class="n">9</div><div class="l">Months from first sit<br>to certification</div></div>
+          <div class="p-item"><div class="n">220h</div><div class="l">Contact hours meeting<br>KRI Level 1 standards</div></div>
+          <div class="p-item"><div class="n">94%</div><div class="l">Completion rate across<br>the last three cohorts</div></div>
+          <div class="p-item"><div class="n">42</div><div class="l">Teachers now running<br>their own classes</div></div>
+        </div>
+      </div>
+
+      <div class="pathway" data-r>
+        <div class="pw-head">
+          <div class="t">Cohort <i>2026-A</i> · The nine-month path</div>
+          <div class="status">Enrolling · 4 seats</div>
+        </div>
+        <div class="pw-body">
+          <div class="pw-progress">
+            <div class="pw-step done"><div class="dot">✓</div><div class="lbl">MONTH 01-03</div><div class="v">Foundations</div></div>
+            <div class="pw-step done"><div class="dot">✓</div><div class="lbl">MONTH 04-05</div><div class="v">Anatomy</div></div>
+            <div class="pw-step active"><div class="dot">◉</div><div class="lbl">MONTH 06-07</div><div class="v">Residency</div></div>
+            <div class="pw-step"><div class="dot"></div><div class="lbl">MONTH 08-09</div><div class="v">Practicum</div></div>
+          </div>
+
+          <div class="pw-module-list">
+            <div class="pw-mod">
+              <div class="no">M.08</div>
+              <div class="desc"><div class="t">The <i>Sikh Dharma</i> context</div><div class="m">Origins, lineage, and the Siri Guru Granth Sahib as living teacher</div></div>
+              <div class="pill core">Core</div>
+              <div class="dur">3 WKS · ONLINE</div>
+            </div>
+            <div class="pw-mod">
+              <div class="no">M.09</div>
+              <div class="desc"><div class="t">Bandhas &amp; breath <i>mechanics</i></div><div class="m">Subtle anatomy, nadis, and the ten bodies model with Dr. Harjit Kaur</div></div>
+              <div class="pill live">Live</div>
+              <div class="dur">2 WKS · DXB</div>
+            </div>
+            <div class="pw-mod">
+              <div class="no">M.10</div>
+              <div class="desc"><div class="t">Himalayan <i>residency</i></div><div class="m">14 days at Guru Ram Das Ashram, Rishikesh. Daily amrit vela, White Tantric.</div></div>
+              <div class="pill live">Live</div>
+              <div class="dur">14 D · IND</div>
+            </div>
+            <div class="pw-mod">
+              <div class="no">M.11</div>
+              <div class="desc"><div class="t">Teaching <i>methodology</i></div><div class="m">Sequencing, holding space, trauma awareness, and professional conduct</div></div>
+              <div class="pill core">Core</div>
+              <div class="dur">4 WKS · HYBRID</div>
+            </div>
+            <div class="pw-mod">
+              <div class="no">M.12</div>
+              <div class="desc"><div class="t">Practicum &amp; <i>final sit</i></div><div class="m">Lead three full classes, one private session, and a 40-day closing sadhana</div></div>
+              <div class="pill self">Self</div>
+              <div class="dur">8 WKS · SOLO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICES ============ -->
+<section class="full voices">
+  <div class="inner">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">▸ 06 · From the Sangat</div>
+        <h2 class="disp"><i>Voices</i> from<br>the path.</h2>
+      </div>
+      <div class="right">
+        <p>Students of the studio, graduates of the teacher training, and members of the companion — in their own words, edited only for length.</p>
+      </div>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice feat" data-r>
+        <div class="q-mark">"</div>
+        <blockquote>I came to Jugat's studio for six months before I understood what Kundalini <i>was.</i> That's because he doesn't explain it. He makes you <i>do</i> it. After my first 40-day sadhana I understood why — some technologies can only be learned by running them through your own nervous system.</blockquote>
+        <div class="who">
+          <div class="av" style="background:linear-gradient(135deg,#8B6A2A,#E4B96B)">AK</div>
+          <div><div class="nm">Ayesha Kassem</div><div class="role">Dubai · 3-year student</div></div>
+        </div>
+      </div>
+
+      <div class="voice" data-r>
+        <div class="q-mark">"</div>
+        <blockquote>The only teacher training where I felt the <i>lineage</i> was actually being transmitted, not just taught.</blockquote>
+        <div class="who">
+          <div class="av" style="background:linear-gradient(135deg,#74301B,#A84A2C)">RD</div>
+          <div><div class="nm">Reshmi Devasahayam</div><div class="role">Bengaluru · L1 grad '24</div></div>
+        </div>
+      </div>
+
+      <div class="voice" data-r>
+        <div class="q-mark">"</div>
+        <blockquote>I've done seven retreats in my life. The one in <i>Mazunte</i> was the first one that changed the year that followed it.</blockquote>
+        <div class="who">
+          <div class="av" style="background:linear-gradient(135deg,#7A8264,#3C4032)">MH</div>
+          <div><div class="nm">Marco Hettich</div><div class="role">Berlin · Retreat '25</div></div>
+        </div>
+      </div>
+
+      <div class="voice" data-r>
+        <div class="q-mark">"</div>
+        <blockquote>I listen to the app every morning at 4:30 in London. It is genuinely <i>his voice,</i> with all the small pauses. I sometimes forget he isn't in the room.</blockquote>
+        <div class="who">
+          <div class="av" style="background:linear-gradient(135deg,#A84A2C,#E4B96B)">SP</div>
+          <div><div class="nm">Simrat Pannu</div><div class="role">London · Companion member</div></div>
+        </div>
+      </div>
+
+      <div class="voice" data-r>
+        <div class="q-mark">"</div>
+        <blockquote>Private mentorship with Jugat for a year rewrote how I <i>work, parent, and sleep.</i> All three.</blockquote>
+        <div class="who">
+          <div class="av" style="background:linear-gradient(135deg,#3C4032,#7A8264)">HN</div>
+          <div><div class="nm">Hana Nakamura</div><div class="role">Tokyo · 1:1 client</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNAL ============ -->
+<section class="full journal" id="journal">
+  <div class="inner">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow">▸ 07 · The Journal</div>
+        <h2 class="disp">Weekly<br>letters from<br>the <i>practice.</i></h2>
+      </div>
+      <div class="right">
+        <p>Short essays on sadhana, the long game, and what I'm learning from the sangat. Sent Sunday mornings. Free to all. 14,200 readers in 78 countries.</p>
+        <button class="btn pri" style="margin-top:24px">Subscribe — free</button>
+      </div>
+    </div>
+
+    <div class="journal-list">
+      <div class="journ-row">
+        <div class="j-date">APR 13 · 2026</div>
+        <div class="j-title">On the difficulty of the <i>second year</i></div>
+        <div class="j-cat">Letter Nº 212 · Sadhana</div>
+        <div class="j-read">7 min read</div>
+      </div>
+      <div class="journ-row">
+        <div class="j-date">APR 06 · 2026</div>
+        <div class="j-title">Why I stopped offering <i>discounts</i></div>
+        <div class="j-cat">Letter Nº 211 · Teaching</div>
+        <div class="j-read">5 min read</div>
+      </div>
+      <div class="journ-row">
+        <div class="j-date">MAR 30 · 2026</div>
+        <div class="j-title">The kriya that saved my <i>father's hearing</i></div>
+        <div class="j-cat">Letter Nº 210 · Story</div>
+        <div class="j-read">9 min read</div>
+      </div>
+      <div class="journ-row">
+        <div class="j-date">MAR 23 · 2026</div>
+        <div class="j-title">A small defence of <i>long sits</i></div>
+        <div class="j-cat">Letter Nº 209 · Meditation</div>
+        <div class="j-read">6 min read</div>
+      </div>
+      <div class="journ-row">
+        <div class="j-date">MAR 16 · 2026</div>
+        <div class="j-title">What Ramadan taught me about <i>pranayama</i></div>
+        <div class="j-cat">Letter Nº 208 · Breath</div>
+        <div class="j-read">8 min read</div>
+      </div>
+      <div class="journ-row">
+        <div class="j-date">MAR 09 · 2026</div>
+        <div class="j-title">Against the wellness <i>economy</i></div>
+        <div class="j-cat">Letter Nº 207 · Essay</div>
+        <div class="j-read">11 min read</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="full contact" id="contact">
+  <div class="inner">
+    <div class="contact-layout">
+      <div class="contact-copy" data-r>
+        <div class="eyebrow">▸ 08 · Begin</div>
+        <h2 class="disp">The first<br>sit is <i>on me.</i></h2>
+        <p>Whether you drop into the studio in Dubai, start with the companion on your phone, or book a private call — the first session is always free. It is the only way to know if this is your path.</p>
+
+        <div class="contact-options">
+          <div class="copt">
+            <svg class="c-icn" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="8" width="22" height="18" rx="2"/><path d="M4 14 L15 20 L26 14"/></svg>
+            <div><h4>Write to me <i>directly</i></h4><p>jugat@jugatguru.com · replies personally within 48h</p></div>
+            <span class="arrow">→</span>
+          </div>
+          <div class="copt">
+            <svg class="c-icn" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="15" cy="15" r="11"/><path d="M15 8 V15 L19 18"/></svg>
+            <div><h4>Visit the <i>studio</i></h4><p>Al Quoz 1, Street 8, Warehouse 34 · open 04:30–21:30</p></div>
+            <span class="arrow">→</span>
+          </div>
+          <div class="copt">
+            <svg class="c-icn" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 6 L10 6 L13 12 L10 14 Q12 18 16 20 L18 17 L24 20 L24 24 Q19 26 14 22 Q8 18 6 12 Z"/></svg>
+            <div><h4>Phone / <i>WhatsApp</i></h4><p>+971 55 412 9840 · Fridays reserved for 1:1s</p></div>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card" data-r>
+        <div class="bc-head">
+          <div class="t">Book a <i>session</i></div>
+          <span class="badge">First one is free</span>
+        </div>
+
+        <div class="field">
+          <label>Your path</label>
+          <div class="svc-options">
+            <div class="svc sel"><div class="s-t">Private <i>1:1</i></div><div class="s-m">Online · 60 min</div><div class="s-p">Free intro</div></div>
+            <div class="svc"><div class="s-t">Studio <i>class</i></div><div class="s-m">Al Quoz · 75 min</div><div class="s-p">AED 120</div></div>
+            <div class="svc"><div class="s-t">Companion <i>trial</i></div><div class="s-m">App · 7 days</div><div class="s-p">Free</div></div>
+            <div class="svc"><div class="s-t">Training <i>info</i></div><div class="s-m">Video call · 30 min</div><div class="s-p">Free</div></div>
+          </div>
+        </div>
+
+        <div class="selectrow">
+          <div class="field">
+            <label>Preferred date</label>
+            <div class="input"><span>Fri, 24 Apr 2026</span><span style="color:var(--ink-mute)">▾</span></div>
+          </div>
+          <div class="field">
+            <label>Time (GST)</label>
+            <div class="input"><span>10:00 AM</span><span style="color:var(--ink-mute)">▾</span></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Your name</label>
+          <div class="input placeholder">Full name</div>
+        </div>
+
+        <div class="field">
+          <label>One sentence — what brings you</label>
+          <div class="input placeholder" style="min-height:56px;align-items:flex-start;padding-top:12px">I've been practicing for two years and I want to go deeper…</div>
+        </div>
+
+        <button class="btn pri" style="width:100%;justify-content:center;padding:14px;font-size:14px">Request my session →</button>
+
+        <div class="bc-foot">
+          <div class="total">Total today<br><strong>Free <i>intro</i></strong></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.1em;text-align:right;text-transform:uppercase">No card required<br>Confirm within 12h</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a href="#" class="brand">
+        <svg class="sigil" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18" stroke="var(--oud)" stroke-width="1"/>
+          <path d="M20 6 C12 14 12 26 20 34 C28 26 28 14 20 6 Z" fill="var(--oud)" opacity="0.15"/>
+          <circle cx="20" cy="20" r="5" fill="var(--oud)"/>
+          <path d="M20 2 V6 M20 34 V38 M2 20 H6 M34 20 H38" stroke="var(--oud)" stroke-width="1"/>
+        </svg>
+        <div class="wordmark">
+          <div class="n" style="color:var(--paper)">Jugat <i>Guru</i></div>
+          <div class="s">Dubai · Est. 2014</div>
+        </div>
+      </a>
+      <p>Kundalini yoga in the lineage of Yogi Bhajan — taught in Dubai, transmitted worldwide. KRI-certified Level 3 · International Kundalini Yoga Teachers Association member.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 10 L15 12 L10 14 Z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Podcast"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="10" y="4" width="4" height="12" rx="2"/><path d="M6 12 V13 A6 6 0 0 0 18 13 V12"/><line x1="12" y1="19" x2="12" y2="22"/></svg></a>
+        <a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="1"/><path d="M3 8 L12 14 L21 8"/></svg></a>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="#">The Companion app</a></li>
+        <li><a href="#">Studio schedule</a></li>
+        <li><a href="#">Private 1:1</a></li>
+        <li><a href="#">Retreats</a></li>
+        <li><a href="#">Gift a practice</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h5>Teach</h5>
+      <ul>
+        <li><a href="#">Level 1 Training</a></li>
+        <li><a href="#">Mentorship</a></li>
+        <li><a href="#">KRI affiliation</a></li>
+        <li><a href="#">For my teachers</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h5>Read / Listen</h5>
+      <ul>
+        <li><a href="#">The Journal</a></li>
+        <li><a href="#">Podcast · Naad</a></li>
+        <li><a href="#">Speaking &amp; press</a></li>
+        <li><a href="#">Lineage notes</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-signup">
+      <h5>Sunday letters</h5>
+      <p>One short essay a week, sent at 6am Gulf time. Free · no spam · unsubscribe whenever.</p>
+      <div class="form">
+        <input placeholder="your email" aria-label="email"/>
+        <button>Sign up</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-bot">
+    <div>© 2026 Jugat Guru Studio FZE · Dubai Design District · UAE</div>
+    <div>Platform by <a href="#">Astral Labs</a> · KRI L3 verified</div>
+  </div>
+</footer>
+
+<script>
+// reveals
+const io = new IntersectionObserver((ents)=>{
+  ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:0.1});
+document.querySelectorAll('[data-r]').forEach((el,i)=>{
+  el.style.transitionDelay = (Math.min(i%5,4)*70)+'ms';
+  io.observe(el);
+});
+
+// service select toggle
+document.querySelectorAll('.svc').forEach(s=>{
+  s.addEventListener('click',()=>{
+    document.querySelectorAll('.svc').forEach(x=>x.classList.remove('sel'));
+    s.classList.add('sel');
+  });
+});
+
+// drawer
+const hamb = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+const drawerClose = document.getElementById('drawerClose');
+const scrim = drawer.querySelector('.scrim');
+const toggleDrawer = (open)=>{
+  const state = open ?? !drawer.classList.contains('open');
+  drawer.classList.toggle('open', state);
+  hamb.classList.toggle('open', state);
+  drawer.setAttribute('aria-hidden', state ? 'false' : 'true');
+  document.body.style.overflow = state ? 'hidden' : '';
+};
+hamb.addEventListener('click', ()=>toggleDrawer());
+drawerClose.addEventListener('click', ()=>toggleDrawer(false));
+scrim.addEventListener('click', ()=>toggleDrawer(false));
+document.querySelectorAll('.drawer-nav a').forEach(a=>{
+  a.addEventListener('click', ()=>toggleDrawer(false));
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && drawer.classList.contains('open')) toggleDrawer(false);
+});
+</script>
+</body>
+</html>

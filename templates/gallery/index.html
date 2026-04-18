@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Integration — Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F4F2ED;
+  --paper-2: #ECE8DE;
+  --paper-3: #E0DAC8;
+  --ink: #141311;
+  --ink-2: #2F2C26;
+  --mute: #807868;
+  --rule: rgba(20,19,17,0.12);
+  --rule-str: rgba(20,19,17,0.26);
+  --burgundy: #6B1F24;
+  --burgundy-br: #A03038;
+  --sand: #C09156;
+  --forest: #2C4A34;
+  --indigo: #2A3464;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);font-size:15.5px;line-height:1.55;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:-0.003em;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+.serif{font-family:'Literata',Georgia,serif;font-weight:400}
+.serif-i{font-family:'Literata',serif;font-weight:400;font-style:italic}
+.mono{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:11px;letter-spacing:0.22em;text-transform:uppercase}
+
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);background:var(--paper);border:1px solid var(--rule);padding:5px 12px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500}
+.studio-tag .d{width:6px;height:6px;background:var(--burgundy);border-radius:999px}
+
+/* NAV */
+nav.top{position:sticky;top:0;z-index:100;background:rgba(244,242,237,0.9);backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid var(--rule)}
+nav.top .inner{max-width:1480px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:'Literata',serif;font-weight:400;font-size:19px;letter-spacing:-0.008em;display:flex;align-items:center;gap:10px}
+.brand::before{content:"";width:8px;height:8px;background:var(--burgundy);border-radius:999px;flex-shrink:0}
+.brand em{font-style:italic;color:var(--burgundy)}
+
+.nav-center{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.nav-right{display:flex;gap:18px;align-items:center}
+.nav-right a{font-size:13px;font-weight:500;color:var(--ink-2)}
+.nav-right a:hover{color:var(--burgundy)}
+.btn-send{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:all .2s}
+.btn-send:hover{background:var(--burgundy)}
+
+/* HERO — spare intro */
+.hero{padding:80px 40px 60px;max-width:1480px;margin:0 auto;border-bottom:1px solid var(--rule)}
+.hero-top{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:60px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.hero-top .c{color:var(--burgundy);font-weight:600}
+.hero-top .r{text-align:right}
+
+.hero h1{
+  font-family:'Literata',serif;font-weight:400;
+  font-size:clamp(44px,7.2vw,120px);line-height:0.98;letter-spacing:-0.025em;color:var(--ink);
+  max-width:1180px;margin-bottom:48px;
+}
+.hero h1 em{font-style:italic;color:var(--burgundy)}
+
+.hero-meta-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:40px;border-top:1px solid var(--rule)}
+.hero-meta-row .lead{font-family:'Literata',serif;font-style:italic;font-size:18px;line-height:1.45;color:var(--ink-2);max-width:440px}
+.hero-meta-row .lead em{font-style:italic;color:var(--burgundy)}
+.hero-stat .n{font-family:'Literata',serif;font-weight:400;font-size:56px;line-height:1;letter-spacing:-0.02em;color:var(--ink)}
+.hero-stat .n em{font-style:italic;color:var(--burgundy)}
+.hero-stat .l{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-top:14px;font-weight:500;line-height:1.6}
+
+/* WORK INTRO */
+.work-intro{max-width:1480px;margin:0 auto;padding:60px 40px 40px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:baseline;border-bottom:2px solid var(--ink)}
+.work-intro .kicker{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy)}
+.work-intro h2{font-family:'Literata',serif;font-weight:400;font-size:32px;line-height:1.1;letter-spacing:-0.012em}
+.work-intro h2 em{font-style:italic;color:var(--burgundy)}
+.work-intro .count{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;text-align:right}
+
+/* CASE STUDY SPREAD - full width, alternating */
+.case{max-width:1480px;margin:0 auto;padding:100px 40px;border-bottom:1px solid var(--rule);position:relative}
+.case-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center}
+.case.reverse .case-inner{grid-template-columns:1fr 1.1fr}
+.case.reverse .case-plate{order:2}
+.case.reverse .case-copy{order:1}
+
+.case-plate{
+  aspect-ratio:3/4;position:relative;overflow:hidden;border:1px solid var(--rule-str);
+  box-shadow:0 40px 80px -40px rgba(20,19,17,0.2);
+}
+.case-plate.p1{background:linear-gradient(165deg,#1A1522 0%,#2A3464 40%,#6B1F24 100%)}
+.case-plate.p2{background:linear-gradient(165deg,#2C4A34 0%,#5A7B52 50%,#C09156 100%)}
+.case-plate.p3{background:linear-gradient(165deg,#0F1A1C 0%,#1A3C44 55%,#5A8C8C 100%)}
+.case-plate.p4{background:linear-gradient(165deg,#6B1F24 0%,#A03038 50%,#E0A87C 100%)}
+.case-plate.p5{background:linear-gradient(165deg,#1B1E28 0%,#3E3454 50%,#C09156 100%)}
+.case-plate.p6{background:linear-gradient(165deg,#20241C 0%,#4E4F2C 50%,#C7B366 100%)}
+.case-plate::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 45% 30%,rgba(244,242,237,0.18) 0%,transparent 55%);pointer-events:none}
+
+.case-plate .pl-top{
+  position:absolute;top:24px;left:24px;right:24px;display:flex;justify-content:space-between;
+  font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(244,242,237,0.8);font-weight:500;
+}
+.case-plate .pl-num{background:rgba(244,242,237,0.1);padding:4px 10px;border:1px solid rgba(244,242,237,0.25);border-radius:999px}
+.case-plate .pl-orn{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:70%;max-width:360px;color:rgba(244,242,237,0.82)}
+.case-plate .pl-cap{
+  position:absolute;bottom:24px;left:24px;right:24px;padding-top:18px;border-top:1px solid rgba(244,242,237,0.3);
+  color:rgba(244,242,237,0.95);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+}
+.case-plate .pl-cap .nm{font-family:'Literata',serif;font-weight:400;font-size:22px;line-height:1.05;letter-spacing:-0.008em}
+.case-plate .pl-cap .nm em{font-style:italic}
+.case-plate .pl-cap .url{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.12em;color:rgba(244,242,237,0.7);text-align:right;font-weight:500}
+
+.case-copy{}
+.case-copy .kicker{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--burgundy);font-weight:600;margin-bottom:22px;display:flex;gap:14px;align-items:center}
+.case-copy .kicker::before{content:"";width:20px;height:1px;background:var(--burgundy)}
+.case-copy h3{
+  font-family:'Literata',serif;font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:0.98;letter-spacing:-0.02em;
+  margin-bottom:24px;max-width:540px;
+}
+.case-copy h3 em{font-style:italic;color:var(--burgundy)}
+.case-copy .deck{
+  font-family:'Literata',serif;font-style:italic;font-size:21px;line-height:1.4;color:var(--ink-2);
+  margin-bottom:28px;max-width:540px;
+}
+.case-copy .deck em{font-style:italic;color:var(--burgundy)}
+.case-copy p{font-size:15.5px;line-height:1.65;color:var(--ink-2);margin-bottom:20px;max-width:540px}
+.case-copy p em{font-family:'Literata',serif;font-style:italic;font-size:17px;color:var(--ink)}
+
+.case-specs{
+  margin-top:32px;padding-top:26px;border-top:1px solid var(--rule-str);display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;
+}
+.case-specs .sp .k{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;font-weight:500}
+.case-specs .sp .v{font-family:'Literata',serif;font-size:22px;line-height:1;color:var(--ink);letter-spacing:-0.008em}
+.case-specs .sp .v em{font-style:italic;color:var(--burgundy)}
+
+.case-cta{margin-top:28px;display:flex;gap:14px;align-items:center}
+.case-cta .visit{display:inline-flex;gap:8px;align-items:center;padding:11px 22px;background:var(--ink);color:var(--paper);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all .2s}
+.case-cta .visit:hover{background:var(--burgundy)}
+.case-cta .read{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;color:var(--ink);border-bottom:1px solid var(--burgundy);padding-bottom:2px}
+.case-cta .read:hover{color:var(--burgundy)}
+
+/* MORE WORK (thumbnails) */
+.more-work{max-width:1480px;margin:0 auto;padding:80px 40px;border-bottom:1px solid var(--rule)}
+.mw-head{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:baseline;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:44px}
+.mw-head .kicker{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--burgundy)}
+.mw-head h2{font-family:'Literata',serif;font-weight:400;font-size:44px;line-height:1;letter-spacing:-0.015em}
+.mw-head h2 em{font-style:italic;color:var(--burgundy)}
+.mw-head .meta{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+.mw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mw{cursor:pointer;transition:transform .25s ease}
+.mw:hover{transform:translateY(-4px)}
+.mw:hover .mw-plate{box-shadow:0 30px 60px -30px rgba(20,19,17,0.3)}
+.mw-plate{aspect-ratio:4/5;position:relative;overflow:hidden;border:1px solid var(--rule);background:var(--paper-3);transition:all .25s;margin-bottom:12px}
+.mw-plate.t1{background:linear-gradient(165deg,#20241C 0%,#4E4F2C 50%,#C7B366 100%)}
+.mw-plate.t2{background:linear-gradient(165deg,#1B1E28 0%,#3E3454 50%,#C09156 100%)}
+.mw-plate.t3{background:linear-gradient(165deg,#6B1F24 0%,#A03038 50%,#E0A87C 100%)}
+.mw-plate.t4{background:linear-gradient(165deg,#0F1A1C 0%,#1A3C44 55%,#5A8C8C 100%)}
+.mw-plate.t5{background:linear-gradient(165deg,#2C4A34 0%,#5A7B52 50%,#C09156 100%)}
+.mw-plate.t6{background:linear-gradient(165deg,#1A1522 0%,#2A3464 40%,#6B1F24 100%)}
+.mw-plate.t7{background:linear-gradient(165deg,#6E5535 0%,#A88240 60%,#E3C474 100%)}
+.mw-plate.t8{background:linear-gradient(165deg,#282423 0%,#4B3F3C 50%,#A07766 100%)}
+.mw-plate::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 40% 30%,rgba(244,242,237,0.15) 0%,transparent 55%)}
+.mw-plate svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);width:58%;color:rgba(244,242,237,0.7)}
+.mw-plate .corner{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(244,242,237,0.78);font-weight:500}
+.mw-meta{padding:0 2px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mw-meta .nm{font-family:'Literata',serif;font-weight:400;font-size:18px;line-height:1.1;letter-spacing:-0.008em;color:var(--ink)}
+.mw-meta .nm em{font-style:italic;color:var(--burgundy)}
+.mw-meta .tg{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute);font-weight:500;text-align:right;line-height:1.4;flex-shrink:0}
+
+/* SIGNATURE BLOCK + contact */
+.close{max-width:1480px;margin:0 auto;padding:100px 40px 120px;text-align:center;border-bottom:1px solid var(--rule)}
+.close .kicker{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy);font-weight:600;margin-bottom:28px;display:inline-flex;align-items:center;gap:14px}
+.close .kicker::before,.close .kicker::after{content:"";width:30px;height:1px;background:var(--burgundy)}
+.close h2{
+  font-family:'Literata',serif;font-weight:400;
+  font-size:clamp(56px,9vw,160px);line-height:0.92;letter-spacing:-0.028em;color:var(--ink);margin-bottom:28px;
+}
+.close h2 em{font-style:italic;color:var(--burgundy)}
+.close .sub{font-family:'Literata',serif;font-style:italic;font-size:clamp(19px,2.2vw,26px);color:var(--ink-2);max-width:640px;margin:0 auto 48px;line-height:1.45}
+.close .sub em{font-style:italic;color:var(--burgundy)}
+
+.close-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:900px;margin:0 auto 50px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.close-row a{padding:22px 18px;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;background:var(--paper);transition:all .2s;border-right:1px solid var(--rule)}
+.close-row a:last-child{border-right:none}
+.close-row a:hover{background:var(--ink);color:var(--paper)}
+.close-row a:hover .k{color:var(--burgundy-br)}
+.close-row .k{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);font-weight:500;width:60px}
+.close-row .v{font-family:'Literata',serif;font-size:17px;line-height:1.1;letter-spacing:-0.005em}
+.close-row .v em{font-style:italic;color:var(--burgundy)}
+.close-row a:hover .v em{color:var(--burgundy-br)}
+
+.close-sign{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);font-weight:500;display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
+.close-sign strong{color:var(--ink);font-weight:600}
+.close-sign .dot{width:4px;height:4px;background:var(--burgundy);border-radius:999px}
+
+/* FOOTER */
+footer{max-width:1480px;margin:0 auto;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+footer .sys{display:flex;align-items:center;gap:7px;color:var(--forest)}
+footer .sys::before{content:"●"}
+
+@media (max-width:980px){
+  nav.top .inner{padding:0 24px}
+  .nav-center{display:none}
+  .hero{padding:44px 24px 40px}
+  .hero-top{grid-template-columns:1fr;gap:6px;text-align:center}
+  .hero-top .r{text-align:center}
+  .hero-meta-row{grid-template-columns:1fr 1fr;gap:24px}
+  .hero-meta-row .lead{grid-column:1/-1}
+
+  .work-intro{padding:40px 24px 28px;grid-template-columns:1fr;gap:12px}
+  .work-intro .count{text-align:left}
+  .case{padding:56px 24px}
+  .case-inner,.case.reverse .case-inner{grid-template-columns:1fr;gap:36px}
+  .case.reverse .case-plate{order:1}
+  .case.reverse .case-copy{order:2}
+  .case-specs{grid-template-columns:1fr 1fr;gap:18px}
+  .more-work{padding:56px 24px}
+  .mw-head{grid-template-columns:1fr;gap:10px}
+  .mw-head .meta{text-align:left}
+  .mw-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .close{padding:72px 24px 80px}
+  .close-row{grid-template-columns:1fr;gap:0}
+  .close-row a{border-right:none;border-bottom:1px solid var(--rule)}
+  .close-row a:last-child{border-bottom:none}
+  footer{padding:20px 24px;flex-direction:column;text-align:center}
+}
+@media (max-width:480px){
+  .mw-grid{grid-template-columns:1fr}
+  .case-specs{grid-template-columns:1fr 1fr;gap:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · gallery · v0.9</div>
+
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="brand">Astral <em>Integration</em></a>
+    <div class="nav-center">Gallery · 2013 — 2026 · 170+ builds</div>
+    <div class="nav-right">
+      <a href="#">Pricing</a>
+      <a href="#">About</a>
+      <button class="btn-send">Send the mess →</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-top">
+    <div>Mazunte · Oaxaca · MX</div>
+    <div class="c">— Selected work · Edition XIII —</div>
+    <div class="r">Spring 2026</div>
+  </div>
+
+  <h1>Six case studies, <em>six quiet acts</em> of infrastructure for the people doing original work in the world.</h1>
+
+  <div class="hero-meta-row">
+    <div class="lead">A one-person studio builds digital homes for healers, teachers, and retreat-holders. Each site below replaces <em>seven rented tools</em>, ships in days not months, and belongs to its owner from the first commit.</div>
+    <div class="hero-stat"><div class="n">170<em>+</em></div><div class="l">Sites shipped<br>since 2013</div></div>
+    <div class="hero-stat"><div class="n">48<em>h</em></div><div class="l">Avg. first<br>build</div></div>
+    <div class="hero-stat"><div class="n"><em>1</em></div><div class="l">Person<br>one platform</div></div>
+  </div>
+</section>
+
+<!-- WORK INTRO -->
+<section class="work-intro">
+  <div class="kicker">— Selected work, 2023 to 2025</div>
+  <h2>Six <em>spreads.</em></h2>
+  <div class="count">/ Scroll for the rest · 14 in the grid below</div>
+</section>
+
+<!-- CASE 1 -->
+<article class="case">
+  <div class="case-inner">
+    <div class="case-plate p1">
+      <div class="pl-top"><span class="pl-num">№ 01 / 2025</span><span>Music · Tour</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <circle cx="150" cy="150" r="100" opacity="0.7"/>
+        <circle cx="150" cy="150" r="70" opacity="0.5"/>
+        <circle cx="150" cy="150" r="40"/>
+        <path d="M150 50 V250" opacity="0.5"/>
+        <path d="M50 150 H250" opacity="0.5"/>
+        <circle cx="150" cy="150" r="10" fill="currentColor"/>
+        <path d="M60 300 Q150 270 240 300" opacity="0.4"/>
+        <path d="M100 320 Q150 310 200 320" opacity="0.4"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Deva Premal<br>&amp; <em>Miten</em></div><div class="url">devapremalmiten<br>.xyz →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 01 / 2025 · Featured</div>
+      <h3>Devotional music,<br><em>unmediated.</em></h3>
+      <div class="deck">A full discography, world-touring concert platform, and private members' community for two artists whose work used to live, in pieces, across <em>five rented services.</em></div>
+      <p>Deva Premal and Miten came to me with 30 years of devotional music distributed across Eventbrite, Bandcamp, a Mailchimp list, a WordPress site, and an Instagram that bore all the weight. <em>Every ticket sold was costing them 7% to a platform they didn't own.</em> Every fan who signed up landed in three different databases that didn't speak.</p>
+      <p>In 14 days we consolidated everything under one domain — horizontal-scrolling album discography, tour pages that handle multi-currency ticketing across ten countries, a private listening room for members, and welcome automations narrated in Deva's own voice. Zero platform fees. One login.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">Music · <em>Tour</em></div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>14</em> days</div></div>
+        <div class="sp"><div class="k">Tools replaced</div><div class="v"><em>5</em></div></div>
+        <div class="sp"><div class="k">Fees saved</div><div class="v"><em>7%</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 2 REVERSE -->
+<article class="case reverse">
+  <div class="case-inner">
+    <div class="case-plate p2">
+      <div class="pl-top"><span class="pl-num">№ 02 / 2025</span><span>Retreat · Ceremony</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <path d="M40 280 Q80 200 130 220 Q170 240 200 180 L260 280 Z" fill="currentColor" fill-opacity="0.12"/>
+        <path d="M40 280 L260 280"/>
+        <circle cx="220" cy="80" r="14" opacity="0.7"/>
+        <path d="M60 310 Q150 290 240 310" opacity="0.4"/>
+        <path d="M110 20 Q120 30 130 20" opacity="0.5"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Sacred <em>Counsel</em></div><div class="url">sacredcounsel<br>.space →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 02 / 2025</div>
+      <h3>Twenty years of<br>ceremony, <em>one home.</em></h3>
+      <div class="deck">A ceremony center operating across <em>five revenue streams</em> on five disconnected platforms — unified into one multi-tenant platform in twelve days.</div>
+      <p>Retreats, teacher trainings, a members' circle, a small publishing line, private sessions. Each one had grown its own duct-taped payment flow, its own mailing list, its own scheduling tool. The founder had stopped expanding because <em>the infrastructure couldn't hold another shape.</em></p>
+      <p>After our build, her new 1:1 mentorship program launched three weeks after the site went live — a thing that, by her own estimate, would have taken another six months of coordination on the old stack. Paid for itself in six months.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">Retreat</div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>12</em> days</div></div>
+        <div class="sp"><div class="k">Streams unified</div><div class="v"><em>5</em></div></div>
+        <div class="sp"><div class="k">ROI month</div><div class="v"><em>6</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 3 -->
+<article class="case">
+  <div class="case-inner">
+    <div class="case-plate p3">
+      <div class="pl-top"><span class="pl-num">№ 03 / 2025</span><span>Yoga · Legacy</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <circle cx="150" cy="140" r="40"/>
+        <path d="M110 180 Q100 220 110 260 Q150 290 190 260 Q200 220 190 180" fill="currentColor" fill-opacity="0.15"/>
+        <path d="M125 200 Q150 220 175 200" opacity="0.45"/>
+        <path d="M60 320 Q150 300 240 320" opacity="0.4"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Gurmukh <em>Kaur</em></div><div class="url">gurmukh<br>.xyz →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 03 / 2025</div>
+      <h3>Fifty years of teaching,<br><em>one domain.</em></h3>
+      <div class="deck">A legendary Kundalini teacher with <em>seven booking platforms</em> serving classes across four cities consolidated into a single editorial landing and unified booking system.</div>
+      <p>When a teacher has taught continuously for fifty years, their students don't find them through a website — but <em>the absence</em> of a cohesive digital home becomes a kind of noise. Before our build: seven booking platforms, three newsletter tools, no unified schedule anyone could see. <em>Eight days</em> later it all sat in one place, in her voice, with a single calendar her students could actually use.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">Yoga</div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>8</em> days</div></div>
+        <div class="sp"><div class="k">Platforms</div><div class="v"><em>7→1</em></div></div>
+        <div class="sp"><div class="k">Years teaching</div><div class="v"><em>50</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 4 REVERSE -->
+<article class="case reverse">
+  <div class="case-inner">
+    <div class="case-plate p4">
+      <div class="pl-top"><span class="pl-num">№ 04 / 2024</span><span>Reiki · Academy</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <rect x="80" y="100" width="140" height="100" rx="6" fill="currentColor" fill-opacity="0.14"/>
+        <path d="M90 130 H210 M90 150 H180 M90 170 H210" opacity="0.5"/>
+        <circle cx="150" cy="80" r="16"/>
+        <path d="M150 96 V120" opacity="0.5"/>
+        <path d="M60 300 Q150 280 240 300" opacity="0.4"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Shiv <em>Energetics</em></div><div class="url">shivenergetics<br>.xyz →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 04 / 2024</div>
+      <h3>A reiki academy with<br>an <em>AI assistant.</em></h3>
+      <div class="deck">Hundreds of students · multiple cert levels · practice-hour tracking · auto-generated practitioner directory · an <em>AI trained on the methodology</em> itself.</div>
+      <p>Shiv Energetics had outgrown every tool they'd tried. Five disconnected platforms, a spreadsheet serving as the practitioner directory, an inbox of students asking the same methodology questions. We rebuilt the whole operation in 23 days: student progression dashboards, certification tracking, practice-hour logging, an auto-updating directory, and a private AI assistant trained on <em>800 hours</em> of the school's recorded teachings.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">School</div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>23</em> days</div></div>
+        <div class="sp"><div class="k">Students</div><div class="v"><em>300+</em></div></div>
+        <div class="sp"><div class="k">AI hours</div><div class="v"><em>800</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 5 -->
+<article class="case">
+  <div class="case-inner">
+    <div class="case-plate p5">
+      <div class="pl-top"><span class="pl-num">№ 05 / 2024</span><span>Multi-brand</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <circle cx="100" cy="130" r="36"/>
+        <circle cx="200" cy="130" r="36"/>
+        <circle cx="150" cy="220" r="40" fill="currentColor" fill-opacity="0.14"/>
+        <path d="M80 250 L220 250" opacity="0.5"/>
+        <path d="M60 300 Q150 280 240 300" opacity="0.4"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Mariana <em>Harpreet</em></div><div class="url">marianaharpreet<br>.xyz →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 05 / 2024</div>
+      <h3>Three brands,<br>one <em>membership.</em></h3>
+      <div class="deck">A yoga studio, a teacher's personal practice, and a global women's movement — four domains, three identities, unified through <em>one subscription</em> their students could enter through any door.</div>
+      <p>The architecture challenge: three distinct brand voices that couldn't dilute each other, each with its own landing and offerings, but sharing one members' vault and one billing system. 21 days later all three lived on their own domains with their own design languages, but a single membership card worked across every door.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">Studio</div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>21</em> days</div></div>
+        <div class="sp"><div class="k">Domains</div><div class="v"><em>4</em></div></div>
+        <div class="sp"><div class="k">Brands</div><div class="v"><em>3</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CASE 6 REVERSE -->
+<article class="case reverse">
+  <div class="case-inner">
+    <div class="case-plate p6">
+      <div class="pl-top"><span class="pl-num">№ 06 / 2024</span><span>Voice · Ticketing</span></div>
+      <svg class="pl-orn" viewBox="0 0 300 360" fill="none" stroke="currentColor" stroke-width="0.8">
+        <rect x="130" y="100" width="40" height="80" rx="18"/>
+        <path d="M100 180 Q100 210 150 210 Q200 210 200 180" fill="none"/>
+        <path d="M150 210 V240"/>
+        <path d="M120 250 H180" opacity="0.5"/>
+        <path d="M50 320 Q150 300 250 320" opacity="0.4"/>
+      </svg>
+      <div class="pl-cap"><div class="nm">Uri <em>Atsur</em></div><div class="url">uriatsur<br>.live →</div></div>
+    </div>
+    <div class="case-copy">
+      <div class="kicker">Case · 06 / 2024</div>
+      <h3>Eight ticketing platforms,<br>one <em>voice.</em></h3>
+      <div class="deck">A vocal facilitator running events in <em>eleven countries</em> had their ticketing spread across eight services. Bilingual EN/HE members' portal built into a single platform in 11 days.</div>
+      <p>Uri's work — vocal facilitation circles, voice liberation workshops, multi-day intensives — had events happening simultaneously in Tel Aviv, Berlin, Lisbon, Mexico City, Tulum. Eight different ticket platforms were collecting eight different 3-7% fees. We migrated every event, every historic attendee, and every active subscriber into a single bilingual members' platform. <em>Zero fees.</em> One sign-in.</p>
+      <div class="case-specs">
+        <div class="sp"><div class="k">Sector</div><div class="v">Voice</div></div>
+        <div class="sp"><div class="k">Ship</div><div class="v"><em>11</em> days</div></div>
+        <div class="sp"><div class="k">Platforms</div><div class="v"><em>8→1</em></div></div>
+        <div class="sp"><div class="k">Languages</div><div class="v"><em>EN·HE</em></div></div>
+      </div>
+      <div class="case-cta">
+        <a href="#" class="visit">Visit site →</a>
+        <a href="#" class="read">Read full case study</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- MORE WORK -->
+<section class="more-work">
+  <div class="mw-head">
+    <div class="kicker">— Grid of eight more</div>
+    <h2>And <em>the rest.</em></h2>
+    <div class="meta">/ Skylar · Ama · Mazunte · Arte · Menda · Mujer · Kura · private</div>
+  </div>
+  <div class="mw-grid">
+    <a href="#" class="mw">
+      <div class="mw-plate t1"><div class="corner"><span>№ 07 / 2024</span><span>Healing</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><circle cx="100" cy="100" r="54"/><path d="M100 46 V154 M46 100 H154" opacity="0.5"/><circle cx="100" cy="100" r="12" fill="currentColor"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Skylar <em>Acamesis</em></div><div class="tg">16 d<br>Premium</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t2"><div class="corner"><span>№ 08 / 2024</span><span>Regenerative</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M40 160 Q60 80 100 100 Q140 120 160 70" fill="none"/><path d="M40 180 L160 180"/><circle cx="160" cy="55" r="10" opacity="0.7"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Ama <em>Kura</em></div><div class="tg">18 d<br>Multi-offering</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t3"><div class="corner"><span>№ 09 / 2024</span><span>Community</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><circle cx="70" cy="90" r="16"/><circle cx="130" cy="100" r="16"/><path d="M40 150 Q100 130 160 150 Q160 180 100 190 Q40 180 40 150 Z" fill="currentColor" fill-opacity="0.15"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Mazunte <em>Today</em></div><div class="tg">9 d<br>Bilingual</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t4"><div class="corner"><span>№ 10 / 2023</span><span>Breathwork</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M100 40 Q60 100 100 140 Q140 100 100 40 Z"/><circle cx="100" cy="90" r="6" fill="currentColor"/><path d="M100 140 L100 200" opacity="0.5"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Arte de <em>Renacer</em></div><div class="tg">19 d<br>School</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t5"><div class="corner"><span>№ 11 / 2023</span><span>Craft</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><rect x="60" y="80" width="80" height="120" rx="4" fill="currentColor" fill-opacity="0.14"/><path d="M70 100 H130 M70 120 H130 M70 140 H130" opacity="0.5"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Menda <em>Mano</em></div><div class="tg">7 d<br>Artisan</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t6"><div class="corner"><span>№ 12 / 2023</span><span>Movement</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="32"/><path d="M50 100 H150" opacity="0.5"/><path d="M100 50 V150" opacity="0.5"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Mujer <em>Despierta</em></div><div class="tg">8 d<br>ES · Movement</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t7"><div class="corner"><span>№ 13 / 2023</span><span>Slow craft</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M60 120 Q100 60 140 120 Q140 180 100 200 Q60 180 60 120 Z" fill="currentColor" fill-opacity="0.14"/><path d="M80 140 Q100 160 120 140" opacity="0.55"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm">Kura <em>Terra</em></div><div class="tg">6 d<br>Slow</div></div>
+    </a>
+    <a href="#" class="mw">
+      <div class="mw-plate t8"><div class="corner"><span>№ 14 / 2022</span><span>Private</span></div>
+        <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.9"><path d="M40 180 L100 80 L160 180 Z" fill="currentColor" fill-opacity="0.15"/><rect x="70" y="130" width="60" height="50" fill="currentColor" fill-opacity="0.2"/></svg>
+      </div>
+      <div class="mw-meta"><div class="nm"><em>— private —</em></div><div class="tg">24 d<br>Residency</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- CLOSE / CONTACT -->
+<section class="close">
+  <div class="kicker">— Begin a conversation</div>
+  <h2>Send me<br>the <em>mess.</em></h2>
+  <div class="sub">Voice memo, messy doc, linktree you're embarrassed of. <em>Polish is not required, nor encouraged.</em> I read every message personally. Response within a day.</div>
+
+  <div class="close-row">
+    <a href="mailto:jordi@astralintegration.studio"><span class="k">Email</span><span class="v">jordi@astral<em>.studio</em></span><span>↗</span></a>
+    <a href="#"><span class="k">Call</span><span class="v">30-min <em>discovery</em></span><span>↗</span></a>
+    <a href="#"><span class="k">Whatsapp</span><span class="v">+52 · <em>MZT hrs</em></span><span>↗</span></a>
+  </div>
+
+  <div class="close-sign">
+    <span><strong>Jordi Amat</strong></span>
+    <span class="dot"></span>
+    <span>Mazunte, Oax · MX</span>
+    <span class="dot"></span>
+    <span>Since 2013</span>
+    <span class="dot"></span>
+    <span>Rev 2026.04.17</span>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Astral Integration · Jordi Amat · All rights held lightly</div>
+  <div class="sys">All systems normal</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Integration — The Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F3EFE7;
+  --paper-2: #E9E3D4;
+  --paper-3: #DCD4C0;
+  --ink: #1A1612;
+  --ink-2: #3A342A;
+  --mute: #7A7160;
+  --mute-2: #A89E88;
+  --accent: #B84A2F;
+  --accent-dp: #84321E;
+  --olive: #5E6832;
+  --rule: rgba(26,22,18,0.1);
+  --rule-str: rgba(26,22,18,0.22);
+  --rule-b: rgba(26,22,18,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  font-size:15px;line-height:1.55;font-weight:400;letter-spacing:-0.005em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+
+.display{font-family:'Marcellus',serif;font-weight:400;letter-spacing:-0.008em}
+.mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;font-weight:400}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);background:rgba(243,239,231,0.92);backdrop-filter:blur(14px);border:1px solid var(--rule);padding:6px 14px;border-radius:999px;display:flex;align-items:center;gap:9px;pointer-events:none}
+.studio-tag .d{width:6px;height:6px;background:var(--accent);border-radius:999px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:0.3}}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:100;background:rgba(243,239,231,0.9);backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid var(--rule)}
+nav.top .inner{max-width:1440px;margin:0 auto;padding:0 44px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:baseline;gap:9px;font-family:'Marcellus',serif;font-size:20px;letter-spacing:-0.005em}
+.brand::before{content:"❋";color:var(--accent);font-size:13px;transform:translateY(-2px)}
+.brand em{font-style:italic;color:var(--accent)}
+.nav-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.btn-contact{padding:9px 16px;background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all .2s}
+.btn-contact:hover{background:var(--accent)}
+
+/* HERO */
+.hero{max-width:1440px;margin:0 auto;padding:80px 44px 50px;border-bottom:1px solid var(--rule)}
+.hero-top{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:60px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.hero-top .c{color:var(--accent);font-weight:500}
+.hero-top .r{text-align:right}
+
+.hero-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:30px;display:inline-flex;align-items:center;gap:14px}
+.hero-kicker::before{content:"";width:32px;height:1px;background:var(--accent)}
+
+.hero h1{
+  font-family:'Marcellus',serif;font-weight:400;
+  font-size:clamp(56px,9.5vw,148px);line-height:1;letter-spacing:-0.025em;color:var(--ink);
+  max-width:1200px;margin-bottom:48px;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+
+.hero-meta-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:34px;border-top:1px solid var(--rule)}
+.hero-meta-row .lead{
+  font-family:'Marcellus',serif;font-style:italic;font-size:21px;line-height:1.5;color:var(--ink-2);max-width:540px;
+}
+.hero-meta-row .lead em{font-style:italic;color:var(--accent);font-weight:400}
+.hero-stat{}
+.hero-stat .n{font-family:'Marcellus',serif;font-weight:400;font-size:48px;line-height:1;letter-spacing:-0.02em}
+.hero-stat .n em{font-style:italic;color:var(--accent)}
+.hero-stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);margin-top:12px;font-weight:500;line-height:1.6}
+
+/* filter pills */
+.filters{max-width:1440px;margin:0 auto;padding:40px 44px 28px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--rule)}
+.filters .flbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-right:10px}
+.filter-btn{
+  padding:7px 14px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;letter-spacing:-0.002em;
+  background:transparent;border:1px solid var(--rule-str);border-radius:999px;color:var(--ink-2);
+  transition:all .15s;cursor:pointer;
+}
+.filter-btn:hover{border-color:var(--ink);background:var(--paper-2)}
+.filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filter-btn .c{margin-left:6px;opacity:0.6;font-family:'JetBrains Mono',monospace;font-size:10px}
+
+/* grid */
+.catalogue{max-width:1440px;margin:0 auto;padding:40px 44px 80px}
+.cat-head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;padding-bottom:14px;border-bottom:1px solid var(--ink);margin-bottom:44px}
+.cat-head h2{font-family:'Marcellus',serif;font-size:36px;letter-spacing:-0.015em}
+.cat-head h2 em{font-style:italic;color:var(--accent)}
+.cat-head .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;text-align:right}
+.cat-head .meta strong{color:var(--accent);font-weight:500}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:44px 32px}
+
+.card{
+  display:flex;flex-direction:column;gap:20px;cursor:pointer;
+  opacity:1;transition:opacity .3s;
+}
+.card.hidden{display:none}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.card-head .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.card-head .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.card-head .tag{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;
+  padding:3px 9px;border:1px solid var(--rule-str);border-radius:999px;color:var(--ink-2);font-weight:500;
+}
+.card-head .tag.light{background:var(--paper-2)}
+.card-head .tag.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.card-head .tag.mid{background:var(--paper-3)}
+
+/* the preview plate - uses iframe to show REAL template as thumbnail */
+.preview{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+  border:1px solid var(--rule-str);background:var(--paper-2);
+  transition:all .3s ease;
+}
+.card:hover .preview{border-color:var(--ink);box-shadow:0 40px 80px -40px rgba(26,22,18,0.25);transform:translateY(-4px)}
+
+.preview iframe{
+  position:absolute;top:0;left:0;
+  width:400%;height:400%;
+  border:none;pointer-events:none;
+  transform:scale(0.25);transform-origin:0 0;
+  background:transparent;
+}
+
+.preview-overlay{
+  position:absolute;inset:0;background:linear-gradient(180deg,transparent 70%,rgba(26,22,18,0.01) 100%);
+  pointer-events:none;z-index:2;
+}
+
+.preview-corner-tl,.preview-corner-br{position:absolute;z-index:3;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:4px 10px;font-weight:500}
+.preview-corner-tl{top:12px;left:12px}
+.preview-corner-br{bottom:12px;right:12px;background:var(--accent)}
+
+/* open button on hover */
+.preview-open{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(26,22,18,0.55);opacity:0;transition:opacity .25s;z-index:4;
+  backdrop-filter:saturate(0.8) blur(2px);
+}
+.preview:hover .preview-open{opacity:1}
+.preview-open .pill{
+  padding:12px 24px;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.04em;border-radius:999px;
+  transform:translateY(6px);transition:transform .3s;display:inline-flex;align-items:center;gap:8px;
+}
+.preview:hover .preview-open .pill{transform:translateY(0)}
+
+/* card info */
+.card-info h3{font-family:'Marcellus',serif;font-size:34px;line-height:1;letter-spacing:-0.012em;margin-bottom:6px}
+.card-info h3 em{font-style:italic;color:var(--accent)}
+.card-info .kicker{font-family:'Marcellus',serif;font-style:italic;font-size:18px;color:var(--ink-2);line-height:1.35;margin-bottom:14px}
+.card-info .desc{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin-bottom:18px;max-width:560px}
+.card-info .desc em{color:var(--accent);font-style:italic}
+
+.card-specs{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding-top:14px;border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+}
+.spec{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.spec .k{color:var(--mute);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;font-size:10px}
+.spec .v{color:var(--ink);font-weight:500;text-align:right;letter-spacing:0.02em}
+.spec .v em{color:var(--accent);font-style:normal}
+
+.palette{display:flex;gap:4px;align-items:center}
+.palette .sw{width:12px;height:12px;border:1px solid var(--rule-str);border-radius:2px}
+
+.card-footer{
+  display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-top:10px;border-top:1px dashed var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-2);font-weight:500;
+}
+.card-footer a{color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px}
+.card-footer a:hover{color:var(--accent-dp)}
+
+/* ============ MATCHMAKER ============ */
+.match{
+  max-width:1440px;margin:0 auto;padding:80px 44px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%);
+}
+.match-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--ink);margin-bottom:40px}
+.match-head h2{font-family:'Marcellus',serif;font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-0.02em}
+.match-head h2 em{font-style:italic;color:var(--accent)}
+.match-head .sub{font-family:'Marcellus',serif;font-style:italic;color:var(--ink-2);font-size:18px;line-height:1.5;max-width:440px;justify-self:end;text-align:right}
+.match-head .sub em{color:var(--accent);font-style:italic}
+
+.quiz{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.q{padding:24px 26px;background:var(--paper);border:1px solid var(--rule-str)}
+.q .qn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:10px}
+.q h4{font-family:'Marcellus',serif;font-size:22px;line-height:1.2;letter-spacing:-0.008em;margin-bottom:18px}
+.q h4 em{font-style:italic;color:var(--accent)}
+.q .opts{display:flex;flex-direction:column;gap:6px}
+.q .opt{
+  padding:11px 14px;background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;
+  font-size:13.5px;color:var(--ink);text-align:left;transition:all .15s;cursor:pointer;
+}
+.q .opt:hover{background:var(--paper-3);border-color:var(--rule-str)}
+.q .opt.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.q .opt em{font-style:italic;color:var(--accent)}
+.q .opt.sel em{color:#F4B89F}
+
+.match-result{
+  margin-top:36px;padding:32px 36px;background:var(--ink);color:var(--paper);
+  display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;
+  min-height:120px;
+}
+.match-result.empty .rname{opacity:0.3}
+.match-result .rbadge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:#F4B89F;font-weight:500}
+.match-result .rname{font-family:'Marcellus',serif;font-size:clamp(28px,4vw,48px);line-height:1;letter-spacing:-0.015em;margin-top:6px}
+.match-result .rname em{font-style:italic;color:#F4B89F}
+.match-result .rdesc{font-family:'Marcellus',serif;font-style:italic;color:var(--paper-2);font-size:15px;line-height:1.5;max-width:400px;margin-top:8px}
+.match-result .ropen{padding:14px 24px;background:var(--accent);color:var(--paper);font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:all .2s;display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
+.match-result .ropen:hover{background:#D95738}
+
+/* ============ FOOTER CTA ============ */
+.close{max-width:1440px;margin:0 auto;padding:100px 44px 60px;text-align:center}
+.close-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:28px;display:inline-flex;gap:14px;align-items:center}
+.close-kicker::before,.close-kicker::after{content:"";width:28px;height:1px;background:var(--accent)}
+
+.close h2{font-family:'Marcellus',serif;font-size:clamp(52px,8vw,132px);line-height:0.94;letter-spacing:-0.028em;margin-bottom:24px}
+.close h2 em{font-style:italic;color:var(--accent)}
+.close .sub{font-family:'Marcellus',serif;font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--ink-2);max-width:640px;margin:0 auto 44px;line-height:1.45}
+.close .sub em{color:var(--accent)}
+
+.close-row{max-width:900px;margin:0 auto 50px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:2px solid var(--ink)}
+.close-row a{padding:18px 20px;background:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;text-align:left;transition:all .2s}
+.close-row a:hover{background:var(--ink);color:var(--paper)}
+.close-row a:hover .v em{color:#F4B89F}
+.close-row .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.close-row a:hover .k{color:var(--mute-2)}
+.close-row .v{font-family:'Marcellus',serif;font-size:17px;letter-spacing:-0.005em}
+.close-row .v em{color:var(--accent);font-style:italic}
+
+footer{max-width:1440px;margin:0 auto;padding:24px 44px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;border-top:1px solid var(--rule)}
+footer .sys{color:var(--olive)}
+footer .sys::before{content:"●";margin-right:6px;animation:pulse 2s infinite}
+
+@media (max-width:1100px){
+  .grid{grid-template-columns:1fr}
+  .hero-meta-row{grid-template-columns:1fr 1fr}
+  .hero-meta-row .lead{grid-column:span 2}
+  .quiz{grid-template-columns:1fr}
+  .match-head,.match-result{grid-template-columns:1fr;gap:20px;text-align:left}
+  .match-head .sub{text-align:left;justify-self:start}
+  .match-result .ropen{justify-self:start}
+}
+@media (max-width:680px){
+  nav.top .inner{padding:0 22px}
+  .nav-meta{display:none}
+  .hero,.filters,.catalogue,.match,.close{padding-left:22px;padding-right:22px}
+  .hero{padding-top:44px;padding-bottom:36px}
+  .hero-top{grid-template-columns:1fr;gap:4px;text-align:center}
+  .hero-top .r{text-align:center}
+  .hero-meta-row{grid-template-columns:1fr 1fr;gap:24px}
+  .hero-meta-row .lead{grid-column:span 2;font-size:17px}
+  .cat-head{grid-template-columns:1fr;gap:10px}
+  .cat-head .meta{text-align:left}
+  .card-specs{grid-template-columns:1fr}
+  .match{padding:56px 22px}
+  footer{padding:20px 22px 34px;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · catalog · v1.0</div>
+
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="brand">Astral <em>Integration</em></a>
+    <div class="nav-meta">/ the directions · 12 specimens · rev. 04.17</div>
+    <button class="btn-contact">Send the mess →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div>Mazunte · Oaxaca · MX</div>
+    <div class="c">— The specimen book, Edition I —</div>
+    <div class="r">Spring 2026</div>
+  </div>
+
+  <div class="hero-kicker">/ A curated specimen book</div>
+  <h1>Twelve directions<br>for your <em>digital home.</em></h1>
+
+  <div class="hero-meta-row">
+    <div class="lead">Every build begins with a conversation about <em>shape, tone, and atmosphere</em> — not just features. Below are the twelve shapes this studio tends toward. Browse them, pick one, or let us mix two.</div>
+    <div class="hero-stat"><div class="n">12<em>.</em></div><div class="l">Directions<br>on offer</div></div>
+    <div class="hero-stat"><div class="n">48<em>h</em></div><div class="l">First build<br>from any direction</div></div>
+    <div class="hero-stat"><div class="n"><em>1</em></div><div class="l">Studio<br>one person</div></div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filters">
+  <span class="flbl">/ filter</span>
+  <button class="filter-btn active" data-f="all">All <span class="c">(12)</span></button>
+  <button class="filter-btn" data-f="light">Light <span class="c">(9)</span></button>
+  <button class="filter-btn" data-f="dark">Dark <span class="c">(3)</span></button>
+  <button class="filter-btn" data-f="editorial">Editorial</button>
+  <button class="filter-btn" data-f="technical">Technical</button>
+  <button class="filter-btn" data-f="minimal">Minimal</button>
+  <button class="filter-btn" data-f="maximalist">Maximalist</button>
+  <button class="filter-btn" data-f="imageled">Image-led</button>
+  <button class="filter-btn" data-f="organic">Organic</button>
+</div>
+
+<!-- CATALOGUE GRID -->
+<section class="catalogue">
+  <div class="cat-head">
+    <h2>The <em>specimens.</em></h2>
+    <div class="meta">/ Hover to enter · click to open full · <strong>12 directions</strong></div>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <!-- 01 Field Catalog -->
+    <div class="card" data-tags="light,minimal,technical,low">
+      <div class="card-head">
+        <div class="n">№ 01 / Field Catalog</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Minimal</span>
+          <span class="tag">Low-risk</span>
+        </div>
+      </div>
+      <a href="/templates/v2-alt/" target="_blank" class="preview">
+        <iframe src="/templates/v2-alt/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Field Catalog</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The Field <em>Catalog.</em></h3>
+        <p class="kicker">A precision specification sheet.</p>
+        <p class="desc">Bone paper with a single tomato-red accent. Hero *is* the table of contents. Every section reads as a technical spec — four pillars as a spec table, three tiers as a rate card, FAQ as "Notices." Folio bars on every section. The <em>safest, broadest-appeal direction</em> — reads as sophisticated to teachers and credible to investors.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Archivo + Space Mono</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F2EDDF"></span><span class="sw" style="background:#131210"></span><span class="sw" style="background:#C83E2F"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Schools</em> · <em>Orgs</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">1,667</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 01</span><a href="/templates/v2-alt/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 02 Letter -->
+    <div class="card" data-tags="light,editorial,minimal,medium">
+      <div class="card-head">
+        <div class="n">№ 02 / Letter</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Editorial</span>
+          <span class="tag">Intimate</span>
+        </div>
+      </div>
+      <a href="/templates/letter/" target="_blank" class="preview">
+        <iframe src="/templates/letter/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Letter</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Letter.</em></h3>
+        <p class="kicker">A long-form personal letter, signed in hand.</p>
+        <p class="desc">Spectral serif on warm ivory, single column at 680px. The whole site is <em>one scrolling letter</em> — postmark header, salutation, six numbered sections via asterisms, 14 projects named inline as italic bracketed links, pricing as an inset callout, handwritten Caveat signature at the close, reply form inline. The version that says <em>I write. Let me write to you.</em></p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Spectral + Plex Sans + Caveat</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F4ECDD"></span><span class="sw" style="background:#1D1A10"></span><span class="sw" style="background:#8B3A1C"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Solo teachers</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">350</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 02</span><a href="/templates/letter/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 03 README -->
+    <div class="card" data-tags="dark,technical,high">
+      <div class="card-head">
+        <div class="n">№ 03 / README</div>
+        <div class="tags">
+          <span class="tag dark">Dark</span>
+          <span class="tag">Technical</span>
+          <span class="tag">High-risk</span>
+        </div>
+      </div>
+      <a href="/templates/readme/" target="_blank" class="preview">
+        <iframe src="/templates/readme/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">README</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>README.</em></h3>
+        <p class="kicker">Full GitHub dark-mode cosplay.</p>
+        <p class="desc">Real <code>astral-labs/astral-integration</code> breadcrumb, star/watch/fork buttons, tab bar. The README rendered as markdown — <code>##</code> headings, syntax-highlighted code blocks for the tool stack and <code>function work_together()</code> pseudocode, proper markdown tables. Sidebar with topic tags, language breakdown, commit log with SHAs. <em>Filters hard on dev-native buyers.</em> Completely illegible to a reiki master — which is the point.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">IBM Plex Mono + Inter Tight</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#0D1117"></span><span class="sw" style="background:#3FB950"></span><span class="sw" style="background:#58A6FF"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Technical buyers</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">659</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 03</span><a href="/templates/readme/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 04 Anti-Site -->
+    <div class="card" data-tags="light,minimal,high">
+      <div class="card-head">
+        <div class="n">№ 04 / Anti-Site</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Minimal</span>
+          <span class="tag">Radical</span>
+        </div>
+      </div>
+      <a href="/templates/anti-site/" target="_blank" class="preview">
+        <iframe src="/templates/anti-site/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Anti-Site</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Anti-Site.</em></h3>
+        <p class="kicker">One question. One input. Nothing else.</p>
+        <p class="desc">Full-viewport hero: "Hi. What are you working <em>on?</em>" at ~130px + one huge pill input + three clickable example chips. Scroll reveals a single long sentence, 14 project chips, three lines of pricing, three contact pills. No navigation, no CTAs until contact. <em>Radical minimalism</em> — rewards confidence. If you're comfortable letting 80% of visitors bounce, this is the play.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Bricolage Grotesque + JB Mono</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F1ECE2"></span><span class="sw" style="background:#0F0E0B"></span><span class="sw" style="background:#D83F1E"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Confident sole-operators</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">477</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 04</span><a href="/templates/anti-site/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 05 Poster -->
+    <div class="card" data-tags="light,maximalist,medium">
+      <div class="card-head">
+        <div class="n">№ 05 / Poster</div>
+        <div class="tags">
+          <span class="tag mid">Color-blocks</span>
+          <span class="tag">Maximalist</span>
+          <span class="tag">Display</span>
+        </div>
+      </div>
+      <a href="/templates/poster/" target="_blank" class="preview">
+        <iframe src="/templates/poster/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Poster</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Poster.</em></h3>
+        <p class="kicker">Maximalist Swiss-poster color blocks.</p>
+        <p class="desc">Syne 800 + Figtree. Yellow hero with a rotating red stamp, ink marquee, deep-klein-blue manifesto with yellow drop cap, cream vs-stack block, red work grid (asymmetric 12-col cards in big/medium/small), cream pricing, black contact, yellow footer. <em>Every section a color-committed block.</em> The "I'm confident and want to be seen" version.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Syne + Figtree</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F6C648"></span><span class="sw" style="background:#1C2E8A"></span><span class="sw" style="background:#D43423"></span><span class="sw" style="background:#F5EFE1"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Bold brands</em> · <em>studios</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">493</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 05</span><a href="/templates/poster/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 06 Terminal -->
+    <div class="card" data-tags="dark,technical,high">
+      <div class="card-head">
+        <div class="n">№ 06 / Terminal</div>
+        <div class="tags">
+          <span class="tag dark">Dark</span>
+          <span class="tag">Technical</span>
+          <span class="tag">CLI</span>
+        </div>
+      </div>
+      <a href="/templates/terminal/" target="_blank" class="preview">
+        <iframe src="/templates/terminal/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Terminal</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Terminal.</em></h3>
+        <p class="kicker">Pure CLI interface, all monospace, phosphor green.</p>
+        <p class="desc">Source Code Pro all the way. Five stacked terminal windows with red/amber/green chrome dots, typing cursor, ASCII banner for "ASTRAL", tree-diagnostic of the current stack, markdown tables for the catalogue, syntax-highlighted <code>function work_together()</code>, YAML pricing, a real <code>$ ./send_mess</code> input at contact. Scanline overlay. <em>Only you could ship this.</em> Maximum signal compression for the dev audience.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Source Code Pro (mono)</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#0B0F0A"></span><span class="sw" style="background:#4ADE80"></span><span class="sw" style="background:#FFA630"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Dev-flex moment</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">550</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 06</span><a href="/templates/terminal/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 07 Newspaper -->
+    <div class="card" data-tags="light,editorial,low">
+      <div class="card-head">
+        <div class="n">№ 07 / Newspaper</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Editorial</span>
+          <span class="tag">Broadsheet</span>
+        </div>
+      </div>
+      <a href="/templates/newspaper/" target="_blank" class="preview">
+        <iframe src="/templates/newspaper/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Newspaper</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Newspaper.</em></h3>
+        <p class="kicker">Full broadsheet, "The Astral Times."</p>
+        <p class="desc">Libre Caslon + Work Sans. "Vol. XIII No. 4" masthead with ornamental glyphs, front-page lead article in 2-col body with drop cap, aside sidebar with stack-cost breakdown + pull quote + issue TOC, interior "four pillars" feature in 3 cols, works as an obituary-style 3-col list, rate card as classified, correspondence section with form + hotline. <em>Reads like a thing someone actually publishes.</em></p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Libre Caslon + Work Sans</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F7F1E3"></span><span class="sw" style="background:#16120B"></span><span class="sw" style="background:#B02418"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Content-rich practices</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~600</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 07</span><a href="/templates/newspaper/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 08 Quarterly -->
+    <div class="card" data-tags="light,editorial,medium">
+      <div class="card-head">
+        <div class="n">№ 08 / Quarterly</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Editorial</span>
+          <span class="tag">Magazine</span>
+        </div>
+      </div>
+      <a href="/templates/quarterly/" target="_blank" class="preview">
+        <iframe src="/templates/quarterly/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Quarterly</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Quarterly.</em></h3>
+        <p class="kicker">Curated rare release. Issue 04, Spring 2026.</p>
+        <p class="desc">Bodoni Moda + Vollkorn. "Astral Quarterly" masthead with high-contrast Didone wordmark, cover feature with gradient plate, 7-piece TOC, editor's letter with drop cap + 2-col body + signature, feature case study on Sacred Counsel with pull quote + specs sidebar + client blockquote, photo essay of 5 gradient plates (hammock/dish/coffee/terminal/village), letters to editor, back-page ad. <em>Recurring-publication angle baked in.</em></p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Bodoni Moda + Vollkorn</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F6F0DF"></span><span class="sw" style="background:#0E4946"></span><span class="sw" style="background:#BA7C14"></span><span class="sw" style="background:#A7251B"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Studios</em> · <em>publications</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~640</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 08</span><a href="/templates/quarterly/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 09 Gallery -->
+    <div class="card" data-tags="light,imageled,low">
+      <div class="card-head">
+        <div class="n">№ 09 / Gallery</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Image-led</span>
+          <span class="tag">Case study</span>
+        </div>
+      </div>
+      <a href="/templates/gallery/" target="_blank" class="preview">
+        <iframe src="/templates/gallery/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Gallery</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Gallery.</em></h3>
+        <p class="kicker">Work-first. The work speaks, not the copy.</p>
+        <p class="desc">Space Grotesk + Literata. Spare hero with one literata italic line. Six full-width alternating case-study spreads — each with 3/4 gradient plate + SVG sacred-geometry ornament + corner chrome + caption bar + editorial copy with kicker/h3/deck/4-col specs. Then 8-up grid of remaining projects. 3-pill contact close. <em>Lets the 170-build track record carry the page.</em></p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Space Grotesk + Literata</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F4F2ED"></span><span class="sw" style="background:#141311"></span><span class="sw" style="background:#6B1F24"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Track-record-forward</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~680</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 09</span><a href="/templates/gallery/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 10 Blueprint -->
+    <div class="card" data-tags="light,technical,medium">
+      <div class="card-head">
+        <div class="n">№ 10 / Blueprint</div>
+        <div class="tags">
+          <span class="tag mid">Blue paper</span>
+          <span class="tag">Technical</span>
+          <span class="tag">Drafting</span>
+        </div>
+      </div>
+      <a href="/templates/blueprint/" target="_blank" class="preview">
+        <iframe src="/templates/blueprint/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Blueprint</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Blueprint.</em></h3>
+        <p class="kicker">Architectural technical drawing.</p>
+        <p class="desc">Anonymous Pro + Urbanist. Graph-paper bg, title block header (Drawing 001 · Rev 04 · Scale 1:1), dimension lines around the hero with red hashmarks + side rules + corner crops, "Drawing A-1 · Floor Plan · four pillars" card, "Schedule B-1 · as-built projects" table, "Elevation C-1 · pricing tiers" drawn as elevation boxes with height labels, "Section D-1 · manufacturer" plate, full six-cell cartouche at the bottom. <em>Most technical thing on the list.</em></p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Anonymous Pro + Urbanist</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#E8EEF3"></span><span class="sw" style="background:#1B3256"></span><span class="sw" style="background:#C8372D"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Engineering-minded</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~680</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 10</span><a href="/templates/blueprint/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 11 Notebook -->
+    <div class="card" data-tags="light,organic,medium">
+      <div class="card-head">
+        <div class="n">№ 11 / Notebook</div>
+        <div class="tags">
+          <span class="tag light">Light</span>
+          <span class="tag">Organic</span>
+          <span class="tag">Handwritten</span>
+        </div>
+      </div>
+      <a href="/templates/notebook/" target="_blank" class="preview">
+        <iframe src="/templates/notebook/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Notebook</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Notebook.</em></h3>
+        <p class="kicker">A page torn from a paper notebook, ink still wet.</p>
+        <p class="desc">Caveat + EB Garamond on ruled cream paper with a red margin line. Handwritten headings, yellow highlighter marks on key words, sticky-note annotations, margin doodles, sketched pillar boxes with offset red shadows, the stack audit as a hand-drawn checklist with strikethroughs, three tiers with circled time estimates, contact as a taped-in postcard with a red stamp. <em>Maximum warmth, maximum hand</em> — feels like a person, not a product.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Caveat + EB Garamond</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#F5F0E4"></span><span class="sw" style="background:#142036"></span><span class="sw" style="background:#C8372D"></span><span class="sw" style="background:#F5E280"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Solo teachers</em> · <em>healers</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~670</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 11</span><a href="/templates/notebook/" target="_blank">Open full →</a></div>
+    </div>
+
+    <!-- 12 Cinema -->
+    <div class="card" data-tags="dark,imageled,medium">
+      <div class="card-head">
+        <div class="n">№ 12 / Cinema</div>
+        <div class="tags">
+          <span class="tag dark">Dark</span>
+          <span class="tag">Image-led</span>
+          <span class="tag">Cinematic</span>
+        </div>
+      </div>
+      <a href="/templates/cinema/" target="_blank" class="preview">
+        <iframe src="/templates/cinema/" loading="lazy" scrolling="no"></iframe>
+        <div class="preview-overlay"></div>
+        <div class="preview-corner-tl">Cinema</div>
+        <div class="preview-corner-br">v0.9</div>
+        <div class="preview-open"><span class="pill">Open live preview →</span></div>
+      </a>
+      <div class="card-info">
+        <h3>The <em>Cinema.</em></h3>
+        <p class="kicker">Full-bleed film reel. Persistent letterbox. Every section a scene.</p>
+        <p class="desc">Playfair Display + Inter + JetBrains Mono timestamps. Ultra-dark with warm gold and cream. Fixed letterbox bars top and bottom carrying live run-state. Opens on a cold-open title card with film grain, scrolls into a synopsis scene, then <em>five project "stills"</em> (21:9 gradient plates with sacred-geometry SVGs and corner chrome), then pricing as closing credits, then a final title card. <em>Carries strong imagery</em> — ideal for retreats and places that photograph well.</p>
+      </div>
+      <div class="card-specs">
+        <div class="spec"><span class="k">Type</span><span class="v">Playfair Display + Inter</span></div>
+        <div class="spec"><span class="k">Palette</span><span class="v palette"><span class="sw" style="background:#070605"></span><span class="sw" style="background:#EDE4D0"></span><span class="sw" style="background:#D4A34D"></span><span class="sw" style="background:#AC2E28"></span></span></div>
+        <div class="spec"><span class="k">Best for</span><span class="v"><em>Retreats</em> · <em>ceremony centers</em></span></div>
+        <div class="spec"><span class="k">Lines</span><span class="v">~600</span></div>
+      </div>
+      <div class="card-footer"><span>/ Specimen 12</span><a href="/templates/cinema/" target="_blank">Open full →</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATCHMAKER -->
+<section class="match">
+  <div class="match-head">
+    <h2>Not sure which <em>direction</em>?</h2>
+    <div class="sub">Answer three questions. I'll point you at the specimen that probably fits. <em>It's not magic.</em> It's just honest matching.</div>
+  </div>
+
+  <div class="quiz">
+    <div class="q" data-q="1">
+      <div class="qn">/ Question 01</div>
+      <h4>What kind of practice is it?</h4>
+      <div class="opts">
+        <button class="opt" data-v="solo">Solo teacher or <em>healer</em></button>
+        <button class="opt" data-v="school">Certification program or <em>school</em></button>
+        <button class="opt" data-v="retreat">Retreat / ceremony <em>center</em></button>
+        <button class="opt" data-v="collective">Studio, collective, <em>multi-brand</em></button>
+      </div>
+    </div>
+    <div class="q" data-q="2">
+      <div class="qn">/ Question 02</div>
+      <h4>Which feels most true?</h4>
+      <div class="opts">
+        <button class="opt" data-v="words">My <em>words</em> are my signature.</button>
+        <button class="opt" data-v="images">My <em>work</em> is very visual.</button>
+        <button class="opt" data-v="track">My <em>track record</em> speaks for itself.</button>
+        <button class="opt" data-v="voice">I want to sound <em>unmistakably me</em>.</button>
+      </div>
+    </div>
+    <div class="q" data-q="3">
+      <div class="qn">/ Question 03</div>
+      <h4>How much risk are you comfortable with?</h4>
+      <div class="opts">
+        <button class="opt" data-v="low">Safe. Broad appeal. <em>Everyone</em> should get it.</button>
+        <button class="opt" data-v="med">Distinctive but still <em>inviting</em>.</button>
+        <button class="opt" data-v="high">Bold. <em>Filter hard</em> on my ideal clients.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-result empty" id="match-result">
+    <div>
+      <div class="rbadge">/ Suggested direction</div>
+      <div class="rname" id="r-name">Answer all three <em>to see.</em></div>
+      <div class="rdesc" id="r-desc">Pick one option from each question above and the specimen that likely suits you will appear here.</div>
+    </div>
+    <a class="ropen" id="r-open" href="#" target="_blank" style="visibility:hidden">Open preview →</a>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close">
+  <div class="close-kicker">/ Begin a conversation</div>
+  <h2>Send me<br>the <em>mess.</em></h2>
+  <div class="sub">A voice memo at 2am. A messy google doc. A Linktree. Three screenshots. <em>Polish is not required, nor encouraged.</em> I'll read it and write back within a day.</div>
+
+  <div class="close-row">
+    <a href="mailto:jordi@astralintegration.studio"><span class="k">Email</span><span class="v">jordi@astral<em>.studio</em></span><span>↗</span></a>
+    <a href="#"><span class="k">Call</span><span class="v">30-min <em>discovery</em></span><span>↗</span></a>
+    <a href="#"><span class="k">Whatsapp</span><span class="v">+52 · <em>MZT hrs</em></span><span>↗</span></a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Astral Integration · Jordi Amat · Mazunte Oax · MX · catalog v1.0</div>
+  <div class="sys">All systems normal · 10 directions accepting inquiries</div>
+</footer>
+
+<script>
+// filter
+const buttons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.card');
+buttons.forEach(b=>b.addEventListener('click',()=>{
+  buttons.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const f = b.dataset.f;
+  cards.forEach(c=>{
+    if(f==='all' || c.dataset.tags.includes(f)) c.classList.remove('hidden');
+    else c.classList.add('hidden');
+  });
+}));
+
+// matchmaker
+const ans = {1:null,2:null,3:null};
+document.querySelectorAll('.q').forEach(q=>{
+  const qn = q.dataset.q;
+  q.querySelectorAll('.opt').forEach(o=>{
+    o.addEventListener('click',()=>{
+      q.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      o.classList.add('sel');
+      ans[qn] = o.dataset.v;
+      compute();
+    });
+  });
+});
+
+const recs = {
+  // solo teacher
+  'solo-words-low':   ['Letter','The Letter','A personal long-form letter in Spectral. Intimate, literary, signed by hand.','letter.html'],
+  'solo-words-med':   ['Notebook','The Notebook','A page torn from a paper journal. Maximum warmth, maximum hand — feels like a person, not a product.','notebook.html'],
+  'solo-words-high':  ['Anti-Site','The Anti-Site','One question, one input, nothing else. For the confident sole operator.','anti-site.html'],
+  'solo-voice-low':   ['Field Catalog','The Field Catalog','Precision spec-sheet in Archivo — sophisticated, broad-appeal, safe.','astral-integration-v2.html'],
+  'solo-voice-med':   ['Notebook','The Notebook','Handwritten warmth with structure. Your voice on ruled paper.','notebook.html'],
+  'solo-voice-high':  ['Terminal','The Terminal','Pure CLI, phosphor green, radical dev-native filtering.','terminal.html'],
+  'solo-images-low':  ['Gallery','The Gallery','Work-first, image-led. Let the work speak.','gallery.html'],
+  'solo-images-med':  ['Cinema','The Cinema','Full-bleed cinematic. Letterboxed scenes carry your imagery beautifully.','cinema.html'],
+  'solo-images-high': ['Cinema','The Cinema','Dark, cinematic, letterboxed. For practices with strong photography.','cinema.html'],
+  'solo-track-low':   ['Gallery','The Gallery','Work-first. Your track record carries the page.','gallery.html'],
+  'solo-track-med':   ['Gallery','The Gallery','Case-study spreads, one per project.','gallery.html'],
+  'solo-track-high':  ['Blueprint','The Blueprint','Technical drafting, engineering identity forward.','blueprint.html'],
+
+  // school
+  'school-words-low':   ['Newspaper','The Newspaper','Full broadsheet. If you have a lot to say and enough archive to sustain the metaphor.','newspaper.html'],
+  'school-words-med':   ['Quarterly','The Quarterly','Curated rare release. Magazine spreads, recurring-publication angle built in.','quarterly.html'],
+  'school-words-high':  ['Letter','The Letter','A personal long-form letter even at school scale. Brave.','letter.html'],
+  'school-voice-low':   ['Field Catalog','The Field Catalog','Precision spec-sheet — reads as sophisticated to students and credible to faculty.','astral-integration-v2.html'],
+  'school-voice-med':   ['Quarterly','The Quarterly','Magazine spreads. Signals rarity, craft, and institutional weight.','quarterly.html'],
+  'school-voice-high':  ['Poster','The Poster','Maximalist color blocks. Your school visible from across the internet.','poster.html'],
+  'school-images-low':  ['Gallery','The Gallery','Image-led, lets your facility + alumni speak.','gallery.html'],
+  'school-images-med':  ['Quarterly','The Quarterly','Photo essay built in. Visual, editorial, curated.','quarterly.html'],
+  'school-images-high': ['Cinema','The Cinema','Cinematic scenes carry your cohorts, your facility, your students beautifully.','cinema.html'],
+  'school-track-low':   ['Field Catalog','The Field Catalog','Precision spec-sheet — your decades on display, catalogue-style.','astral-integration-v2.html'],
+  'school-track-med':   ['Newspaper','The Newspaper','Every year of teaching becomes a column-inch of evidence.','newspaper.html'],
+  'school-track-high':  ['Blueprint','The Blueprint','Technical drafting. Signals rigor.','blueprint.html'],
+
+  // retreat
+  'retreat-words-low':   ['Cinema','The Cinema','Cinematic is the retreat winner — your land, your space, your ceremonies.','cinema.html'],
+  'retreat-words-med':   ['Quarterly','The Quarterly','Editorial spreads that honor the depth of the work.','quarterly.html'],
+  'retreat-words-high':  ['Letter','The Letter','A personal letter from the founder. Bold for a retreat.','letter.html'],
+  'retreat-voice-low':   ['Quarterly','The Quarterly','Magazine warmth + structural depth.','quarterly.html'],
+  'retreat-voice-med':   ['Cinema','The Cinema','Letterboxed scenes, persistent atmosphere, warm gold accent.','cinema.html'],
+  'retreat-voice-high':  ['Poster','The Poster','Maximalist. Bold land, bold voice.','poster.html'],
+  'retreat-images-low':  ['Cinema','The Cinema','Cinematic, full-bleed, letterboxed. The retreat winner.','cinema.html'],
+  'retreat-images-med':  ['Cinema','The Cinema','Cinematic, full-bleed, letterboxed. Built for retreat centers.','cinema.html'],
+  'retreat-images-high': ['Cinema','The Cinema','Dark cinema, warm gold, maximum atmosphere.','cinema.html'],
+  'retreat-track-low':   ['Quarterly','The Quarterly','Editorial. Lets the decades of work accrete gravitas.','quarterly.html'],
+  'retreat-track-med':   ['Gallery','The Gallery','Case-study spreads. Each retreat its own chapter.','gallery.html'],
+  'retreat-track-high':  ['Cinema','The Cinema','Cinematic spreads with case-study gravity.','cinema.html'],
+
+  // collective
+  'collective-words-low':   ['Field Catalog','The Field Catalog','Multi-tenant spec-sheet. Handles many brands cleanly.','astral-integration-v2.html'],
+  'collective-words-med':   ['Quarterly','The Quarterly','Magazine structure holds multiple brands well.','quarterly.html'],
+  'collective-words-high':  ['Letter','The Letter','Letters from one collective voice.','letter.html'],
+  'collective-voice-low':   ['Field Catalog','The Field Catalog','Spec-sheet structure holds every brand as a row.','astral-integration-v2.html'],
+  'collective-voice-med':   ['Poster','The Poster','Color-block sections, one per brand.','poster.html'],
+  'collective-voice-high':  ['Poster','The Poster','Maximalist. Each brand its own color block.','poster.html'],
+  'collective-images-low':  ['Gallery','The Gallery','Image-led case studies — one spread per brand.','gallery.html'],
+  'collective-images-med':  ['Cinema','The Cinema','Cinematic scenes — one reel per brand in the collective.','cinema.html'],
+  'collective-images-high': ['Poster','The Poster','Maximalist color blocks plus image plates.','poster.html'],
+  'collective-track-low':   ['Field Catalog','The Field Catalog','Spec-sheet structure, multi-brand catalogue native.','astral-integration-v2.html'],
+  'collective-track-med':   ['Gallery','The Gallery','Case-study spreads — one per brand.','gallery.html'],
+  'collective-track-high':  ['Blueprint','The Blueprint','Technical drafting, multi-tenant architecture visible.','blueprint.html'],
+};
+
+function compute(){
+  if(ans[1] && ans[2] && ans[3]){
+    const key = `${ans[1]}-${ans[2]}-${ans[3]}`;
+    const r = recs[key] || ['Field Catalog','The Field Catalog','A safe, broad-appeal starting point you can iterate from.','astral-integration-v2.html'];
+    const wrap = document.getElementById('match-result');
+    wrap.classList.remove('empty');
+    document.getElementById('r-name').innerHTML = r[1].replace('The ','The <em>').replace(/([A-Z][a-zA-Z- ]+)$/,'$1</em>').replace('</em></em>','</em>');
+    document.getElementById('r-desc').textContent = r[2];
+    const open = document.getElementById('r-open');
+    open.href = r[3];
+    open.style.visibility = 'visible';
+  }
+}
+</script>
+
+</body>
+</html>

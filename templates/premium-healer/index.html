@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#14100b" />
+<title>Skylar Acamesis — Medical Intuitive & Master Energy Healer</title>
+<meta name="description" content="Master Energy Healer and Medical Intuitive. Creator of the Medical Intuitive Technique. Private sessions, the 10-month Mastermind, and the Association for certified practitioners." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   TOKENS
+========================================================= */
+:root {
+  --ink:         #14100b;
+  --ink-soft:    #1f1811;
+  --ink-line:    rgba(244,236,218,0.08);
+  --paper:       #f4ecda;
+  --paper-warm:  #ebdfc5;
+  --paper-line:  #d6c7a6;
+  --rose:        #c9a18a;
+  --gold:        #a87f48;
+  --gold-soft:   #c9a268;
+  --sage:        #7a8770;
+  --crimson:     #6b2a2a;
+
+  --f-display:   'Fraunces', serif;
+  --f-italic:    'Instrument Serif', serif;
+  --f-mono:      'IBM Plex Mono', ui-monospace, monospace;
+
+  --container:   1200px;
+  --ease:        cubic-bezier(.2,.7,.2,1);
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 14;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+section { scroll-margin-top: 80px; }
+
+/* =========================================================
+   TYPOGRAPHIC PRIMITIVES
+========================================================= */
+.f-display    { font-family: var(--f-display); font-variation-settings: "opsz" 144; font-weight: 300; letter-spacing: -0.02em; }
+.f-italic     { font-family: var(--f-italic); font-style: italic; letter-spacing: -0.01em; }
+.f-mono       { font-family: var(--f-mono); font-weight: 400; letter-spacing: 0.06em; }
+.italic-display { font-family: var(--f-italic); font-style: italic; }
+
+.smallcaps {
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+  font-weight: 400;
+}
+.smallcaps-l {
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.h-headline {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144;
+  font-weight: 300;
+  font-size: clamp(68px, 14vw, 220px);
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  color: var(--paper);
+  margin: 0;
+}
+.h-headline-italic {
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: clamp(40px, 8vw, 128px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--gold-soft);
+}
+
+.disp-xl {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.disp-lg {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 96;
+  font-weight: 300;
+  font-size: clamp(32px, 4.4vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.disp-md {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 48;
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.prose-editorial {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 24;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.72;
+  letter-spacing: 0.003em;
+}
+.prose-editorial p + p { margin-top: 1.2em; }
+.prose-on-ink { color: rgba(244,236,218,0.84); }
+
+.drop-cap::first-letter {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144;
+  font-weight: 300;
+  font-size: 5.2em;
+  line-height: 0.88;
+  float: left;
+  padding: 8px 14px 0 0;
+  color: var(--gold);
+}
+
+.stat-num {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144;
+  font-weight: 300;
+  font-size: clamp(44px, 5vw, 74px);
+  line-height: 1;
+  color: var(--gold-soft);
+  letter-spacing: -0.02em;
+}
+
+/* =========================================================
+   SURFACES & UTILITIES
+========================================================= */
+.surface-ink   { background: var(--ink); color: var(--paper); }
+.surface-paper { background: var(--paper); color: var(--ink); }
+.surface-warm  { background: var(--paper-warm); color: var(--ink); }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.section {
+  padding: clamp(100px, 14vw, 180px) 24px;
+  position: relative;
+}
+
+.grain { position: relative; }
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0.25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+.grain-soft::after { opacity: 0.05; }
+
+.hr-gold  { border: 0; border-top: 1px solid var(--gold); opacity: 0.55; margin: 0; }
+
+/* =========================================================
+   LINKS
+========================================================= */
+.link-ink {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.link-ink::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  transition: opacity 300ms var(--ease);
+}
+.link-ink:hover::after { opacity: 1; }
+
+.link-gold {
+  color: var(--gold);
+  display: inline-block;
+  position: relative;
+  padding-bottom: 3px;
+}
+.link-gold::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0.3);
+  transform-origin: left center;
+  transition: transform 600ms var(--ease);
+}
+.link-gold:hover::after { transform: scaleX(1); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  min-height: 48px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  transition: background 500ms var(--ease), letter-spacing 500ms var(--ease);
+}
+.btn-ghost:hover { background: var(--crimson); letter-spacing: 0.28em; }
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  padding: 22px 24px;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 600ms var(--ease), border-color 600ms var(--ease), padding 500ms var(--ease);
+  color: var(--paper);
+}
+.nav.is-scrolled {
+  background: rgba(20,16,11,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--ink-line);
+  padding: 14px 24px;
+}
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { color: inherit; }
+
+.nav-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(244,236,218,0.3);
+  color: var(--paper);
+  padding: 10px 14px;
+  min-height: 40px;
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+  transition: border-color 300ms;
+}
+.nav-menu-btn:hover { border-color: var(--gold-soft); }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-menu-btn { display: inline-flex; align-items: center; gap: 8px; }
+  .nav-inquire-desktop { display: none; }
+}
+@media (min-width: 861px) {
+  .nav-inquire-mobile-wrap { display: none; }
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed; inset: 0;
+  background: var(--ink);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+}
+.mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.mobile-menu-top {
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--paper);
+}
+.mobile-menu-close {
+  background: transparent;
+  border: 1px solid rgba(244,236,218,0.3);
+  color: var(--paper);
+  padding: 10px 14px;
+  min-height: 40px;
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+}
+.mobile-menu-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.mobile-menu-list a {
+  color: var(--paper);
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: clamp(40px, 8vw, 64px);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  padding: 8px 0;
+  display: inline-block;
+  min-height: 44px;
+  transition: color 300ms;
+}
+.mobile-menu-list a:hover { color: var(--gold-soft); }
+.mobile-menu-list .index {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold-soft);
+  margin-right: 14px;
+  vertical-align: middle;
+}
+.mobile-menu-foot {
+  color: rgba(244,236,218,0.5);
+  padding-top: 20px;
+  border-top: 1px solid rgba(244,236,218,0.1);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero {
+  min-height: 100vh;
+  padding: 140px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: space-between;
+  gap: 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 70vw; height: 70vw;
+  background: radial-gradient(circle,
+    rgba(201,162,104,0.14) 0%,
+    rgba(201,162,104,0.04) 35%,
+    rgba(0,0,0,0) 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+.hero-rule {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 6%;
+  width: 1px;
+  background: rgba(244,236,218,0.08);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero-rule { display: none; }
+}
+.hero-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: space-between;
+  gap: 56px;
+  position: relative;
+  z-index: 2;
+}
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-top .right { text-align: right; }
+.hero-headline-row-offset { padding-left: 12%; }
+@media (max-width: 640px) {
+  .hero-headline-row-offset { padding-left: 4%; }
+}
+.hero-sub {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) 1fr;
+  gap: 48px;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .hero-sub { grid-template-columns: 1fr; gap: 32px; }
+}
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  padding-bottom: 4px;
+}
+
+/* =========================================================
+   METHOD / SACRED RINGS
+========================================================= */
+.method-rings {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 820px);
+  height: min(90vw, 820px);
+  pointer-events: none;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(1.035); }
+}
+.pulse-ring  { animation: pulse 8s ease-in-out infinite; transform-origin: center; }
+.pulse-ring.p2 { animation-delay: 2s; }
+.pulse-ring.p3 { animation-delay: 4s; }
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 640px) {
+  .method-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* =========================================================
+   PATHWAYS
+========================================================= */
+.pathways-head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+.path-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--paper-line);
+  align-items: baseline;
+  transition: background 600ms var(--ease);
+}
+.path-row:last-child { border-bottom: 1px solid var(--paper-line); }
+.path-row:hover { background: rgba(168,127,72,0.04); }
+.path-row:hover .path-name { color: var(--crimson); }
+.path-name { transition: color 500ms var(--ease); }
+.path-num {
+  font-family: var(--f-italic);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 40px;
+  line-height: 1;
+}
+.path-desc {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 24;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 620px;
+}
+.path-price { text-align: right; }
+
+@media (max-width: 720px) {
+  .path-row { grid-template-columns: 44px 1fr; gap: 16px; padding: 24px 0; }
+  .path-num { font-size: 32px; }
+  .path-price {
+    grid-column: 2;
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+/* =========================================================
+   MASTERMIND
+========================================================= */
+.mm-bg {
+  position: absolute; inset: 0;
+  background-image: url("https://skylaracamesis.xyz/img/hero-nature1.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  filter: grayscale(60%) contrast(105%);
+}
+.mm-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,16,11,0.85), rgba(20,16,11,0.96));
+}
+.mm-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 32px;
+  max-width: 880px;
+  margin: 0 auto 72px;
+  border-top: 1px solid rgba(201,162,104,0.32);
+  border-bottom: 1px solid rgba(201,162,104,0.32);
+  padding: 40px 0;
+}
+.mm-stat { text-align: center; }
+
+/* =========================================================
+   BOOK
+========================================================= */
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 860px) {
+  .book-grid { grid-template-columns: 1fr; gap: 60px; }
+}
+.book-art {
+  text-align: center;
+  padding: 24px;
+}
+.book-art img {
+  max-width: 320px;
+  margin: 0 auto;
+  box-shadow:
+    0 40px 80px -20px rgba(20,16,11,0.35),
+    0 8px 20px rgba(20,16,11,0.2);
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+.drift { animation: drift 22s ease-in-out infinite; }
+
+/* =========================================================
+   INQUIRY
+========================================================= */
+.inq-form { display: grid; gap: 32px; }
+.inq-label {
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 10px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+.inq-field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--paper-line);
+  padding: 14px 0;
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 24;
+  font-size: 20px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 400ms var(--ease);
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 48px;
+}
+select.inq-field { background-image: none; }
+.inq-field:focus { border-color: var(--gold); }
+.inq-field::placeholder {
+  font-family: var(--f-italic);
+  font-style: italic;
+  color: rgba(20,16,11,0.4);
+}
+textarea.inq-field { resize: vertical; min-height: 80px; font-size: 18px; line-height: 1.5; }
+
+.inq-received {
+  text-align: center;
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.3;
+  color: var(--ink);
+  padding: 64px 24px;
+  border: 1px solid var(--paper-line);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.foot-grid {
+  max-width: 1400px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 48px;
+  color: rgba(244,236,218,0.7);
+}
+.foot-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.foot-list a { color: inherit; }
+
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1100ms var(--ease), transform 1100ms var(--ease);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal-delay="1"] { transition-delay: 120ms; }
+[data-reveal-delay="2"] { transition-delay: 240ms; }
+[data-reveal-delay="3"] { transition-delay: 360ms; }
+[data-reveal-delay="4"] { transition-delay: 480ms; }
+[data-reveal-delay="5"] { transition-delay: 600ms; }
+
+/* Hero entrance */
+.h-enter > * { opacity: 0; transform: translateY(16px); animation: hEnter 1200ms var(--ease) forwards; }
+.h-enter > *:nth-child(1) { animation-delay: 100ms; }
+.h-enter > *:nth-child(2) { animation-delay: 260ms; }
+.h-enter > *:nth-child(3) { animation-delay: 420ms; }
+.h-enter > *:nth-child(4) { animation-delay: 580ms; }
+@keyframes hEnter { to { opacity: 1; transform: translateY(0); } }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .h-enter > * { opacity: 1; transform: none; animation: none; }
+  .pulse-ring, .drift { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* =========================================================
+   MOBILE TWEAKS
+========================================================= */
+@media (max-width: 640px) {
+  .section { padding: 90px 20px; }
+  .container { padding: 0 20px; }
+  .hero { padding: 120px 20px 60px; gap: 48px; }
+  .prose-editorial { font-size: 17px; line-height: 1.68; }
+  .drop-cap::first-letter { font-size: 4.4em; padding: 6px 10px 0 0; }
+  .hero-top .smallcaps,
+  .hero-top .right .smallcaps { font-size: 9px; letter-spacing: 0.2em; }
+  .hero-top .right { text-align: left; }
+  .mm-stats { gap: 24px; padding: 32px 0; }
+  .btn-ghost { padding: 14px 20px; font-size: 10px; letter-spacing: 0.2em; }
+}
+@media (max-width: 380px) {
+  .h-headline { font-size: 60px; }
+  .h-headline-italic { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="#top" class="smallcaps-l">Skylar&nbsp;·&nbsp;Acamesis</a>
+
+    <div class="nav-links" role="navigation">
+      <a href="#prologue" class="smallcaps link-ink">Prologue</a>
+      <a href="#method" class="smallcaps link-ink">The Method</a>
+      <a href="#pathways" class="smallcaps link-ink">Pathways</a>
+      <a href="#mastermind" class="smallcaps link-ink">Mastermind</a>
+      <a href="#book" class="smallcaps link-ink">Book</a>
+    </div>
+
+    <a href="#inquiry" class="smallcaps-l link-ink nav-inquire-desktop">Inquire&nbsp;↗</a>
+
+    <span class="nav-inquire-mobile-wrap">
+      <button class="nav-menu-btn" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        Menu
+      </button>
+    </span>
+  </div>
+</nav>
+
+<!-- Mobile overlay menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mobile-menu-top">
+    <span class="smallcaps-l">Skylar&nbsp;·&nbsp;Acamesis</span>
+    <button class="mobile-menu-close" id="menu-close" aria-label="Close menu">Close</button>
+  </div>
+  <ul class="mobile-menu-list">
+    <li><a href="#prologue" data-close><span class="index">I</span>Prologue</a></li>
+    <li><a href="#method" data-close><span class="index">II</span>The Method</a></li>
+    <li><a href="#pathways" data-close><span class="index">III</span>Pathways</a></li>
+    <li><a href="#mastermind" data-close><span class="index">·</span>Mastermind</a></li>
+    <li><a href="#book" data-close><span class="index">·</span>The Book</a></li>
+    <li><a href="#inquiry" data-close><span class="index">V</span>Inquire</a></li>
+  </ul>
+  <div class="mobile-menu-foot smallcaps">
+    London · Remote · By appointment
+  </div>
+</div>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section id="top" class="surface-ink grain hero" aria-label="Opening">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-rule" aria-hidden="true"></div>
+
+  <div class="hero-inner h-enter">
+
+    <!-- Top meta -->
+    <div class="hero-top">
+      <div>
+        <div class="smallcaps" style="color: var(--gold-soft);">Volume I · MMXXVI</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.5); margin-top: 6px;">Of invisible medicine</div>
+      </div>
+      <div class="right">
+        <div class="smallcaps" style="color: rgba(244,236,218,0.5);">London · Remote · Global</div>
+        <div class="smallcaps" style="color: var(--gold-soft); margin-top: 6px;">In consultation by appointment</div>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <div>
+      <h1 style="margin: 0; display: grid; gap: 6px;">
+        <span class="h-headline">Miracles</span>
+        <span class="hero-headline-row-offset"><span class="h-headline-italic">over&nbsp;medicine.</span></span>
+      </h1>
+    </div>
+
+    <!-- Subheadline + CTAs -->
+    <div class="hero-sub">
+      <p class="prose-editorial prose-on-ink" style="font-size: 17px; line-height: 1.6; max-width: 460px; margin: 0;">
+        <span class="italic-display" style="color: var(--gold-soft); font-size: 22px;">Skylar Acamesis</span>
+        is a Master Energy Healer, Medical Intuitive and author. For two decades she has worked
+        with women — quietly, privately, at the edge of medicine — to locate what cannot be
+        scanned, diagnosed, or named.
+      </p>
+      <div class="hero-cta-stack">
+        <a href="#inquiry" class="smallcaps-l link-gold">Book a private session ↗</a>
+        <a href="#mastermind" class="smallcaps-l link-gold">Apply · Autumn 2026 Mastermind ↗</a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="hero-bottom">
+      <div class="smallcaps" style="color: rgba(244,236,218,0.55); max-width: 760px;">
+        Medical&nbsp;Intuitive · Master&nbsp;ThetaHealing&nbsp;Instructor · Faculty,&nbsp;Shift&nbsp;Network · IPHM&nbsp;Accredited
+      </div>
+      <a href="#prologue" class="smallcaps" style="color: var(--gold-soft);">↓ Turn the page</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROLOGUE
+========================================================= -->
+<section id="prologue" class="surface-paper section">
+  <div class="container" style="max-width: 1100px;">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold); text-align: center; margin-bottom: 64px;">
+      I. &nbsp;·&nbsp; Prologue
+    </div>
+
+    <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="text-align: center; max-width: 900px; margin: 0 auto 72px;">
+      The healer begins as&nbsp;<span class="italic-display" style="color: var(--crimson);">the healed.</span>
+    </h2>
+
+    <div data-reveal data-reveal-delay="2" class="prose-editorial drop-cap" style="max-width: 620px; margin: 0 auto;">
+      <p>
+        Skylar had a spiritual awakening at nineteen and began holding healing circles
+        at twenty. By her early thirties she had reversed her own autoimmune thyroid
+        disease, chronic infections, and a decade of quiet self-neglect — not through
+        pharmaceuticals, but through something older, harder to explain, and, she
+        would come to argue, more accurate.
+      </p>
+      <p>
+        From that recovery she built a method. She calls it the Medical Intuitive
+        Technique: a disciplined practice of reading the body as a transcript of
+        belief. Of locating, in the architecture of a person's life, the small
+        decision that made the illness reasonable.
+      </p>
+      <p>
+        She now works with a quiet roster of clients — mothers, founders, doctors,
+        public figures, and a growing lineage of practitioners she certifies each
+        autumn. Appointments are taken privately.
+      </p>
+    </div>
+
+    <figure data-reveal data-reveal-delay="3" style="margin: 100px auto 0; max-width: 760px;">
+      <hr class="hr-gold" style="margin-bottom: 40px;" />
+      <blockquote class="italic-display" style="font-size: clamp(26px, 3.4vw, 44px); line-height: 1.2; text-align: center; margin: 0;">
+        "Your body is not broken. It is&nbsp;<span style="color: var(--crimson);">speaking.</span>
+        The question is whether you are listening."
+      </blockquote>
+      <figcaption class="smallcaps" style="text-align: center; margin-top: 30px; color: var(--gold);">
+        — Skylar Acamesis
+      </figcaption>
+      <hr class="hr-gold" style="margin-top: 40px;" />
+    </figure>
+  </div>
+</section>
+
+<!-- =========================================================
+     THE METHOD
+========================================================= -->
+<section id="method" class="surface-ink grain grain-soft section" style="overflow: hidden;">
+  <!-- Sacred scan rings -->
+  <div class="method-rings" aria-hidden="true">
+    <svg viewBox="-500 -500 1000 1000" width="100%" height="100%">
+      <g fill="none" stroke="rgba(201,162,104,0.28)" stroke-width="0.6">
+        <circle class="pulse-ring" cx="0" cy="0" r="160"></circle>
+        <circle class="pulse-ring p2" cx="0" cy="0" r="260"></circle>
+        <circle class="pulse-ring p3" cx="0" cy="0" r="360"></circle>
+        <circle cx="0" cy="0" r="440" stroke="rgba(201,162,104,0.12)"></circle>
+      </g>
+      <g stroke="rgba(201,162,104,0.10)" stroke-width="0.5">
+        <line x1="0" y1="-480" x2="0" y2="480"></line>
+        <line x1="-480" y1="0" x2="480" y2="0"></line>
+      </g>
+      <circle cx="0" cy="0" r="2.4" fill="var(--gold-soft)"></circle>
+    </svg>
+  </div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold-soft); text-align: center; margin-bottom: 36px;">
+      II. &nbsp;·&nbsp; The Method
+    </div>
+    <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="color: var(--paper); text-align: center; max-width: 900px; margin: 0 auto 24px;">
+      The Medical&nbsp;<span class="italic-display" style="color: var(--gold-soft);">Intuitive</span>&nbsp;Technique
+    </h2>
+    <p data-reveal data-reveal-delay="2" class="prose-editorial prose-on-ink" style="max-width: 540px; margin: 0 auto 96px; text-align: center;">
+      A four-movement practice for locating the origin of illness — the place where
+      belief becomes biology.
+    </p>
+
+    <div class="method-grid">
+      <div data-reveal data-reveal-delay="1">
+        <div class="italic-display" style="color: var(--gold-soft); font-size: 42px; line-height: 1; margin-bottom: 18px;">I.</div>
+        <div class="disp-md" style="color: var(--paper); margin-bottom: 12px;">The Scan</div>
+        <p class="prose-editorial prose-on-ink" style="font-size: 16px; line-height: 1.65;">
+          Every illness leaves a signature in the body's energetic field. The first act of
+          the work is to locate it — thought, emotion, belief, inherited pattern.
+        </p>
+      </div>
+      <div data-reveal data-reveal-delay="2">
+        <div class="italic-display" style="color: var(--gold-soft); font-size: 42px; line-height: 1; margin-bottom: 18px;">II.</div>
+        <div class="disp-md" style="color: var(--paper); margin-bottom: 12px;">The Cause</div>
+        <p class="prose-editorial prose-on-ink" style="font-size: 16px; line-height: 1.65;">
+          Behind every persistent symptom is a belief the body has organised itself around.
+          The symptom is reasonable once the belief is seen.
+        </p>
+      </div>
+      <div data-reveal data-reveal-delay="3">
+        <div class="italic-display" style="color: var(--gold-soft); font-size: 42px; line-height: 1; margin-bottom: 18px;">III.</div>
+        <div class="disp-md" style="color: var(--paper); margin-bottom: 12px;">The Clearing</div>
+        <p class="prose-editorial prose-on-ink" style="font-size: 16px; line-height: 1.65;">
+          The body will release what the mind consents to release. Clearing is done at the
+          level of the belief, not the level of the organ.
+        </p>
+      </div>
+      <div data-reveal data-reveal-delay="4">
+        <div class="italic-display" style="color: var(--gold-soft); font-size: 42px; line-height: 1; margin-bottom: 18px;">IV.</div>
+        <div class="disp-md" style="color: var(--paper); margin-bottom: 12px;">The Integration</div>
+        <p class="prose-editorial prose-on-ink" style="font-size: 16px; line-height: 1.65;">
+          Healing is the body's return to original blueprint — coherence restored between
+          thought, emotion, and tissue. It is quieter than people expect.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PATHWAYS
+========================================================= -->
+<section id="pathways" class="surface-warm section">
+  <div class="container">
+    <div class="pathways-head">
+      <div>
+        <div data-reveal class="smallcaps-l" style="color: var(--gold);">III. &nbsp;·&nbsp; Pathways</div>
+        <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="margin-top: 24px; max-width: 560px;">
+          From first session to <span class="italic-display" style="color: var(--crimson);">lasting change.</span>
+        </h2>
+      </div>
+      <p data-reveal data-reveal-delay="2" class="prose-editorial" style="max-width: 460px; margin: 0; justify-self: end;">
+        Each pathway is tailored. Sessions are private; the Mastermind is selective.
+        If you are unsure where to begin, write and Skylar will recommend an entry.
+      </p>
+    </div>
+
+    <div data-reveal data-reveal-delay="3">
+      <!-- ROW I -->
+      <div class="path-row">
+        <div class="path-num">I.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">Private Session</div>
+          <div class="path-desc">
+            A single sixty-minute consultation. Full energetic scan, belief clearing, DNA activation. Virtual or in-person.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">60 min</div>
+          <div class="disp-md">£333</div>
+        </div>
+      </div>
+      <!-- ROW II -->
+      <div class="path-row">
+        <div class="path-num">II.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">The Five-Session Journey</div>
+          <div class="path-desc">
+            A three-month arc through the method. For those arriving with a specific, persistent condition and the willingness to meet it.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">3 months</div>
+          <div class="disp-md">£2,222</div>
+        </div>
+      </div>
+      <!-- ROW III -->
+      <div class="path-row">
+        <div class="path-num">III.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">Health for Her</div>
+          <div class="path-desc">
+            A private programme for women — hormones, fertility, vitality. Energy healing paired with nutrition and endocrine protocols.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">3 months</div>
+          <div class="disp-md">£3,333</div>
+        </div>
+      </div>
+      <!-- ROW IV -->
+      <div class="path-row">
+        <div class="path-num">IV.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">Sky's Village</div>
+          <div class="path-desc">
+            Inner-circle membership. Early access to work-in-progress, monthly transmissions, and the Friday practice circle.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">Monthly</div>
+          <div class="disp-md">£88 / mo</div>
+        </div>
+      </div>
+      <!-- ROW V -->
+      <div class="path-row">
+        <div class="path-num">V.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">The Self-Study Library</div>
+          <div class="path-desc">
+            Recorded courses: Akashic Records, Angel Healing, Inner Child, Fertility Protocols, Psychic Surgery, Trauma Clearing.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">At your own pace</div>
+          <div class="disp-md">From £44</div>
+        </div>
+      </div>
+      <!-- ROW VI -->
+      <div class="path-row">
+        <div class="path-num">VI.</div>
+        <div>
+          <div class="disp-md path-name" style="margin-bottom: 6px;">Medical Intuitive Association</div>
+          <div class="path-desc">
+            For certified graduates only. Ongoing mentorship, case consultation, monthly Q&amp;A, and the practitioner directory.
+          </div>
+        </div>
+        <div class="path-price">
+          <div class="smallcaps" style="color: var(--gold); margin-bottom: 4px;">Members only</div>
+          <div class="disp-md">£111 / mo</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal style="margin-top: 72px; text-align: center;">
+      <a href="#inquiry" class="smallcaps-l link-gold">Write to begin ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     MASTERMIND
+========================================================= -->
+<section id="mastermind" class="surface-ink grain section" style="overflow: hidden;">
+  <div class="mm-bg" aria-hidden="true"></div>
+  <div class="mm-overlay" aria-hidden="true"></div>
+
+  <div class="container" style="max-width: 1100px; position: relative; z-index: 2;">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold-soft); text-align: center; margin-bottom: 36px;">
+      The Flagship · Applications Open
+    </div>
+    <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="color: var(--paper); text-align: center; max-width: 960px; margin: 0 auto 32px;">
+      The Medical&nbsp;Intuitive <span class="italic-display" style="color: var(--gold-soft);">Mastermind.</span>
+    </h2>
+    <p data-reveal data-reveal-delay="2" class="prose-editorial prose-on-ink" style="max-width: 580px; margin: 0 auto 72px; text-align: center;">
+      Ten months. One hundred lessons. Sixty-eight guided meditations. Weekly live
+      teaching with Skylar. IPHM-accredited certification. A small cohort of practitioners
+      trained to the highest standard of intuitive medicine.
+    </p>
+
+    <div data-reveal data-reveal-delay="3" class="mm-stats">
+      <div class="mm-stat">
+        <div class="stat-num">100+</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.55); margin-top: 12px;">Lessons</div>
+      </div>
+      <div class="mm-stat">
+        <div class="stat-num">68</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.55); margin-top: 12px;">Meditations</div>
+      </div>
+      <div class="mm-stat">
+        <div class="stat-num">10</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.55); margin-top: 12px;">Months</div>
+      </div>
+      <div class="mm-stat">
+        <div class="stat-num">IPHM</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.55); margin-top: 12px;">Accredited</div>
+      </div>
+      <div class="mm-stat">
+        <div class="stat-num">Aut.</div>
+        <div class="smallcaps" style="color: rgba(244,236,218,0.55); margin-top: 12px;">2026 Cohort</div>
+      </div>
+    </div>
+
+    <div data-reveal data-reveal-delay="4" style="text-align: center;">
+      <a href="#inquiry" class="btn-ghost">Apply to the Mastermind <span>↗</span></a>
+      <div class="smallcaps" style="color: rgba(244,236,218,0.5); margin-top: 22px;">
+        From £3,333 · 10-month plan · VIP track available
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIES
+========================================================= -->
+<section class="surface-paper section" aria-label="In their words">
+  <div class="container">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold); text-align: center; margin-bottom: 36px;">
+      IV. &nbsp;·&nbsp; In Their Words
+    </div>
+    <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="text-align: center; max-width: 820px; margin: 0 auto 120px;">
+      Transformations that <span class="italic-display" style="color: var(--crimson);">speak for themselves.</span>
+    </h2>
+
+    <div style="display: grid; gap: 100px;">
+
+      <figure data-reveal style="max-width: 920px; margin: 0 auto; text-align: center;">
+        <div class="italic-display" style="color: var(--gold); font-size: 56px; line-height: 1; margin-bottom: 20px;">"</div>
+        <blockquote class="italic-display" style="margin: 0; font-size: clamp(22px, 3vw, 38px); line-height: 1.32;">
+          She saw things in my energy field that no doctor had ever named. Symptoms I had carried for seven
+          years began to dissolve inside two months. She does not simply heal — she returns you to yourself.
+        </blockquote>
+        <figcaption style="margin-top: 28px;">
+          <div class="smallcaps-l" style="color: var(--gold);">M.V.</div>
+          <div class="smallcaps" style="color: rgba(20,16,11,0.55); margin-top: 6px;">Private client · Zürich</div>
+        </figcaption>
+      </figure>
+
+      <figure data-reveal data-reveal-delay="1" style="max-width: 920px; margin: 0 auto; text-align: center;">
+        <div class="italic-display" style="color: var(--gold); font-size: 56px; line-height: 1; margin-bottom: 20px;">"</div>
+        <blockquote class="italic-display" style="margin: 0; font-size: clamp(22px, 3vw, 38px); line-height: 1.32;">
+          The Mastermind changed my life and my practice. I came in lost and left certified, with a waitlist.
+          Skylar teaches the deepest material with astonishing clarity.
+        </blockquote>
+        <figcaption style="margin-top: 28px;">
+          <div class="smallcaps-l" style="color: var(--gold);">R.K.</div>
+          <div class="smallcaps" style="color: rgba(20,16,11,0.55); margin-top: 6px;">Medical Intuitive graduate · 2024</div>
+        </figcaption>
+      </figure>
+
+      <figure data-reveal data-reveal-delay="2" style="max-width: 920px; margin: 0 auto; text-align: center;">
+        <div class="italic-display" style="color: var(--gold); font-size: 56px; line-height: 1; margin-bottom: 20px;">"</div>
+        <blockquote class="italic-display" style="margin: 0; font-size: clamp(22px, 3vw, 38px); line-height: 1.32;">
+          I have worked with many healers across thirty years. Skylar is in a category of her own — precise,
+          compassionate, and utterly without performance. She is the person other healers go to.
+        </blockquote>
+        <figcaption style="margin-top: 28px;">
+          <div class="smallcaps-l" style="color: var(--gold);">Dr.&nbsp;A.P.</div>
+          <div class="smallcaps" style="color: rgba(20,16,11,0.55); margin-top: 6px;">Physician · London</div>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     THE BOOK
+========================================================= -->
+<section id="book" class="surface-warm section">
+  <div class="book-grid">
+    <div data-reveal class="book-art">
+      <div class="drift" style="display: inline-block;">
+        <img src="https://skylaracamesis.xyz/img/miracles-thumb.png" alt="Soulmate Shadow Work by Skylar Acamesis" loading="lazy" />
+      </div>
+      <div class="smallcaps" style="color: var(--gold); margin-top: 28px; letter-spacing: 0.34em;">
+        First Edition · MMXXV
+      </div>
+    </div>
+    <div data-reveal data-reveal-delay="1">
+      <div class="smallcaps-l" style="color: var(--gold); margin-bottom: 20px;">Published Work</div>
+      <h2 class="disp-xl" style="margin-bottom: 28px;">
+        Soulmate <span class="italic-display" style="color: var(--crimson);">Shadow Work.</span>
+      </h2>
+      <p class="prose-editorial" style="max-width: 520px;">
+        A disciplined field manual for the dark material of intimate partnership —
+        projection, shadow contract, ancestral pattern, the lover as unfinished parent.
+        Written over a decade of clinical work. For readers who have done the surface
+        book and would like the one beneath it.
+      </p>
+      <div style="margin-top: 40px; display: flex; gap: 28px; flex-wrap: wrap;">
+        <a href="#inquiry" class="smallcaps-l link-ink">Read the first chapter ↗</a>
+        <a href="#inquiry" class="smallcaps-l link-gold">Order a signed copy ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ASSOCIATION
+========================================================= -->
+<section id="association" class="surface-ink grain grain-soft section">
+  <div style="max-width: 780px; margin: 0 auto; text-align: center; position: relative;">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold-soft); margin-bottom: 28px;">
+      For Certified Practitioners
+    </div>
+    <h2 data-reveal data-reveal-delay="1" class="disp-lg" style="color: var(--paper); margin-bottom: 28px;">
+      The Medical Intuitive <span class="italic-display" style="color: var(--gold-soft);">Association.</span>
+    </h2>
+    <p data-reveal data-reveal-delay="2" class="prose-editorial prose-on-ink" style="max-width: 600px; margin: 0 auto 40px;">
+      A private community for graduates of the Mastermind. Continuing education,
+      supervised case work, monthly Q&amp;A, and the practitioner directory. Membership
+      is by certification only.
+    </p>
+    <a data-reveal data-reveal-delay="3" href="#inquiry" class="smallcaps-l link-gold">Enter the Association ↗</a>
+  </div>
+</section>
+
+<!-- =========================================================
+     INQUIRY
+========================================================= -->
+<section id="inquiry" class="surface-paper section">
+  <div class="container" style="max-width: 780px;">
+    <div data-reveal class="smallcaps-l" style="color: var(--gold); text-align: center; margin-bottom: 36px;">
+      V. &nbsp;·&nbsp; Inquiry
+    </div>
+    <h2 data-reveal data-reveal-delay="1" class="disp-xl" style="text-align: center; margin-bottom: 28px;">
+      Write to <span class="italic-display" style="color: var(--crimson);">Skylar.</span>
+    </h2>
+    <p data-reveal data-reveal-delay="2" class="prose-editorial" style="text-align: center; max-width: 520px; margin: 0 auto 64px;">
+      Every path begins with a letter. Write whatever is true. Skylar or a member
+      of her studio will reply within two working days.
+    </p>
+
+    <form class="inq-form" id="inquiry-form" novalidate data-reveal data-reveal-delay="3">
+      <div>
+        <label class="inq-label" for="inq-name">Your name</label>
+        <input class="inq-field" id="inq-name" type="text" placeholder="—" required />
+      </div>
+      <div>
+        <label class="inq-label" for="inq-reach">How to reach you</label>
+        <input class="inq-field" id="inq-reach" type="text" placeholder="email, phone, signal…" required />
+      </div>
+      <div>
+        <label class="inq-label" for="inq-path">Which path</label>
+        <select class="inq-field" id="inq-path" required>
+          <option value="" disabled selected>— choose —</option>
+          <option>A private session</option>
+          <option>The five-session journey</option>
+          <option>Health for Her</option>
+          <option>Sky's Village (membership)</option>
+          <option>The Mastermind (Autumn 2026)</option>
+          <option>The Association (graduates)</option>
+          <option>Not sure — please advise</option>
+        </select>
+      </div>
+      <div>
+        <label class="inq-label" for="inq-wish">What do you wish to heal</label>
+        <textarea class="inq-field" id="inq-wish" rows="3" placeholder="write whatever is true" required></textarea>
+      </div>
+      <div style="margin-top: 16px; display: flex; justify-content: center;">
+        <button type="submit" class="btn-ghost">Send the letter <span>↗</span></button>
+      </div>
+    </form>
+
+    <div class="inq-received" id="inquiry-received" style="display: none;">
+      Received. Skylar has been alerted.<br />
+      <span class="smallcaps" style="color: var(--gold); letter-spacing: 0.3em; margin-top: 14px; display: inline-block;">
+        Reply within two working days
+      </span>
+    </div>
+
+    <div data-reveal style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--paper-line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div class="smallcaps" style="color: rgba(20,16,11,0.55);">Or write directly · skylar@skylaracamesis.com</div>
+      <div class="smallcaps" style="color: rgba(20,16,11,0.55);">Instagram · Facebook · Linktree</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     COLOPHON / FOOTER
+========================================================= -->
+<footer class="surface-ink" style="padding: 72px 24px 56px; border-top: 1px solid rgba(244,236,218,0.06);">
+  <div class="foot-grid">
+    <div>
+      <div class="italic-display" style="font-size: 30px; color: var(--paper); margin-bottom: 14px;">Skylar&nbsp;Acamesis</div>
+      <p class="prose-editorial prose-on-ink" style="font-size: 15px; line-height: 1.6; max-width: 320px; margin: 0;">
+        Master Energy Healer. Medical Intuitive. Author. Practising globally from London since two-thousand-and-four.
+      </p>
+    </div>
+    <div>
+      <div class="smallcaps" style="color: var(--gold-soft); margin-bottom: 18px;">The Work</div>
+      <ul class="foot-list">
+        <li><a href="#prologue" class="smallcaps link-ink">Prologue</a></li>
+        <li><a href="#method" class="smallcaps link-ink">The Method</a></li>
+        <li><a href="#pathways" class="smallcaps link-ink">Pathways</a></li>
+        <li><a href="#mastermind" class="smallcaps link-ink">The Mastermind</a></li>
+        <li><a href="#book" class="smallcaps link-ink">The Book</a></li>
+        <li><a href="#association" class="smallcaps link-ink">The Association</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="smallcaps" style="color: var(--gold-soft); margin-bottom: 18px;">Elsewhere</div>
+      <ul class="foot-list">
+        <li><a href="https://www.instagram.com/skylaracamesis/" class="smallcaps link-ink" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.facebook.com/skylaracamesis/" class="smallcaps link-ink" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://linktr.ee/skylaracamesis" class="smallcaps link-ink" target="_blank" rel="noopener">Linktree</a></li>
+        <li><a href="https://skylaracamesis.com" class="smallcaps link-ink" target="_blank" rel="noopener">Legacy Site</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="smallcaps" style="color: var(--gold-soft); margin-bottom: 18px;">Colophon</div>
+      <p class="smallcaps" style="color: rgba(244,236,218,0.5); line-height: 1.9; letter-spacing: 0.22em; margin: 0;">
+        Set in Fraunces &amp;<br />Instrument Serif.<br />Designed in Oaxaca.<br />Built with intention.
+      </p>
+    </div>
+  </div>
+  <div style="max-width: 1400px; margin: 64px auto 0; padding-top: 28px; border-top: 1px solid rgba(244,236,218,0.08); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div class="smallcaps" style="color: rgba(244,236,218,0.4);">© MMXXVI Skylar Acamesis Ltd. All rights reserved.</div>
+    <div class="smallcaps" style="color: rgba(244,236,218,0.4);">Private. Remote. By appointment.</div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+<script>
+(function () {
+  'use strict';
+
+  // --- Nav scroll state ---
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    if (window.scrollY > 48) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // --- Mobile menu ---
+  var menu = document.getElementById('mobile-menu');
+  var openBtn = document.getElementById('menu-open');
+  var closeBtn = document.getElementById('menu-close');
+
+  function openMenu() {
+    menu.classList.add('is-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (openBtn) openBtn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+  // Close menu when any link inside is tapped
+  menu.querySelectorAll('a[data-close]').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Escape key closes menu
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+  });
+
+  // --- Reveal on scroll ---
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && reveals.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-revealed'); });
+  }
+
+  // --- Inquiry form ---
+  var form = document.getElementById('inquiry-form');
+  var received = document.getElementById('inquiry-received');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Basic required check (native validation also runs via :invalid)
+      var fields = form.querySelectorAll('[required]');
+      var ok = true;
+      fields.forEach(function (f) {
+        if (!f.value || !f.value.trim()) {
+          f.style.borderColor = 'var(--crimson)';
+          ok = false;
+        } else {
+          f.style.borderColor = '';
+        }
+      });
+      if (!ok) return;
+
+      // In production: POST to backend here.
+      form.style.display = 'none';
+      received.style.display = 'block';
+      received.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

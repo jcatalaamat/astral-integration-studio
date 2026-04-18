@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Astral Integration — For Mariana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F6EFE0;
+  --paper-2: #EDE2C9;
+  --paper-3: #DFD0B0;
+  --ink: #2A221E;
+  --ink-2: #4A403A;
+  --ink-lt: #6D6258;
+  --mute: #8E8478;
+  --mute-2: #A89E8E;
+  --clay: #8E4638;
+  --clay-dp: #6B3224;
+  --clay-lt: #B5674F;
+  --sage: #6E7A52;
+  --sage-lt: #8A9670;
+  --rose: #B8826F;
+  --rule: rgba(42,34,30,0.12);
+  --rule-str: rgba(42,34,30,0.24);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--paper);color:var(--ink);
+  font-size:16px;line-height:1.65;font-weight:400;letter-spacing:-0.005em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(142,70,56,0.04) 0, transparent 420px),
+    radial-gradient(ellipse at 85% 75%, rgba(110,122,82,0.04) 0, transparent 480px);
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.sans{font-family:'Inter',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);background:rgba(246,239,224,0.92);backdrop-filter:blur(14px);border:1px solid var(--rule);padding:5px 13px;border-radius:999px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500;max-width:calc(100vw - 28px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.studio-tag .d{width:6px;height:6px;background:var(--clay);border-radius:999px;animation:pulse 2.4s infinite;flex-shrink:0}
+@keyframes pulse{50%{opacity:0.35}}
+
+/* ========================= HERO ========================= */
+.hero{
+  min-height:100vh;min-height:100svh;position:relative;
+  padding:80px 44px 60px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  max-width:1300px;margin:0 auto;
+}
+.hero-top{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500;
+}
+.hero-top .c{color:var(--clay);text-align:center}
+.hero-top .r{text-align:right}
+
+.hero-main{padding:70px 0 40px;position:relative}
+.hero-kicker{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(17px,1.8vw,22px);color:var(--clay);margin-bottom:22px;display:inline-flex;gap:14px;align-items:center;letter-spacing:0.01em}
+.hero-kicker::before{content:"";width:36px;height:1px;background:var(--clay)}
+
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+  font-size:clamp(88px,14vw,220px);line-height:0.88;letter-spacing:-0.03em;color:var(--ink);
+  margin-bottom:40px;
+}
+.hero h1 em{font-style:normal;color:var(--clay);font-weight:500}
+.hero h1 .dash{color:var(--clay-lt);font-weight:400;font-style:normal;padding:0 6px}
+
+.hero-lead{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.8vw,36px);font-style:italic;font-weight:400;
+  line-height:1.35;color:var(--ink-2);max-width:780px;letter-spacing:-0.008em;
+}
+.hero-lead em{font-style:italic;color:var(--clay)}
+.hero-lead strong{font-family:'Cormorant Garamond',serif;font-weight:600;font-style:normal;color:var(--ink);letter-spacing:-0.008em}
+
+.hero-foot{
+  display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:baseline;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;
+}
+.hero-foot .to strong{color:var(--clay);font-weight:500}
+.hero-foot .mid{color:var(--ink-2)}
+
+/* ========================= LETTER ========================= */
+.letter{max-width:780px;margin:0 auto;padding:90px 44px 80px;position:relative}
+.letter-mark{
+  text-align:center;margin-bottom:56px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--clay);letter-spacing:0.06em;
+  display:flex;gap:18px;align-items:center;justify-content:center;
+}
+.letter-mark::before,.letter-mark::after{content:"";width:56px;height:1px;background:var(--clay);opacity:0.5}
+
+.letter h2{
+  font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+  font-size:clamp(42px,6.2vw,76px);line-height:1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:40px;
+}
+.letter h2 em{font-style:normal;color:var(--clay)}
+
+.letter p{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2vw,22px);line-height:1.55;color:var(--ink);
+  margin-bottom:22px;max-width:680px;font-weight:400;
+}
+.letter p em{font-style:italic;color:var(--clay-dp)}
+.letter p strong{font-weight:600;font-style:normal;color:var(--ink)}
+
+.three-brands{
+  margin:36px 0;padding:26px 30px;background:rgba(255,255,255,0.45);border-left:3px solid var(--clay);
+  display:grid;grid-template-columns:1fr;gap:14px;
+}
+.three-brands .brand{display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--rule)}
+.three-brands .brand:last-child{border-bottom:none}
+.three-brands .brand .bn{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:20px;color:var(--clay-dp);letter-spacing:-0.008em;line-height:1.2}
+.three-brands .brand .bd{font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.three-brands .brand .bd em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--clay);font-size:16px}
+
+/* ========================= THREE DIRECTIONS ========================= */
+.three{
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:90px 0 70px;background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 50%,var(--paper) 100%);
+}
+.three-head{max-width:1300px;margin:0 auto 60px;padding:0 44px}
+.three-head .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--clay);font-weight:500;margin-bottom:20px;display:inline-flex;gap:14px;align-items:center}
+.three-head .k::before{content:"";width:32px;height:1px;background:var(--clay)}
+.three-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(44px,7vw,96px);line-height:0.95;letter-spacing:-0.025em;margin-bottom:18px}
+.three-head h2 em{font-style:normal;color:var(--clay)}
+.three-head .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--ink-2);line-height:1.5;max-width:680px}
+.three-head .sub em{color:var(--clay)}
+
+.three-cards{max-width:1300px;margin:0 auto;padding:0 44px;display:flex;flex-direction:column;gap:64px}
+
+.tcard{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;position:relative}
+.tcard:nth-child(2){grid-template-columns:1fr 1fr}
+.tcard:nth-child(2) .tframe{order:2}
+.tcard:nth-child(2) .tcopy{order:1}
+
+.tframe-wrap{position:relative}
+.tframe-num{
+  position:absolute;top:-18px;left:-2px;z-index:4;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:26px;color:var(--clay);
+  background:var(--paper);padding:0 12px;
+}
+.tframe{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;
+  border:1px solid var(--rule-str);background:var(--paper-2);
+  box-shadow:0 40px 80px -40px rgba(42,34,30,0.25);transition:all .3s ease;
+}
+.tframe:hover{border-color:var(--clay);transform:translateY(-4px);box-shadow:0 60px 100px -40px rgba(42,34,30,0.35)}
+.tframe iframe{
+  position:absolute;top:0;left:0;width:400%;height:400%;
+  border:none;pointer-events:none;
+  transform:scale(0.25);transform-origin:0 0;background:transparent;
+}
+.tframe-tl,.tframe-br{position:absolute;z-index:3;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;padding:4px 10px}
+.tframe-tl{top:12px;left:12px;background:var(--ink);color:var(--paper)}
+.tframe-br{bottom:12px;right:12px;background:var(--clay);color:var(--paper)}
+.tframe-open{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(42,34,30,0.55);opacity:0;transition:opacity .25s;z-index:4;backdrop-filter:saturate(0.8) blur(2px)}
+.tframe:hover .tframe-open{opacity:1}
+.tframe-open .pill{padding:13px 26px;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.03em;border-radius:999px;transform:translateY(6px);transition:transform .3s}
+.tframe:hover .tframe-open .pill{transform:translateY(0)}
+
+.tcopy .fit{
+  display:inline-flex;gap:8px;align-items:center;padding:5px 12px;background:var(--clay);color:var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;margin-bottom:20px;border-radius:999px;
+}
+.tcopy .fit.sage{background:var(--sage)}
+.tcopy .fit.rose{background:var(--rose)}
+.tcopy .fit .d{width:5px;height:5px;background:var(--paper);border-radius:999px}
+
+.tcopy h3{
+  font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+  font-size:clamp(36px,4.2vw,56px);line-height:0.98;letter-spacing:-0.02em;color:var(--ink);margin-bottom:12px;
+}
+.tcopy h3 em{font-style:normal;color:var(--clay)}
+.tcopy .brand-ref{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--clay-dp);margin-bottom:20px;letter-spacing:0.005em}
+.tcopy p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.55;color:var(--ink-2);margin-bottom:14px;max-width:500px}
+.tcopy p em{font-style:italic;color:var(--clay-dp)}
+.tcopy p strong{font-weight:600;color:var(--ink)}
+
+.tcopy .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 24px;padding:18px 0 0;margin-top:20px;border-top:1px solid var(--rule);font-family:'Inter',sans-serif}
+.tcopy .sp .k{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:4px}
+.tcopy .sp .v{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ink);line-height:1}
+.tcopy .sp .v em{color:var(--clay);font-style:italic}
+
+.tcopy .open-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 22px;background:var(--ink);color:var(--paper);
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.04em;transition:all .2s;
+}
+.tcopy .open-btn:hover{background:var(--clay)}
+
+/* ========================= PROPOSAL RESTATED ========================= */
+.proposal{
+  max-width:900px;margin:0 auto;padding:100px 44px 80px;
+}
+.prop-head{text-align:center;margin-bottom:48px}
+.prop-head .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);font-weight:500;margin-bottom:18px;display:inline-flex;gap:16px;align-items:center}
+.prop-head .k::before,.prop-head .k::after{content:"";width:30px;height:1px;background:var(--clay);opacity:0.5}
+.prop-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(44px,6.5vw,80px);line-height:0.98;letter-spacing:-0.022em}
+.prop-head h2 em{color:var(--clay);font-style:normal}
+
+.prop-card{
+  padding:44px 50px;background:rgba(255,255,255,0.55);border:1px solid var(--rule-str);
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;
+}
+.prop-l h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--clay);margin-bottom:12px}
+.prop-l p{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.55;color:var(--ink);margin-bottom:12px}
+.prop-l p em{font-style:italic;color:var(--clay-dp)}
+.prop-l ul{list-style:none;margin-top:16px}
+.prop-l ul li{font-family:'Inter',sans-serif;font-size:14px;padding:7px 0;border-bottom:1px dotted var(--rule);color:var(--ink-2);display:flex;gap:10px}
+.prop-l ul li::before{content:"✦";color:var(--clay);font-family:serif;margin-top:-1px}
+.prop-l ul li:last-child{border-bottom:none}
+
+.prop-r{padding-left:40px;border-left:1px solid var(--rule)}
+.prop-r .line{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--rule);align-items:baseline;gap:20px}
+.prop-r .line:last-child{border-bottom:none}
+.prop-r .line .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.prop-r .line .v{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;line-height:1;color:var(--ink);text-align:right}
+.prop-r .line .v em{font-style:italic;color:var(--clay)}
+.prop-r .total{margin-top:10px;padding-top:16px;border-top:2px solid var(--ink)}
+.prop-r .total .v{font-size:32px}
+
+/* ========================= ALSO AVAILABLE ========================= */
+.also{
+  max-width:1100px;margin:0 auto;padding:50px 44px 70px;text-align:center;
+}
+.also .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:16px}
+.also p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.2vw,26px);line-height:1.45;color:var(--ink-2);max-width:680px;margin:0 auto 24px}
+.also p em{color:var(--clay)}
+.also .browse{display:inline-flex;gap:10px;align-items:center;padding:14px 26px;background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;letter-spacing:0.03em;transition:all .2s}
+.also .browse:hover{background:var(--clay)}
+
+/* ========================= NEXT STEPS ========================= */
+.next{
+  max-width:1100px;margin:0 auto;padding:80px 44px 50px;border-top:1px solid var(--rule);
+}
+.next-head{text-align:center;margin-bottom:50px}
+.next-head .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);font-weight:500;margin-bottom:18px}
+.next-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(48px,7vw,96px);line-height:0.98;letter-spacing:-0.025em}
+.next-head h2 em{color:var(--clay);font-style:normal}
+.next-head .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--ink-2);margin-top:18px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.45}
+.next-head .sub em{color:var(--clay)}
+
+.next-rows{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:2px solid var(--ink);margin-bottom:40px}
+.nrow{padding:30px 28px;background:var(--paper);display:flex;flex-direction:column;align-items:flex-start;gap:12px;transition:all .2s;min-height:220px}
+.nrow:hover{background:var(--ink);color:var(--paper)}
+.nrow:hover .na em,.nrow:hover .nd em{color:#E8C9A8}
+.nrow:hover .nn{color:var(--mute-2)}
+.nrow:hover .n-cta{background:#E8C9A8;color:var(--ink);border-color:#E8C9A8}
+.nrow .nn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--clay);font-weight:500}
+.nrow .na{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:30px;line-height:1.05;letter-spacing:-0.012em;color:inherit}
+.nrow .na em{color:var(--clay);font-style:normal}
+.nrow .nd{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.5;color:inherit;opacity:0.8;flex-grow:1}
+.nrow .nd em{color:var(--clay);font-style:italic}
+.nrow .n-cta{margin-top:auto;padding:9px 16px;border:1px solid currentColor;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all .15s}
+
+/* ========================= CLOSE ========================= */
+.signoff{
+  max-width:780px;margin:0 auto;padding:50px 44px 100px;
+}
+.signoff .kick{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:26px}
+.signoff p{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,24px);line-height:1.5;color:var(--ink);margin-bottom:18px;font-style:italic}
+.signoff p em{color:var(--clay);font-style:italic}
+.signoff p strong{font-weight:600;font-style:normal}
+.signoff .sig{
+  margin-top:44px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:56px;letter-spacing:-0.01em;color:var(--ink);line-height:1;
+  transform:rotate(-1.5deg);display:inline-block;
+}
+.signoff .sig em{color:var(--clay);font-style:italic}
+.signoff .sig-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-top:28px}
+
+footer{max-width:1300px;margin:0 auto;padding:24px 44px 44px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+footer .sys{color:var(--sage)}
+footer .sys::before{content:"●";margin-right:6px;animation:pulse 2.4s infinite}
+
+/* ========================= MOBILE ========================= */
+@media (max-width:1000px){
+  .hero{padding:70px 28px 40px;min-height:90vh}
+  .hero-top{grid-template-columns:1fr;gap:4px;text-align:center}
+  .hero-top .r{text-align:center}
+  .hero-main{padding:40px 0 28px}
+  .hero h1{font-size:clamp(62px,14vw,120px);line-height:0.92}
+  .hero-foot{grid-template-columns:1fr;gap:12px;text-align:left}
+
+  .letter{padding:64px 28px 56px}
+  .letter p{font-size:18px}
+  .three-brands .brand{grid-template-columns:1fr;gap:4px}
+
+  .three{padding:64px 0 50px}
+  .three-head{padding:0 28px;margin-bottom:40px}
+  .three-cards{padding:0 28px;gap:52px}
+  .tcard,.tcard:nth-child(2){grid-template-columns:1fr;gap:32px}
+  .tcard:nth-child(2) .tframe{order:1}
+  .tcard:nth-child(2) .tcopy{order:2}
+  .tcopy .specs{grid-template-columns:1fr 1fr}
+
+  .proposal{padding:72px 28px 56px}
+  .prop-card{grid-template-columns:1fr;gap:24px;padding:28px 30px}
+  .prop-r{padding-left:0;border-left:none;padding-top:18px;border-top:1px dashed var(--rule)}
+
+  .also{padding:36px 28px 50px}
+  .next{padding:60px 28px 40px}
+  .next-rows{grid-template-columns:1fr;border-width:1px}
+  .nrow{min-height:auto;padding:24px 26px}
+  .signoff{padding:40px 28px 80px}
+  .signoff .sig{font-size:48px}
+  footer{padding:20px 28px 36px;flex-direction:column;text-align:center}
+}
+@media (max-width:480px){
+  body{font-size:15px}
+  .studio-tag{font-size:9px;padding:5px 11px}
+  .hero{padding:60px 20px 30px}
+  .hero h1{font-size:clamp(52px,15vw,90px)}
+  .hero-lead{font-size:19px}
+  .letter{padding:52px 20px 44px}
+  .letter h2{font-size:38px}
+  .three-head,.three-cards{padding-left:20px;padding-right:20px}
+  .proposal,.next,.signoff{padding-left:20px;padding-right:20px}
+  .tcopy h3{font-size:32px}
+  .prop-card{padding:24px 22px}
+  .nrow{padding:22px 22px;min-height:auto}
+  .nrow .na{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · for mariana · rev.1</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-top">
+    <div>From Jordi · Mazunte, Oax</div>
+    <div class="c">— A private document, prepared with care —</div>
+    <div class="r">April 17, 2026</div>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-kicker">A specific proposal · for El Camino del Renacer</div>
+    <h1>Mariana<span class="dash">—</span></h1>
+    <div class="hero-lead">I've been thinking about your three brands for <em>a few weeks now</em>. Not as a generic build. As <strong>three doors into one house</strong>. I think I've found the three rooms.</div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="to">/ prepared for <strong>Mariana Harpreet</strong> · El Camino del Renacer · Mujer Despierta</div>
+    <div class="mid">/ private link</div>
+    <div class="r">/ valid 30 days</div>
+  </div>
+</section>
+
+<!-- ============ THE LETTER ============ -->
+<section class="letter">
+  <div class="letter-mark">&mdash; a private note, first &mdash;</div>
+
+  <h2>What I <em>see.</em></h2>
+
+  <p>You already know what I think your work is. A path of return — for women mostly, sometimes not — wrapped inside three voices that don't translate across a single template. So you're running three sites that look vaguely related but actually aren't, one membership that doesn't know which brand a person came in through, and an inbox full of people asking where the next retreat is.</p>
+
+  <p>The proposal I sent you was a solution. This page is a <em>conversation about atmosphere.</em></p>
+
+  <p>Because here's the thing that's been on my mind: <strong>your three brands are genuinely different shapes.</strong> They shouldn't all wear the same dress. El Camino del Renacer is a cinematic container — <em>retreats, ceremony, land, breath.</em> Mujer Despierta is a literary archive — <em>essays, readings, an awakening you can read in bed at night.</em> And your own name is a teacher's voice — <em>intimate, handwritten, one-to-one.</em></p>
+
+  <div class="three-brands">
+    <div class="brand">
+      <div class="bn">El Camino <em>del Renacer</em></div>
+      <div class="bd">The container. Retreats, ceremony, cohorts. <em>Cinematic. Full-bleed. Carries imagery.</em></div>
+    </div>
+    <div class="brand">
+      <div class="bn">Mujer <em>Despierta</em></div>
+      <div class="bd">The archive. Essays, readings, a publication for the awakening. <em>Editorial. Literary. A quarterly rhythm.</em></div>
+    </div>
+    <div class="brand">
+      <div class="bn">Mariana <em>Harpreet</em></div>
+      <div class="bd">The teacher. 1:1, Kundalini, the voice itself. <em>Warm. Handwritten. Personal.</em></div>
+    </div>
+  </div>
+
+  <p>One backend, one membership, <em>three voices.</em> That's the build. The proposal hasn't changed. What I want to show you on this page are the three directions I think would actually <em>fit each voice</em> — so you can see it, not just read about it.</p>
+
+  <p>Below are three live previews. Click any of them. <em>Walk through it.</em> These are not mockups — they're working sites. I built them for the studio. I think with small adjustments they become yours.</p>
+</section>
+
+<!-- ============ THREE DIRECTIONS ============ -->
+<section class="three">
+  <div class="three-head">
+    <div class="k">/ Three directions, one system</div>
+    <h2>One door <em>for each brand.</em></h2>
+    <div class="sub">Click into each. All three sit on one backend — one login for your members, one inbox for you, one dashboard. <em>Three voices. One house.</em></div>
+  </div>
+
+  <div class="three-cards">
+
+    <!-- CARD 1 — Cinema for El Camino del Renacer -->
+    <div class="tcard">
+      <div class="tframe-wrap">
+        <div class="tframe-num">№ 01</div>
+        <a href="cinema.html" target="_blank" class="tframe">
+          <iframe src="cinema.html" loading="lazy" scrolling="no"></iframe>
+          <div class="tframe-tl">Cinema</div>
+          <div class="tframe-br">preview</div>
+          <div class="tframe-open"><span class="pill">Open Cinema →</span></div>
+        </a>
+      </div>
+      <div class="tcopy">
+        <div class="fit"><span class="d"></span>For El Camino del Renacer</div>
+        <h3>The <em>Cinema.</em></h3>
+        <div class="brand-ref">— full-bleed, letterboxed, a film of your work</div>
+        <p>Your retreats are <em>cinematic already.</em> The land, the fire circle, the bodies moving at dawn. This direction treats your site like a reel — <strong>persistent letterbox bars, film grain, scenes that open like title cards.</strong> Each retreat becomes a "still" with its own atmosphere.</p>
+        <p>Dark and warm. Deep cream over charcoal, gold accent. Playfair Display in italic for the display copy. <em>A little dramatic, which your work earns.</em></p>
+        <div class="specs">
+          <div class="sp"><div class="k">Type</div><div class="v">Playfair Display + Inter</div></div>
+          <div class="sp"><div class="k">Mood</div><div class="v"><em>cinematic</em> · dark</div></div>
+          <div class="sp"><div class="k">Mobile</div><div class="v">full-tested ✓</div></div>
+          <div class="sp"><div class="k">Adjusts to</div><div class="v">your photography</div></div>
+        </div>
+        <a href="cinema.html" target="_blank" class="open-btn">Open the full Cinema preview →</a>
+      </div>
+    </div>
+
+    <!-- CARD 2 — Quarterly for Mujer Despierta -->
+    <div class="tcard">
+      <div class="tframe-wrap">
+        <div class="tframe-num">№ 02</div>
+        <a href="quarterly.html" target="_blank" class="tframe">
+          <iframe src="quarterly.html" loading="lazy" scrolling="no"></iframe>
+          <div class="tframe-tl">Quarterly</div>
+          <div class="tframe-br">preview</div>
+          <div class="tframe-open"><span class="pill">Open Quarterly →</span></div>
+        </a>
+      </div>
+      <div class="tcopy">
+        <div class="fit sage"><span class="d"></span>For Mujer Despierta</div>
+        <h3>The <em>Quarterly.</em></h3>
+        <div class="brand-ref">— an awakening you can hold in your hands</div>
+        <p>Mujer Despierta is <em>a publication, not a landing page.</em> This direction honors that — a proper magazine with masthead, Issue number, editor's letter, a feature article with drop cap and pull quote, a photo essay, letters from readers. <strong>A quarterly rhythm built into the structure of the site itself.</strong></p>
+        <p>Warm cream and deep teal, Bodoni Moda for the Didone headlines. Lets the archive of your writing accrete with dignity. <em>A "Mujer Despierta" that reads.</em></p>
+        <div class="specs">
+          <div class="sp"><div class="k">Type</div><div class="v">Bodoni Moda + Vollkorn</div></div>
+          <div class="sp"><div class="k">Mood</div><div class="v"><em>editorial</em> · literary</div></div>
+          <div class="sp"><div class="k">Mobile</div><div class="v">full-tested ✓</div></div>
+          <div class="sp"><div class="k">Adjusts to</div><div class="v">your essays &amp; voice</div></div>
+        </div>
+        <a href="quarterly.html" target="_blank" class="open-btn">Open the full Quarterly preview →</a>
+      </div>
+    </div>
+
+    <!-- CARD 3 — Notebook for Mariana Harpreet -->
+    <div class="tcard">
+      <div class="tframe-wrap">
+        <div class="tframe-num">№ 03</div>
+        <a href="notebook.html" target="_blank" class="tframe">
+          <iframe src="notebook.html" loading="lazy" scrolling="no"></iframe>
+          <div class="tframe-tl">Notebook</div>
+          <div class="tframe-br">preview</div>
+          <div class="tframe-open"><span class="pill">Open Notebook →</span></div>
+        </a>
+      </div>
+      <div class="tcopy">
+        <div class="fit rose"><span class="d"></span>For Mariana Harpreet</div>
+        <h3>The <em>Notebook.</em></h3>
+        <div class="brand-ref">— your teaching voice, written in hand</div>
+        <p>The personal brand is the one that gets overstyled most often and shouldn't. This is <em>a journal page</em> — ruled cream paper, handwritten headlines, margin notes, yellow highlighter on the important bits, the stack audit as a <strong>sketched checklist with strikethroughs.</strong> A sticky note near the top that says "pssst." Contact as a taped-in postcard.</p>
+        <p>Maximum warmth. Maximum hand. <em>Feels like a person, not a product.</em> Which is exactly what a 1:1 Kundalini teacher's site should feel like.</p>
+        <div class="specs">
+          <div class="sp"><div class="k">Type</div><div class="v">Caveat + EB Garamond</div></div>
+          <div class="sp"><div class="k">Mood</div><div class="v"><em>handwritten</em> · warm</div></div>
+          <div class="sp"><div class="k">Mobile</div><div class="v">full-tested ✓</div></div>
+          <div class="sp"><div class="k">Adjusts to</div><div class="v">your personal voice</div></div>
+        </div>
+        <a href="notebook.html" target="_blank" class="open-btn">Open the full Notebook preview →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PROPOSAL RESTATED ============ -->
+<section class="proposal">
+  <div class="prop-head">
+    <div class="k">/ The proposal, restated</div>
+    <h2>What's <em>on the table.</em></h2>
+  </div>
+
+  <div class="prop-card">
+    <div class="prop-l">
+      <h4>Scope</h4>
+      <p>Three distinct brands, four domains, one shared membership and backend. Bilingual (ES / EN). Native payments. <em>Zero platform fees.</em> Every member can log in once and see what belongs to them across all three houses.</p>
+      <ul>
+        <li>3 sites with distinct design direction</li>
+        <li>1 unified membership + 1 billing</li>
+        <li>Native bookings across all 3</li>
+        <li>Email automation, AI assistants</li>
+        <li>Full ownership, no platform fees</li>
+        <li>Bilingual ES/EN throughout</li>
+      </ul>
+    </div>
+    <div class="prop-r">
+      <div class="line"><span class="k">Tier</span><span class="v"><em>Complex schools</em></span></div>
+      <div class="line"><span class="k">Setup</span><span class="v">$8,000</span></div>
+      <div class="line"><span class="k">All-in monthly</span><span class="v"><em>$1,500</em>/mo</span></div>
+      <div class="line"><span class="k">Timeline</span><span class="v">4–6 weeks</span></div>
+      <div class="line"><span class="k">First build</span><span class="v"><em>48 hr</em></span></div>
+      <div class="line total"><span class="k">Now</span><span class="v">$<em>8,000</em></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALSO AVAILABLE ============ -->
+<section class="also">
+  <div class="k">/ want to browse the rest</div>
+  <p>These three aren't the whole library. The studio has <em>twelve directions</em> in total — including pure-minimalist, technical, broadsheet, gallery-led, and more. If you want to see everything before deciding, <em>walk the whole catalog:</em></p>
+  <a href="directions.html" target="_blank" class="browse">Open the full studio catalog → (12 directions)</a>
+</section>
+
+<!-- ============ NEXT STEPS ============ -->
+<section class="next">
+  <div class="next-head">
+    <div class="k">/ Next steps</div>
+    <h2>Pick the <em>easiest</em> one.</h2>
+    <div class="sub">Seriously — whichever of these is least effort for you right now is the right one. <em>I'll meet you there.</em></div>
+  </div>
+
+  <div class="next-rows">
+    <a href="#" class="nrow">
+      <div class="nn">/ Option 01 · easiest</div>
+      <div class="na">Reply with a <em>voice memo.</em></div>
+      <div class="nd">Say which of the three directions you felt most at home in. 90 seconds. <em>I'll take it from there.</em></div>
+      <div class="n-cta">Record a voice memo →</div>
+    </a>
+    <a href="#" class="nrow">
+      <div class="nn">/ Option 02 · more detail</div>
+      <div class="na">Book a <em>30-minute call.</em></div>
+      <div class="nd">Mazunte hours. We look at the three together, I answer anything, and we map what your build actually looks like. <em>No pitch.</em></div>
+      <div class="n-cta">Pick a time →</div>
+    </a>
+    <a href="#" class="nrow">
+      <div class="nn">/ Option 03 · ready to start</div>
+      <div class="na">Just <em>say go.</em></div>
+      <div class="nd">If one of these feels obviously right and you're ready, reply "let's start with <em>[direction name]</em>" and I'll send the first invoice and start the 48-hour clock.</div>
+      <div class="n-cta">Reply to start →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ SIGNOFF ============ -->
+<section class="signoff">
+  <div class="kick">/ a last note</div>
+  <p>Mariana — the work you do is <em>rare</em>. You deserve a home that matches it, not seven rented tools that keep it from reaching the people waiting for it.</p>
+  <p>Whatever you pick, I'll build it with the same care I'd build for my own wife. <strong>You're in the best hands I know.</strong></p>
+  <p><em>Send me the mess whenever you're ready.</em></p>
+
+  <div class="sig">— Jordi<em>.</em></div>
+  <div class="sig-meta">Mazunte · Oax · MX · jordi@astralintegration.studio</div>
+</section>
+
+<footer>
+  <div>© 2026 Astral Integration · private document · for Mariana</div>
+  <div class="sys">proposal active · reply anytime</div>
+</footer>
+
+</body>
+</html>

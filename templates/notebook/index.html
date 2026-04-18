@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Integration — The Notebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F5F0E4;
+  --paper-2: #EDE6D4;
+  --paper-3: #DDD3B8;
+  --line-blue: rgba(43,79,130,0.13);
+  --margin-red: rgba(200,55,45,0.55);
+  --ink: #142036;
+  --ink-2: #2B3B5A;
+  --ink-lt: #4A5A78;
+  --mute: #6E7B92;
+  --red: #C8372D;
+  --red-dp: #8E1E16;
+  --yellow: #F5E280;
+  --yellow-dp: #E5C64A;
+  --pencil: #5A5550;
+  --pencil-lt: #8D8680;
+  --stain: rgba(150,100,50,0.08);
+  --rule: rgba(20,32,54,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'EB Garamond',Georgia,serif;
+  background:var(--paper);color:var(--ink);
+  font-size:17px;line-height:1.55;font-weight:400;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:
+    repeating-linear-gradient(transparent 0 31px, var(--line-blue) 31px 32px),
+    linear-gradient(90deg, transparent 0 94px, var(--margin-red) 94px 95px, transparent 95px 100%),
+    radial-gradient(ellipse at 20% 15%, var(--stain) 0, transparent 200px),
+    radial-gradient(ellipse at 80% 70%, var(--stain) 0, transparent 260px);
+  background-attachment:local,local,fixed,fixed;
+  padding:0 0 120px;
+}
+@media (max-width:900px){body{background-image:repeating-linear-gradient(transparent 0 26px, var(--line-blue) 26px 27px),radial-gradient(ellipse at 50% 20%, var(--stain) 0, transparent 200px)}}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+
+.hand{font-family:'Caveat',cursive;font-weight:500;letter-spacing:-0.005em}
+.pen{font-family:'EB Garamond',serif;font-style:italic}
+.mono{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);background:var(--paper);border:1px dashed var(--ink);padding:5px 13px;border-radius:999px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500}
+.studio-tag .d{width:6px;height:6px;background:var(--red);border-radius:999px}
+
+.page{max-width:980px;margin:0 auto;padding:40px 60px 20px;position:relative}
+
+/* top strip: date + page number */
+.page-header{
+  padding-top:30px;padding-bottom:24px;display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px dashed var(--rule);margin-bottom:40px;
+}
+.page-header .handwrite{font-family:'Caveat',cursive;font-weight:400;font-size:22px;color:var(--ink);letter-spacing:0}
+.page-header .handwrite em{font-style:italic;color:var(--red-dp)}
+.page-header .pn{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+/* HERO */
+.hero{position:relative;padding:30px 0 40px}
+.hero-kicker{
+  font-family:'Caveat',cursive;font-weight:500;font-size:28px;color:var(--red-dp);line-height:1;margin-bottom:20px;
+  display:inline-block;transform:rotate(-1.5deg);
+}
+.hero-kicker::before{content:"✻ ";color:var(--red)}
+.hero-kicker::after{content:" ✻";color:var(--red)}
+
+.hero h1{
+  font-family:'Caveat',cursive;font-weight:700;
+  font-size:clamp(66px,12vw,180px);line-height:0.92;letter-spacing:-0.01em;color:var(--ink);
+}
+.hero h1 em{font-style:italic;color:var(--red-dp);font-weight:700}
+.hero h1 .u{position:relative;display:inline-block}
+.hero h1 .u::after{content:"";position:absolute;left:-4px;right:-4px;bottom:4%;height:10px;background:var(--yellow);z-index:-1;opacity:0.75;transform:rotate(-0.5deg)}
+
+.hero-sub{
+  margin-top:30px;max-width:640px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;
+}
+.hero-sub .l{font-family:'EB Garamond',serif;font-style:italic;font-size:22px;line-height:1.4;color:var(--ink-2)}
+.hero-sub .l em{color:var(--red-dp);font-style:italic}
+
+.hero-sub .scribble{
+  font-family:'Caveat',cursive;font-weight:500;font-size:22px;color:var(--red-dp);line-height:1;
+  transform:rotate(3deg);text-align:right;padding-left:24px;border-left:2px solid var(--red-dp);padding-left:12px;
+}
+
+/* sticky note */
+.sticky{
+  position:absolute;padding:18px 20px 22px;background:var(--yellow);
+  box-shadow:3px 6px 0 -2px rgba(20,32,54,0.25),6px 12px 18px -4px rgba(20,32,54,0.15);
+  font-family:'Caveat',cursive;font-weight:500;color:var(--ink);
+  transform:rotate(4deg);max-width:260px;
+}
+.sticky::before{
+  content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:70px;height:18px;
+  background:rgba(245,226,128,0.6);border:1px dashed rgba(20,32,54,0.3);
+}
+.sticky .t{font-size:20px;line-height:1.2;margin-bottom:4px}
+.sticky .t em{color:var(--red-dp);font-style:italic}
+.sticky .s{font-size:16px;color:var(--ink-lt);line-height:1.3}
+
+.hero .sticky-1{top:40px;right:-40px;z-index:5}
+
+/* MARGIN NOTE */
+.margin-note{
+  position:absolute;font-family:'Caveat',cursive;font-weight:500;font-size:18px;
+  color:var(--red-dp);line-height:1.15;max-width:200px;transform:rotate(-2deg);
+  display:flex;align-items:flex-start;gap:4px;
+}
+.margin-note::before{content:"→";font-size:20px;color:var(--red);flex-shrink:0;transform:rotate(-10deg) translate(-3px,1px)}
+.margin-note.lhs{left:-110px}
+.margin-note.lhs::before{content:"←";transform:rotate(10deg) translate(3px,1px);order:2}
+.margin-note.rhs{right:-120px}
+
+/* DIVIDER - sketched */
+.divider{
+  display:flex;align-items:center;gap:14px;margin:70px 0 40px;
+  font-family:'Caveat',cursive;font-weight:500;color:var(--red-dp);font-size:24px;
+}
+.divider::before,.divider::after{content:"";flex:1;height:2px;background:var(--ink);border-radius:999px;opacity:0.6;transform:scaleY(0.5)}
+.divider svg{color:var(--red);width:36px;height:12px}
+
+/* CHAPTER HEADING */
+.chapter{position:relative;padding:20px 0 12px;margin-top:20px}
+.chapter .ch-n{
+  font-family:'Caveat',cursive;font-weight:500;font-size:22px;color:var(--red-dp);
+  display:flex;align-items:center;gap:10px;margin-bottom:6px;
+}
+.chapter .ch-n::before{content:"§";color:var(--red);font-size:26px;font-style:italic}
+.chapter h2{
+  font-family:'Caveat',cursive;font-weight:700;font-size:clamp(48px,6vw,76px);line-height:0.95;letter-spacing:-0.01em;color:var(--ink);
+}
+.chapter h2 em{font-style:italic;color:var(--red-dp);font-weight:600}
+.chapter h2 .u{position:relative;display:inline-block}
+.chapter h2 .u::after{content:"";position:absolute;left:-3px;right:-3px;bottom:5%;height:8px;background:var(--yellow);z-index:-1;opacity:0.75}
+
+.chapter-ornament{position:absolute;top:32px;right:-70px;font-family:'Caveat',cursive;font-weight:500;font-size:18px;color:var(--red-dp);transform:rotate(6deg);line-height:1;opacity:0.85}
+
+/* PROSE */
+.prose p{font-family:'EB Garamond',serif;font-size:18.5px;line-height:1.7;margin-bottom:18px;color:var(--ink);max-width:680px}
+.prose p em{font-style:italic;color:var(--red-dp)}
+.prose p strong{font-family:'Caveat',cursive;font-weight:600;font-size:22px;color:var(--red-dp);font-style:normal}
+.prose p .hl{background:var(--yellow);padding:1px 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.prose p .circled{
+  display:inline-block;padding:0 10px;border:2px solid var(--red-dp);border-radius:50%;
+  position:relative;margin:0 3px;font-weight:500;transform:rotate(-2deg);
+}
+
+/* CHECKLIST for stack */
+.checklist{
+  margin:28px 0 30px;padding:24px 28px;background:rgba(255,255,255,0.45);border:1px dashed var(--ink-lt);position:relative;
+  max-width:720px;
+}
+.checklist::before{
+  content:"";position:absolute;top:-14px;left:-14px;width:40px;height:40px;
+  background:var(--red);border-radius:999px;box-shadow:inset 2px 2px 0 rgba(255,255,255,0.2);
+  transform:rotate(-8deg);
+}
+.checklist .tape{position:absolute;top:-12px;right:40px;width:90px;height:26px;background:rgba(245,226,128,0.7);border:1px dashed var(--ink-lt);transform:rotate(-4deg)}
+.checklist .lbl{font-family:'Caveat',cursive;font-weight:600;font-size:24px;color:var(--red-dp);margin-bottom:14px;letter-spacing:-0.005em}
+.checklist ul{list-style:none}
+.checklist ul li{display:grid;grid-template-columns:30px 1fr auto;gap:12px;padding:9px 0;border-bottom:1px dotted var(--rule);font-family:'EB Garamond',serif;font-size:17px;align-items:baseline}
+.checklist ul li:last-of-type{border-bottom:none}
+.checklist ul li .mk{font-family:'Caveat',cursive;font-weight:600;font-size:22px;color:var(--red);line-height:1}
+.checklist ul li .nm{color:var(--ink)}
+.checklist ul li .nm s{text-decoration-color:var(--red);text-decoration-thickness:2px}
+.checklist ul li .val{font-family:'Caveat',cursive;font-weight:500;font-size:20px;color:var(--red-dp)}
+.checklist .tot{margin-top:14px;padding-top:12px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.checklist .tot .k{font-family:'Caveat',cursive;font-weight:600;font-size:22px;color:var(--ink)}
+.checklist .tot .v{font-family:'Caveat',cursive;font-weight:700;font-size:40px;color:var(--red-dp);line-height:1}
+.checklist .tot .v sub{font-size:16px;vertical-align:baseline;color:var(--ink-lt)}
+.checklist .annotate{position:absolute;bottom:-28px;right:14px;font-family:'Caveat',cursive;font-weight:500;font-size:18px;color:var(--red-dp);transform:rotate(-3deg)}
+
+/* SKETCHED BOXES - four pillars */
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:24px 0 20px;max-width:760px}
+.pill{
+  padding:22px 22px 22px;background:rgba(255,255,255,0.5);border:2px solid var(--ink);position:relative;
+}
+.pill:nth-child(1){transform:rotate(-0.5deg)}
+.pill:nth-child(2){transform:rotate(0.3deg)}
+.pill:nth-child(3){transform:rotate(0.5deg)}
+.pill:nth-child(4){transform:rotate(-0.3deg)}
+.pill::before{content:"";position:absolute;top:-3px;left:-3px;right:3px;bottom:3px;border:2px solid var(--red);z-index:-1}
+.pill .n{font-family:'Caveat',cursive;font-weight:600;font-size:20px;color:var(--red-dp);margin-bottom:6px;display:flex;justify-content:space-between;align-items:baseline}
+.pill .n .tg{font-size:14px;padding:2px 8px;background:var(--ink);color:var(--paper);border-radius:999px;font-weight:500;letter-spacing:0.02em}
+.pill h3{font-family:'Caveat',cursive;font-weight:700;font-size:34px;line-height:1;letter-spacing:-0.01em;margin-bottom:10px;color:var(--ink)}
+.pill h3 em{font-style:italic;color:var(--red-dp)}
+.pill p{font-family:'EB Garamond',serif;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.pill p em{font-style:italic;color:var(--red-dp)}
+
+/* ARROW connectors */
+.arrow{display:block;margin:-10px auto 6px;width:80px;height:40px;color:var(--red-dp)}
+
+/* PROJECTS — handwritten list */
+.notes-list{
+  margin:16px 0 24px;padding:22px 26px;background:rgba(255,255,255,0.45);border-left:4px double var(--red-dp);
+  max-width:680px;
+}
+.notes-list .title{font-family:'Caveat',cursive;font-weight:600;font-size:26px;color:var(--red-dp);margin-bottom:12px}
+.notes-list ol{list-style:none;counter-reset:notes}
+.notes-list ol li{
+  counter-increment:notes;display:grid;grid-template-columns:44px 1fr auto;gap:12px;padding:8px 0;
+  border-bottom:1px dotted var(--rule);align-items:baseline;font-family:'EB Garamond',serif;font-size:17px;
+}
+.notes-list ol li:last-child{border-bottom:none}
+.notes-list ol li::before{
+  content:counter(notes,decimal-leading-zero);font-family:'Caveat',cursive;font-weight:600;font-size:22px;
+  color:var(--red-dp);letter-spacing:-0.005em;
+}
+.notes-list ol li .nm{color:var(--ink);font-style:italic}
+.notes-list ol li .nm strong{font-family:'Caveat',cursive;font-weight:600;font-size:21px;color:var(--ink);font-style:normal;margin-right:6px}
+.notes-list ol li .d{font-family:'Caveat',cursive;font-weight:500;font-size:17px;color:var(--red-dp);white-space:nowrap}
+
+/* PRICING */
+.prices{margin:22px 0 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px}
+.tier{
+  padding:20px 22px;background:rgba(255,255,255,0.55);border:2px solid var(--ink);position:relative;
+}
+.tier:nth-child(1){transform:rotate(-0.4deg)}
+.tier:nth-child(2){transform:rotate(0.3deg);border-color:var(--red-dp);border-width:3px}
+.tier:nth-child(3){transform:rotate(-0.2deg)}
+.tier .tg{font-family:'Caveat',cursive;font-weight:500;font-size:18px;color:var(--red-dp);margin-bottom:4px}
+.tier h4{font-family:'Caveat',cursive;font-weight:700;font-size:36px;line-height:1;letter-spacing:-0.008em;color:var(--ink)}
+.tier h4 em{color:var(--red-dp);font-style:italic}
+.tier .desc{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;color:var(--ink-2);line-height:1.5;margin:10px 0 14px}
+.tier .px{
+  padding:12px 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin-bottom:12px;
+  font-family:'Caveat',cursive;font-weight:600;position:relative;
+}
+.tier .px .amt{font-size:44px;color:var(--ink);line-height:1;display:inline-block}
+.tier .px .amt em{color:var(--red-dp);font-style:italic}
+.tier .px .mo{display:block;font-size:17px;color:var(--ink-lt);margin-top:3px}
+.tier .px .circle{
+  position:absolute;right:-18px;top:-8px;
+  border:2px solid var(--red-dp);border-radius:50%;padding:5px 10px;
+  font-family:'Caveat',cursive;font-weight:600;font-size:14px;color:var(--red-dp);
+  transform:rotate(8deg);background:var(--paper);
+}
+.tier ul{list-style:none;font-family:'EB Garamond',serif;font-size:15px;line-height:1.5}
+.tier ul li{padding:5px 0;display:flex;gap:8px;border-bottom:1px dotted var(--rule)}
+.tier ul li:last-of-type{border-bottom:none}
+.tier ul li::before{content:"✓";color:var(--red-dp);font-family:'Caveat',cursive;font-weight:600;font-size:18px;margin-top:-1px}
+.star-annotate{position:absolute;top:-18px;left:-8px;background:var(--yellow);padding:4px 12px;font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:var(--red-dp);transform:rotate(-6deg);border:1.5px solid var(--ink)}
+
+/* DOODLE */
+.doodle{margin:14px auto;display:block;width:80px;color:var(--red-dp);opacity:0.75}
+
+/* CONTACT - postcard/taped in */
+.contact{
+  position:relative;margin:50px auto 24px;max-width:720px;
+}
+.postcard{
+  background:rgba(255,255,255,0.6);border:2px solid var(--ink);padding:38px 40px 36px;
+  transform:rotate(-0.4deg);position:relative;
+}
+.postcard::before,.postcard::after{
+  content:"";position:absolute;top:-14px;width:100px;height:24px;background:rgba(245,226,128,0.7);border:1px dashed var(--ink-lt);
+}
+.postcard::before{left:26px;transform:rotate(-6deg)}
+.postcard::after{right:30px;transform:rotate(5deg)}
+.postcard .stamp{
+  position:absolute;top:-22px;right:-18px;width:70px;height:70px;border-radius:50%;background:var(--red);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Caveat',cursive;font-weight:700;font-size:14px;
+  line-height:1.1;padding:8px;transform:rotate(-12deg);border:2px dashed var(--paper);border-offset:-4px;
+}
+.postcard .stamp div{transform:rotate(12deg)}
+.postcard .stamp em{display:block;font-style:italic;font-size:20px;margin-top:2px}
+
+.postcard h2{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(44px,6vw,72px);line-height:0.95;letter-spacing:-0.012em;color:var(--ink);margin-bottom:12px}
+.postcard h2 em{font-style:italic;color:var(--red-dp)}
+.postcard .sub{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:var(--ink-2);line-height:1.5;margin-bottom:26px;max-width:500px}
+.postcard .sub em{color:var(--red-dp)}
+
+.contact-lines{display:flex;flex-direction:column;gap:10px}
+.cl{display:grid;grid-template-columns:110px 1fr auto;gap:14px;padding:10px 14px;background:rgba(255,255,255,0.4);border:1px dashed var(--ink-lt);align-items:baseline;transition:all .2s}
+.cl:hover{background:var(--yellow);transform:translateX(2px)}
+.cl .k{font-family:'Caveat',cursive;font-weight:500;font-size:16px;color:var(--red-dp)}
+.cl .v{font-family:'Caveat',cursive;font-weight:600;font-size:20px;color:var(--ink);line-height:1}
+.cl .v em{font-style:italic;color:var(--red-dp)}
+.cl .ar{font-family:'Caveat',cursive;color:var(--red-dp);font-size:22px}
+
+/* FOOTER */
+.page-footer{
+  margin-top:60px;padding-top:20px;border-top:1px dashed var(--rule);
+  display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:14px;
+  font-family:'Caveat',cursive;font-weight:500;font-size:18px;color:var(--ink-lt);
+}
+.page-footer em{color:var(--red-dp);font-style:italic}
+.page-footer .mono{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute)}
+
+/* coffee stain */
+.coffee-stain{
+  position:absolute;width:180px;height:180px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle at 30% 30%, transparent 42%, rgba(150,100,50,0.1) 50%, rgba(150,100,50,0.2) 55%, rgba(150,100,50,0.12) 60%, transparent 70%);
+  opacity:0.7;
+}
+.coffee-stain.s1{top:300px;right:-40px;transform:rotate(15deg)}
+.coffee-stain.s2{top:1600px;left:-60px;transform:rotate(-20deg) scale(0.7)}
+
+/* paper clip */
+.clip{
+  position:absolute;top:-16px;right:48px;width:34px;height:68px;color:var(--pencil);z-index:6;
+}
+
+@media (max-width:900px){
+  .page{padding:28px 28px 20px;max-width:none}
+  body{padding:0 0 80px}
+  .hero h1{font-size:74px}
+  .hero .sticky-1{position:relative;top:auto;right:auto;margin:24px auto 0;transform:rotate(-2deg)}
+  .hero-sub{grid-template-columns:1fr}
+  .margin-note,.chapter-ornament{display:none}
+  .pillars{grid-template-columns:1fr}
+  .prices{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .page-header{padding-top:14px}
+  .chapter h2{font-size:46px}
+  .coffee-stain{display:none}
+  .notes-list ol li{grid-template-columns:34px 1fr auto}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · notebook · v0.9</div>
+
+<div class="page">
+
+  <!-- paper clip -->
+  <svg class="clip" viewBox="0 0 40 80" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M20 4 Q32 4 32 18 Q32 70 14 70 Q6 70 6 60 Q6 14 20 14 Q26 14 26 20 L26 58"/>
+  </svg>
+
+  <!-- page header -->
+  <div class="page-header">
+    <div class="handwrite">Mazunte · <em>April 17, 2026</em></div>
+    <div class="pn">/ page · 001 of ∞</div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-kicker">notes from the studio</div>
+    <h1>Your <em>practice</em><br>deserves a <span class="u">home</span><br>that <em>matches</em> it.</h1>
+
+    <div class="margin-note rhs" style="top:220px">one person.<br>one platform.<br><em>no duct tape.</em></div>
+
+    <div class="hero-sub">
+      <div class="l">A one-person studio shipping custom digital homes for healers, teachers, retreat centers, and people doing <em>original work in the world</em> — from a hammock on the Pacific coast of Oaxaca.</div>
+      <div class="scribble">48 hr<br>first build<br><em>→ swear!</em></div>
+    </div>
+
+    <div class="sticky sticky-1">
+      <div class="t">pssst &mdash;</div>
+      <div class="s">send me a voice memo<br>at 2 a.m. &mdash; a messy doc,<br>a linktree you're embarrassed of.<br><em>I don't need polish.</em></div>
+    </div>
+
+    <div class="coffee-stain s1"></div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <svg viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q30 5 50 15 T90 15" stroke-linecap="round"/></svg>
+    <span>the gist</span>
+    <svg viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q30 25 50 15 T90 15" stroke-linecap="round"/></svg>
+  </div>
+
+  <!-- CHAPTER 1: the audit -->
+  <section class="chapter">
+    <div class="ch-n">chapter one · <em>the audit</em></div>
+    <h2>Your <em>stack</em> is<br>costing you <span class="u">$346</span>/month.</h2>
+    <div class="chapter-ornament">← read this<br>carefully</div>
+  </section>
+
+  <div class="prose">
+    <p>Let's do the math. You're renting <strong>seven tools</strong> from seven landlords who don't talk to each other. Each one takes a slice. Each one holds your data hostage. <span class="hl">None of it is yours.</span></p>
+  </div>
+
+  <div class="checklist">
+    <div class="tape"></div>
+    <div class="lbl">the receipts — your seven tools</div>
+    <ul>
+      <li><span class="mk">✗</span><span class="nm"><s>WordPress + theme + plugins</s></span><span class="val">$30/mo</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Kajabi Growth (courses)</s></span><span class="val">$149/mo</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Acuity (bookings)</s></span><span class="val">$24/mo</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Mailchimp Standard</s></span><span class="val">$45/mo</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Eventbrite · 7% fee per ticket</s></span><span class="val">ugh</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Circle (community)</s></span><span class="val">$89/mo</span></li>
+      <li><span class="mk">✗</span><span class="nm"><s>Linktree Pro</s></span><span class="val">$9/mo</span></li>
+    </ul>
+    <div class="tot"><span class="k">total / month →</span><span class="v">$346<sub>+</sub></span></div>
+    <div class="annotate">&mdash; and you own <em>zero</em> of it!</div>
+  </div>
+
+  <!-- CHAPTER 2: what I replace it with -->
+  <section class="chapter">
+    <div class="ch-n">chapter two · <em>the fix</em></div>
+    <h2>One <em>platform.</em><br>Four <span class="u">pillars.</span></h2>
+    <div class="chapter-ornament" style="right:-90px">← this bit ✨</div>
+  </section>
+
+  <div class="prose"><p>Every build stands on four pillars. Each one replaces 2-3 rented SaaS tools with a <em>native system</em> living on your own domain.</p></div>
+
+  <div class="pillars">
+    <div class="pill">
+      <div class="n">pillar 01 <span class="tg">presence</span></div>
+      <h3>Your <em>site.</em></h3>
+      <p>Custom-designed, fast. No templates. No WordPress. <em>A site that looks like you</em> and loads in under a second.</p>
+    </div>
+    <div class="pill">
+      <div class="n">pillar 02 <span class="tg">offering</span></div>
+      <h3>Bookings &amp; <em>payments.</em></h3>
+      <p>Sessions, classes, retreats, events &mdash; one-flow with inline <em>native payments</em>. 0% fees. No Eventbrite.</p>
+    </div>
+    <div class="pill">
+      <div class="n">pillar 03 <span class="tg">container</span></div>
+      <h3>Courses &amp; <em>community.</em></h3>
+      <p>Courses, members, cohorts, libraries. <em>Your own container</em> &mdash; not an algorithm's warehouse.</p>
+    </div>
+    <div class="pill">
+      <div class="n">pillar 04 <span class="tg">machinery</span></div>
+      <h3><em>Email,</em> AI<br>&amp; analytics.</h3>
+      <p>Email sequences, AI assistants on <em>your methodology</em>, analytics you can actually read.</p>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <svg viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q30 5 50 15 T90 15" stroke-linecap="round"/></svg>
+    <span>the receipts</span>
+    <svg viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q30 25 50 15 T90 15" stroke-linecap="round"/></svg>
+  </div>
+
+  <!-- CHAPTER 3: the work -->
+  <section class="chapter">
+    <div class="ch-n">chapter three · <em>past clients</em></div>
+    <h2>14 <em>quiet acts</em> of<br><span class="u">infrastructure.</span></h2>
+  </section>
+
+  <div class="margin-note lhs" style="margin-top:10px"><em>170+ total · 14 recent</em></div>
+
+  <div class="notes-list">
+    <div class="title">— fourteen recent builds —</div>
+    <ol>
+      <li><span class="nm"><strong>Deva Premal &amp; Miten</strong> — music · discography + world tour platform</span><span class="d">14 days '25</span></li>
+      <li><span class="nm"><strong>Sacred Counsel</strong> — 20-year ceremony center · 5 streams unified</span><span class="d">12 days '25</span></li>
+      <li><span class="nm"><strong>Gurmukh Kaur</strong> — 50-year yoga legacy · 7→1 platforms</span><span class="d">8 days '25</span></li>
+      <li><span class="nm"><strong>Skylar Acamesis</strong> — premium healing · multi-stream practice</span><span class="d">16 days '24</span></li>
+      <li><span class="nm"><strong>Shiv Energetics</strong> — reiki academy · 300+ students · AI assistant</span><span class="d">23 days '24</span></li>
+      <li><span class="nm"><strong>Mariana Harpreet</strong> — 3 brands · 4 domains · 1 membership</span><span class="d">21 days '24</span></li>
+      <li><span class="nm"><strong>Uri Atsur</strong> — vocal facilitator · 8 ticketing platforms → 1</span><span class="d">11 days '24</span></li>
+      <li><span class="nm"><strong>Ama Kura</strong> — regenerative · school + restaurant + workshops</span><span class="d">18 days '24</span></li>
+      <li><span class="nm"><strong>Mazunte Today</strong> — my own town · bilingual directory</span><span class="d">9 days '24</span></li>
+      <li><span class="nm"><strong>Arte de Renacer</strong> — women's movement → breathwork school</span><span class="d">19 days '23</span></li>
+      <li><span class="nm"><strong>Menda Mano</strong> — bespoke artisan · linen texture</span><span class="d">7 days '23</span></li>
+      <li><span class="nm"><strong>Mujer Despierta</strong> — Spanish-first living archive</span><span class="d">8 days '23</span></li>
+      <li><span class="nm"><strong>Kura Terra</strong> — plant-dyed wearable art</span><span class="d">6 days '23</span></li>
+      <li><span class="nm"><strong>— private —</strong> · eco-farm &amp; residency</span><span class="d">24 days '22</span></li>
+    </ol>
+  </div>
+
+  <svg class="doodle" viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15 Q30 5 50 15 T90 15" stroke-linecap="round"/><circle cx="92" cy="15" r="2" fill="currentColor"/></svg>
+
+  <!-- CHAPTER 4: prices -->
+  <section class="chapter">
+    <div class="ch-n">chapter four · <em>what it costs</em></div>
+    <h2>Three <em>tiers.</em><br><span class="u">Fixed.</span> Nothing <em>hidden.</em></h2>
+    <div class="chapter-ornament">↓ circle one</div>
+  </section>
+
+  <div class="prices">
+    <div class="tier">
+      <div class="tg">for solo teachers</div>
+      <h4>Practi<em>tioners.</em></h4>
+      <div class="desc">Solo teachers, healers, coaches. An audience but no real home.</div>
+      <div class="px"><span class="amt">$<em>1,500</em></span><span class="mo">+ $250/mo all-in</span><span class="circle">1-2 wk</span></div>
+      <ul>
+        <li>Custom site + bookings</li>
+        <li>Email automation</li>
+        <li>Full ownership</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="star-annotate">★ most popular!</div>
+      <div class="tg">for certification programs</div>
+      <h4>Schools.</h4>
+      <div class="desc">Teacher trainings, academies, cert programs with students and levels.</div>
+      <div class="px"><span class="amt">$<em>5,000</em></span><span class="mo">+ $750/mo all-in</span><span class="circle">3-4 wk</span></div>
+      <ul>
+        <li>Everything above</li>
+        <li>Courses + cert tracks</li>
+        <li>Community + directory</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <div class="tg">for complex schools</div>
+      <h4>Complex <em>schools.</em></h4>
+      <div class="desc">300+ students, AI, bilingual, multi-tenant — the full thing.</div>
+      <div class="px"><span class="amt">$<em>8k+</em></span><span class="mo">+ $1,500/mo all-in</span><span class="circle">4-6 wk</span></div>
+      <ul>
+        <li>Everything above</li>
+        <li>AI on your methodology</li>
+        <li>Multi-tenant bilingual</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="coffee-stain s2"></div>
+
+  <!-- CHAPTER 5 -->
+  <section class="chapter">
+    <div class="ch-n">chapter five · <em>p.s.</em></div>
+    <h2>Send me<br><em>the mess.</em></h2>
+  </section>
+
+  <div class="contact">
+    <div class="postcard">
+      <div class="stamp"><div>48h<br><em>reply</em></div></div>
+      <h2>Let's <em>talk.</em></h2>
+      <div class="sub">I read every message myself. A voice memo at 2 a.m. is welcome. A messy google doc is welcome. A Linktree you're embarrassed of is <em>especially welcome.</em></div>
+      <div class="contact-lines">
+        <a href="mailto:jordi@astralintegration.studio" class="cl"><span class="k">/ email</span><span class="v">jordi@astralintegration<em>.studio</em></span><span class="ar">↗</span></a>
+        <a href="#" class="cl"><span class="k">/ call</span><span class="v">30-min <em>discovery</em> (no pitch)</span><span class="ar">↗</span></a>
+        <a href="#" class="cl"><span class="k">/ whatsapp</span><span class="v">+52 · <em>mazunte hours</em></span><span class="ar">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <div>— <em>Jordi</em> · Mazunte, Oax. · MX · since '13</div>
+    <div class="mono">rev. 2026.04.17 · all systems normal</div>
+  </div>
+
+</div>
+
+</body>
+</html>

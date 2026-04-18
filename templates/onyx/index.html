@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONYX — Keep Them</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0A0A0A;
+    --fg: #F5F5F5;
+    --dim: #6B6B6B;
+    --accent: #E2FF00;
+    --accent-fg: #000;
+    --red: #FF2D2D;
+    --purple: #A78BFA;
+    --border: #222;
+    --card: #111;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+
+  .skip-link {
+    position: absolute; top: -100%; left: 16px;
+    background: var(--accent); color: var(--accent-fg);
+    padding: 8px 16px; font-weight: 700; z-index: 100;
+  }
+  .skip-link:focus { top: 8px; }
+
+  .bc { font-family: 'Barlow Condensed', sans-serif; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 40px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 26px; letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--accent); }
+  .nav-r { display: flex; gap: 28px; align-items: center; }
+  .nav-r a { font-size: 13px; font-weight: 600; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; transition: color 150ms; }
+  .nav-r a:hover, .nav-r a:focus-visible { color: var(--fg); }
+  .nav-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 14px; letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--accent); color: var(--accent-fg);
+    padding: 10px 24px; border: none;
+    transition: transform 100ms;
+  }
+  .nav-btn:hover { transform: translate(-1px,-1px); box-shadow: 2px 2px 0 var(--fg); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 140px 40px 80px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-top-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 15px;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 11vw, 160px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    margin-bottom: 36px;
+  }
+  .hero h1 .a { color: var(--accent); }
+  .hero h1 .r { color: var(--red); font-style: italic; }
+  .hero-p {
+    font-size: 19px; color: var(--dim);
+    max-width: 540px; line-height: 1.7;
+    margin-bottom: 44px;
+  }
+  .hero-p strong { color: var(--fg); font-weight: 600; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-big {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 18px;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: var(--accent); color: var(--accent-fg);
+    padding: 18px 44px; border: 2px solid var(--accent-fg);
+    transition: transform 100ms; min-height: 56px;
+  }
+  .btn-big:hover, .btn-big:focus-visible { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--accent-fg); }
+  .btn-big:active { transform: translate(0); box-shadow: none; }
+  .btn-big svg { width: 20px; height: 20px; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 16px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--fg);
+    border: 2px solid var(--border); padding: 16px 32px;
+    transition: border-color 150ms; min-height: 56px;
+  }
+  .btn-outline:hover { border-color: var(--fg); }
+
+  .hero-stat-row {
+    display: flex; gap: 48px; margin-top: 64px;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .hs-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 44px; color: var(--accent); line-height: 1;
+  }
+  .hs-label { font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+
+  /* ===== MARQUEE ===== */
+  .marquee {
+    overflow: hidden; white-space: nowrap;
+    background: var(--red); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 16px;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 12px 0;
+    border-bottom: 2px solid var(--accent-fg);
+  }
+  .marquee-track { display: inline-block; animation: scroll 18s linear infinite; }
+  .marquee-track span { padding: 0 48px; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ===== SECTION UTILS ===== */
+  .section { padding: 100px 40px; border-bottom: 1px solid var(--border); }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .section-h {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(36px, 6vw, 72px);
+    text-transform: uppercase; letter-spacing: -1px;
+    line-height: 0.92; margin-bottom: 20px;
+  }
+  .section-p { font-size: 17px; color: var(--dim); max-width: 540px; line-height: 1.7; margin-bottom: 56px; }
+
+  /* ===== THE PITCH (Problem) ===== */
+  .pitch {
+    padding: 100px 40px;
+    border-bottom: 1px solid var(--border);
+    max-width: 820px;
+  }
+  .pitch-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.3; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .pitch-line .dim { color: var(--dim); }
+  .pitch-line .hi { color: var(--accent); }
+  .pitch-line .red { color: var(--red); }
+  .pitch-body { font-size: 17px; color: var(--dim); line-height: 1.8; max-width: 600px; }
+  .pitch-body strong { color: var(--fg); font-weight: 600; }
+
+  /* ===== HOW (Record → Build → Keep) ===== */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border: 2px solid var(--border);
+  }
+  .how-card {
+    padding: 48px 36px; border-right: 2px solid var(--border);
+    position: relative; transition: background 200ms;
+  }
+  .how-card:last-child { border-right: none; }
+  .how-card:hover { background: var(--card); }
+  .how-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 80px;
+    color: var(--border); line-height: 1; margin-bottom: 20px;
+    transition: color 200ms;
+  }
+  .how-card:hover .how-num { color: #2a2a2a; }
+  .how-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 24px;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .how-tag {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .how-desc { font-size: 15px; color: var(--dim); line-height: 1.7; }
+
+  /* ===== WHAT YOU GET ===== */
+  .what-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2px; background: var(--border);
+  }
+  .what-card {
+    background: var(--bg); padding: 40px 32px;
+    transition: background 200ms;
+  }
+  .what-card:hover { background: var(--card); }
+  .what-icon {
+    width: 40px; height: 40px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .what-icon svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .what-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 20px;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .what-card p { font-size: 14px; color: var(--dim); line-height: 1.65; }
+
+  /* ===== DEMO WINDOW ===== */
+  .demo-wrap { max-width: 700px; }
+  .demo-win {
+    background: var(--card); border: 2px solid var(--border);
+    overflow: hidden;
+  }
+  .demo-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 18px; border-bottom: 2px solid var(--border);
+    font-size: 12px; color: var(--dim); font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #FF4444; } .dot-y { background: #FFAA00; } .dot-g { background: #44FF44; }
+  .demo-chat { padding: 28px 22px; display: flex; flex-direction: column; gap: 16px; }
+  .msg {
+    max-width: 88%; padding: 14px 18px; font-size: 15px; line-height: 1.6;
+  }
+  .msg-ai {
+    background: #1a1a1a; border: 1px solid var(--border);
+    align-self: flex-start; border-radius: 2px 16px 16px 16px;
+  }
+  .msg-ai .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .msg-human {
+    background: var(--accent); color: var(--accent-fg);
+    align-self: flex-end; border-radius: 16px 2px 16px 16px;
+    font-weight: 500;
+  }
+  .msg-note {
+    text-align: center; font-size: 11px; color: var(--dim);
+    letter-spacing: 2px; text-transform: uppercase; padding: 6px;
+  }
+  .msg-vid {
+    align-self: flex-start;
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px;
+    background: #1a1a1a; border: 1px solid var(--border);
+    border-radius: 2px 16px 16px 16px;
+    font-size: 13px; color: var(--dim);
+  }
+  .msg-vid-icon {
+    width: 44px; height: 44px; background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .msg-vid-icon svg { width: 20px; height: 20px; fill: #fff; }
+  .msg-vid-text strong { color: var(--fg); display: block; font-size: 14px; margin-bottom: 2px; }
+
+  /* ===== CONTRIBUTORS ===== */
+  .contrib-section { }
+  .contrib-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px; background: var(--border);
+  }
+  .contrib-card {
+    background: var(--bg); padding: 36px 28px;
+  }
+  .contrib-card .who {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--purple); margin-bottom: 12px;
+  }
+  .contrib-card blockquote {
+    font-size: 16px; line-height: 1.65; font-style: italic; color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .contrib-card .attr {
+    font-size: 13px; color: var(--dim);
+  }
+
+  /* ===== BIG QUOTE ===== */
+  .big-quote {
+    padding: 120px 40px; text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .big-quote::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(226,255,0,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .big-quote p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(28px, 5vw, 56px);
+    text-transform: uppercase; line-height: 1.15;
+    max-width: 800px; margin: 0 auto;
+    letter-spacing: -1px;
+    position: relative;
+  }
+  .big-quote p .a { color: var(--accent); }
+  .big-quote p .r { color: var(--red); }
+
+  /* ===== PRICING ===== */
+  .price-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px; background: var(--border); border: 2px solid var(--border);
+  }
+  .price-card { background: var(--bg); padding: 44px 32px; }
+  .price-card.pop { background: var(--card); position: relative; }
+  .price-card.pop::after {
+    content: 'MOST POPULAR';
+    position: absolute; top: 16px; right: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 800; letter-spacing: 2px;
+    background: var(--accent); color: var(--accent-fg); padding: 4px 10px;
+  }
+  .price-tier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 8px;
+  }
+  .price-amt {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 52px; line-height: 1;
+    margin-bottom: 4px; font-variant-numeric: tabular-nums;
+  }
+  .price-amt span { font-size: 18px; font-weight: 500; color: var(--dim); }
+  .price-sub { font-size: 14px; color: var(--dim); margin-bottom: 24px; }
+  .price-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .price-list li {
+    font-size: 14px; color: var(--dim); padding-left: 20px;
+    position: relative; line-height: 1.5;
+  }
+  .price-list li::before {
+    content: '+'; position: absolute; left: 0;
+    color: var(--accent); font-weight: 700;
+  }
+  .price-btn {
+    display: block; width: 100%; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 15px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px; transition: transform 100ms;
+  }
+  .price-btn-a { background: var(--accent); color: var(--accent-fg); border: 2px solid var(--accent-fg); }
+  .price-btn-a:hover { transform: translate(-1px,-1px); box-shadow: 2px 2px 0 var(--accent-fg); }
+  .price-btn-o { background: transparent; color: var(--fg); border: 2px solid var(--border); }
+  .price-btn-o:hover { border-color: var(--fg); }
+
+  /* ===== FINAL CTA ===== */
+  .final {
+    padding: 120px 40px; text-align: center;
+    background: var(--accent); color: var(--accent-fg);
+    border-bottom: 2px solid var(--accent-fg);
+  }
+  .final h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(44px, 8vw, 100px);
+    text-transform: uppercase; letter-spacing: -2px;
+    line-height: 0.9; margin-bottom: 20px;
+  }
+  .final p {
+    font-size: 18px; max-width: 460px;
+    margin: 0 auto 36px; line-height: 1.6; opacity: 0.75;
+  }
+  .btn-dark {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 20px;
+    letter-spacing: 2px; text-transform: uppercase;
+    background: var(--accent-fg); color: var(--accent);
+    padding: 18px 48px; border: 2px solid var(--accent-fg);
+    transition: transform 100ms; min-height: 56px;
+  }
+  .btn-dark:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+  .btn-dark:active { transform: translate(0); box-shadow: none; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 36px 40px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+    font-size: 13px; color: var(--dim);
+  }
+  footer a { color: var(--dim); transition: color 150ms; }
+  footer a:hover { color: var(--accent); }
+  .foot-links { display: flex; gap: 24px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-r a:not(.nav-btn) { display: none; }
+    .hero { padding: 110px 20px 60px; }
+    .section { padding: 64px 20px; }
+    .pitch { padding: 64px 20px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .how-card { border-right: none; border-bottom: 2px solid var(--border); }
+    .how-card:last-child { border-bottom: none; }
+    .what-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .hero-stat-row { flex-wrap: wrap; gap: 24px; }
+    .big-quote { padding: 80px 20px; }
+    .final { padding: 80px 20px; }
+    footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav aria-label="Main navigation">
+  <div class="logo">ONYX<span>.</span></div>
+  <div class="nav-r">
+    <a href="#how">How</a>
+    <a href="#what">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#start" class="nav-btn">Record Someone</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-top-line">Before they're gone. While they're here.</div>
+  <h1>
+    Film<br>
+    <span class="a">Them.</span><br>
+    Keep<br>
+    <span class="r">Them.</span>
+  </h1>
+  <p class="hero-p">
+    Sit your dad down. Turn on the camera. <strong>Onyx interviews them live</strong> — pulling out stories, voice, humor, wisdom, everything that makes them <em>them</em>. Then it builds a digital copy so real you can talk to it when they're gone.
+  </p>
+  <div class="cta-row">
+    <a href="#start" class="btn-big" role="button">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+      Start Recording
+    </a>
+    <a href="#demo" class="btn-outline" role="button">See It Work</a>
+  </div>
+  <div class="hero-stat-row">
+    <div><div class="hs-num">12K+</div><div class="hs-label">People Preserved</div></div>
+    <div><div class="hs-num">847K</div><div class="hs-label">Stories Captured</div></div>
+    <div><div class="hs-num">94%</div><div class="hs-label">Said "I Wish I Started Sooner"</div></div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>PEOPLE ARE NOT MEANT TO DISAPPEAR</span>
+    <span>&bull;</span>
+    <span>EVERY VOICE MATTERS</span>
+    <span>&bull;</span>
+    <span>RECORD THEM WHILE THEY'RE HERE</span>
+    <span>&bull;</span>
+    <span>MEMORIES FADE. ONYX DOESN'T.</span>
+    <span>&bull;</span>
+    <span>PEOPLE ARE NOT MEANT TO DISAPPEAR</span>
+    <span>&bull;</span>
+    <span>EVERY VOICE MATTERS</span>
+    <span>&bull;</span>
+    <span>RECORD THEM WHILE THEY'RE HERE</span>
+    <span>&bull;</span>
+    <span>MEMORIES FADE. ONYX DOESN'T.</span>
+    <span>&bull;</span>
+  </div>
+</div>
+
+<!-- ===== THE PROBLEM ===== -->
+<section class="pitch">
+  <div class="pitch-line">
+    <span class="dim">You know that feeling where you try to remember</span> exactly how your dad laughed<span class="dim">, or the way your grandma told that one story, and</span> <span class="red">it's already fading?</span>
+  </div>
+  <p class="pitch-body">
+    Photos don't capture who someone is. Videos catch fragments. But nobody captures the <strong>whole person</strong> — their voice, their stories, the way they think, the advice they'd give, the jokes they'd tell.
+    <br><br>
+    <strong>Onyx does.</strong> You sit them down, the AI interviews them on camera, and layer by layer, it builds a living digital portrait you can actually talk to.
+  </p>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section" id="how">
+  <div class="section-tag">How It Works</div>
+  <h2 class="section-h">Three Steps.<br>That's It.</h2>
+  <p class="section-p">No apps to learn. No complicated setup. Sit down, press record, and let Onyx do what it does.</p>
+
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01</div>
+      <div class="how-tag">The Session</div>
+      <div class="how-name">Record Them Live</div>
+      <div class="how-desc">Camera on. Onyx asks the questions — real questions, not generic ones. It adapts to their answers, digs deeper, pulls out memories they forgot they had. Their face, their voice, their pauses. All captured.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02</div>
+      <div class="how-tag">The Build</div>
+      <div class="how-name">AI Builds Them</div>
+      <div class="how-desc">Every session adds another layer. Voice cloning. Personality mapping. Story indexing. Humor patterns. The more sessions, the more real the Onyx becomes. It's not a chatbot — it's <em>them</em>.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03</div>
+      <div class="how-tag">The Living Copy</div>
+      <div class="how-name">Keep Them Forever</div>
+      <div class="how-desc">Talk to their Onyx. Ask it questions. Hear their stories in their voice. Family and friends can add their own memories too — things only they knew. The portrait keeps growing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT YOU CAPTURE ===== -->
+<section class="section" id="what">
+  <div class="section-tag">What Gets Captured</div>
+  <h2 class="section-h">Everything That<br>Makes Them <span style="color:var(--accent)">Them</span></h2>
+  <p class="section-p">Not a summary. Not a highlight reel. The actual, full, real person.</p>
+
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3>Their Face on Camera</h3>
+      <p>HD video of every session. Their expressions, their hand gestures, the way their eyes light up when they tell a good story.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+      <h3>Their Actual Voice</h3>
+      <p>Cloned from their recordings. The accent, the cadence, the way they say "anyway" before every story. It sounds like a phone call with them.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+      <h3>Hundreds of Stories</h3>
+      <p>Organized by life chapter. Childhood, love, career, parenthood. The AI pulls out stories they didn't even plan to tell.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <h3>Their Humor</h3>
+      <p>The jokes they always repeat. The sarcasm. The timing. We don't flatten people into polite AI — it captures the real personality.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <h3>Their Wisdom</h3>
+      <p>What they'd tell you at 3am when you can't sleep. The life advice. The hard-won lessons. The things you'd give anything to hear one more time.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3>Memories from Others</h3>
+      <p>Family and friends add their own stories. "Remember when Dad did X?" The portrait gets richer from every angle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO ===== -->
+<section class="section" id="demo">
+  <div class="section-tag">Live Session Preview</div>
+  <h2 class="section-h">This Is What<br>a Session Looks Like</h2>
+  <p class="section-p">The AI adapts to every answer. It doesn't follow a script — it follows the person.</p>
+
+  <div class="demo-wrap">
+    <div class="demo-win">
+      <div class="demo-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span style="margin-left:12px">Onyx Session &mdash; Recording</span>
+        <span style="margin-left:auto; color:var(--red);">&#9679; LIVE</span>
+      </div>
+      <div class="demo-chat">
+        <div class="msg-vid">
+          <div class="msg-vid-icon"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <div class="msg-vid-text"><strong>Camera is on</strong>Recording video + audio of this session</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="lbl">Onyx</div>
+          You mentioned you used to build things with your hands. Take me back to the first thing you ever built that you were proud of. Where were you? How old?
+        </div>
+        <div class="msg msg-human">
+          Oh man. I was maybe twelve. I built this go-kart out of scrap wood and lawnmower wheels. The thing barely worked but I drove it down the hill on our street and my mom was screaming from the porch.
+        </div>
+        <div class="msg msg-ai">
+          <div class="lbl">Onyx</div>
+          Was she screaming because she was scared, or because she was proud?
+        </div>
+        <div class="msg msg-human">
+          Both. That's the thing about her. She was always both at the same time. Furious and proud. I think I got that from her honestly.
+        </div>
+        <div class="msg msg-ai">
+          <div class="lbl">Onyx</div>
+          That's worth remembering — that you see her in yourself. What else did you get from her?
+        </div>
+        <div class="msg-note">Session continues &mdash; voice, video, and stories are being captured</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OTHERS CONTRIBUTE ===== -->
+<section class="section contrib-section">
+  <div class="section-tag">It's Not Just Them</div>
+  <h2 class="section-h">Everyone Adds<br>to the Picture</h2>
+  <p class="section-p">The person records their sessions. Then family and friends layer in their own memories — things only they remember.</p>
+
+  <div class="contrib-grid">
+    <div class="contrib-card">
+      <div class="who">Daughter</div>
+      <blockquote>"Dad never talks about the time he drove 6 hours in a snowstorm to make it to my recital. He probably forgot. I never will."</blockquote>
+      <div class="attr">Added to David's Onyx &mdash; 3 days ago</div>
+    </div>
+    <div class="contrib-card">
+      <div class="who">Best Friend</div>
+      <blockquote>"There's a version of him at parties that his kids have never seen. The guy who'd grab the guitar and make up songs about everyone in the room."</blockquote>
+      <div class="attr">Added to David's Onyx &mdash; 1 week ago</div>
+    </div>
+    <div class="contrib-card">
+      <div class="who">Grandson</div>
+      <blockquote>"I asked grandpa's Onyx what he was like at my age. He told me he was terrified of everything but did it all anyway. That helped more than he'll know."</blockquote>
+      <div class="attr">Conversation with David's Onyx &mdash; yesterday</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG QUOTE ===== -->
+<div class="big-quote">
+  <p>
+    Photos capture a <span class="a">moment.</span><br>
+    Onyx captures a <span class="r">person.</span>
+  </p>
+</div>
+
+<!-- ===== PRICING ===== -->
+<section class="section" id="pricing">
+  <div class="section-tag">Pricing</div>
+  <h2 class="section-h">Start Free.<br>No Credit Card.</h2>
+  <p class="section-p">Your first session is free. Record someone today. Decide later.</p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">Free</div>
+      <div class="price-amt">$0</div>
+      <div class="price-sub">One free session to try it</div>
+      <ul class="price-list">
+        <li>1 recorded AI interview session</li>
+        <li>Voice + video capture</li>
+        <li>Story transcription</li>
+        <li>Preview of their Onyx</li>
+      </ul>
+      <a href="#" class="price-btn price-btn-o" role="button">Try Free</a>
+    </div>
+    <div class="price-card pop">
+      <div class="price-tier">Core</div>
+      <div class="price-amt">$29<span>/mo</span></div>
+      <div class="price-sub">One person, unlimited depth</div>
+      <ul class="price-list">
+        <li>Unlimited AI interview sessions</li>
+        <li>Voice cloning</li>
+        <li>Living Onyx you can talk to</li>
+        <li>Family can add memories</li>
+        <li>Encrypted &amp; private</li>
+      </ul>
+      <a href="#" class="price-btn price-btn-a" role="button">Start Recording</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Family</div>
+      <div class="price-amt">$59<span>/mo</span></div>
+      <div class="price-sub">Up to 5 people</div>
+      <ul class="price-list">
+        <li>Everything in Core</li>
+        <li>5 separate Onyx profiles</li>
+        <li>Cross-referenced family stories</li>
+        <li>Family tree connections</li>
+        <li>Priority processing</li>
+      </ul>
+      <a href="#" class="price-btn price-btn-o" role="button">Start Recording</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final" id="start">
+  <h2>Don't<br>Wait.</h2>
+  <p>You know who you'd record first. You're thinking about them right now. Do it while they're still here to sit down and press record.</p>
+  <a href="#" class="btn-dark" role="button">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+    Record Someone Now
+  </a>
+</section>
+
+</main>
+
+<footer>
+  <div>ONYX &copy; 2026. People are not meant to disappear.</div>
+  <div class="foot-links">
+    <a href="#">Privacy</a>
+    <a href="#">Ethics</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

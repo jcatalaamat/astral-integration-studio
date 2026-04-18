@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Astral Integration — Drawing 001 / Rev 2026.04.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #E8EEF3;
+  --paper-2: #DCE5ED;
+  --paper-dk: #C9D6E2;
+  --grid: rgba(27,50,86,0.09);
+  --grid-2: rgba(27,50,86,0.16);
+  --ink: #1B3256;
+  --ink-2: #2D4773;
+  --mute: #5C7394;
+  --mute-2: #84A0C0;
+  --red: #C8372D;
+  --red-dp: #8E1E16;
+  --yellow: #D6A32C;
+  --rule: rgba(27,50,86,0.22);
+  --rule-str: rgba(27,50,86,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Anonymous Pro',monospace;
+  background:var(--paper);color:var(--ink);font-size:13.5px;line-height:1.55;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid-2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
+  background-size:20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+.sans{font-family:'Urbanist',sans-serif;letter-spacing:-0.01em}
+.mono-tag{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase}
+
+/* studio tag */
+.studio-tag{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:1px solid var(--rule-str);padding:5px 12px;display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:700}
+.studio-tag .d{width:6px;height:6px;background:var(--red);border-radius:0}
+
+/* ===== TITLE BLOCK HEADER ===== */
+.drawing{max-width:1480px;margin:0 auto;padding:30px 32px 32px}
+
+.title-strip{
+  display:grid;grid-template-columns:auto 1fr auto auto auto;gap:0;
+  border:2px solid var(--ink);background:var(--paper-2);margin-bottom:0;
+  font-family:'Anonymous Pro',monospace;font-size:11px;
+}
+.title-strip .cell{padding:10px 14px;border-right:1px solid var(--ink);display:flex;flex-direction:column;gap:3px}
+.title-strip .cell:last-child{border-right:none}
+.title-strip .cell .k{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.title-strip .cell .v{color:var(--ink);font-weight:700;font-size:13px}
+.title-strip .cell .v em{color:var(--red);font-style:italic}
+.title-strip .brand-cell{background:var(--ink);color:var(--paper)}
+.title-strip .brand-cell .v{color:var(--paper)}
+.title-strip .brand-cell .k{color:var(--mute-2)}
+.title-strip .wide{min-width:200px}
+
+/* ===== DIMENSION LINES + HERO ===== */
+.hero{
+  position:relative;padding:80px 60px 100px;border:2px solid var(--ink);border-top:none;background:var(--paper);
+}
+/* corner crops */
+.hero::before,.hero::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--red)}
+.hero::before{top:-2px;left:-2px;border-right:none;border-bottom:none}
+.hero::after{top:-2px;right:-2px;border-left:none;border-bottom:none}
+
+/* dimension line above title */
+.dim-top{
+  position:absolute;top:28px;left:60px;right:60px;display:flex;align-items:center;
+  font-family:'Anonymous Pro',monospace;font-size:10px;color:var(--red);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+}
+.dim-top .line{flex:1;height:1px;background:var(--red);position:relative}
+.dim-top .line::before,.dim-top .line::after{content:"";position:absolute;top:-5px;width:1px;height:11px;background:var(--red)}
+.dim-top .line::before{left:0}.dim-top .line::after{right:0}
+.dim-top .val{padding:0 10px;background:var(--paper);white-space:nowrap}
+
+.hero h1{
+  font-family:'Urbanist',sans-serif;font-weight:800;
+  font-size:clamp(56px,11vw,164px);line-height:0.9;letter-spacing:-0.035em;color:var(--ink);
+  position:relative;z-index:2;max-width:1200px;
+}
+.hero h1 em{font-style:italic;color:var(--red);font-weight:400}
+
+/* dimension lines on sides */
+.dim-left,.dim-right{position:absolute;top:140px;bottom:160px;display:flex;flex-direction:column;align-items:center;width:40px}
+.dim-left{left:12px}.dim-right{right:12px}
+.dim-left .line,.dim-right .line{flex:1;width:1px;background:var(--red);position:relative}
+.dim-left .line::before,.dim-left .line::after,.dim-right .line::before,.dim-right .line::after{content:"";position:absolute;left:-5px;width:11px;height:1px;background:var(--red)}
+.dim-left .line::before,.dim-right .line::before{top:0}
+.dim-left .line::after,.dim-right .line::after{bottom:0}
+.dim-left .val,.dim-right .val{writing-mode:vertical-rl;padding:10px 0;color:var(--red);font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:var(--paper)}
+
+.hero-callouts{position:absolute;pointer-events:none;color:var(--red);font-family:'Anonymous Pro',monospace;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
+.hero-callouts .co{position:absolute;display:flex;align-items:center;gap:8px}
+.hero-callouts .co svg{color:var(--red)}
+.hero-callouts .co-1{top:20%;right:-40px;transform:translateX(-50%)}
+.hero-callouts .co-2{bottom:30%;left:10%}
+
+.hero-lead{margin-top:40px;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:end;border-top:1px dashed var(--rule-str);padding-top:30px}
+.hero-lead .l{font-family:'Anonymous Pro',monospace;font-size:14px;line-height:1.7;color:var(--ink)}
+.hero-lead .l strong{font-family:'Urbanist',sans-serif;font-weight:700;color:var(--red)}
+.hero-lead .l em{color:var(--red);font-style:italic}
+.hero-lead .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
+.hero-lead .stat{padding:14px 16px;border:1px solid var(--ink);background:var(--paper)}
+.hero-lead .stat .n{font-family:'Urbanist',sans-serif;font-weight:800;font-size:36px;line-height:1;color:var(--ink);letter-spacing:-0.02em}
+.hero-lead .stat .n em{font-style:italic;color:var(--red);font-weight:500}
+.hero-lead .stat .l{font-family:'Anonymous Pro',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute);margin-top:6px;font-weight:700;line-height:1.4;display:block}
+
+/* ===== DRAWING CARD (generic for sections) ===== */
+.draw-card{
+  border:2px solid var(--ink);background:var(--paper);margin-top:24px;position:relative;
+}
+.draw-card::before{content:"";position:absolute;top:-2px;left:-2px;width:14px;height:14px;border:2px solid var(--red);border-right:none;border-bottom:none}
+.draw-card::after{content:"";position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border:2px solid var(--red);border-left:none;border-top:none}
+
+/* title row on each card */
+.card-title{
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;padding:10px 16px;
+  border-bottom:1px solid var(--ink);background:var(--paper-2);align-items:center;
+}
+.card-title .tag{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);font-weight:700;border:1px solid var(--red);padding:2px 8px}
+.card-title .name{font-family:'Urbanist',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink)}
+.card-title .name em{font-style:italic;color:var(--red)}
+.card-title .meta{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.1em;color:var(--mute);font-weight:700;text-transform:uppercase;display:flex;gap:14px}
+
+/* ===== FLOOR PLAN: four pillars ===== */
+.floor-plan{padding:40px 32px 36px}
+.fp-head{margin-bottom:30px}
+.fp-head h2{font-family:'Urbanist',sans-serif;font-weight:800;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-0.025em;margin-bottom:10px}
+.fp-head h2 em{font-style:italic;color:var(--red);font-weight:500}
+.fp-head .d{font-family:'Anonymous Pro',monospace;font-size:12.5px;color:var(--ink-2);max-width:720px;line-height:1.6}
+.fp-head .d em{color:var(--red);font-style:italic}
+
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--ink)}
+.pillar{background:var(--paper);padding:24px 22px 28px;position:relative;min-height:280px;display:flex;flex-direction:column}
+.pillar::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.pillar .num{font-family:'Anonymous Pro',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
+.pillar .num .span-tag{background:var(--red);color:var(--paper);padding:1px 6px;letter-spacing:0.1em}
+.pillar h3{font-family:'Urbanist',sans-serif;font-weight:700;font-size:28px;line-height:1;letter-spacing:-0.02em;margin-bottom:14px;color:var(--ink)}
+.pillar h3 em{font-style:italic;color:var(--red);font-weight:500}
+.pillar p{font-family:'Anonymous Pro',monospace;font-size:12px;line-height:1.55;color:var(--ink-2);margin-bottom:14px}
+.pillar ul{list-style:none;margin-top:auto;padding-top:12px;border-top:1px dashed var(--rule-str)}
+.pillar ul li{padding:5px 0;display:grid;grid-template-columns:14px 1fr auto;gap:6px;font-size:11.5px;color:var(--ink);align-items:baseline}
+.pillar ul li .b{color:var(--red);font-weight:700}
+.pillar ul li .v{font-family:'Urbanist',sans-serif;font-weight:600;color:var(--red);text-transform:uppercase;font-size:10px;letter-spacing:0.08em}
+
+/* ===== SCHEDULE (works table) ===== */
+.schedule{padding:36px 32px 40px}
+.sch-head{display:flex;justify-content:space-between;align-items:end;padding-bottom:16px;border-bottom:2px solid var(--ink);margin-bottom:20px;gap:20px;flex-wrap:wrap}
+.sch-head h2{font-family:'Urbanist',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-0.025em}
+.sch-head h2 em{font-style:italic;color:var(--red);font-weight:500}
+.sch-head .meta{font-family:'Anonymous Pro',monospace;font-size:11px;color:var(--mute);letter-spacing:0.12em;text-transform:uppercase;font-weight:700;text-align:right}
+.sch-head .meta strong{color:var(--red);font-family:'Urbanist',sans-serif;font-weight:800}
+
+.sch-table{width:100%;border-collapse:collapse;font-family:'Anonymous Pro',monospace;font-size:12px}
+.sch-table th,.sch-table td{padding:8px 12px;text-align:left;border-bottom:1px dashed var(--rule-str);border-right:1px dashed var(--rule-str)}
+.sch-table th:last-child,.sch-table td:last-child{border-right:none}
+.sch-table th{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);font-weight:700;background:var(--paper-2);border-bottom:2px solid var(--ink);border-right:1px solid var(--ink)}
+.sch-table tbody tr{transition:background .15s}
+.sch-table tbody tr:hover{background:var(--paper-2)}
+.sch-table tbody tr:hover td{color:var(--red)}
+.sch-table td .id{color:var(--red);font-weight:700}
+.sch-table td .nm{font-family:'Urbanist',sans-serif;font-weight:700;color:var(--ink);letter-spacing:-0.005em;font-size:14px;text-transform:uppercase}
+.sch-table td .nm em{font-style:italic;color:var(--red);font-weight:500;text-transform:none}
+.sch-table td .tp{color:var(--mute);font-size:11px}
+.sch-table td .d{color:var(--ink);font-weight:700}
+.sch-table td .y{color:var(--red);font-weight:700;font-family:'Urbanist',sans-serif}
+.sch-table td a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+.sch-table td a:hover{color:var(--red)}
+
+/* ===== ELEVATION: pricing ===== */
+.elevation{padding:36px 32px 40px}
+.el-head{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:end;margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.el-head h2{font-family:'Urbanist',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-0.025em}
+.el-head h2 em{font-style:italic;color:var(--red);font-weight:500}
+.el-head .sub{font-family:'Anonymous Pro',monospace;font-size:12px;color:var(--ink-2);line-height:1.6;max-width:480px;text-align:right;justify-self:end}
+.el-head .sub em{color:var(--red);font-style:italic}
+
+.elev-wrap{position:relative;padding:40px 30px 60px;background:var(--paper);border:1px solid var(--ink)}
+/* baseline rule */
+.elev-wrap::before{content:"";position:absolute;left:30px;right:30px;bottom:50px;height:1px;background:var(--ink)}
+.elev-wrap::after{content:"GROUND LINE · BASELINE";position:absolute;bottom:28px;left:30px;font-family:'Anonymous Pro',monospace;font-size:9px;letter-spacing:0.2em;color:var(--red);font-weight:700;text-transform:uppercase}
+
+.elev-grid{display:grid;grid-template-columns:1fr 1.2fr 1.4fr;gap:14px;align-items:end;position:relative;z-index:2}
+
+.elev-box{border:2px solid var(--ink);background:var(--paper);padding:18px 18px 22px;position:relative}
+.elev-box.t1{background:var(--paper)}
+.elev-box.t2{background:var(--paper-2)}
+.elev-box.t3{background:var(--ink);color:var(--paper)}
+.elev-box .tag{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
+.elev-box.t3 .tag{color:var(--yellow)}
+.elev-box h3{font-family:'Urbanist',sans-serif;font-weight:800;font-size:24px;line-height:1;letter-spacing:-0.02em;margin-bottom:4px}
+.elev-box h3 em{font-style:italic;color:var(--red);font-weight:500}
+.elev-box.t3 h3 em{color:var(--yellow)}
+.elev-box .desc{font-family:'Anonymous Pro',monospace;font-size:11px;color:var(--ink-2);margin-bottom:14px;min-height:3.4em;line-height:1.5}
+.elev-box.t3 .desc{color:var(--mute-2)}
+.elev-box .price{padding:10px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-bottom:12px}
+.elev-box.t3 .price{border-color:var(--paper)}
+.elev-box .price .amt{font-family:'Urbanist',sans-serif;font-weight:800;font-size:40px;line-height:1;letter-spacing:-0.025em}
+.elev-box .price .amt em{color:var(--red);font-style:italic;font-weight:500}
+.elev-box.t3 .price .amt em{color:var(--yellow)}
+.elev-box .price .mo{display:block;font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.1em;color:var(--mute);font-weight:700;margin-top:4px;text-transform:uppercase}
+.elev-box.t3 .price .mo{color:var(--mute-2)}
+.elev-box ul{list-style:none;font-size:11.5px;line-height:1.5;margin-bottom:12px;color:var(--ink)}
+.elev-box.t3 ul{color:var(--paper)}
+.elev-box ul li{padding:3px 0;display:flex;gap:6px;border-bottom:1px dashed var(--rule-str)}
+.elev-box.t3 ul li{border-color:rgba(232,238,243,0.2)}
+.elev-box ul li::before{content:"◢";color:var(--red);font-size:8px;margin-top:5px}
+.elev-box.t3 ul li::before{color:var(--yellow)}
+
+/* height labels on elevation boxes */
+.elev-box .ht{
+  position:absolute;top:-10px;right:-1px;padding:2px 8px;background:var(--red);color:var(--paper);
+  font-family:'Anonymous Pro',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;
+}
+
+/* elevation dimension indicator */
+.elev-dims{position:absolute;top:40px;right:10px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between;font-family:'Anonymous Pro',monospace;font-size:9px;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;pointer-events:none}
+.elev-dims span{background:var(--paper);padding:2px 6px;border:1px solid var(--red)}
+
+/* ===== SECTION (about) ===== */
+.section-card{padding:36px 32px 40px}
+.sec-head h2{font-family:'Urbanist',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-0.025em;padding-bottom:16px;border-bottom:2px solid var(--ink);margin-bottom:20px}
+.sec-head h2 em{font-style:italic;color:var(--red);font-weight:500}
+.sec-body{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+.sec-body p{font-family:'Anonymous Pro',monospace;font-size:13px;line-height:1.7;color:var(--ink-2);margin-bottom:14px}
+.sec-body p em{color:var(--red);font-style:italic}
+.sec-body p strong{color:var(--red);font-family:'Urbanist',sans-serif;font-weight:700}
+
+.section-notes{padding:16px 18px;border:1px dashed var(--ink);background:var(--paper-2)}
+.section-notes .lbl{font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:10px}
+.section-notes ul{list-style:none;font-size:12px;line-height:1.6}
+.section-notes ul li{padding:5px 0;border-bottom:1px dashed var(--rule);display:flex;gap:10px;align-items:baseline}
+.section-notes ul li:last-child{border-bottom:none}
+.section-notes ul li strong{color:var(--red);font-family:'Urbanist',sans-serif;font-weight:700;flex-shrink:0}
+
+/* ===== CONTACT / CARTOUCHE ===== */
+.contact-card{padding:44px 32px 36px;text-align:center}
+.contact-card h2{font-family:'Urbanist',sans-serif;font-weight:800;font-size:clamp(50px,8vw,120px);line-height:0.94;letter-spacing:-0.03em;margin-bottom:16px}
+.contact-card h2 em{font-style:italic;color:var(--red);font-weight:500}
+.contact-card .sub{font-family:'Anonymous Pro',monospace;font-size:14px;color:var(--ink-2);max-width:620px;margin:0 auto 28px;line-height:1.6}
+.contact-card .sub em{color:var(--red);font-style:italic}
+.contact-lines{max-width:880px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:2px solid var(--ink)}
+.contact-lines a{padding:16px 18px;background:var(--paper);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline;text-align:left;transition:all .2s}
+.contact-lines a:hover{background:var(--ink);color:var(--paper)}
+.contact-lines a:hover .k{color:var(--yellow)}
+.contact-lines .k{font-family:'Anonymous Pro',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.contact-lines .v{font-family:'Urbanist',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.005em}
+.contact-lines .v em{color:var(--red);font-style:italic;font-weight:500}
+.contact-lines a:hover .v em{color:var(--yellow)}
+
+/* FINAL TITLE BLOCK (cartouche) */
+.cartouche{margin-top:24px;border:2px solid var(--ink);background:var(--paper-2);display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:0;font-family:'Anonymous Pro',monospace}
+.cart-cell{padding:10px 14px;border-right:1px solid var(--ink)}
+.cart-cell:last-child{border-right:none}
+.cart-cell .k{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);font-weight:700;margin-bottom:3px}
+.cart-cell .v{font-size:12px;color:var(--ink);font-weight:700}
+.cart-cell .v em{color:var(--red);font-style:italic}
+.cart-cell.brand{background:var(--ink);color:var(--paper)}
+.cart-cell.brand .k{color:var(--mute-2)}
+.cart-cell.brand .v{color:var(--paper);font-family:'Urbanist',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase}
+.cart-cell.brand .v em{color:var(--red)}
+
+footer{padding:20px 32px 30px;font-family:'Anonymous Pro',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer .red{color:var(--red)}
+
+@media (max-width:980px){
+  .drawing{padding:18px 16px 24px}
+  .title-strip{grid-template-columns:1fr 1fr;font-size:10px}
+  .title-strip .cell{padding:8px 10px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .hero{padding:50px 24px 50px}
+  .dim-top{left:24px;right:24px}
+  .dim-left,.dim-right{display:none}
+  .hero-lead{grid-template-columns:1fr;gap:20px}
+  .hero-lead .stats{grid-template-columns:1fr 1fr}
+  .pillars{grid-template-columns:1fr 1fr}
+  .floor-plan,.schedule,.elevation,.section-card,.contact-card{padding:24px 18px 28px}
+  .sch-table{font-size:11px}
+  .sch-table th,.sch-table td{padding:6px 8px}
+  .sch-table td .nm{font-size:12px}
+  .elev-grid{grid-template-columns:1fr;gap:12px}
+  .elev-dims{display:none}
+  .el-head{grid-template-columns:1fr;gap:8px}
+  .el-head .sub{text-align:left;justify-self:start}
+  .sec-body{grid-template-columns:1fr;gap:24px}
+  .contact-lines{grid-template-columns:1fr;gap:0}
+  .contact-lines a{border-bottom:1px solid var(--ink)}
+  .contact-lines a:last-child{border-bottom:none}
+  .cartouche{grid-template-columns:1fr 1fr}
+  .cart-cell{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+}
+@media (max-width:480px){
+  .pillars{grid-template-columns:1fr}
+  .hero-lead .stats{grid-template-columns:1fr 1fr}
+  body{background-size:14px 14px,14px 14px,70px 70px,70px 70px}
+}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="d"></span>astral integration · blueprint · v0.9</div>
+
+<main class="drawing">
+
+  <!-- TOP TITLE STRIP -->
+  <header class="title-strip">
+    <div class="cell brand-cell wide">
+      <span class="k">Studio</span>
+      <span class="v">ASTRAL INTEGRATION</span>
+    </div>
+    <div class="cell">
+      <span class="k">Project</span>
+      <span class="v">Business infrastructure for practitioners</span>
+    </div>
+    <div class="cell">
+      <span class="k">Drawing №</span>
+      <span class="v">001 · <em>Rev. 04</em></span>
+    </div>
+    <div class="cell">
+      <span class="k">Scale</span>
+      <span class="v">1 : 1 · full</span>
+    </div>
+    <div class="cell">
+      <span class="k">Date</span>
+      <span class="v">2026.04.17</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="dim-top"><span class="val">← Full practice — shipped in 48h →</span><div class="line"></div><span class="val">Span: one platform</span></div>
+    <div class="dim-left"><div class="line"></div><span class="val">Height: 170+ sites</span></div>
+    <div class="dim-right"><div class="line"></div><span class="val">Depth: 11 yrs prod</span></div>
+
+    <h1>One <em>platform.</em><br>Seven tools<br>replaced. Zero<br>duct tape.</h1>
+
+    <div class="hero-callouts">
+      <div class="co co-1"><svg width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2 L20 18 M14 18 L20 18 L20 12" fill="none"/></svg> CALLOUT 01</div>
+    </div>
+
+    <div class="hero-lead">
+      <div class="l">
+        <strong>1P1P</strong> — one-person studio shipping custom digital homes for healers, teachers, retreat centers, and <em>people doing original work in the world.</em> Former CTO. 170 builds shipped. Based in Mazunte, Oaxaca. First usable version typically ships in <em>48 hours</em>. You own every line of code from the first commit.
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">170<em>+</em></div><span class="l">Sites shipped<br>2013 → 2026</span></div>
+        <div class="stat"><div class="n">48<em>h</em></div><span class="l">First build<br>avg. ship time</span></div>
+        <div class="stat"><div class="n"><em>7→1</em></div><span class="l">Tools replaced<br>per build</span></div>
+        <div class="stat"><div class="n">$346<em>/mo</em></div><span class="l">Avg. saved<br>per client</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOOR PLAN: four pillars -->
+  <div class="draw-card">
+    <div class="card-title">
+      <span class="tag">Drawing A-1</span>
+      <span class="name">Floor plan · <em>the four pillars</em> (replaces your seven-tool stack)</span>
+      <span class="meta"><span>SCALE NTS</span><span>REV 04</span></span>
+    </div>
+    <div class="floor-plan">
+      <div class="fp-head">
+        <h2>The <em>structure.</em></h2>
+        <div class="d">Every build is framed across <em>four load-bearing pillars</em>. Each one consolidates what you currently rent from 2-3 separate SaaS providers into a single native system living under your own domain, under your own control, on your own roof.</div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num"><span>Pillar № 01</span><span class="span-tag">Presence</span></div>
+          <h3>Your <em>site.</em></h3>
+          <p>Custom-designed, fast, SEO-ready. No WordPress. No templates. No generic theme. A site that <em>looks like you</em> and loads in under a second anywhere in the world.</p>
+          <ul>
+            <li><span class="b">+</span><span>Bilingual-ready</span><span class="v">Req.</span></li>
+            <li><span class="b">+</span><span>90+ Lighthouse</span><span class="v">All</span></li>
+            <li><span class="b">+</span><span>Full ownership</span><span class="v">Day 1</span></li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="num"><span>Pillar № 02</span><span class="span-tag">Offering</span></div>
+          <h3>Bookings<br>&amp; <em>payments.</em></h3>
+          <p>Sessions, classes, workshops, retreats &mdash; all with calendar sync, waitlists, intake forms, and <em>native payments</em>. No Acuity. No Calendly. No 7% cut.</p>
+          <ul>
+            <li><span class="b">+</span><span>Inline scheduling</span><span class="v">Native</span></li>
+            <li><span class="b">+</span><span>Platform fees</span><span class="v">0%</span></li>
+            <li><span class="b">+</span><span>Multi-currency</span><span class="v">Req.</span></li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="num"><span>Pillar № 03</span><span class="span-tag">Container</span></div>
+          <h3>Courses &amp; <em>community.</em></h3>
+          <p>Members, students, cohorts, libraries. <em>Your own container</em> &mdash; not someone else's algorithm. Student progress lives on your domain, not in a rented warehouse.</p>
+          <ul>
+            <li><span class="b">+</span><span>Custom course flows</span><span class="v">Yes</span></li>
+            <li><span class="b">+</span><span>Member dashboards</span><span class="v">Full</span></li>
+            <li><span class="b">+</span><span>Data portable</span><span class="v">SQL</span></li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="num"><span>Pillar № 04</span><span class="span-tag">Machinery</span></div>
+          <h3><em>Email,</em> AI<br>&amp; analytics.</h3>
+          <p>Transactional email, marketing sequences, AI assistants on your methodology, <em>analytics you actually understand</em>. No Mailchimp. No Zapier. No monthly fees compounding.</p>
+          <ul>
+            <li><span class="b">+</span><span>AI on your lineage</span><span class="v">Yes</span></li>
+            <li><span class="b">+</span><span>CRM unified</span><span class="v">1x</span></li>
+            <li><span class="b">+</span><span>Analytics included</span><span class="v">All</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE: the works -->
+  <div class="draw-card">
+    <div class="card-title">
+      <span class="tag">Schedule B-1</span>
+      <span class="name">Schedule of <em>as-built projects</em> (selected, 2022 &mdash; 2025)</span>
+      <span class="meta"><span>TOTAL 170+</span><span>SHOWN 14</span></span>
+    </div>
+    <div class="schedule">
+      <div class="sch-head">
+        <h2>Schedule of <em>works.</em></h2>
+        <div class="meta">Shipped · <strong>170+</strong> · Shown · <strong>14</strong> · Window · <strong>2022-25</strong></div>
+      </div>
+      <table class="sch-table">
+        <thead><tr><th>ID</th><th>Project</th><th>Sector</th><th>Domain</th><th>Ship</th><th>Year</th></tr></thead>
+        <tbody>
+          <tr><td><span class="id">P-01</span></td><td><span class="nm">Deva Premal &amp; <em>Miten</em></span><div class="tp">Discography · tour · members</div></td><td>Music · Tour</td><td><a>devapremalmiten.xyz</a></td><td class="d">14 d</td><td class="y">'25</td></tr>
+          <tr><td><span class="id">P-02</span></td><td><span class="nm">Sacred <em>Counsel</em></span><div class="tp">Retreat · multi-stream</div></td><td>Ceremony</td><td><a>sacredcounsel.space</a></td><td class="d">12 d</td><td class="y">'25</td></tr>
+          <tr><td><span class="id">P-03</span></td><td><span class="nm">Gurmukh <em>Kaur</em></span><div class="tp">50-year yoga legacy</div></td><td>Yoga</td><td><a>gurmukh.xyz</a></td><td class="d">8 d</td><td class="y">'25</td></tr>
+          <tr><td><span class="id">P-04</span></td><td><span class="nm">Skylar <em>Acamesis</em></span><div class="tp">Premium healing · unified</div></td><td>Healing</td><td><a>skylaracamesis.xyz</a></td><td class="d">16 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-05</span></td><td><span class="nm">Shiv <em>Energetics</em></span><div class="tp">Reiki academy · AI assistant</div></td><td>School</td><td><a>shivenergetics.xyz</a></td><td class="d">23 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-06</span></td><td><span class="nm">Mariana <em>Harpreet</em></span><div class="tp">3 brands · 4 domains · 1 membership</div></td><td>Multi-brand</td><td><a>marianaharpreet.xyz</a></td><td class="d">21 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-07</span></td><td><span class="nm">Uri <em>Atsur</em></span><div class="tp">8 ticketing platforms unified</div></td><td>Voice</td><td><a>uriatsur.live</a></td><td class="d">11 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-08</span></td><td><span class="nm">Ama <em>Kura</em></span><div class="tp">School · restaurant · workshops</div></td><td>Regenerative</td><td><a>amakura.xyz</a></td><td class="d">18 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-09</span></td><td><span class="nm">Mazunte <em>Today</em></span><div class="tp">Bilingual · directory · events</div></td><td>Community</td><td><a>mazunte.today</a></td><td class="d">9 d</td><td>'24</td></tr>
+          <tr><td><span class="id">P-10</span></td><td><span class="nm">Arte de <em>Renacer</em></span><div class="tp">Women's movement · breathwork</div></td><td>School · ES</td><td><a>artederenacer.com</a></td><td class="d">19 d</td><td>'23</td></tr>
+          <tr><td><span class="id">P-11</span></td><td><span class="nm">Menda <em>Mano</em></span><div class="tp">Bespoke robes · linen texture</div></td><td>Artisan</td><td><a>mendamano.xyz</a></td><td class="d">7 d</td><td>'23</td></tr>
+          <tr><td><span class="id">P-12</span></td><td><span class="nm">Mujer <em>Despierta</em></span><div class="tp">Spanish-first living archive</div></td><td>Movement · ES</td><td><a>mujerdespierta.xyz</a></td><td class="d">8 d</td><td>'23</td></tr>
+          <tr><td><span class="id">P-13</span></td><td><span class="nm">Kura <em>Terra</em></span><div class="tp">Plant-dyed wearable art</div></td><td>Slow craft</td><td><a>kuraterra.xyz</a></td><td class="d">6 d</td><td>'23</td></tr>
+          <tr><td><span class="id">P-14</span></td><td><span class="nm"><em>— private —</em></span><div class="tp">Eco-farm &amp; residency</div></td><td>Land</td><td>—</td><td class="d">24 d</td><td>'22</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ELEVATION: pricing tiers -->
+  <div class="draw-card">
+    <div class="card-title">
+      <span class="tag">Elevation C-1</span>
+      <span class="name">Elevation · <em>three pricing tiers</em> (fixed · all-in · transparent)</span>
+      <span class="meta"><span>USD</span><span>ALL-IN</span><span>MO·5% FEE</span></span>
+    </div>
+    <div class="elevation">
+      <div class="el-head">
+        <h2>Pricing <em>elevation.</em></h2>
+        <div class="sub">Three tiers. Fixed rates. Everything included. <em>No proposals. No change orders. No surprise invoices.</em> Drawn to scale.</div>
+      </div>
+
+      <div class="elev-wrap">
+        <div class="elev-dims">
+          <span>6 wk max</span>
+          <span>3-4 wk</span>
+          <span>1-2 wk</span>
+        </div>
+        <div class="elev-grid">
+          <div class="elev-box t1">
+            <span class="ht">h 1.0</span>
+            <div class="tag"><span>Tier 01</span><span>1-2 wks</span></div>
+            <h3>Practi<em>tioners.</em></h3>
+            <div class="desc">Solo teachers, healers, coaches who need a real home for an existing audience.</div>
+            <div class="price"><span class="amt">$1,500<em>.</em></span><span class="mo">+ $250/mo · all-in</span></div>
+            <ul>
+              <li>Custom site · bookings</li>
+              <li>Email + automation</li>
+              <li>Full ownership · Day 1</li>
+            </ul>
+          </div>
+          <div class="elev-box t2">
+            <span class="ht">h 2.4</span>
+            <div class="tag"><span>Tier 02 ★</span><span>3-4 wks</span></div>
+            <h3>Schools.</h3>
+            <div class="desc">Certification programs and teacher trainings with real student flows, cohorts, and levels.</div>
+            <div class="price"><span class="amt">$5,000<em>.</em></span><span class="mo">+ $750/mo · all-in</span></div>
+            <ul>
+              <li>Everything in Tier 01</li>
+              <li>Courses · community</li>
+              <li>Practitioner directory</li>
+            </ul>
+          </div>
+          <div class="elev-box t3">
+            <span class="ht" style="background:var(--yellow);color:var(--ink)">h 4.0</span>
+            <div class="tag"><span>Tier 03</span><span>4-6 wks</span></div>
+            <h3>Complex <em>schools.</em></h3>
+            <div class="desc">300+ students, multi-level cohorts, AI assistants on the methodology, bilingual, multi-tenant architecture.</div>
+            <div class="price"><span class="amt">$8,000<em>+</em></span><span class="mo">+ $1,500/mo · all-in</span></div>
+            <ul>
+              <li>Everything in Tier 02</li>
+              <li>AI on your methodology</li>
+              <li>Multi-tenant / bilingual</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: about -->
+  <div class="draw-card">
+    <div class="card-title">
+      <span class="tag">Section D-1</span>
+      <span class="name">Section · <em>manufacturer</em> (on the principle of the build)</span>
+      <span class="meta"><span>NTS</span><span>EST. 2013</span></span>
+    </div>
+    <div class="section-card">
+      <div class="sec-head"><h2>About the <em>builder.</em></h2></div>
+      <div class="sec-body">
+        <div>
+          <p><strong>JORDI AMAT —</strong> senior full-stack engineer, former startup CTO, shipping custom digital infrastructure from <em>Mazunte, Oaxaca</em> since 2013. Moved to a small village on the Pacific coast of Mexico after a decade of startups and began building for the people I consider to be doing the most original and under-supported work in the world: healers, teachers, retreat-holders, ceremony-keepers, and people who inherit lineages that aren't available on Spotify.</p>
+          <p>The economic logic of this studio rests on three things: <em>a decade of shipping production systems</em>, a disciplined use of AI tooling, and the absence of an agency overhead. The material logic rests on one: <strong>I live inside the world my clients do</strong>. Breathwork circles, cacao ceremonies, indigenous Oaxacan traditions, early mornings with coffee, late nights with a terminal. I don't build for this world from the outside.</p>
+        </div>
+        <div class="section-notes">
+          <div class="lbl">/ Project notes · drafting conventions</div>
+          <ul>
+            <li><strong>01</strong> No proposals are issued. First build ships as proof.</li>
+            <li><strong>02</strong> All code &amp; data owned by client from first commit.</li>
+            <li><strong>03</strong> Monthly partnership covers everything — no change orders.</li>
+            <li><strong>04</strong> Response within 24h · usually same day.</li>
+            <li><strong>05</strong> Works with clients in 17+ countries · async-first.</li>
+            <li><strong>06</strong> Full refund if you dislike the first build.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT / CARTOUCHE -->
+  <div class="draw-card">
+    <div class="card-title">
+      <span class="tag">Detail E-1</span>
+      <span class="name">Detail · <em>correspondence node</em> (begin here)</span>
+      <span class="meta"><span>ACTIVE</span><span>RESP &lt;24H</span></span>
+    </div>
+    <div class="contact-card">
+      <h2>Send the <em>mess.</em></h2>
+      <div class="sub">Voice memo, messy doc, linktree, three screenshots. <em>Polish is not required, nor encouraged.</em> I read every message personally and write back within 24 hours.</div>
+      <div class="contact-lines">
+        <a href="mailto:jordi@astralintegration.studio"><span class="k">/ Email</span><span class="v">jordi@astral<em>.studio</em></span><span>↗</span></a>
+        <a href="#"><span class="k">/ Call</span><span class="v">30-min <em>discovery</em></span><span>↗</span></a>
+        <a href="#"><span class="k">/ WhatsApp</span><span class="v">+52 · <em>MZT hrs</em></span><span>↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CARTOUCHE -->
+  <div class="cartouche">
+    <div class="cart-cell brand">
+      <div class="k">Studio</div>
+      <div class="v">ASTRAL <em>INTEGRATION</em></div>
+    </div>
+    <div class="cart-cell">
+      <div class="k">Principal</div>
+      <div class="v">Jordi Amat</div>
+    </div>
+    <div class="cart-cell">
+      <div class="k">Location</div>
+      <div class="v">Mazunte · Oax.</div>
+    </div>
+    <div class="cart-cell">
+      <div class="k">Drawing №</div>
+      <div class="v">001 / <em>10</em></div>
+    </div>
+    <div class="cart-cell">
+      <div class="k">Scale</div>
+      <div class="v">1 : 1</div>
+    </div>
+    <div class="cart-cell">
+      <div class="k">Rev</div>
+      <div class="v">2026.04.17</div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2026 · ASTRAL INTEGRATION · <span class="red">DRAWING 001 / REV 04</span> · ALL RIGHTS HELD LIGHTLY</div>
+    <div>APPROVED · <span class="red">JA</span> · 2026.04.17 · MAZUNTE / OAXACA / MX</div>
+  </footer>
+
+</main>
+</body>
+</html>

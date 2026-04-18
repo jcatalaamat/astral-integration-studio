@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>A letter from Jordi — Astral Integration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Sans:wght@400;500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper: #F4ECDD;
+  --paper-2: #EADFC8;
+  --ink: #1D1A10;
+  --ink-2: #433C2C;
+  --mute: #756A57;
+  --mute-2: #9C917C;
+  --accent: #8B3A1C;
+  --accent-dp: #5B2512;
+  --rule: rgba(29,26,16,0.13);
+  --rule-str: rgba(29,26,16,0.24);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Spectral',serif;
+  background:var(--paper);color:var(--ink);
+  font-size:19px;font-weight:400;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:-0.003em;
+}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+
+.meta{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;color:var(--mute)}
+.hand{font-family:'Caveat',cursive;font-weight:400}
+
+/* studio tag */
+.studio-tag{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;
+  font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--mute);background:rgba(244,236,221,0.85);backdrop-filter:blur(14px);
+  padding:6px 14px;border:1px solid var(--rule);border-radius:999px;
+  display:flex;align-items:center;gap:9px;pointer-events:none;font-weight:500;
+}
+.studio-tag .dot{width:5px;height:5px;border-radius:999px;background:var(--accent)}
+
+/* minimal nav */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(244,236,221,0.85);backdrop-filter:saturate(1.2) blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+nav.top .inner{
+  max-width:820px;margin:0 auto;padding:0 40px;
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:'Spectral',serif;font-size:17px;font-weight:500;letter-spacing:-0.005em}
+.brand em{font-style:italic;color:var(--accent);font-weight:400}
+.brand::before{content:"❋";color:var(--accent);margin-right:6px;font-size:14px}
+nav.top .reply{
+  font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:500;color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:2px;
+}
+nav.top .reply:hover{color:var(--accent)}
+
+/* letter layout */
+.letter{
+  max-width:680px;margin:0 auto;padding:88px 40px 40px;
+}
+
+/* date + location header */
+.post-mark{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:22px;border-bottom:1px solid var(--rule);margin-bottom:58px;
+  font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--mute);font-weight:500;
+}
+.post-mark .l{display:flex;gap:14px;align-items:center}
+.post-mark .l::before{content:"";width:18px;height:1px;background:var(--accent)}
+.post-mark .r{color:var(--accent)}
+
+/* salutation */
+.sal{
+  font-family:'Spectral',serif;font-style:italic;font-weight:300;
+  font-size:clamp(42px,6.8vw,72px);line-height:1;letter-spacing:-0.018em;
+  color:var(--ink);margin-bottom:52px;
+}
+.sal em{color:var(--accent);font-style:italic;font-weight:300}
+
+/* letter body */
+.body p{margin-bottom:28px;color:var(--ink-2);font-size:19px;line-height:1.72}
+.body p.open{font-size:22px;line-height:1.6;color:var(--ink);font-weight:400}
+.body p.open::first-letter{
+  font-family:'Spectral',serif;font-weight:400;font-style:italic;
+  font-size:72px;float:left;line-height:0.85;margin:5px 10px -4px 0;color:var(--accent);
+}
+.body em{font-style:italic;color:var(--ink);font-weight:400}
+.body a.project{
+  color:var(--accent);border-bottom:1px solid rgba(139,58,28,0.4);
+  font-style:italic;font-weight:400;transition:all .2s;
+}
+.body a.project:hover{color:var(--accent-dp);border-bottom-color:var(--accent-dp)}
+
+/* ornament between sections */
+.ornament{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin:52px auto 52px;color:var(--mute-2);
+  font-family:'Spectral',serif;font-style:italic;font-size:20px;
+}
+.ornament::before,.ornament::after{content:"";width:60px;height:1px;background:var(--rule-str)}
+.ornament span{letter-spacing:0.3em;font-size:12px;color:var(--accent);font-family:'IBM Plex Sans',sans-serif;font-weight:500;text-transform:uppercase}
+
+/* inline price list */
+.tier-list{
+  margin:40px 0 28px;padding:26px 28px;background:var(--paper-2);
+  border-left:3px solid var(--accent);
+}
+.tier-list .label{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500}
+.tier-list dl{display:flex;flex-direction:column;gap:12px}
+.tier-list dl div{display:grid;grid-template-columns:130px 1fr;gap:18px;font-size:17px;line-height:1.5}
+.tier-list dl dt{color:var(--ink);font-weight:500;font-style:italic}
+.tier-list dl dd{color:var(--ink-2)}
+.tier-list dl dd em{color:var(--accent);font-style:italic;font-weight:500;font-family:'Spectral',serif}
+
+/* signature */
+.signature{margin-top:64px;padding-top:30px;border-top:1px solid var(--rule)}
+.signature .closing{font-style:italic;color:var(--ink-2);font-size:18px;margin-bottom:12px}
+.signature .name{
+  font-family:'Caveat',cursive;font-weight:500;font-size:62px;line-height:1;
+  color:var(--accent);margin-bottom:8px;letter-spacing:0.005em;
+}
+.signature .title{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+.ps{
+  margin-top:42px;padding-top:28px;border-top:1px dashed var(--rule);
+  font-size:16px;line-height:1.65;color:var(--mute);font-style:italic;
+}
+.ps a{color:var(--accent);border-bottom:1px solid rgba(139,58,28,0.4);font-weight:400}
+.ps a:hover{color:var(--accent-dp)}
+.ps strong{font-family:'IBM Plex Sans',sans-serif;font-weight:500;color:var(--ink);font-style:normal;letter-spacing:0.04em;font-size:12px;text-transform:uppercase;display:inline-block;margin-right:8px}
+
+/* reply block */
+.reply-block{
+  max-width:680px;margin:80px auto 0;padding:60px 40px 80px;
+  background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.reply-block .lbl{
+  font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin-bottom:18px;display:flex;gap:10px;align-items:center;
+}
+.reply-block .lbl::before{content:"";width:22px;height:1px;background:var(--accent)}
+.reply-block h2{
+  font-family:'Spectral',serif;font-weight:300;font-style:italic;font-size:40px;line-height:1.1;letter-spacing:-0.012em;
+  color:var(--ink);margin-bottom:32px;
+}
+.reply-block h2 em{color:var(--accent);font-style:italic}
+
+.fld{margin-bottom:18px}
+.fld label{display:block;font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);margin-bottom:7px;font-weight:500}
+.fld input,.fld textarea{
+  width:100%;padding:12px 0;background:transparent;border:none;border-bottom:1px solid var(--rule-str);
+  font-family:'Spectral',serif;font-size:18px;color:var(--ink);
+}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--mute-2);font-style:italic}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--accent)}
+.fld textarea{resize:vertical;min-height:80px;font-family:inherit;line-height:1.5}
+
+.send{
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+}
+.send .note{font-size:14px;color:var(--mute);font-style:italic;max-width:360px}
+.btn-send{
+  display:inline-flex;align-items:center;gap:10px;padding:13px 26px;
+  background:var(--ink);color:var(--paper);border:none;
+  font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;
+  cursor:pointer;transition:background .2s;
+}
+.btn-send:hover{background:var(--accent)}
+
+/* footer */
+footer{
+  max-width:820px;margin:0 auto;padding:40px 40px 56px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;
+}
+footer a{color:var(--accent);border-bottom:1px solid rgba(139,58,28,0.4);padding-bottom:1px}
+footer .links{display:flex;gap:22px}
+
+/* reveals */
+[data-r]{opacity:0;transform:translateY(16px);transition:opacity 1s ease, transform 1s ease}
+[data-r].in{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:680px){
+  body{font-size:17px}
+  nav.top .inner{padding:0 24px}
+  .letter{padding:56px 24px 32px}
+  .post-mark{flex-direction:column;gap:8px;align-items:flex-start;margin-bottom:42px}
+  .sal{font-size:44px;margin-bottom:36px}
+  .body p{font-size:17px;margin-bottom:22px}
+  .body p.open{font-size:19px}
+  .body p.open::first-letter{font-size:58px}
+  .ornament{margin:38px auto}
+  .ornament::before,.ornament::after{width:36px}
+  .tier-list{padding:20px 22px}
+  .tier-list dl div{grid-template-columns:1fr;gap:4px}
+  .tier-list dl dt{font-size:16px}
+  .signature .name{font-size:50px}
+  .reply-block{padding:44px 24px 52px;margin-top:56px}
+  .reply-block h2{font-size:30px}
+  footer{padding:32px 24px 42px;flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none !important}[data-r]{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="studio-tag"><span class="dot"></span>astral integration · letter · v0.9</div>
+
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="brand">Astral <em>Integration</em></a>
+    <a href="#reply" class="reply">Reply ↓</a>
+  </div>
+</nav>
+
+<main class="letter">
+  <div class="post-mark">
+    <div class="l">Mazunte, Oax. · México</div>
+    <div class="r">April 17th, 2026</div>
+  </div>
+
+  <h1 class="sal" data-r>Dear <em>friend,</em></h1>
+
+  <div class="body" data-r>
+    <p class="open">If you've landed here you've probably already been around. You've clicked through agency sites that talk about <em>digital transformation</em>, freelancer portfolios with stock photography, and platform sales pages promising that their $149-a-month plan will finally solve it all. I won't do that to you. This is a letter, not a sales page.</p>
+
+    <p>I'm Jordi. I live in Mazunte — a small village on the Pacific coast of Oaxaca. I've been building websites and digital infrastructure for practitioners — yoga schools, reiki academies, retreat centers, healers, teachers doing original work — for about eleven years. Around 170 builds at this point, though I stopped counting carefully at 150.</p>
+
+    <p>I want to tell you what I do, <em>why I do it this way</em>, and why the whole thing costs what it costs.</p>
+
+    <div class="ornament"><span>One</span></div>
+
+    <p>What I do is straightforward: I build one platform that replaces seven tools. Your website. Your bookings. Your courses. Your member portal. Your email. Your community. Your payments. All of it on one domain, wired together from the first commit, <em>yours to own from day one.</em></p>
+
+    <p>I build it in 48 hours.</p>
+
+    <p>I know that sounds like marketing. It isn't — it's the actual measurement for the actual first ship-ready build. You send me a voice memo, a messy Google doc, three screenshots of your current site, maybe a Linktree you're embarrassed of. Forty-eight hours later I send you a link. The copy is your copy, the photos are your photos, the bookings actually book, the payments actually pay. <em>If it's wrong, we iterate. If it's right, we ship.</em></p>
+
+    <div class="ornament"><span>Two</span></div>
+
+    <p>Some of the practices I've built this for: <a href="#" class="project">Sacred Counsel</a>, a 20-year ceremony center with five revenue streams I unified into one platform. <a href="#" class="project">Gurmukh</a>, a 50-year yoga legacy whose classes lived on seven different booking sites — consolidated in sixteen days. <a href="#" class="project">Shiv Energetics</a>, a reiki academy of hundreds of students now tracking practice hours, certifications, and a practitioner directory from a single login.</p>
+
+    <p><a href="#" class="project">Deva Premal &amp; Miten</a>, devotional musicians whose tour pages used to live on Eventbrite — now on their own site at zero platform fees. <a href="#" class="project">Uri Atsur</a>, a vocal facilitator whose eight ticketing platforms became one. <a href="#" class="project">Mariana Harpreet</a>, a studio plus personal brand plus global women's movement, running as three identities on four domains with one membership.</p>
+
+    <p><a href="#" class="project">Arte de Renacer</a>, a full rebrand from women's movement to breathwork school, Spanish-first. <a href="#" class="project">Mazunte Today</a>, a community platform for my own town. And <a href="#" class="project">nine others</a> I've shipped in the last three years. You can click through any of those if you'd like to see the work, though you don't need to read the rest of this letter through a portfolio's lens.</p>
+
+    <div class="ornament"><span>Three</span></div>
+
+    <p>Why this way — one person, one platform, from a hammock?</p>
+
+    <p>Because the alternative is the thing you already have. Seven tools you don't own. Five logins. Three dashboards that don't talk. One that takes 7% of every ticket. Monthly fees that compound. Digital infrastructure that feels like <em>renting a storefront from a landlord who reads your mail.</em></p>
+
+    <p>The agencies will build you something custom but they won't stay. The freelancers will stay but they'll build on WordPress. The platforms will give you templates but they own everything you make. I'm the last technical hire you'll ever need — the one who stays, hands you the keys on day one, and maintains the whole thing for as long as your practice lasts.</p>
+
+    <p>The economic possibility of this comes from AI. Not the lazy copy-paste-hallucinate kind; the disciplined production-engineering kind. A decade of shipping production systems plus an AI copilot moves about five times faster than a decade of shipping production systems alone. <em>That's why I can charge less than an agency for more than an agency would ship.</em></p>
+
+    <div class="ornament"><span>Four</span></div>
+
+    <p>The numbers are simple. Three tiers, fixed, everything included:</p>
+
+    <div class="tier-list">
+      <div class="label">/ The rate card</div>
+      <dl>
+        <div><dt>Practitioners</dt><dd><em>$1,500</em> setup · <em>$250</em>/mo · 1–2 weeks · for solo teachers who need a real home.</dd></div>
+        <div><dt>Schools</dt><dd><em>$5,000</em> setup · <em>$750</em>/mo · 3–4 weeks · for certification programs and academies.</dd></div>
+        <div><dt>Complex schools</dt><dd>from <em>$8,000</em> · <em>$1,500</em>/mo · 4–6 weeks · multi-tenant, bilingual, AI-assisted.</dd></div>
+      </dl>
+    </div>
+
+    <p>Everything else — revisions, emails, bug fixes, new pages, AI workflows — covered. No change orders. No estimates. No surprise invoices.</p>
+
+    <div class="ornament"><span>Five · the part I mean</span></div>
+
+    <p>Here's the part that doesn't go in pitches:</p>
+
+    <p>I think what you're doing <em>matters</em>. I don't mean that as a compliment — I mean it as a description. The people who come to you, for reiki or breathwork or a teacher training or six days in a retreat center, are looking for something their doctor and their therapist and their yoga app can't give them. Presence. Attention. <em>The transmission of a lineage that isn't available on Spotify.</em> You are doing some of the most serious work I know how to respect.</p>
+
+    <p>Your digital presence should match it. Not in a slick, VC-funded-wellness-startup way. In a way that actually carries the texture of your teaching when a potential student lands on your page <em>at two in the morning.</em></p>
+
+    <p>That's the work. That's what I build.</p>
+
+    <div class="ornament"><span>Six · closing</span></div>
+
+    <p>If you've read this far you're probably the right client. Write to me at <a href="mailto:jordi@astralintegration.studio" class="project">jordi@astralintegration.studio</a>, or drop a message below. A voice memo at 2am is welcome. A messy google doc is welcome. A Linktree you're embarrassed of is welcome. <em>I don't need polish.</em> I'll read what you send, I'll study your work, and I'll write back within a day.</p>
+  </div>
+
+  <div class="signature" data-r>
+    <div class="closing">Un abrazo,</div>
+    <div class="name">Jordi</div>
+    <div class="title">— Jordi Amat · Mazunte · Oax.</div>
+  </div>
+
+  <div class="ps">
+    <p><strong>P.S.</strong> If you want to see all the live sites, <a href="#">here's the catalogue</a>. If you want to read the FAQ, <a href="#">it's here</a>. But you've already read the thing that matters.</p>
+  </div>
+</main>
+
+<!-- reply -->
+<section class="reply-block" id="reply">
+  <div class="lbl">/ Reply</div>
+  <h2 data-r>The <em>conversation</em> begins here.</h2>
+
+  <div class="fld">
+    <label>Your name</label>
+    <input placeholder="However you'd like to be addressed"/>
+  </div>
+  <div class="fld">
+    <label>Email</label>
+    <input placeholder="so I can write back"/>
+  </div>
+  <div class="fld">
+    <label>What are you working on?</label>
+    <textarea placeholder="A voice memo's worth of context is fine. Don't polish it."></textarea>
+  </div>
+
+  <div class="send">
+    <div class="note">I read every message personally. You'll hear back within a day, usually the same day.</div>
+    <button class="btn-send">Send letter →</button>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 · Astral Integration · Mazunte, Oaxaca</div>
+  <div class="links">
+    <a href="#">The catalogue</a>
+    <a href="#">FAQ</a>
+    <a href="mailto:jordi@astralintegration.studio">Email</a>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
