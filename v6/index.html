@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>LA TORRE · jordi.mco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #0E0905;
+  --bg-2: #180F07;
+  --panel: #140C06;
+  --panel-2: #1F150A;
+  --panel-warm: #2A1C0F;
+  --line: rgba(255,166,48,0.12);
+  --line-str: rgba(255,166,48,0.32);
+  --line-dim: rgba(245,235,216,0.06);
+  --rule: rgba(245,235,216,0.08);
+  --cream: #F5EBD8;
+  --cream-2: #D4C5A4;
+  --amber: #FFA630;
+  --amber-br: #FFC25C;
+  --amber-dp: #CC7A0F;
+  --amber-glow: rgba(255,166,48,0.35);
+  --sage: #94B37A;
+  --sage-br: #B8D49C;
+  --clay: #D95A3C;
+  --clay-br: #E87858;
+  --brass: #B8883A;
+  --violet: #B89AD8;
+  --text: #E8DDC8;
+  --text-2: #B8AB95;
+  --mute: #8A7862;
+  --mute-lt: #A89074;
+  --mute-dim: #5A4D3B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter Tight','Inter',-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  font-size:13.5px;line-height:1.5;font-weight:400;letter-spacing:0.005em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(255,166,48,0.07) 0, transparent 40%),
+    radial-gradient(ellipse at 85% 75%, rgba(217,90,60,0.04) 0, transparent 45%),
+    radial-gradient(circle at 50% 120%, rgba(255,166,48,0.04) 0, transparent 50%),
+    linear-gradient(180deg, #0E0905 0%, #140B06 100%);
+  min-height:100vh;
+}
+/* CRT scanlines + subtle vignette */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;
+  background-image:repeating-linear-gradient(0deg, rgba(255,166,48,0.015) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 120%);
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+input,textarea{font-family:inherit;color:inherit}
+
+.display{font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:-0.01em}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+/* ============ CEILING BAR ============ */
+.ceiling{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:44px;
+  background:rgba(14,9,5,0.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-str);
+  display:grid;grid-template-columns:auto auto 1fr auto auto auto auto;gap:0;align-items:stretch;
+}
+.cseg{padding:0 14px;display:flex;align-items:center;gap:9px;border-right:1px solid var(--line);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute-lt);font-weight:500;white-space:nowrap}
+.cseg:last-child{border-right:none}
+.cbrand{font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;color:var(--amber);text-transform:uppercase}
+.cbrand em{color:var(--cream);font-style:normal;font-weight:600;opacity:0.7;margin-left:2px}
+.cseg .lbl{color:var(--mute);font-weight:500;font-size:10px}
+.cseg .val{color:var(--amber);font-weight:500;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.02em}
+.cseg .val em{color:var(--cream);font-style:normal}
+.cseg .val.sage{color:var(--sage)}
+.cseg.live{color:var(--sage)}
+.cseg.live::before{content:"●";color:var(--sage);font-size:9px;margin-right:4px;animation:pulse 2.4s infinite}
+@keyframes pulse{50%{opacity:0.35}}
+
+.cmid{overflow:hidden;position:relative;display:flex;align-items:center;border-right:1px solid var(--line)}
+.cmid-inner{white-space:nowrap;animation:ticker 70s linear infinite;display:flex;gap:36px;padding-left:14px;font-size:11px;color:var(--text-2);letter-spacing:0.05em}
+.cmid-inner span em{color:var(--amber);font-style:normal;font-weight:500}
+.cmid-inner span strong{color:var(--sage);font-weight:500}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.cmd-trigger{
+  background:var(--amber);color:var(--bg);padding:0 12px;display:flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;font-weight:600;text-transform:uppercase;
+  cursor:pointer;transition:all .15s;
+}
+.cmd-trigger:hover{background:var(--amber-br)}
+.cmd-trigger kbd{font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:2px 5px;background:rgba(0,0,0,0.25);border-radius:2px}
+
+/* ============ MAIN GRID ============ */
+.torre{
+  max-width:1540px;margin:0 auto;padding:60px 22px 60px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:18px;
+}
+
+/* panel base */
+.panel{
+  background:var(--panel);border:1px solid var(--line);position:relative;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.panel::before,.panel::after{
+  content:"";position:absolute;width:11px;height:11px;border-color:var(--amber);border-style:solid;pointer-events:none;opacity:0.7;
+}
+.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.panel.warn{border-color:rgba(217,90,60,0.35)}
+.panel.warn::before,.panel.warn::after{border-color:var(--clay)}
+.panel.soft{background:var(--panel-2)}
+
+.ph{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 14px;background:rgba(255,166,48,0.045);border-bottom:1px solid var(--line);
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;
+}
+.ph .phl{display:flex;gap:10px;align-items:center;color:var(--amber);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph .phl em{color:var(--cream);font-style:normal;opacity:0.6;font-size:9.5px}
+.ph .phr{display:flex;gap:10px;align-items:center;color:var(--mute)}
+.ph .dot{width:6px;height:6px;border-radius:999px;background:var(--sage);box-shadow:0 0 6px currentColor;animation:pulse 2.4s infinite;color:var(--sage)}
+.ph .dot.amber{background:var(--amber);color:var(--amber)}
+.ph .dot.clay{background:var(--clay);color:var(--clay)}
+
+.pbody{padding:16px;flex:1;display:flex;flex-direction:column}
+.pfoot{
+  padding:7px 14px;border-top:1px solid var(--line);background:rgba(255,166,48,0.025);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);font-weight:500;
+}
+.pfoot em{color:var(--amber);font-style:normal}
+
+/* ============ HERO / CENTERPIECE ============ */
+.hero-row{grid-column:span 12;display:grid;grid-template-columns:5fr 7fr;gap:18px}
+
+/* CLOCK PANEL */
+.clock-panel{padding:24px;display:flex;flex-direction:column;gap:20px;align-items:stretch;min-height:360px}
+
+.clock-top{display:flex;justify-content:space-between;align-items:flex-start}
+.clock-date .dow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.24em;color:var(--mute-lt);font-weight:500;text-transform:uppercase;margin-bottom:4px}
+.clock-date .d{font-family:'Unbounded',sans-serif;font-weight:700;font-size:40px;line-height:1;color:var(--cream);letter-spacing:-0.01em}
+.clock-date .d em{color:var(--amber);font-style:normal}
+.clock-date .mo{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-2);font-weight:400;margin-top:6px;letter-spacing:0.05em}
+.clock-date .mo em{color:var(--amber);font-style:normal;font-weight:500}
+
+.clock-loc{text-align:right}
+.clock-loc .nm{font-family:'Unbounded',sans-serif;font-weight:600;font-size:14px;color:var(--cream);letter-spacing:0.02em}
+.clock-loc .co{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);margin-top:3px;letter-spacing:0.04em}
+.clock-loc .tz{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--mute);margin-top:2px;letter-spacing:0.12em;text-transform:uppercase}
+
+.clock-face{display:flex;justify-content:center;padding:6px 0}
+.clock-svg{width:220px;height:220px;position:relative}
+.clock-svg svg{width:100%;height:100%;display:block}
+.clock-ring{fill:none;stroke:var(--brass);stroke-width:2;opacity:0.85}
+.clock-ring-2{fill:none;stroke:var(--amber);stroke-width:0.6;opacity:0.35}
+.clock-tick{stroke:var(--amber);stroke-width:1.5;opacity:0.7}
+.clock-tick-major{stroke:var(--amber);stroke-width:2.2}
+.clock-num{fill:var(--cream);font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:middle;letter-spacing:0.02em}
+.clock-hand-h{stroke:var(--cream);stroke-width:4;stroke-linecap:round}
+.clock-hand-m{stroke:var(--cream);stroke-width:2.2;stroke-linecap:round}
+.clock-hand-s{stroke:var(--amber);stroke-width:1;stroke-linecap:round;filter:drop-shadow(0 0 2px var(--amber))}
+.clock-center{fill:var(--amber);filter:drop-shadow(0 0 4px var(--amber))}
+.clock-dw{fill:var(--panel-warm);stroke:var(--amber);stroke-width:0.8}
+.clock-dw-text{fill:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-anchor:middle;dominant-baseline:middle}
+
+.clock-bottom{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.sun-box,.moon-box{display:flex;gap:12px;align-items:center}
+.sun-box .svg,.moon-box .svg{width:44px;height:44px;flex-shrink:0}
+.sun-box .info,.moon-box .info{min-width:0}
+.sun-box .k,.moon-box .k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:2px}
+.sun-box .v,.moon-box .v{font-family:'Unbounded',sans-serif;font-weight:600;font-size:13px;color:var(--cream);letter-spacing:0;line-height:1.2}
+.sun-box .v em,.moon-box .v em{color:var(--amber);font-style:normal}
+.sun-box .p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-2);margin-top:2px;letter-spacing:0.04em}
+
+/* TODAY PANEL */
+.today-panel{display:flex;flex-direction:column;min-height:360px}
+.today-body{padding:22px 24px;flex:1;display:flex;flex-direction:column;gap:18px}
+.today-hello{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.today-hello h1{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,44px);line-height:1;color:var(--cream);letter-spacing:-0.015em}
+.today-hello h1 em{color:var(--amber);font-style:normal}
+.today-hello .wx{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.today-hello .wx .t{font-family:'Unbounded',sans-serif;font-weight:600;font-size:28px;color:var(--amber);line-height:1}
+.today-hello .wx .d{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute-lt);font-weight:500}
+
+.today-three{display:flex;flex-direction:column;gap:6px}
+.today-three .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.today-three .lbl::before{content:"";width:16px;height:1px;background:var(--amber)}
+.t3-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 12px;background:rgba(255,166,48,0.03);border:1px solid var(--line);transition:all .15s;cursor:pointer}
+.t3-row:hover{background:rgba(255,166,48,0.06);border-color:var(--line-str)}
+.t3-row .chk{width:18px;height:18px;border:1.5px solid var(--amber);border-radius:3px;flex-shrink:0;position:relative;transition:all .15s}
+.t3-row.done .chk{background:var(--amber)}
+.t3-row.done .chk::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:12px}
+.t3-row .txt{font-family:'Inter Tight',sans-serif;font-size:14px;color:var(--cream);font-weight:400;letter-spacing:-0.002em;outline:none}
+.t3-row.done .txt{text-decoration:line-through;text-decoration-color:var(--amber);text-decoration-thickness:1.5px;color:var(--mute-lt)}
+.t3-row .tm{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:0.08em;font-weight:500}
+
+.today-bottom{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.today-next{font-size:13px;color:var(--text-2);letter-spacing:-0.002em}
+.today-next .k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:3px;display:block}
+.today-next .v{color:var(--cream);font-weight:500}
+.today-next .v em{color:var(--amber);font-style:normal}
+
+.today-bot-stats{display:flex;gap:14px}
+.today-bot-stats .st{text-align:right}
+.today-bot-stats .st .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:22px;color:var(--amber);line-height:1;letter-spacing:-0.008em}
+.today-bot-stats .st .l{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);margin-top:3px;font-weight:500}
+
+/* ============ HOGAR · HOME SYSTEMS ============ */
+.m-hogar{grid-column:span 4}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.svc{
+  padding:9px 10px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);
+  display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:12px;
+  transition:all .15s;
+}
+.svc:hover{background:rgba(255,166,48,0.05);border-color:var(--line)}
+.svc .d{width:7px;height:7px;border-radius:999px;background:var(--sage);box-shadow:0 0 6px currentColor;color:var(--sage);animation:pulse 2.5s infinite}
+.svc.warn .d{background:var(--amber);color:var(--amber)}
+.svc.off .d{background:var(--mute-dim);color:var(--mute);box-shadow:none;animation:none}
+.svc .nm{color:var(--cream);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0}
+.svc .up{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--sage);letter-spacing:0.08em;font-weight:500}
+.svc.warn .up{color:var(--amber)}
+.svc.off .up{color:var(--mute)}
+
+.hogar-bottom{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.hogar-stat{text-align:left}
+.hogar-stat .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:3px}
+.hogar-stat .v{font-family:'Unbounded',sans-serif;font-weight:600;font-size:18px;color:var(--sage);line-height:1;letter-spacing:0}
+.hogar-stat .v em{color:var(--amber);font-style:normal}
+
+/* ============ CUERPO · BODY ============ */
+.m-cuerpo{grid-column:span 4}
+.vitals{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-bottom:14px}
+.vital{}
+.vital .k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:4px}
+.vital .v{font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;color:var(--amber);line-height:1;letter-spacing:-0.01em}
+.vital .v small{font-size:13px;color:var(--text-2);font-weight:500;margin-left:3px}
+.vital .v em{color:var(--cream);font-style:normal}
+.vital .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--sage);margin-top:3px;letter-spacing:0.04em}
+.vital .sub.amber{color:var(--amber)}
+.vital .sub.clay{color:var(--clay)}
+
+.habits{padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:5px}
+.habits .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:6px}
+.hrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:6px 8px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);font-size:12px;cursor:pointer;transition:all .15s}
+.hrow:hover{background:rgba(255,166,48,0.05)}
+.hrow .chk{width:14px;height:14px;border:1.2px solid var(--amber);border-radius:2px;position:relative}
+.hrow.done .chk{background:var(--amber)}
+.hrow.done .chk::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:9.5px}
+.hrow .nm{color:var(--cream);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500}
+.hrow.done .nm{text-decoration:line-through;color:var(--mute-lt)}
+.hrow .st{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--amber);letter-spacing:0.04em;font-weight:500}
+.hrow.done .st{color:var(--sage)}
+
+/* ============ BITACORA · JOURNAL ============ */
+.m-bitacora{grid-column:span 4}
+.jrnl-input{
+  width:100%;min-height:86px;padding:12px 14px;
+  background:rgba(0,0,0,0.25);border:1px solid var(--line-dim);
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.55;color:var(--cream);
+  resize:vertical;outline:none;transition:all .15s;
+}
+.jrnl-input:focus{border-color:var(--amber);background:rgba(0,0,0,0.35)}
+.jrnl-input::placeholder{color:var(--mute-dim);font-style:italic}
+
+.jrnl-meta{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--mute)}
+.jrnl-meta em{color:var(--amber);font-style:normal;font-weight:500}
+.jrnl-meta .saved{color:var(--sage);font-weight:500;opacity:0;transition:opacity .3s}
+.jrnl-meta .saved.show{opacity:1}
+
+.jrnl-recent{padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px}
+.jrnl-recent .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:4px}
+.jr{padding:8px 10px;background:rgba(255,166,48,0.02);border-left:2px solid var(--amber);font-size:11.5px;line-height:1.45}
+.jr .dt{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--amber);letter-spacing:0.1em;margin-bottom:3px;font-weight:500}
+.jr .tx{color:var(--text-2);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.5}
+
+/* ============ ESTUDIO · PIPELINE ============ */
+.m-estudio{grid-column:span 4}
+.pipe-head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-bottom:12px;border-bottom:1px dashed var(--line);margin-bottom:12px}
+.pipe-stat .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:3px}
+.pipe-stat .v{font-family:'Unbounded',sans-serif;font-weight:700;font-size:22px;color:var(--amber);line-height:1;letter-spacing:-0.008em}
+.pipe-stat .v em{color:var(--sage);font-style:normal}
+.pipe-stat .v.cream{color:var(--cream)}
+.pipe-stat .sub{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--mute-lt);margin-top:3px;letter-spacing:0.04em}
+
+.leads{display:flex;flex-direction:column;gap:4px}
+.leads .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:3px}
+.lead{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;padding:7px 10px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);font-size:12px;transition:all .15s;cursor:pointer}
+.lead:hover{background:rgba(255,166,48,0.05)}
+.lead .bl{width:3px;height:22px;background:var(--sage);border-radius:2px;box-shadow:0 0 4px currentColor;color:var(--sage)}
+.lead .bl.amber{background:var(--amber);color:var(--amber)}
+.lead .bl.clay{background:var(--clay);color:var(--clay)}
+.lead .bl.mute{background:var(--mute-dim);box-shadow:none}
+.lead .nm{color:var(--cream);font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500}
+.lead .nm em{color:var(--amber);font-style:normal}
+.lead .val{font-family:'Unbounded',sans-serif;font-weight:600;font-size:12px;color:var(--cream);letter-spacing:-0.005em}
+.lead .val em{color:var(--sage);font-style:normal}
+.lead .st{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.lead .st.amber{color:var(--amber)}
+.lead .st.clay{color:var(--clay)}
+.lead .st.mute{color:var(--mute)}
+
+/* ============ AGENTES · 8-AGENT ============ */
+.m-agentes{grid-column:span 4}
+.agents-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.agent{
+  padding:8px 10px;background:rgba(255,166,48,0.025);border:1px solid var(--line-dim);
+  display:flex;flex-direction:column;gap:3px;position:relative;overflow:hidden;font-size:11px;
+}
+.agent.running::after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);
+  animation:aprog 2s linear infinite;box-shadow:0 0 4px currentColor;color:var(--amber);
+}
+@keyframes aprog{0%{width:0}50%{width:60%}100%{width:0;transform:translateX(100%)}}
+.agent .hd{display:flex;justify-content:space-between;align-items:baseline}
+.agent .id{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;color:var(--mute);font-weight:500}
+.agent .id em{color:var(--amber);font-style:normal;font-weight:600}
+.agent .nm{font-family:'Unbounded',sans-serif;font-weight:600;font-size:11.5px;color:var(--cream);letter-spacing:0;text-transform:uppercase;line-height:1.1}
+.agent .tk{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-2);line-height:1.35;letter-spacing:0}
+.agent .tk em{color:var(--amber);font-style:normal}
+.agent.idle .nm{color:var(--mute-lt)}
+.agent.idle .tk{color:var(--mute)}
+.agent .q{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mute);margin-top:3px;letter-spacing:0.05em}
+.agent .q em{color:var(--sage);font-style:normal}
+.agent.running .q em{color:var(--amber)}
+
+/* ============ BANDEJA · INBOX ============ */
+.m-bandeja{grid-column:span 4}
+.inbox-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ibox{padding:12px 14px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);transition:all .15s;cursor:pointer}
+.ibox:hover{background:rgba(255,166,48,0.05);border-color:var(--line)}
+.ibox .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.ibox .nm{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute-lt);font-weight:500}
+.ibox .ic{color:var(--amber);font-size:11px;opacity:0.7}
+.ibox .n{font-family:'Unbounded',sans-serif;font-weight:700;font-size:28px;color:var(--amber);line-height:1;letter-spacing:-0.01em}
+.ibox .n em{color:var(--clay);font-style:normal}
+.ibox .n.sage{color:var(--sage)}
+.ibox .n.muted{color:var(--mute-lt)}
+.ibox .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-2);margin-top:4px;letter-spacing:0.02em}
+.ibox .sub em{color:var(--amber);font-style:normal}
+
+.inbox-next{margin-top:10px;padding:10px 12px;background:rgba(148,179,122,0.08);border-left:3px solid var(--sage);font-size:12px}
+.inbox-next .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:4px}
+.inbox-next .v{color:var(--cream);font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.5}
+.inbox-next .v em{color:var(--amber);font-style:normal;font-weight:500}
+
+/* ============ FRONTERA · HORIZON ============ */
+.m-frontera{grid-column:span 5}
+.horizon{display:flex;flex-direction:column;gap:8px}
+.hor-item{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:10px 12px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);transition:all .15s;cursor:pointer}
+.hor-item:hover{background:rgba(255,166,48,0.05)}
+.hor-item .dt{font-family:'Unbounded',sans-serif;font-weight:700;font-size:14px;color:var(--amber);letter-spacing:-0.005em;line-height:1.15;text-align:left}
+.hor-item .dt small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--mute);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+.hor-item .bd .nm{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--cream);font-weight:500;letter-spacing:0;margin-bottom:2px}
+.hor-item .bd .nm em{color:var(--amber);font-style:normal}
+.hor-item .bd .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-2);letter-spacing:0.02em}
+.hor-item .ct{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);font-weight:500;padding:3px 8px;border:1px solid rgba(148,179,122,0.25);border-radius:2px;background:rgba(148,179,122,0.08)}
+.hor-item .ct.amber{color:var(--amber);border-color:rgba(255,166,48,0.25);background:rgba(255,166,48,0.08)}
+.hor-item .ct.clay{color:var(--clay);border-color:rgba(217,90,60,0.25);background:rgba(217,90,60,0.08)}
+
+/* ============ TIERRA · LONG GAME ============ */
+.m-tierra{grid-column:span 7}
+.tierra-body{padding:14px 16px;display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.tierra-main{display:flex;flex-direction:column;gap:10px}
+.tierra-main .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.tierra-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.tst{text-align:left}
+.tst .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:3px}
+.tst .v{font-family:'Unbounded',sans-serif;font-weight:700;font-size:20px;color:var(--amber);line-height:1;letter-spacing:-0.008em}
+.tst .v em{color:var(--sage);font-style:normal}
+.tst .v small{font-size:12px;color:var(--text-2);font-weight:500;margin-left:2px}
+.tst .d{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--sage);margin-top:2px;letter-spacing:0.04em;font-weight:500}
+.tst .d.clay{color:var(--clay)}
+.tst .d.mute{color:var(--mute)}
+
+.tierra-proj{display:flex;flex-direction:column;gap:6px;padding-top:8px}
+.tp-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:7px 10px;background:rgba(255,166,48,0.02);border:1px solid var(--line-dim);font-size:11.5px;transition:all .15s;cursor:pointer}
+.tp-item:hover{background:rgba(255,166,48,0.05)}
+.tp-item .ic{font-family:'Unbounded',sans-serif;font-weight:700;font-size:14px;color:var(--amber);width:22px;text-align:center}
+.tp-item .nm{font-family:'IBM Plex Mono',monospace;color:var(--cream);font-size:11px;font-weight:500}
+.tp-item .nm em{color:var(--amber);font-style:normal}
+.tp-item .val{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--sage);letter-spacing:0.04em;font-weight:500}
+.tp-item .val.amber{color:var(--amber)}
+.tp-item .val.mute{color:var(--mute)}
+
+.tierra-side{display:flex;flex-direction:column;gap:12px;padding-left:14px;border-left:1px dashed var(--line)}
+.tierra-side .lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mute);font-weight:500}
+
+.tierra-spark{position:relative;height:70px}
+.tierra-spark svg{width:100%;height:100%}
+.tspark-grid{stroke:var(--line);stroke-width:0.5;stroke-dasharray:2 3}
+.tspark-line{stroke:var(--amber);stroke-width:1.6;fill:none;filter:drop-shadow(0 0 4px var(--amber-glow))}
+.tspark-area{fill:url(#tgrad)}
+.tierra-spark-meta{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mute);letter-spacing:0.08em;margin-top:4px}
+.tierra-spark-meta em{color:var(--amber);font-style:normal;font-weight:500}
+
+.tierra-note{padding:10px 12px;background:rgba(255,166,48,0.04);border-left:3px solid var(--amber);font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-2);line-height:1.5;letter-spacing:0.01em;font-style:italic}
+.tierra-note em{color:var(--amber);font-style:normal;font-weight:500}
+.tierra-note strong{color:var(--cream);font-weight:500}
+
+/* ============ COMMAND PALETTE ============ */
+.palette-overlay{
+  position:fixed;inset:0;background:rgba(14,9,5,0.88);backdrop-filter:blur(6px);
+  display:none;align-items:flex-start;justify-content:center;padding-top:14vh;z-index:500;
+}
+.palette-overlay.open{display:flex}
+.palette{width:100%;max-width:620px;background:var(--panel);border:1px solid var(--line-str);box-shadow:0 40px 80px -10px rgba(0,0,0,0.6)}
+.palette::before,.palette::after{content:"";position:absolute;width:10px;height:10px;border-color:var(--amber);border-style:solid}
+.palette-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.palette-head .prompt{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600}
+.palette-head input{
+  flex:1;background:transparent;border:none;outline:none;font-family:'IBM Plex Mono',monospace;
+  font-size:15px;color:var(--cream);letter-spacing:0;padding:2px 0;
+}
+.palette-head input::placeholder{color:var(--mute-dim)}
+.palette-head kbd{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 7px;background:rgba(255,166,48,0.1);border:1px solid var(--line);border-radius:3px;color:var(--mute-lt);font-weight:500}
+.palette-list{max-height:400px;overflow-y:auto;padding:6px}
+.pitem{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+  padding:10px 14px;cursor:pointer;transition:all .1s;border-radius:2px;
+}
+.pitem:hover,.pitem.sel{background:rgba(255,166,48,0.08)}
+.pitem .ic{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);border-radius:2px;font-weight:500;min-width:56px;text-align:center}
+.pitem .lb{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--cream);font-weight:500}
+.pitem .lb em{color:var(--amber);font-style:normal}
+.pitem .sh{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--mute);letter-spacing:0.08em}
+
+/* ============ FLOOR BAR ============ */
+.floor{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;height:34px;
+  background:rgba(14,9,5,0.94);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  display:grid;grid-template-columns:auto auto auto 1fr auto auto;gap:0;align-items:stretch;
+}
+.fseg{padding:0 13px;display:flex;align-items:center;gap:8px;border-right:1px solid var(--line-dim);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.fseg:last-child{border-right:none}
+.fseg .sage{color:var(--sage);display:inline-flex;gap:6px;align-items:center;font-weight:500}
+.fseg .sage::before{content:"";width:6px;height:6px;background:var(--sage);border-radius:999px;box-shadow:0 0 6px currentColor;animation:pulse 2.4s infinite}
+.fseg em{color:var(--amber);font-style:normal;font-weight:500}
+.fmid{overflow:hidden}
+.fmid-inner{white-space:nowrap;animation:ticker 55s linear infinite;display:flex;gap:36px;padding-left:14px;font-size:10px;color:var(--text-2);letter-spacing:0.05em;height:100%;align-items:center}
+.fmid-inner em{color:var(--amber);font-style:normal;font-weight:500}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1280px){
+  .hero-row{grid-template-columns:1fr}
+  .m-hogar,.m-cuerpo,.m-bitacora{grid-column:span 6}
+  .m-estudio,.m-agentes,.m-bandeja{grid-column:span 6}
+  .m-frontera{grid-column:span 6}
+  .m-tierra{grid-column:span 6}
+  .tierra-body{grid-template-columns:1fr}
+  .tierra-side{padding-left:0;padding-top:14px;border-left:none;border-top:1px dashed var(--line)}
+}
+@media (max-width:840px){
+  .torre{padding:50px 14px 50px;gap:14px}
+  .m-hogar,.m-cuerpo,.m-bitacora,.m-estudio,.m-agentes,.m-bandeja,.m-frontera,.m-tierra{grid-column:span 12}
+  .clock-panel{padding:20px;min-height:auto}
+  .clock-svg{width:200px;height:200px}
+  .today-body{padding:18px 20px}
+  .today-hello{flex-wrap:wrap}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .agents-grid{grid-template-columns:1fr 1fr}
+  .inbox-grid{grid-template-columns:1fr 1fr}
+  .hogar-bottom{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .ceiling{grid-template-columns:auto 1fr auto}
+  .ceiling .cseg:nth-child(2),.ceiling .cseg:nth-child(4),.ceiling .cseg:nth-child(5),.ceiling .cmid{display:none}
+  .ceiling{height:40px}
+  .floor{height:30px;grid-template-columns:auto 1fr auto}
+  .floor .fseg:nth-child(2),.floor .fseg:nth-child(3),.floor .fseg:nth-child(5){display:none}
+  .ph{padding:9px 12px;font-size:9.5px;letter-spacing:0.12em}
+  .ph .phl em{display:none}
+}
+@media (max-width:520px){
+  body{font-size:13px}
+  .torre{padding:46px 10px 48px}
+  .clock-svg{width:180px;height:180px}
+  .clock-date .d{font-size:32px}
+  .today-hello h1{font-size:26px}
+  .today-hello .wx .t{font-size:22px}
+  .clock-bottom{grid-template-columns:1fr;gap:10px}
+  .vitals{grid-template-columns:1fr 1fr;gap:8px 12px}
+  .vital .v{font-size:22px}
+  .services-grid{grid-template-columns:1fr}
+  .agents-grid{grid-template-columns:1fr}
+  .inbox-grid{grid-template-columns:1fr 1fr}
+  .ibox .n{font-size:22px}
+  .pipe-head{grid-template-columns:1fr 1fr}
+  .pipe-stat:nth-child(3){grid-column:span 2}
+  .tierra-stat-row{grid-template-columns:1fr 1fr}
+  .tst:nth-child(3){grid-column:span 2;text-align:left}
+  .hor-item{grid-template-columns:56px 1fr;gap:10px}
+  .hor-item .ct{grid-column:2;justify-self:start;margin-top:4px}
+  .palette{width:calc(100% - 20px);margin:0 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ CEILING BAR ============ -->
+<div class="ceiling">
+  <div class="cseg">
+    <span class="cbrand">LA TORRE<em>//</em></span>
+    <span class="lbl">jordi.mco · v1.0</span>
+  </div>
+  <div class="cseg">
+    <span class="lbl">/ mission</span><span class="val" id="utc">00:00:00</span>
+  </div>
+  <div class="cseg cmid">
+    <div class="cmid-inner">
+      <span>▸ amrit vela <em>04:00</em> — 1h 14min ago ✓ practice logged</span>
+      <span>▸ <strong>mar 29.4°C</strong> — surf 0.8m · offshore</span>
+      <span>▸ self-hosted stack · 8/8 <strong>nominal</strong></span>
+      <span>▸ pipeline <em>$63.5k</em> in flight · close prob 68%</span>
+      <span>▸ agent-03 (<em>researcher</em>) — queue 3 tasks</span>
+      <span>▸ wife teaching · kid at nido · silencio hasta 1500h</span>
+      <span>▸ amrit vela <em>04:00</em> — 1h 14min ago ✓ practice logged</span>
+      <span>▸ <strong>mar 29.4°C</strong> — surf 0.8m · offshore</span>
+      <span>▸ self-hosted stack · 8/8 <strong>nominal</strong></span>
+      <span>▸ pipeline <em>$63.5k</em> in flight · close prob 68%</span>
+    </div>
+  </div>
+  <div class="cseg">
+    <span class="lbl">/ mzt</span><span class="val" id="mztime">00:00</span>
+  </div>
+  <div class="cseg">
+    <span class="lbl">/ temp</span><span class="val">29.4°<em>C</em></span>
+  </div>
+  <div class="cseg live">
+    all systems nominal
+  </div>
+  <button class="cmd-trigger" onclick="openPalette()">
+    <span>⌘</span><span>palette</span><kbd>⌘K</kbd>
+  </button>
+</div>
+
+<!-- ============ MAIN GRID ============ -->
+<div class="torre">
+
+  <!-- ========== HERO ROW: CLOCK + TODAY ========== -->
+  <div class="hero-row">
+
+    <!-- CLOCK PANEL -->
+    <div class="panel clock-panel">
+      <div class="clock-top">
+        <div class="clock-date">
+          <div class="dow" id="dow">Friday</div>
+          <div class="d"><em id="dd">17</em>.<span id="mm">04</span></div>
+          <div class="mo"><em id="mn">April</em> 2026 · week 16</div>
+        </div>
+        <div class="clock-loc">
+          <div class="nm">MZT-HQ</div>
+          <div class="co">15.668°N · -96.553°W</div>
+          <div class="tz">UTC -06 · CDMX</div>
+        </div>
+      </div>
+
+      <div class="clock-face">
+        <div class="clock-svg">
+          <svg viewBox="-110 -110 220 220">
+            <!-- outer ring -->
+            <circle class="clock-ring" cx="0" cy="0" r="100"/>
+            <circle class="clock-ring-2" cx="0" cy="0" r="88"/>
+            <circle class="clock-ring-2" cx="0" cy="0" r="60"/>
+            <!-- hour ticks -->
+            <g id="ticks"></g>
+            <!-- numbers -->
+            <text class="clock-num" x="0" y="-78">12</text>
+            <text class="clock-num" x="78" y="0">3</text>
+            <text class="clock-num" x="0" y="80">6</text>
+            <text class="clock-num" x="-78" y="0">9</text>
+            <!-- date window -->
+            <rect class="clock-dw" x="52" y="-10" width="28" height="20"/>
+            <text class="clock-dw-text" x="66" y="0" id="cdw">17</text>
+            <!-- hands -->
+            <line class="clock-hand-h" x1="0" y1="0" x2="0" y2="-48" id="handH" transform="rotate(0)"/>
+            <line class="clock-hand-m" x1="0" y1="0" x2="0" y2="-72" id="handM" transform="rotate(0)"/>
+            <line class="clock-hand-s" x1="0" y1="8" x2="0" y2="-82" id="handS" transform="rotate(0)"/>
+            <circle class="clock-center" cx="0" cy="0" r="4"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="clock-bottom">
+        <div class="sun-box">
+          <svg class="svg" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--amber)">
+            <circle cx="22" cy="26" r="8" fill="var(--amber)" opacity="0.3"/>
+            <circle cx="22" cy="26" r="6" fill="var(--amber)"/>
+            <path d="M6 34 Q22 18 38 34" stroke="var(--amber)" fill="none" stroke-dasharray="2 2" opacity="0.5"/>
+            <line x1="6" y1="34" x2="38" y2="34" stroke="var(--cream)" opacity="0.4"/>
+          </svg>
+          <div class="info">
+            <div class="k">Sun</div>
+            <div class="v">Rise <em>06:14</em> · Set 19:48</div>
+            <div class="p" id="sunprog">day 52% elapsed</div>
+          </div>
+        </div>
+        <div class="moon-box">
+          <svg class="svg" viewBox="0 0 44 44" fill="none">
+            <defs><mask id="moonmask"><rect width="44" height="44" fill="white"/><ellipse cx="32" cy="22" rx="15" ry="15" fill="black"/></mask></defs>
+            <circle cx="22" cy="22" r="14" fill="#201712"/>
+            <circle cx="22" cy="22" r="14" fill="var(--cream)" mask="url(#moonmask)"/>
+            <circle cx="22" cy="22" r="14" fill="none" stroke="var(--amber)" stroke-width="0.6" opacity="0.5"/>
+          </svg>
+          <div class="info">
+            <div class="k">Moon</div>
+            <div class="v">Waning <em>Gibbous</em></div>
+            <div class="p">illum 78% · new in 13d</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODAY PANEL -->
+    <div class="panel today-panel">
+      <div class="ph">
+        <div class="phl"><span>[TORRE · 01]</span><em>today's shape</em></div>
+        <div class="phr"><span class="dot"></span><span>ACTIVE</span></div>
+      </div>
+      <div class="today-body">
+        <div class="today-hello">
+          <h1>Hola, <em>Jordi.</em><br>¿Qué va a pasar hoy?</h1>
+          <div class="wx">
+            <div class="t">29.4°</div>
+            <div class="d">sun · humid · offshore</div>
+          </div>
+        </div>
+
+        <div class="today-three">
+          <div class="lbl">/ today's three · non-negotiable</div>
+          <div class="t3-row" data-i="0" onclick="t3(this)"><span class="chk"></span><span class="txt" contenteditable spellcheck="false">Deep work block · Mariana pitch follow-up</span><span class="tm">09:00–11:00</span></div>
+          <div class="t3-row" data-i="1" onclick="t3(this)"><span class="chk"></span><span class="txt" contenteditable spellcheck="false">Ship directions.html to pitch.astralintegration.studio</span><span class="tm">14:00</span></div>
+          <div class="t3-row" data-i="2" onclick="t3(this)"><span class="chk"></span><span class="txt" contenteditable spellcheck="false">45 min sea · no phone · with wife</span><span class="tm">17:30</span></div>
+        </div>
+
+        <div class="today-bottom">
+          <div class="today-next">
+            <span class="k">/ next on deck</span>
+            <span class="v"><em>18:30</em> — discovery call w/ Sera (from KRI intro) · <em>30 min</em></span>
+          </div>
+          <div class="today-bot-stats">
+            <div class="st"><div class="n" id="daysIn">107</div><div class="l">days into<br>the year</div></div>
+            <div class="st"><div class="n">47</div><div class="l">mission day<br>streak</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HOGAR · HOME SYSTEMS ========== -->
+  <div class="panel m-hogar">
+    <div class="ph">
+      <div class="phl"><span>[HOGAR · 02]</span><em>home systems</em></div>
+      <div class="phr"><span class="dot"></span><span>8/8 UP</span></div>
+    </div>
+    <div class="pbody">
+      <div class="services-grid">
+        <div class="svc"><span class="d"></span><span class="nm">mac-studio</span><span class="up">84d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">tailscale</span><span class="up">84d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">ollama</span><span class="up">22d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">n8n</span><span class="up">22d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">immich</span><span class="up">22d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">vaultwarden</span><span class="up">22d</span></div>
+        <div class="svc"><span class="d"></span><span class="nm">syncthing</span><span class="up">22d</span></div>
+        <div class="svc warn"><span class="d"></span><span class="nm">obsidian-sync</span><span class="up">lag 3m</span></div>
+      </div>
+      <div class="hogar-bottom">
+        <div class="hogar-stat"><div class="k">power</div><div class="v"><em>solar</em></div></div>
+        <div class="hogar-stat"><div class="k">net</div><div class="v">214<em>↓</em></div></div>
+        <div class="hogar-stat"><div class="k">storage</div><div class="v">62<em>%</em></div></div>
+      </div>
+    </div>
+    <div class="pfoot"><span>POLL: <em>30s</em></span><span>LAST CHECK: now</span></div>
+  </div>
+
+  <!-- ========== CUERPO · BODY ========== -->
+  <div class="panel m-cuerpo">
+    <div class="ph">
+      <div class="phl"><span>[CUERPO · 03]</span><em>body · practice</em></div>
+      <div class="phr"><span class="dot"></span><span>ONLINE</span></div>
+    </div>
+    <div class="pbody">
+      <div class="vitals">
+        <div class="vital">
+          <div class="k">Sleep</div>
+          <div class="v">7<small>h</small> <em>02</em><small>m</small></div>
+          <div class="sub">▲ +24m vs avg</div>
+        </div>
+        <div class="vital">
+          <div class="k">Amrit Vela</div>
+          <div class="v">47<small>d</small></div>
+          <div class="sub">streak unbroken</div>
+        </div>
+        <div class="vital">
+          <div class="k">Movement</div>
+          <div class="v">4.8<small>km</small></div>
+          <div class="sub amber">— at goal 50%</div>
+        </div>
+        <div class="vital">
+          <div class="k">Hydration</div>
+          <div class="v">1.6<small>L</small></div>
+          <div class="sub amber">— need 1L</div>
+        </div>
+      </div>
+      <div class="habits">
+        <div class="lbl">/ daily practice</div>
+        <div class="hrow done" data-h="amrit" onclick="hh(this)"><span class="chk"></span><span class="nm">04:00 · amrit vela · japji</span><span class="st">done 04:12</span></div>
+        <div class="hrow done" data-h="kriya" onclick="hh(this)"><span class="chk"></span><span class="nm">kundalini kriya · 31 min</span><span class="st">done 05:48</span></div>
+        <div class="hrow" data-h="swim" onclick="hh(this)"><span class="chk"></span><span class="nm">sea swim · 45 min no phone</span><span class="st">—</span></div>
+        <div class="hrow" data-h="read" onclick="hh(this)"><span class="chk"></span><span class="nm">reading · 20 min</span><span class="st">—</span></div>
+      </div>
+    </div>
+    <div class="pfoot"><span>SOURCE: <em>manual</em></span><span>SYNC: oura · whoop</span></div>
+  </div>
+
+  <!-- ========== BITACORA · JOURNAL ========== -->
+  <div class="panel m-bitacora">
+    <div class="ph">
+      <div class="phl"><span>[BITACORA · 04]</span><em>today's entry</em></div>
+      <div class="phr"><span id="wcount" class="dot" style="background:var(--amber)"></span><span id="wct">0 WORDS</span></div>
+    </div>
+    <div class="pbody">
+      <textarea class="jrnl-input" id="jrnl" placeholder="what moved today?  what didn't?  one observation.  one question." spellcheck="false"></textarea>
+      <div class="jrnl-meta"><span>auto-saves · <em>local only</em></span><span class="saved" id="jsaved">● saved</span></div>
+
+      <div class="jrnl-recent">
+        <div class="lbl">/ recent</div>
+        <div class="jr"><div class="dt">2026.04.16 · thu</div><div class="tx">Mariana opened but didn't reply. That's fine — it's a reading day, not a writing day. Let it settle.</div></div>
+        <div class="jr"><div class="dt">2026.04.15 · wed</div><div class="tx">Ecovillage planning session. TERRA tokenomics need simplifying. Rodrigo's TFN done.</div></div>
+        <div class="jr"><div class="dt">2026.04.14 · tue</div><div class="tx">Notebook template done. The handwritten one is Nina/Mariana energy — exactly the gap.</div></div>
+      </div>
+    </div>
+    <div class="pfoot"><span>BACKED UP: <em>local</em></span><span id="jwrote">streak 12d</span></div>
+  </div>
+
+  <!-- ========== ESTUDIO · PIPELINE ========== -->
+  <div class="panel m-estudio">
+    <div class="ph">
+      <div class="phl"><span>[ESTUDIO · 05]</span><em>astral labs pipeline</em></div>
+      <div class="phr"><span class="dot amber"></span><span>5 ACTIVE</span></div>
+    </div>
+    <div class="pbody">
+      <div class="pipe-head">
+        <div class="pipe-stat"><div class="k">In flight</div><div class="v cream">$63.5<em>k</em></div><div class="sub">gross · 5 leads</div></div>
+        <div class="pipe-stat"><div class="k">MRR trail</div><div class="v">$4.25<em>k</em></div><div class="sub">2 active builds</div></div>
+        <div class="pipe-stat"><div class="k">Close prob</div><div class="v">68<em>%</em></div><div class="sub">weighted</div></div>
+      </div>
+      <div class="leads">
+        <div class="lbl">/ active leads</div>
+        <div class="lead"><span class="bl"></span><span class="nm">Mariana <em>Harpreet</em></span><span class="val"><em>$8k</em>+1.5/mo</span><span class="st">warmest</span></div>
+        <div class="lead"><span class="bl amber"></span><span class="nm">Jugat Guru <em>Singh</em></span><span class="val">$5k+0.75/mo</span><span class="st amber">call q</span></div>
+        <div class="lead"><span class="bl amber"></span><span class="nm">Sera</span><span class="val">$1.5k+0.25/mo</span><span class="st amber">intro</span></div>
+        <div class="lead"><span class="bl mute"></span><span class="nm">Sacred <em>Counsel</em></span><span class="val">$8k+1.5/mo</span><span class="st mute">alumni</span></div>
+        <div class="lead"><span class="bl mute"></span><span class="nm">3HO / KRI</span><span class="val">$8k+1.5/mo</span><span class="st mute">org · slow</span></div>
+      </div>
+    </div>
+    <div class="pfoot"><span>LAST TOUCH: <em>15h</em> ago</span><span>NEXT FOLLOW-UP: 3 DUE</span></div>
+  </div>
+
+  <!-- ========== AGENTES · 8-AGENT ========== -->
+  <div class="panel m-agentes">
+    <div class="ph">
+      <div class="phl"><span>[AGENTES · 06]</span><em>8-agent ops</em></div>
+      <div class="phr"><span class="dot"></span><span>3 RUNNING</span></div>
+    </div>
+    <div class="pbody">
+      <div class="agents-grid">
+        <div class="agent running">
+          <div class="hd"><div class="id">A-01 <em>architect</em></div></div>
+          <div class="tk"><em>planning</em> directions catalog v2</div>
+          <div class="q"><span>queue 2</span><em>running 14m</em></div>
+        </div>
+        <div class="agent running">
+          <div class="hd"><div class="id">A-02 <em>coder</em></div></div>
+          <div class="tk"><em>implementing</em> tcard preview iframes</div>
+          <div class="q"><span>queue 4</span><em>running 3m</em></div>
+        </div>
+        <div class="agent running">
+          <div class="hd"><div class="id">A-03 <em>researcher</em></div></div>
+          <div class="tk"><em>searching</em> yoga school market size</div>
+          <div class="q"><span>queue 3</span><em>running 8m</em></div>
+        </div>
+        <div class="agent idle">
+          <div class="hd"><div class="id">A-04 reviewer</div></div>
+          <div class="tk">idle</div>
+          <div class="q"><span>queue 0</span><em>—</em></div>
+        </div>
+        <div class="agent idle">
+          <div class="hd"><div class="id">A-05 librarian</div></div>
+          <div class="tk">idle · obsidian indexed 12:01</div>
+          <div class="q"><span>queue 0</span><em>—</em></div>
+        </div>
+        <div class="agent idle">
+          <div class="hd"><div class="id">A-06 scribe</div></div>
+          <div class="tk">idle · last: handover.md</div>
+          <div class="q"><span>queue 1</span><em>—</em></div>
+        </div>
+        <div class="agent idle">
+          <div class="hd"><div class="id">A-07 operator</div></div>
+          <div class="tk">idle · n8n 4 flows armed</div>
+          <div class="q"><span>queue 0</span><em>—</em></div>
+        </div>
+        <div class="agent idle">
+          <div class="hd"><div class="id">A-08 sentinel</div></div>
+          <div class="tk">watching · health-checks 30s</div>
+          <div class="q"><span>queue ∞</span><em>pass</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="pfoot"><span>HOST: <em>mac-studio</em></span><span>LOG DEPTH: 2.4k lines</span></div>
+  </div>
+
+  <!-- ========== BANDEJA · INBOX ========== -->
+  <div class="panel m-bandeja">
+    <div class="ph">
+      <div class="phl"><span>[BANDEJA · 07]</span><em>inbox · comms</em></div>
+      <div class="phr"><span class="dot amber"></span><span>3 TO PROCESS</span></div>
+    </div>
+    <div class="pbody">
+      <div class="inbox-grid">
+        <div class="ibox">
+          <div class="hd"><div class="nm">email · priority</div><div class="ic">✉</div></div>
+          <div class="n"><em>3</em></div>
+          <div class="sub">of 47 total unread</div>
+        </div>
+        <div class="ibox">
+          <div class="hd"><div class="nm">whatsapp</div><div class="ic">◉</div></div>
+          <div class="n">8</div>
+          <div class="sub">incl. <em>mariana</em> · 2 kin</div>
+        </div>
+        <div class="ibox">
+          <div class="hd"><div class="nm">voice memos</div><div class="ic">♪</div></div>
+          <div class="n"><em>2</em></div>
+          <div class="sub">to transcribe &amp; triage</div>
+        </div>
+        <div class="ibox">
+          <div class="hd"><div class="nm">slack dms</div><div class="ic">#</div></div>
+          <div class="n sage">0</div>
+          <div class="sub">clean · muted workspace</div>
+        </div>
+      </div>
+      <div class="inbox-next">
+        <div class="k">/ next calendar event</div>
+        <div class="v"><em>18:30 MZT</em> — discovery · Sera (30m) · zoom · no agenda prepared</div>
+      </div>
+    </div>
+    <div class="pfoot"><span>TRIAGE: <em>pending</em></span><span>RESPONSE SLA: &lt; 24h</span></div>
+  </div>
+
+  <!-- ========== FRONTERA · HORIZON ========== -->
+  <div class="panel m-frontera">
+    <div class="ph">
+      <div class="phl"><span>[FRONTERA · 08]</span><em>horizon · next 90 days</em></div>
+      <div class="phr"><span class="dot"></span><span>7 EVENTS</span></div>
+    </div>
+    <div class="pbody">
+      <div class="horizon">
+        <div class="hor-item">
+          <div class="dt">APR 22<small>5 days</small></div>
+          <div class="bd"><div class="nm">Mariana <em>follow-up deadline</em></div><div class="sub">1 week from pitch sent · 2nd touch window opens</div></div>
+          <div class="ct amber">soon</div>
+        </div>
+        <div class="hor-item">
+          <div class="dt">MAY 03<small>16 days</small></div>
+          <div class="bd"><div class="nm">Gurushabd intro call <em>(3HO)</em></div><div class="sub">zoom · warm intro from Deva Premal</div></div>
+          <div class="ct">scheduled</div>
+        </div>
+        <div class="hor-item">
+          <div class="dt">MAY 18<small>31 days</small></div>
+          <div class="bd"><div class="nm"><em>Ecovillage</em> · land visit 3</div><div class="sub">proyecto salvaje · hectare #4 walk-through</div></div>
+          <div class="ct">confirmed</div>
+        </div>
+        <div class="hor-item">
+          <div class="dt">JUN 08<small>52 days</small></div>
+          <div class="bd"><div class="nm">Family · MEX <em>→</em> EUR</div><div class="sub">3-week summer · AIR + passport complete</div></div>
+          <div class="ct">booked</div>
+        </div>
+        <div class="hor-item">
+          <div class="dt">JUN 21<small>65 days</small></div>
+          <div class="bd"><div class="nm">Summer solstice <em>ceremony</em></div><div class="sub">mazunte · sacred counsel · waitlist on</div></div>
+          <div class="ct">rsvp</div>
+        </div>
+      </div>
+    </div>
+    <div class="pfoot"><span>HORIZON: <em>90 days</em></span><span>CADENCE: weekly review sunday</span></div>
+  </div>
+
+  <!-- ========== TIERRA · LONG GAME ========== -->
+  <div class="panel m-tierra">
+    <div class="ph">
+      <div class="phl"><span>[TIERRA · 09]</span><em>the long game · legacy projects</em></div>
+      <div class="phr"><span class="dot"></span><span>ACCRETING</span></div>
+    </div>
+    <div class="tierra-body">
+      <div class="tierra-main">
+        <div class="lbl">/ proyecto salvaje · ecovillage</div>
+        <div class="tierra-stat-row">
+          <div class="tst"><div class="k">Hectares</div><div class="v">5.2<small>ha</small></div><div class="d">committed</div></div>
+          <div class="tst"><div class="k">Members</div><div class="v">14<em>+</em></div><div class="d">+2 this month</div></div>
+          <div class="tst"><div class="k">TERRA tokens</div><div class="v">18.4<small>k</small></div><div class="d">circulating</div></div>
+        </div>
+
+        <div class="tierra-proj">
+          <div class="tp-item"><span class="ic">☉</span><span class="nm">Proyecto <em>Salvaje</em> · DAO v0.3</span><span class="val">building</span></div>
+          <div class="tp-item"><span class="ic">◉</span><span class="nm">Mazunte <em>Connect</em> · live</span><span class="val">1.2k MAU</span></div>
+          <div class="tp-item"><span class="ic">❋</span><span class="nm">VISION <em>Club</em> · monthly</span><span class="val">next MAY 05</span></div>
+          <div class="tp-item"><span class="ic">⟁</span><span class="nm">Dashboard <em>OS</em> · prototype</span><span class="val amber">scoping</span></div>
+          <div class="tp-item"><span class="ic">✧</span><span class="nm">AI chat · <em>personas</em></span><span class="val mute">paused</span></div>
+        </div>
+      </div>
+
+      <div class="tierra-side">
+        <div>
+          <div class="lbl">/ TERRA · 30-day</div>
+          <div class="tierra-spark">
+            <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+              <defs><linearGradient id="tgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFA630" stop-opacity="0.3"/><stop offset="1" stop-color="#FFA630" stop-opacity="0"/></linearGradient></defs>
+              <line class="tspark-grid" x1="0" y1="20" x2="200" y2="20"/>
+              <line class="tspark-grid" x1="0" y1="50" x2="200" y2="50"/>
+              <path class="tspark-area" d="M0,50 L12,48 L24,42 L36,44 L48,38 L60,40 L72,32 L84,30 L96,34 L108,26 L120,22 L132,26 L144,18 L156,14 L168,18 L180,12 L192,10 L200,8 L200,70 L0,70 Z"/>
+              <path class="tspark-line" d="M0,50 L12,48 L24,42 L36,44 L48,38 L60,40 L72,32 L84,30 L96,34 L108,26 L120,22 L132,26 L144,18 L156,14 L168,18 L180,12 L192,10 L200,8"/>
+              <circle cx="200" cy="8" r="3" fill="var(--amber)" filter="drop-shadow(0 0 4px var(--amber))"/>
+            </svg>
+          </div>
+          <div class="tierra-spark-meta"><span>$0.42 → <em>$1.18</em></span><span>▲ +180%</span></div>
+        </div>
+
+        <div class="tierra-note">
+          <strong>Torre note —</strong> TERRA/DAO is the <em>20-year move.</em> Pipeline pays the bills, but this is what you're actually building. <em>Don't let urgent-Astral starve important-Tierra.</em>
+        </div>
+      </div>
+    </div>
+    <div class="pfoot"><span>HORIZON: <em>20 years</em></span><span>PATIENCE: the long compounder</span></div>
+  </div>
+
+</div>
+
+<!-- ========== COMMAND PALETTE ========== -->
+<div class="palette-overlay" id="palo" onclick="closePalette(event)">
+  <div class="palette" onclick="event.stopPropagation()">
+    <div class="palette-head">
+      <span class="prompt">▸</span>
+      <input type="text" id="pinput" placeholder="jump to section · run command · fuzzy search…" oninput="pfilter()">
+      <kbd>esc</kbd>
+    </div>
+    <div class="palette-list" id="plist">
+      <div class="pitem" data-kw="today torre hero" onclick="pjump('.clock-panel')"><span class="ic">TORRE</span><span class="lb">Jump to <em>today's shape</em></span><span class="sh">↵</span></div>
+      <div class="pitem" data-kw="home hogar services stack" onclick="pjump('.m-hogar')"><span class="ic">HOGAR</span><span class="lb">Home systems &amp; services</span><span class="sh">g h</span></div>
+      <div class="pitem" data-kw="cuerpo body sleep habits practice amrit" onclick="pjump('.m-cuerpo')"><span class="ic">CUERPO</span><span class="lb">Body &amp; daily practice</span><span class="sh">g c</span></div>
+      <div class="pitem" data-kw="journal bitacora entry write" onclick="jrnlfocus()"><span class="ic">BITACORA</span><span class="lb">Write today's <em>entry</em></span><span class="sh">g j</span></div>
+      <div class="pitem" data-kw="estudio pipeline leads astral labs" onclick="pjump('.m-estudio')"><span class="ic">ESTUDIO</span><span class="lb">Astral Labs pipeline</span><span class="sh">g p</span></div>
+      <div class="pitem" data-kw="agents agentes ai 8-agent" onclick="pjump('.m-agentes')"><span class="ic">AGENTES</span><span class="lb">8-agent ops status</span><span class="sh">g a</span></div>
+      <div class="pitem" data-kw="inbox bandeja email whatsapp voice" onclick="pjump('.m-bandeja')"><span class="ic">BANDEJA</span><span class="lb">Inbox &amp; comms</span><span class="sh">g i</span></div>
+      <div class="pitem" data-kw="horizon frontera calendar" onclick="pjump('.m-frontera')"><span class="ic">FRONTERA</span><span class="lb">Horizon · next 90 days</span><span class="sh">g n</span></div>
+      <div class="pitem" data-kw="tierra long game legacy ecovillage terra" onclick="pjump('.m-tierra')"><span class="ic">TIERRA</span><span class="lb">Long game · <em>legacy</em></span><span class="sh">g t</span></div>
+      <div class="pitem" data-kw="clear reset habits uncheck" onclick="resetDay()"><span class="ic">ACTION</span><span class="lb">Reset today (clear habits &amp; checks)</span><span class="sh">⌘r</span></div>
+      <div class="pitem" data-kw="export backup journal" onclick="exportJournal()"><span class="ic">EXPORT</span><span class="lb">Export journal to .md</span><span class="sh">⌘e</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FLOOR BAR ========== -->
+<div class="floor">
+  <div class="fseg"><span class="sage">todo bien · torre nominal</span></div>
+  <div class="fseg">session <em id="upt">00:00:00</em></div>
+  <div class="fseg">focus mode <em>off</em></div>
+  <div class="fseg fmid"><div class="fmid-inner">
+    <span>▸ your practice <em>is</em> your life infrastructure</span>
+    <span>▸ urgent-astral &lt; important-tierra</span>
+    <span>▸ the hammock is a command post</span>
+    <span>▸ <em>amrit vela</em> · rise · practice · write · ship</span>
+    <span>▸ mazunte · oax · méxico</span>
+    <span>▸ your practice <em>is</em> your life infrastructure</span>
+    <span>▸ urgent-astral &lt; important-tierra</span>
+    <span>▸ the hammock is a command post</span>
+  </div></div>
+  <div class="fseg"><em>v1.0.0</em></div>
+  <div class="fseg">cmdr · <em>jordi</em></div>
+</div>
+
+<script>
+// ============ CLOCK / TIME ============
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  const d=new Date();
+  // UTC
+  document.getElementById('utc').textContent = d.toISOString().substr(11,8);
+  // MZT (UTC-6)
+  const mzt=new Date(d.getTime()-6*3600000);
+  document.getElementById('mztime').textContent = mzt.toISOString().substr(11,5);
+
+  // analog clock
+  const h=d.getHours()%12,m=d.getMinutes(),s=d.getSeconds();
+  const hA=(h*30)+(m*0.5);
+  const mA=(m*6)+(s*0.1);
+  const sA=s*6;
+  document.getElementById('handH').setAttribute('transform',`rotate(${hA})`);
+  document.getElementById('handM').setAttribute('transform',`rotate(${mA})`);
+  document.getElementById('handS').setAttribute('transform',`rotate(${sA})`);
+
+  // date bits
+  const dow=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  const moN=['January','February','March','April','May','June','July','August','September','October','November','December'][d.getMonth()];
+  document.getElementById('dow').textContent = dow + 'day'.slice(dow.length-3);
+  document.getElementById('dd').textContent = pad(d.getDate());
+  document.getElementById('mm').textContent = pad(d.getMonth()+1);
+  document.getElementById('mn').textContent = moN;
+  document.getElementById('cdw').textContent = pad(d.getDate());
+
+  // sun progression (approx)
+  const mins=d.getHours()*60+d.getMinutes();
+  const srMin=6*60+14, ssMin=19*60+48;
+  const pct=Math.max(0,Math.min(100,Math.round((mins-srMin)/(ssMin-srMin)*100)));
+  document.getElementById('sunprog').textContent = `day ${pct}% elapsed`;
+
+  // days into year
+  const start=new Date(d.getFullYear(),0,0);
+  const diff=d-start;
+  const di=Math.floor(diff/86400000);
+  document.getElementById('daysIn').textContent=di;
+}
+tick();setInterval(tick,1000);
+
+// hour ticks
+(function(){
+  const g=document.getElementById('ticks');
+  for(let i=0;i<60;i++){
+    const ang=i*6;
+    const isHour=(i%5===0);
+    const x1=Math.sin(ang*Math.PI/180)*(isHour?92:95);
+    const y1=-Math.cos(ang*Math.PI/180)*(isHour?92:95);
+    const x2=Math.sin(ang*Math.PI/180)*100;
+    const y2=-Math.cos(ang*Math.PI/180)*100;
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1);line.setAttribute('y1',y1);
+    line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+    line.setAttribute('class',isHour?'clock-tick-major':'clock-tick');
+    g.appendChild(line);
+  }
+})();
+
+// uptime
+const start=Date.now();
+function upt(){
+  const s=Math.floor((Date.now()-start)/1000);
+  document.getElementById('upt').textContent=`${pad(Math.floor(s/3600))}:${pad(Math.floor((s%3600)/60))}:${pad(s%60)}`;
+}
+upt();setInterval(upt,1000);
+
+// ============ PERSISTENT STATE (localStorage) ============
+const today=new Date().toISOString().split('T')[0];
+const STATE_KEY='torre_'+today;
+function load(){return JSON.parse(localStorage.getItem(STATE_KEY)||'{"t3":[false,false,false],"habits":{},"journal":""}')}
+function save(s){try{localStorage.setItem(STATE_KEY,JSON.stringify(s))}catch(e){}}
+let state=load();
+
+// restore today's three
+document.querySelectorAll('.t3-row').forEach(r=>{
+  const i=parseInt(r.dataset.i);
+  if(state.t3 && state.t3[i]) r.classList.add('done');
+  const txt=r.querySelector('.txt');
+  txt.addEventListener('blur',()=>{
+    state.t3txt=state.t3txt||[];
+    state.t3txt[i]=txt.textContent;
+    save(state);
+  });
+  if(state.t3txt && state.t3txt[i]) txt.textContent=state.t3txt[i];
+});
+
+function t3(el){
+  if(event.target.classList.contains('txt'))return;
+  const i=parseInt(el.dataset.i);
+  el.classList.toggle('done');
+  state.t3=state.t3||[false,false,false];
+  state.t3[i]=el.classList.contains('done');
+  save(state);
+}
+
+// restore habits
+document.querySelectorAll('.hrow').forEach(r=>{
+  const h=r.dataset.h;
+  if(state.habits && state.habits[h]!==undefined){
+    if(state.habits[h]) r.classList.add('done'); else r.classList.remove('done');
+  }
+});
+function hh(el){
+  const h=el.dataset.h;
+  el.classList.toggle('done');
+  state.habits=state.habits||{};
+  state.habits[h]=el.classList.contains('done');
+  save(state);
+}
+
+// journal
+const jrnl=document.getElementById('jrnl');
+const jsaved=document.getElementById('jsaved');
+const jwct=document.getElementById('wct');
+if(state.journal) jrnl.value=state.journal;
+updateJrnlMeta();
+let saveTimer;
+jrnl.addEventListener('input',()=>{
+  state.journal=jrnl.value;
+  updateJrnlMeta();
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    save(state);
+    jsaved.classList.add('show');
+    setTimeout(()=>jsaved.classList.remove('show'),1200);
+  },400);
+});
+function updateJrnlMeta(){
+  const w=jrnl.value.trim().split(/\s+/).filter(Boolean).length;
+  jwct.textContent=`${w} WORDS`;
+}
+
+// ============ COMMAND PALETTE ============
+const palo=document.getElementById('palo');
+const pinput=document.getElementById('pinput');
+function openPalette(){palo.classList.add('open');setTimeout(()=>pinput.focus(),10)}
+function closePalette(e){if(e && e.target!==palo)return;palo.classList.remove('open');pinput.value='';pfilter()}
+function pjump(sel){
+  closePalette();
+  document.querySelector(sel).scrollIntoView({behavior:'smooth',block:'start'});
+}
+function pfilter(){
+  const q=pinput.value.toLowerCase().trim();
+  document.querySelectorAll('.pitem').forEach(it=>{
+    const kw=it.dataset.kw.toLowerCase()+' '+it.textContent.toLowerCase();
+    it.style.display = q==='' || kw.includes(q) ? 'grid' : 'none';
+  });
+}
+function jrnlfocus(){closePalette();jrnl.scrollIntoView({behavior:'smooth'});setTimeout(()=>jrnl.focus(),400)}
+function resetDay(){
+  if(confirm('Reset today\'s habits and checks?')){
+    state={t3:[false,false,false],habits:{},journal:state.journal||'',t3txt:state.t3txt};
+    save(state);
+    location.reload();
+  }
+}
+function exportJournal(){
+  const keys=Object.keys(localStorage).filter(k=>k.startsWith('torre_')).sort();
+  let md='# LA TORRE · Journal Export\n\n';
+  keys.forEach(k=>{
+    try{
+      const s=JSON.parse(localStorage.getItem(k));
+      if(s.journal) md+=`## ${k.replace('torre_','')}\n\n${s.journal}\n\n---\n\n`;
+    }catch(e){}
+  });
+  const blob=new Blob([md],{type:'text/markdown'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='torre-journal.md';a.click();
+  URL.revokeObjectURL(url);
+  closePalette();
+}
+
+// keyboard shortcuts
+document.addEventListener('keydown',(e)=>{
+  if((e.metaKey||e.ctrlKey) && e.key==='k'){e.preventDefault();openPalette()}
+  if(e.key==='Escape' && palo.classList.contains('open')){closePalette()}
+});
+</script>
+
+</body>
+</html>
