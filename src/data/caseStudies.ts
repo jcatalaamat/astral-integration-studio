@@ -11,14 +11,6 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: 'jugat-guru',
-    type: 'Global Yoga Leadership — Practice Portal & Membership',
-    category: 'Practitioners',
-    url: 'https://jugatguru.xyz',
-    challenge: 'An institutional leader running a personal practice across 4+ booking platforms, 3 dead domains, and no membership portal. Private mentorship at $500–2400/session, global events, a membership club, and content scattered across partner sites. We replaced everything with a single practice portal — member login, 40-day tracking, content library, event system, and mentorship booking.',
-    gradient: 'from-amber-900/25 via-amber-900/5 to-transparent',
-  },
-  {
     slug: 'gurmukh',
     type: 'Legacy Yoga Teacher — Editorial Landing & Unified Booking',
     category: 'Schools',
@@ -59,14 +51,6 @@ export const caseStudies: CaseStudy[] = [
     gradient: 'from-amber-900/25 via-amber-900/5 to-transparent',
   },
   {
-    slug: 'uria-tsur',
-    type: 'Touring Facilitator — Events, Membership & Training',
-    category: 'Practitioners',
-    url: 'https://uriatsur.live',
-    challenge: 'A touring facilitator managing events across 8 ticketing platforms — losing control of audience data, paying per-transaction fees, and spending hours weekly on admin. Also needed a membership portal and a certification course for leaders across multiple countries. We replaced all 8 platforms with unified ticketing, membership, and cohort management.',
-    gradient: 'from-violet-900/25 via-violet-900/5 to-transparent',
-  },
-  {
     slug: 'shivenergetics',
     type: 'Reiki Academy — Student Progression & AI Assistant',
     category: 'Schools',
@@ -99,14 +83,6 @@ export const caseStudies: CaseStudy[] = [
     gradient: 'from-lime-900/25 via-lime-900/5 to-transparent',
   },
   {
-    slug: 'ozina-camp',
-    type: 'Eco Farm & Artist Residency — Direct Bookings',
-    category: 'Retreats',
-    url: null,
-    challenge: 'An eco-farm, artist residency, and natural building school. Off-the-shelf booking sites couldn\'t represent the place and took significant commissions. Three distinct models — availability-based stays, portfolio-reviewed residencies, and prerequisite-gated courses — sharing physical space. Direct bookings, land story first.',
-    gradient: 'from-orange-900/25 via-orange-900/5 to-transparent',
-  },
-  {
     slug: 'proyecto-salvaje',
     type: 'Regenerative Land Community — Vision & Lot Availability',
     category: 'Communities',
@@ -123,20 +99,20 @@ export const caseStudies: CaseStudy[] = [
     gradient: 'from-teal-900/25 via-teal-900/5 to-transparent',
   },
   {
-    slug: 'mujer-despierta',
-    type: 'Women\'s Movement — Spanish-Language Community',
-    category: 'Communities',
-    url: 'https://mujerdespierta.xyz',
-    challenge: 'A women\'s empowerment platform running circles, retreats, and online programs in Spanish — scattered across Wix, ClickFunnels, and WhatsApp. No unified enrollment or membership. We built a standalone Spanish-language site as a living archive during the rebrand transition.',
-    gradient: 'from-fuchsia-900/25 via-fuchsia-900/5 to-transparent',
-  },
-  {
     slug: 'mend-a-mano',
     type: 'Textile Artisan — Bespoke Robes & Goods',
     category: 'Makers',
     url: 'https://mendamano.xyz',
     challenge: 'A textile artisan crafting bespoke robes from linen and wool — no digital presence beyond word of mouth. The site needed to feel as intentional as the garments. Linen texture overlay, earthy palette, product showcase, and custom ordering through direct conversation. No e-commerce template.',
     gradient: 'from-amber-900/25 via-amber-900/5 to-transparent',
+  },
+  {
+    slug: 'portal-poem',
+    type: 'Writer & Poet — Editorial Home for Long-Form Work',
+    category: 'Makers',
+    url: 'https://portalpoem.com',
+    challenge: 'A writer publishing essays, poems, and long-form work with no editorial home — pieces scattered across Substack, Medium, and Instagram. The site needed to feel like a paper journal, not a blog. Slow typography, generous whitespace, intentional rhythm. Reading first, sharing second.',
+    gradient: 'from-stone-900/25 via-stone-900/5 to-transparent',
   },
   {
     slug: 'kura-terra',
